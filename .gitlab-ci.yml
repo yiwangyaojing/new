@@ -45,7 +45,7 @@ deploy_develop:
     - mkdir -p ~/.ssh
     - eval $(ssh-agent -s)
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - ssh -p22 henry@106.14.210.95 "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN docker.niuchuangwin.com"
     - ssh -p22 henry@106.14.210.95 "[ -f ~/front-api/docker-compose.testing.yml ] && docker-compose -f ~/front-api/docker-compose.testing.yml down || mkdir ~/front-api"
     - scp -P22 docker-compose.testing.yml henry@106.14.210.95:front-api
@@ -62,7 +62,7 @@ deploy_production:
     - mkdir -p ~/.ssh
     - eval $(ssh-agent -s)
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    - echo "$SSH_PRIVATE_KEY_PRO" | ssh-add -
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - ssh -p22 henry@52.80.89.188 "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN docker.niuchuangwin.com"
     - ssh -p22 henry@52.80.89.188 "[ -f ~/front-api/docker-compose.production.yml ] && docker-compose -f ~/front-api/docker-compose.production.yml down || mkdir ~/front-api"
     - scp -P22 docker-compose.production.yml henry@52.80.89.188:front-api

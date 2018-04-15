@@ -10,7 +10,7 @@ services:
       - NODE_ENV=test
       - EGG_SERVER_ENV=unittest
     ports:
-      - "80:7001"
+      - "8080:7001"
     networks:
       - nodenet
     command: "npm run non-daemon-start"

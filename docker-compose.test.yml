@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  node:
+    image: docker.xiaosolar.com/xq/front-api/develop:latest
+    restart: always
+    volumes:
+      - /srv/docker/front-api/logs:/home/node/app/logs
+    environment:
+      - NODE_ENV=test
+      - EGG_SERVER_ENV=unittest
+    ports:
+      - "80:7001"
+    networks:
+      - nodenet
+    command: "npm run non-daemon-start"
+networks:
+  nodenet:

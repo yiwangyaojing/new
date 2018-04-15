@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  node:
+    build: .
+    image: front-api
+    restart: always
+    volumes:
+      - /srv/docker/front-api/logs:/home/node/app/logs
+    environment:
+      - NODE_ENV=development
+      - EGG_SERVER_ENV=local
+    ports:
+      - "80:7001"
+    networks:
+      - nodenet
+    command: "npm run non-daemon-start"
+networks:
+  nodenet:

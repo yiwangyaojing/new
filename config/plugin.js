@@ -25,5 +25,6 @@ exports.oss = {
 exports.alinode = {
   enable: true,
   package: 'egg-alinode',
+  env: [ 'test', 'prod' ],
 };
 

@@ -19,11 +19,11 @@ module.exports = appInfo => {
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-    database: 'xiaotaiyang',
-    host: '120.26.102.228',
+    database: 'xiaosolar_test',
+    host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
     port: '3306',
-    username: 'root',
-    password: 'accp',
+    username: 'xiaosolar_test_user',
+    password: 'ooMoo8wun0etaaso',
   };
   config.security = {
     csrf: {

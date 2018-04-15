@@ -44,11 +44,6 @@ module.exports = appInfo => {
       timeout: '60s',
     },
   };
-  config.alinode = {
-    server: 'wss://agentserver.node.aliyun.com:8080',
-    appid: '17139',
-    secret: 'f3c6470786273314ae9b0464278de4ab84f8d303',
-  };
   /* config.wechat = {
     appId: 'wx6441dd4482409ffb',
     secret: 'cf5450752f7639a753f57acaa796da7d',

@@ -22,9 +22,4 @@ exports.oss = {
   package: 'egg-oss',
   useAgent: true,
 };
-exports.alinode = {
-  enable: true,
-  package: 'egg-alinode',
-  env: [ 'test', 'prod' ],
-};
 

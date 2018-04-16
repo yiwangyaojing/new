@@ -53,6 +53,9 @@ class PlansService extends Service {
             source_type: FileType.HouseImg,
             data_type: FileType.HouseImg_h,
           },
+          order: [
+            ['plan_id', 'ASC']
+          ]
         });
         if (xfile) {
           houseImg = xfile.url;

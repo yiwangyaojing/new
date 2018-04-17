@@ -23,6 +23,12 @@ class FileService extends Service {
     // 清除历史数据
     await ctx.model.XFiles.destroy({ where: { plan_id: plan.id, source_type: sourceType } });
 
+    // 清除排板子oss文件
+    if(sourceType === 5){
+      const file= await ctx.model.XFiles.getOne({where :{plan_id:plan.id}})
+      await this.ctx.oss.delete(file.oss_file_name);
+    }
+
     await sequelize.transaction(function(t) {
       return ctx.model.XFiles.bulkCreate(files, { transaction: t }).then(function() {
         return ctx.model.XPlans.update(plan, { where: { id: plan.id } }, { transaction: t });

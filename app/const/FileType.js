@@ -17,6 +17,9 @@ module.exports = {
   // 特殊房屋
   specialHouseImg: 4,
 
+  // 排板子图片保存
+  roofImg: 5,
+
   // 计算器 递减变量
   reduction: 0.7,
 };

@@ -94,10 +94,10 @@ class CalculatorService extends Service {
     };
 
     const matrixList = [];
-    let matrix = {};
+    const matrix = {};
     let dwPrice = request.dw_price;
     if (request.qesw_price > 0) {
-       dwPrice = request.qesw_price;
+      dwPrice = request.qesw_price;
     }
 
     const dkPercent = request.dk_percent / 100; // 贷款期限
@@ -144,7 +144,7 @@ class CalculatorService extends Service {
     result.total_profit = result.sn_profit;
 
     // 首付 = 系统总价 * 贷款期限
-    result.sn_pay = result.xtzj * dkPercent
+    result.sn_pay = result.xtzj * dkPercent;
 
     // 第一年矩阵
     matrix.query_id = request.openId;
@@ -165,26 +165,26 @@ class CalculatorService extends Service {
     if (dkPercent !== 1) {
       result.sn_repay = result.xtzj * (1 - dkPercent) * dkRate * (Math.pow((1 + dkRate), request.dk_year)) / (Math.pow((1 + dkRate), request.dk_year) - 1);
     }
-    if(request.dk_year>1){
-       matrix.dk_total = result.sn_repay
-    }else{
-      matrix.dk_total = 0
+    if (request.dk_year > 1) {
+      matrix.dk_total = result.sn_repay;
+    } else {
+      matrix.dk_total = 0;
     }
-    matrix.user_profit = matrix.profit_total - matrix.dk_total  // 用户收益 = 总收益 - 还贷款
-    matrix.user_sum_profit= matrix.user_profit
+    matrix.user_profit = matrix.profit_total - matrix.dk_total; // 用户收益 = 总收益 - 还贷款
+    matrix.user_sum_profit = matrix.user_profit;
 
     matrixList.push(matrix);
     // 25年总收益
-    let y25_profit =  matrix.profit_total;
+    let y25_profit = matrix.profit_total;
 
-    let y25List = [
-      {year: '第1年',
-       profit: Math.round(matrix.profit_total)
-      }
-    ]
+    const y25List = [
+      { year: '第1年',
+        profit: Math.round(matrix.profit_total),
+      },
+    ];
 
     for (let i = 2; i <= 25; ++i) {
-      let matrix = {};
+      const matrix = {};
       matrix.seq = i;
       matrix.year_total = matrixList[i - 2].year_total * (1 - FileType.reduction / 100);
       matrix.zy_total = matrix.year_total * zfzyPercent; // 自用电量
@@ -211,35 +211,35 @@ class CalculatorService extends Service {
 
       y25_profit += matrix.profit_total; // 25年总收益
 
-      //净收益
-      if(i <= request.dk_year){
-        matrix.dk_total = result.sn_repay
-      }else{
-        matrix.dk_total = 0
+      // 净收益
+      if (i <= request.dk_year) {
+        matrix.dk_total = result.sn_repay;
+      } else {
+        matrix.dk_total = 0;
       }
-      matrix.user_profit = matrix.profit_total - matrix.dk_total
-      matrix.user_sum_profit = matrix.user_profit + (matrixList[i - 2].user_sum_profit)
+      matrix.user_profit = matrix.profit_total - matrix.dk_total;
+      matrix.user_sum_profit = matrix.user_profit + (matrixList[i - 2].user_sum_profit);
 
-      let yearProfit = {
-          year: '第' + i + '年',
-          profit: Math.round(matrix.profit_total)
-      }
+      const yearProfit = {
+        year: '第' + i + '年',
+        profit: Math.round(matrix.profit_total),
+      };
       y25List.push(yearProfit);
       matrixList.push(matrix);
     }
 
 
-    //四舍五入取整数
-    result.xtzj = Math.round(result.xtzj)
-    result.sn_profit = Math.round(result.sn_profit)
-    result.sn_repay =Math.round(result.sn_repay)
-    result.sd_profit = Math.round(result.sd_profit)
-    result.md_profit = Math.round(result.md_profit)
-    result.bt_total  = Math.round(result.bt_total)
-    result.y25_profit = Math.round(y25_profit)
-    result.total_profit = Math.round(matrixList[24].user_sum_profit) // 25年净收益
+    // 四舍五入取整数
+    result.xtzj = Math.round(result.xtzj);
+    result.sn_profit = Math.round(result.sn_profit);
+    result.sn_repay = Math.round(result.sn_repay);
+    result.sd_profit = Math.round(result.sd_profit);
+    result.md_profit = Math.round(result.md_profit);
+    result.bt_total = Math.round(result.bt_total);
+    result.y25_profit = Math.round(y25_profit);
+    result.total_profit = Math.round(matrixList[24].user_sum_profit); // 25年净收益
 
-    result.y25_list = JSON.stringify(y25List)
+    result.y25_list = JSON.stringify(y25List);
 
     // 保存request
     let isCreatedQuery;

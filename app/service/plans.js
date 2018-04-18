@@ -54,8 +54,8 @@ class PlansService extends Service {
             data_type: FileType.HouseImg_h,
           },
           order: [
-            ['plan_id', 'ASC']
-          ]
+            [ 'plan_id', 'ASC' ],
+          ],
         });
         if (xfile) {
           houseImg = xfile.url;
@@ -156,6 +156,13 @@ class PlansService extends Service {
           dataImgs.push(imgs);
         }
         result.dataImgs = dataImgs;
+      }
+    }
+    // 排板子图片获取
+    if(result.rf_is_finish === 1){
+       const file = await this.ctx.model.XFiles.findOne({where :{plan_id:rowId}})
+      if(file){
+        result.rfImage = file.url;
       }
     }
 

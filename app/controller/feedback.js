@@ -9,8 +9,8 @@ class FeedbackController extends Controller {
 
     const rule = {
       open_id: { type: 'string', required: true },
-      phone: { type: 'string', required: true },
-      content: { type: 'string', required: true },
+      phone: { type: 'string', required: false },
+      content: { type: 'string', required: false },
     };
 
     ctx.validate(rule, ctx.request.body);

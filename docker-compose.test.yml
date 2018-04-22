@@ -1,5 +1,9 @@
 version: "3"
 
+networks:
+  lb_traefiknet:
+    external: true
+
 services:
   front-api:
     image: docker.xiaosolar.com/xq/front-api/develop:latest
@@ -19,6 +23,3 @@ services:
       - "traefik.network=traefiknet"
       - "traefik.frontend.rule=Host:mpa.xiaosolar.com;PathPrefixStrip:/front-api"
       - "traefik.backend=front-api"
-networks:
-  lb_traefiknet:
-    external: true

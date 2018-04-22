@@ -187,6 +187,11 @@ class PlansService extends Service {
       result.h_is_finish = plan.h_is_finish;
       result.d_is_finish = plan.d_is_finish;
       result.rf_is_finish = plan.rf_is_finish;
+      result.zj_format = plan.zj_format;
+      result.zj_num = plan.zj_num;
+      result.zj_capacity =  plan.zj_capacity;
+      result.zj_price = plan.zj_price;
+      result.zj_source = plan.zj_source;
       results.push(result);
     }
 

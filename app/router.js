@@ -19,7 +19,7 @@ module.exports = app => {
   router.post('/api/file/upload', controller.file.upload);
   router.put('/api/file', controller.file.update);
   router.post('/api/file/del', controller.file.destory);
-  router.get('/api/file/:plan_id/:source_type', controller.file.detail);
+  router.get('/api/file/:plan_id/:source_type/:open_id', controller.file.detail);
   router.get('/api/file/queryIndexSliderAd', controller.file.queryIndexSliderAd);
 
   // 获取openId

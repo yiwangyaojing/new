@@ -22,6 +22,10 @@ module.exports = app => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    type:{
+      type: DataTypes.INTEGER(1),
+      allowNull: true,
+    },
     created_at: {
       type: DataTypes.TIME,
       allowNull: true,

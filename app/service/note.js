@@ -6,7 +6,7 @@ class NoteService extends Service {
 
   async index(openId) {
 
-    return await this.ctx.model.XNote.findAll({ where: { open_id: openId } });
+    return await this.ctx.model.XNote.findAll({ where: { open_id: openId } , order: [ ["updated_at","desc"] ] });
   }
 
   async create(req) {

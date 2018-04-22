@@ -12,7 +12,7 @@ module.exports = appInfo => {
     client: {
       port: 6379, // Redis port
       host: '127.0.0.1', // Redis host
-      password: 'None',
+      password: 'ShLjyF7VI5wrzNIYjx52zR09CiGWMaGx',
       db: 0,
     },
   };
@@ -37,14 +37,18 @@ module.exports = appInfo => {
   };
   config.oss = {
     client: {
-      accessKeyId: 'LTAIJq3IvPywFWPH',
-      accessKeySecret: 'KT0AIH0RL4sYNd5efvcBklnjrR27n7',
+      accessKeyId: 'LTAIcCfrs4WdB8Xf',
+      accessKeySecret: 'tL6mjeZ9m01yPcOm7ZmDDdAR155Gpk',
       bucket: 'haoxiaoshou',
       endpoint: 'oss-cn-shanghai.aliyuncs.com',
       timeout: '60s',
     },
   };
-
+  config.alinode = {
+    server: 'wss://agentserver.node.aliyun.com:8080',
+    appid: '17138',
+    secret: '5669934ac33e5e5a4862e814deb87547efaba5f6',
+  };
   config.wechat = {
     appId: 'wx6441dd4482409ffb',
     secret: 'cf5450752f7639a753f57acaa796da7d',

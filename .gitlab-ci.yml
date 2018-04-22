@@ -63,11 +63,11 @@ deploy_production:
     - eval $(ssh-agent -s)
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - ssh -p22 henry:Solarxiao0816@47.100.206.81 "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN docker.xiaosolar.com"
-    - ssh -p22 henry:Solarxiao0816@47.100.206.81 "[ -f ~/front-api/docker-compose.production.yml ] && docker-compose -f ~/front-api/docker-compose.production.yml down || mkdir ~/front-api"
-    - scp -P22 docker-compose.production.yml henry:Solarxiao0816@47.100.206.81:front-api
-    - ssh -p22 henry:Solarxiao0816@47.100.206.81 "docker pull $CONTAINER_PROD_IMAGE"
-    - ssh -p22 henry:Solarxiao0816@47.100.206.81 "docker-compose -f ~/front-api/docker-compose.production.yml up -d"
+    - ssh -p22 henry@47.100.206.81 "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN docker.xiaosolar.com"
+    - ssh -p22 henry@47.100.206.81 "[ -f ~/front-api/docker-compose.production.yml ] && docker-compose -f ~/front-api/docker-compose.production.yml down || mkdir ~/front-api"
+    - scp -P22 docker-compose.production.yml henry@47.100.206.81:front-api
+    - ssh -p22 henry@47.100.206.81 "docker pull $CONTAINER_PROD_IMAGE"
+    - ssh -p22 henry@47.100.206.81 "docker-compose -f ~/front-api/docker-compose.production.yml up -d"
   tags:
     - front-api
   only:

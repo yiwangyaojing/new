@@ -26,31 +26,41 @@ class FileController extends Controller {
 
     ctx.validate(rule, req);
     // 获取用户对应的方案信息
-    const plan = await service.plans.detail(req.plan_id);
+    const plan = {}
+    plan.id = req.plan_id
     if (req.source_type === 2) {
-      plan.h_is_finish = 1; // 更改拍房子状态及备注
+      if(req.files.length !== 0 || req.remark || req.h_face){
+        plan.h_is_finish = 1; // 更改拍房子状态及备注
+      }
       plan.h_face = req.h_face;
       plan.h_remark = req.remark;
     } else if (req.source_type === 3) { // 更改收资料状态及备注
-      plan.d_is_finish = 1;
+      if(req.files.length !== 0 || req.remark){
+        plan.d_is_finish = 1;
+      }
       plan.d_remark = req.remark;
     } else if (req.source_type === 5) { // 排板子资料上传
+      plan.zj_num =req.zj_num;
+      plan.zj_source = req.zj_source
+      plan.zj_format = req.zj_format
+      plan.zj_capacity = req.zj_capacity
+      plan.zj_price = req.zj_price
+      plan.zj_unit_price = req.zj_unit_price
+      plan.rf_params = req.rf_params
       plan.rf_is_finish = 1;
       plan.rf_remark = req.remark;
+      plan.rf_image = req.rf_image;
     }
 
     // 遍历files
     const tmpFiles = [];
     for (const file of req.files) {
       let tmpFile;
-      console.log('this is file ====>>', file, typeof file);
       if (typeof file === 'object') {
         tmpFile = file;
       } else {
         tmpFile = JSON.parse(file);
       }
-      tmpFile.created_at = new Date();
-      console.log('this is tmpFile ====>>', tmpFile, tmpFile.created_at);
       tmpFile.plan_id = req.plan_id;
       tmpFile.open_id = req.open_id;
       tmpFiles.push(tmpFile);
@@ -133,17 +143,19 @@ class FileController extends Controller {
     ctx.validate(rule, req);
 
     // 获取用户对应的方案信息
-    const plan = await service.plans.detail(req.plan_id);
+    const plan = {}
+    plan.id = req.plan_id
     if (req.source_type === 2) {
-      plan.h_is_finish = 1; // 更改拍房子状态及备注
+      if(req.files.length !== 0 || req.remark || req.h_face){
+        plan.h_is_finish = 1; // 更改拍房子状态及备注
+      }
       plan.h_face = req.h_face;
       plan.h_remark = req.remark;
     } else if (req.source_type === 3) { // 更改收资料状态及备注
-      plan.d_is_finish = 1;
+      if(req.files.length !== 0 || req.remark){
+         plan.d_is_finish = 1;
+      }
       plan.d_remark = req.remark;
-    } else if (req.source_type === 5) { // 排板子资料上传
-      plan.rf_is_finish = 1;
-      plan.rf_remark = req.remark;
     }
 
 
@@ -151,14 +163,11 @@ class FileController extends Controller {
     const tmpFiles = [];
     for (const file of req.files) {
       let tmpFile;
-      console.log('this is file ====>>', file, typeof file);
       if (typeof file === 'object') {
         tmpFile = file;
       } else {
         tmpFile = JSON.parse(file);
       }
-      tmpFile.created_at = new Date();
-      console.log('this is tmpFile ====>>', tmpFile, tmpFile.created_at);
       tmpFile.plan_id = req.plan_id;
       tmpFile.open_id = req.open_id;
       tmpFiles.push(tmpFile);
@@ -188,6 +197,7 @@ class FileController extends Controller {
     const rule = {
       plan_id: { type: 'string', required: true },
       source_type: { type: 'string', required: true },
+      open_id: { type: 'string', required: true },
     };
     ctx.validate(rule, ctx.params);
 

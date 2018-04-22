@@ -84,6 +84,10 @@ module.exports = app => {
       defaultValue: '0',
     },
     rf_params: {
+      type: DataTypes.STRING(1000),
+      allowNull: true,
+    },
+    rf_image:{
       type: DataTypes.STRING(255),
       allowNull: true,
     },

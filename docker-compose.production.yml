@@ -1,13 +1,22 @@
 version: "3"
 
+networks:
+  lb_traefiknet:
+    external: true
+  redis_redisnet:
+    external: true
+
 services:
   front-api:
     image: docker.xiaosolar.com/xq/front-api/production:latest
     restart: always
     ports:
       - "7001:7001"
+    external_links:
+      - redis_redis_1:redis
     networks:
       - lb_traefiknet
+      - redis_redisnet
     volumes:
       - /srv/docker/front-api/logs:/home/node/logs
     environment:
@@ -19,6 +28,3 @@ services:
       - "traefik.network=traefiknet"
       - "traefik.frontend.rule=Host:mp.xiaosolar.com;PathPrefixStrip:/front-api"
       - "traefik.backend=front-api"
-networks:
-  lb_traefiknet:
-    external: true

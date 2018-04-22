@@ -18,7 +18,7 @@ services:
     labels:
       - "traefik.port=7001"
       - "traefik.network=traefiknet"
-      - "traefik.frontend.rule=Host:mp.xiaosolar.com;PathPrefixStrip:/front-api"
+      - "traefik.frontend.rule=Host:mpa.xiaosolar.com;PathPrefixStrip:/front-api"
       - "traefik.backend=front-api"
 networks:
   lb_traefiknet:

@@ -37,8 +37,8 @@ module.exports = appInfo => {
   };
   config.oss = {
     client: {
-      accessKeyId: 'LTAIgXzy1bL842zP',
-      accessKeySecret: 'GHDW2xWNpl0wxHvw3aJFuE4sJJ2OKY',
+      accessKeyId: 'LTAIKWs1kELOi15p',
+      accessKeySecret: 'YSSLU7Rcl35cVZtSy7VeKPrI5KcHno',
       bucket: 'haoxiaoshou-test',
       endpoint: 'oss-cn-shanghai.aliyuncs.com',
       timeout: '60s',

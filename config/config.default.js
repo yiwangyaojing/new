@@ -19,11 +19,11 @@ module.exports = appInfo => {
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-    database: 'xiaotaiyang',
-    host: '120.26.102.228',
+    database: 'xiaosolar_development',
+    host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
     port: '3306',
     username: 'root',
-    password: 'accp',
+    password: 'eib6Aeduo5ATamee@',
   };
   config.security = {
     csrf: {
@@ -37,9 +37,9 @@ module.exports = appInfo => {
   };
   config.oss = {
     client: {
-      accessKeyId: 'LTAIITaDqD9Hm8UM',
-      accessKeySecret: 'FaiTHiasmIWPpLkTHADH9jAj0iLv6K',
-      bucket: 'xiqaiotest',
+      accessKeyId: 'LTAIgXzy1bL842zP',
+      accessKeySecret: 'GHDW2xWNpl0wxHvw3aJFuE4sJJ2OKY',
+      bucket: 'haoxiaoshou-test',
       endpoint: 'oss-cn-shanghai.aliyuncs.com',
       timeout: '60s',
     },

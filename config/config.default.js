@@ -37,23 +37,23 @@ module.exports = appInfo => {
   };
   config.oss = {
     client: {
-      accessKeyId: 'LTAIgXzy1bL842zP',
-      accessKeySecret: 'GHDW2xWNpl0wxHvw3aJFuE4sJJ2OKY',
+      accessKeyId: 'LTAIKWs1kELOi15p',
+      accessKeySecret: 'YSSLU7Rcl35cVZtSy7VeKPrI5KcHno',
       bucket: 'haoxiaoshou-test',
       endpoint: 'oss-cn-shanghai.aliyuncs.com',
       timeout: '60s',
     },
   };
-  config.wechat = {
+  /* config.wechat = {
     appId: 'wx6441dd4482409ffb',
     secret: 'cf5450752f7639a753f57acaa796da7d',
     openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
-  };
+  };*/
   // yk本地开发
-  // config.wechat = {
-  //   appId: 'wx0c878877bf2012f7',
-  //   secret: '07bab2ddd65628a535fb529b7b02e422',
-  //   openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
-  // };
+  config.wechat = {
+    appId: 'wx0c878877bf2012f7',
+    secret: '07bab2ddd65628a535fb529b7b02e422',
+    openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
+  };
   return config;
 };

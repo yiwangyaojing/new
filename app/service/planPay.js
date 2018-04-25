@@ -1,7 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 class planPayService extends Service {
 
   async index(req){

@@ -1,5 +1,6 @@
 /* indent size: 2 */
 'use strict';
+
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
@@ -8,35 +9,35 @@ module.exports = app => {
       type: DataTypes.INTEGER(20),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     open_id: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: false
     },
     title: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     contents_text: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: true
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'x_note',
+    tableName: 'x_note'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

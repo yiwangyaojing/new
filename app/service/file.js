@@ -21,16 +21,15 @@ class FileService extends Service {
     let _result = 0;
 
     // 清除排板子oss文件
-    if(sourceType === 5){
-      const file = await ctx.model.XFiles.findOne({where :{plan_id:plan.id,source_type:sourceType}})
-      if(file){
+    if (sourceType === 5) {
+      const file = await ctx.model.XFiles.findOne({ where: { plan_id: plan.id, source_type: sourceType } });
+      if (file) {
         await this.ctx.oss.delete(file.oss_file_name);
       }
     }
 
     // 清除历史数据
     await ctx.model.XFiles.destroy({ where: { plan_id: plan.id, source_type: sourceType } });
-
 
 
     await sequelize.transaction(function(t) {
@@ -94,7 +93,7 @@ class FileService extends Service {
   }
 
   async findBySource(params) {
-    return await this.ctx.model.XFiles.findAll({ where: { plan_id: params.plan_id, open_id:params.open_id, source_type: params.source_type } });
+    return await this.ctx.model.XFiles.findAll({ where: { plan_id: params.plan_id, open_id: params.open_id, source_type: params.source_type } });
   }
 
   /**

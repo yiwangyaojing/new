@@ -4,8 +4,8 @@
   "description": "小程序API服务",
   "private": true,
   "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.9",
     "egg": "^2.2.1",
-    "egg-alinode": "^2.0.1",
     "egg-oss": "^1.1.0",
     "egg-redis": "^2.0.0",
     "egg-scripts": "^2.5.0",
@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-front-api",
-    "non-daemon-start": "egg-scripts start  --title=egg-server-front-api",
+    "docker": "egg-scripts start  --title=egg-server-front-api",
     "stop": "egg-scripts stop --title=egg-server-front-api",
     "dev": "egg-bin dev",
     "yk": "EGG_SERVER_ENV=yk npm run lint -- --fix && egg-bin dev",

@@ -1,5 +1,6 @@
 /* indent size: 2 */
 'use strict';
+
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
@@ -8,52 +9,52 @@ module.exports = app => {
       type: DataTypes.INTEGER(10),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     plan_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: true,
+      allowNull: true
     },
     customer_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: true,
+      allowNull: true
     },
     user_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: true,
+      allowNull: true
     },
     roof_type: {
       type: DataTypes.INTEGER(1),
-      allowNull: true,
+      allowNull: true
     },
     templet: {
       type: DataTypes.INTEGER(1),
-      allowNull: true,
+      allowNull: true
     },
     params: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      defaultValue: '{}',
+      defaultValue: '{}'
     },
     deleted_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     created_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     updated_at: {
       type: DataTypes.TIME,
-      allowNull: true,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'x_roof',
+    tableName: 'x_roof'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

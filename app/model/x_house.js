@@ -1,5 +1,6 @@
 /* indent size: 2 */
 'use strict';
+
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
@@ -8,47 +9,47 @@ module.exports = app => {
       type: DataTypes.INTEGER(10),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     plan_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: true,
+      allowNull: true
     },
     customer_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: true,
+      allowNull: true
     },
     user_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: true,
+      allowNull: true
     },
     face_to: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     remark: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     created_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     updated_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     deleted_at: {
       type: DataTypes.TIME,
-      allowNull: true,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'x_house',
+    tableName: 'x_house'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

@@ -1,5 +1,6 @@
 /* indent size: 2 */
 'use strict';
+
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
@@ -8,60 +9,80 @@ module.exports = app => {
       type: DataTypes.INTEGER(10),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     openid: {
       type: DataTypes.STRING(63),
-      allowNull: false,
+      allowNull: false
     },
     nickName: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
+    },
+    name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
     gender: {
       type: DataTypes.INTEGER(1),
-      allowNull: true,
+      allowNull: true
     },
     province: {
       type: DataTypes.STRING(25),
-      allowNull: true,
+      allowNull: true
     },
     city: {
       type: DataTypes.STRING(25),
-      allowNull: true,
+      allowNull: true
+    },
+    phone: {
+      type: DataTypes.STRING(25),
+      allowNull: true
     },
     api_token: {
       type: DataTypes.STRING(63),
-      allowNull: true,
+      allowNull: true
     },
     avatarUrl: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     login_infor: {
       type: DataTypes.STRING(500),
       allowNull: true,
-      defaultValue: '{}',
+      defaultValue: '{}'
     },
     created_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     updated_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     deleted_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
+    company_id: {
+      type: DataTypes.INTEGER(10),
+      allowNull: true
+    },
+    company_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    company_logo: {
+      type: DataTypes.STRING(500),
+      allowNull: true
+    }
   }, {
-    tableName: 'x_users',
+    tableName: 'x_users'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

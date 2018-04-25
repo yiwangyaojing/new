@@ -30,6 +30,7 @@ class Plans extends Controller {
     const rule = {
       open_id: { type: 'string', required: true },
       cst_name: { type: 'string', required: true },
+      team_id: { type: 'int', required: true },
       // cst_phone: { type: 'string', required: true },
       // cst_remark: { type: 'string', required: false },
     };

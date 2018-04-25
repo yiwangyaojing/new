@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-front-api",
-    "docker": "egg-scripts start  --title=egg-server-front-api",
+    "non-daemon-start": "egg-scripts start  --title=egg-server-front-api",
     "stop": "egg-scripts stop --title=egg-server-front-api",
     "dev": "egg-bin dev",
     "yk": "EGG_SERVER_ENV=yk npm run lint -- --fix && egg-bin dev",

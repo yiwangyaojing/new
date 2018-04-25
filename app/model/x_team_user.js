@@ -1,31 +1,39 @@
 /* indent size: 2 */
 'use strict';
+
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('feedback', {
+  const Model = app.model.define('x_team_user', {
     id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(10),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     open_id: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(63),
       allowNull: true
     },
-    phone: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    type: {
+    user_rank: {
       type: DataTypes.INTEGER(1),
-      allowNull: true,
-      defaultValue: '0'
+      allowNull: true
+    },
+    team_id: {
+      type: DataTypes.INTEGER(10),
+      allowNull: true
+    },
+    team_level: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
+    },
+    team_parent_id: {
+      type: DataTypes.INTEGER(10),
+      allowNull: true
+    },
+    team_company_id: {
+      type: DataTypes.INTEGER(10),
+      allowNull: true
     },
     created_at: {
       type: DataTypes.TIME,
@@ -36,7 +44,7 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'feedback'
+    tableName: 'x_team_user'
   });
 
   Model.associate = function() {

@@ -68,11 +68,25 @@ class PlansService extends Service {
 
   // 创建方案基本信息
   async basicCreate(XPlansModel) {
+
+    XPlansModel.scd_status=FileType.schedule.xzxm,
+    XPlansModel.scd_name=FileType.scheduleName[FileType.schedule.xzxm]
+
+    console.log(XPlansModel);
     const result = await this.ctx.model.XPlans.create(XPlansModel);
 
-    if (result.id) {
+    if (result) {
       const shortUrl = await this.shortUrl(result.id);
       await this.ctx.model.XPlans.update({ short_url: shortUrl }, { where: { id: result.id } });
+      // 保存合同签订状态
+      const schedule = {
+        plan_id:result.id,
+        open_id:result.open_id,
+        scd_status:FileType.schedule.xzxm,
+        scd_name:FileType.scheduleName[FileType.schedule.xzxm],
+        scd_time:new Date()
+      }
+      await this.ctx.model.XPlanSchedule.create(schedule)
     }
 
     return result;
@@ -81,20 +95,43 @@ class PlansService extends Service {
   // 创建方案详细信息
   async create(detail) {
     // 根据id 查询方案基本信息是否存在
-    const XPlans = await this.ctx.model.XPlans.find({
+    const plan = await this.ctx.model.XPlans.find({
       where: {
         id: detail.id,
       },
     });
-    if (XPlans === null) {
+    if (plan === null) {
       throw new Error('用户基本信息不存在!');
     }
     // 创建方案基本信息
+    if(detail.zj_price){
+      detail.pay_gap = detail.zj_price
+    }
     const result = await this.ctx.model.XPlans.update(detail, {
       where: {
         id: detail.id,
       },
     });
+    console.log(result)
+    // 判断总价是否影响回款金额
+    if(result > 0 && detail.zj_price > 0){
+       // 获取planPay
+      const planPay = await this.ctx.model.XPlanPay.findAll({where:{open_id:plan.open_id,plan_id:plan.id}})
+      if(planPay){
+         if(plan.zj_price - detail.zj_price !== 0){
+
+           let differ = plan.zj_price - detail.zj_price  // 与原来的差价
+           console.log(differ)
+             for(let pay of planPay){
+                 let data ={
+                     zj_price : detail.zj_price,
+                     pay_gap  : pay.pay_gap + differ
+                 }
+                await this.ctx.model.XPlanPay.update(data,{where:{id:pay.id}})
+             }
+         }
+      }
+    }
     return result;
   }
 
@@ -159,9 +196,9 @@ class PlansService extends Service {
       }
     }
     // 排板子图片获取
-    if(result.rf_is_finish === 1){
-       const file = await this.ctx.model.XFiles.findOne({where :{plan_id:rowId}})
-      if(file){
+    if (result.rf_is_finish === 1) {
+      const file = await this.ctx.model.XFiles.findOne({ where: { plan_id: rowId } });
+      if (file) {
         result.rfImage = file.url;
       }
     }
@@ -189,7 +226,7 @@ class PlansService extends Service {
       result.rf_is_finish = plan.rf_is_finish;
       result.zj_format = plan.zj_format;
       result.zj_num = plan.zj_num;
-      result.zj_capacity =  plan.zj_capacity;
+      result.zj_capacity = plan.zj_capacity;
       result.zj_price = plan.zj_price;
       result.zj_source = plan.zj_source;
       results.push(result);
@@ -227,6 +264,9 @@ class PlansService extends Service {
 
     return outChars;
   }
+
+  // 通过业务员获取项目信息;
+
 
 }
 

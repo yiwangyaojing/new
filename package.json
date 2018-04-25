@@ -4,6 +4,7 @@
   "description": "小程序API服务",
   "private": true,
   "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.9",
     "egg": "^2.2.1",
     "egg-alinode": "^2.0.1",
     "egg-oss": "^1.1.0",

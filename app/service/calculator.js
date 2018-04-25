@@ -230,7 +230,7 @@ class CalculatorService extends Service {
 
 
     // 四舍五入取整数
-    result.nfdl = Math.round(result.nfdl)
+    result.nfdl = Math.round(result.nfdl);
     result.xtzj = Math.round(result.xtzj);
     result.sn_profit = Math.round(result.sn_profit);
     result.sn_repay = Math.round(result.sn_repay);

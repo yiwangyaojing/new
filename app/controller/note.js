@@ -70,6 +70,37 @@ class NoteController extends Controller {
     ctx.body = await service.note.show(ctx.params.id);
   }
 
+  async searchByOpenId() {
+    const {ctx, service} = this;
+    console.log('查询参数===>>', ctx.params);
+    const rule = {
+      open_id: { type: 'string', required: true },
+    };
+    ctx.validate(rule, ctx.params);
+    ctx.body = await service.note.searchByOpenId(ctx.params)
+  }
+
+  async searchBySearchContent() {
+    const {ctx, service} = this;
+    console.log('查询参数===>>', ctx.params);
+    const rule = {
+      open_id: { type: 'string', required: true },
+    };
+    ctx.validate(rule, ctx.params);
+
+    ctx.body = await service.note.searchBySearchContent(ctx.params)
+  }
+
+  async deleteByBatch() {
+    const {ctx, service} = this;
+    console.log('查询参数===>>', ctx.request.body);
+    const rule = {
+      open_id: { type: 'string', required: true },
+    };
+    ctx.validate(rule, ctx.request.body);
+    ctx.body = await service.note.deleteByBatch(ctx.request.body)
+  }
+
 }
 
 module.exports = NoteController;

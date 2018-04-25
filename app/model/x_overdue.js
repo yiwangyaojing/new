@@ -3,29 +3,28 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('feedback', {
+  const Model = app.model.define('x_overdue', {
     id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(10),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    open_id: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    phone: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    type: {
-      type: DataTypes.INTEGER(1),
+    htqd: {
+      type: DataTypes.INTEGER(5),
       allowNull: true,
-      defaultValue: '0'
+    },
+    sgwc: {
+      type: DataTypes.INTEGER(5),
+      allowNull: true
+    },
+    bwwc: {
+      type: DataTypes.INTEGER(5),
+      allowNull: true
+    },
+    company_id: {
+      type: DataTypes.INTEGER(10),
+      allowNull: true
     },
     created_at: {
       type: DataTypes.TIME,
@@ -36,7 +35,7 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'feedback'
+    tableName: 'x_overdue'
   });
 
   Model.associate = function() {

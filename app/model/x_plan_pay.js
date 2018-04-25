@@ -4,7 +4,7 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('x_customer', {
+  const Model = app.model.define('x_plan_pay', {
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
@@ -15,36 +15,32 @@ module.exports = app => {
       type: DataTypes.INTEGER(10),
       allowNull: true
     },
-    user_id: {
-      type: DataTypes.INTEGER(10),
+    open_id: {
+      type: DataTypes.STRING(63),
       allowNull: true
     },
-    name: {
-      type: DataTypes.STRING(50),
+    pay_period: {
+      type: DataTypes.INTEGER(1),
       allowNull: true
     },
-    phone: {
-      type: DataTypes.STRING(25),
+    pay_time: {
+      type: DataTypes.TIME,
       allowNull: true
     },
-    address: {
-      type: DataTypes.STRING(255),
+    zj_price: {
+      type: "DOUBLE(10,2)",
       allowNull: true
     },
-    province: {
-      type: DataTypes.STRING(50),
+    pay_money: {
+      type: "DOUBLE(10,2)",
       allowNull: true
     },
-    city: {
-      type: DataTypes.STRING(100),
+    pay_sum: {
+      type: "DOUBLE(10,2)",
       allowNull: true
     },
-    street: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    remark: {
-      type: DataTypes.STRING(255),
+    pay_gap: {
+      type: "DOUBLE(10,2)",
       allowNull: true
     },
     created_at: {
@@ -54,13 +50,9 @@ module.exports = app => {
     updated_at: {
       type: DataTypes.TIME,
       allowNull: true
-    },
-    deleted_at: {
-      type: DataTypes.TIME,
-      allowNull: true
     }
   }, {
-    tableName: 'x_customer'
+    tableName: 'x_plan_pay'
   });
 
   Model.associate = function() {

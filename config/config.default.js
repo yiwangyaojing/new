@@ -22,8 +22,8 @@ module.exports = appInfo => {
     database: 'xiaosolar_development',
     host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
     port: '3306',
-    username: 'root',
-    password: 'eib6Aeduo5ATamee@',
+    username: 'xiaosolar_dev_user',
+    password: 'aiy1ohqu0Yopheet',
   };
   config.security = {
     csrf: {

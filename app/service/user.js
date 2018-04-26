@@ -49,7 +49,7 @@ class UserService extends Service {
 
         if (result && result.managerTeams) {
 
-            result.dataValues.managerTeams = JSON.parse(result.managerTeams)
+            result.dataValues.managerTeams = JSON.stringify(result.managerTeams)
 
         }
         return result

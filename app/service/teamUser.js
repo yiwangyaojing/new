@@ -405,7 +405,7 @@ class TeamUserService extends Service {
       name: params.name,
       company_id:team.company_id || null,
       company_name:team.company_name || null,
-      company_logo:team.company_logo || null
+      company_logo:team.logo || null
     }
 
     // 修改用户信息

@@ -45,11 +45,11 @@ class UserService extends Service {
     }
 
     async findByOpenId(open_id) {
-        const result = await this.ctx.model.XUsers.findOne({where: {openid: open_id}})
+        let result = await this.ctx.model.XUsers.findOne({where: {openid: open_id}})
 
         if (result && result.managerTeams) {
 
-            result.dataValues.managerTeams = JSON.stringify(result.managerTeams)
+            result.dataValues.managerTeams =result.managerTeams
 
         }
         return result

@@ -126,12 +126,9 @@ class TeamUserService extends Service {
 
   // 从公司删除
   async deleteFromCompany(openid) {
+    const ctx = this.ctx
     await ctx.model.XTeamUser.destroy({where: {open_id: openid}})
-    const user = await ctx.model.XUser.findOne({where:{openid: openid}})
-    user.dataValue.company_id = null
-    user.dataValue.company_id = null
-    user.dataValue.company_id = null
-    return await ctx.model.XUser.update({
+    return await ctx.model.XUsers.update({
       company_id:null,
       company_name: null,
       company_logo: null

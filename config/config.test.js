@@ -44,6 +44,15 @@ module.exports = appInfo => {
       timeout: '60s',
     },
   };
+  config.sms = {
+        client: {
+            accessKeyId: 'LTAIJq3IvPywFWPH',
+            accessKeySecret: 'KT0AIH0RL4sYNd5efvcBklnjrR27n7',
+            signName: '光伏好销售',
+            templateCode: 'SMS_132095605',
+            param: 'code',
+        },
+  };
   config.alinode = {
     server: 'wss://agentserver.node.aliyun.com:8080',
     appid: '17139',

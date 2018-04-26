@@ -44,16 +44,16 @@ module.exports = appInfo => {
       timeout: '60s',
     },
   };
-  /* config.wechat = {
+   config.wechat = {
     appId: 'wx6441dd4482409ffb',
     secret: 'cf5450752f7639a753f57acaa796da7d',
     openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
-  };*/
+  };
   // yk本地开发
-  config.wechat = {
+ /* config.wechat = {
     appId: 'wx0c878877bf2012f7',
     secret: '07bab2ddd65628a535fb529b7b02e422',
     openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
-  };
+  };*/
   return config;
 };

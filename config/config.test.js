@@ -13,7 +13,7 @@ module.exports = appInfo => {
       port: 6379, // Redis port
       host: '120.26.102.228', // Redis host
       password: 'None',
-      db: 0,
+      db: 1,
     },
   };
 
@@ -49,15 +49,9 @@ module.exports = appInfo => {
     appid: '17139',
     secret: 'f3c6470786273314ae9b0464278de4ab84f8d303',
   };
-  /* config.wechat = {
+   config.wechat = {
     appId: 'wx6441dd4482409ffb',
     secret: 'cf5450752f7639a753f57acaa796da7d',
-    openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
-  };*/
-  // yk本地开发
-  config.wechat = {
-    appId: 'wx0c878877bf2012f7',
-    secret: '07bab2ddd65628a535fb529b7b02e422',
     openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
   };
   return config;

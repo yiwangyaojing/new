@@ -30,22 +30,36 @@ class TeamUserService extends Service {
   async findTeamUsers(req){
 
     const users = []
+    const Op =  Sequelize.Op
+    console.log(req)
     if(req.id){
-      // 查找当前团队的所有用户
-      const teamUsers = await this.ctx.model.XTeamUser.findAll({where:{team_id:req.id,team_company_id:req.company_id}})
+      // 查询公司所有团队
+      const companyTeams = await this.ctx.model.XTeam.findAll({where:{company_id:req.company_id}})
+
+      // 遍历下级直系团队
+      let teams = []
+      teams.push(req.id)
+      console.log(teams)
+
+      await this.service.team.linealTeam(companyTeams,req,teams,'child')
+
+      console.log(teams)
+      // 查找当前团队以及直系下级所有用户
+      const teamUsers = await this.ctx.model.XTeamUser.findAll({where:{team_id:{[Op.in]:teams},team_company_id:req.company_id}})
       for(let u of teamUsers){
          if(users.indexOf(u.open_id) === -1 ){
            users.push(u.open_id)
          }
       }
     }else{
-      // 公司下的所有业务员
-      const companyUsers = await  this.ctx.model.XUsers.findAll({where:{company_id:req.company_id}})
-      for(let u of companyUsers){
-        if(users.indexOf(u.open_id) === -1 )  users.push(u.openid)
+      // 查找总公司所有业务员
+      const teamUsers = await  this.ctx.model.XTeamUser.findAll({where:{team_id:req.company_id}})
+      for(let u of teamUsers){
+        if(users.indexOf(u.open_id) === -1 )  users.push(u.open_id)
       }
     }
 
+    console.log(users)
     return users
 
   }
@@ -110,6 +124,24 @@ class TeamUserService extends Service {
     return await ctx.model.XTeamUser.destroy({where:{team_id:req.team_id,open_id:req.open_id}})
   }
 
+  // 从公司删除
+  async deleteFromCompany(openid) {
+    await ctx.model.XTeamUser.destroy({where: {open_id: openid}})
+    const user = await ctx.model.XUser.findOne({where:{openid: openid}})
+    user.dataValue.company_id = null
+    user.dataValue.company_id = null
+    user.dataValue.company_id = null
+    return await ctx.model.XUser.update({
+      company_id:null,
+      company_name: null,
+      company_logo: null
+    }, {
+      where: {
+        openid: openid
+      }
+    })
+  }
+
   async validatePower(team,open_id){
 
     let teamLevel = team.level
@@ -149,8 +181,6 @@ class TeamUserService extends Service {
 
   /**
    * 获取用户的最高团队等级
-   * @param req
-   * @returns {Promise<void>}
    */
   async findMaxLevel(open_id,company_id){
     return await this.ctx.model.XTeamUser.findOne({

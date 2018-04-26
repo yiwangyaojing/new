@@ -1,5 +1,6 @@
 /* indent size: 2 */
 'use strict';
+
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
@@ -8,130 +9,130 @@ module.exports = app => {
       type: DataTypes.INTEGER(10),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     open_id: {
       type: DataTypes.STRING(36),
       allowNull: false,
-      defaultValue: '',
+      defaultValue: ''
     },
     province: {
       type: DataTypes.STRING(40),
-      allowNull: true,
+      allowNull: true
     },
     city: {
       type: DataTypes.STRING(40),
-      allowNull: true,
+      allowNull: true
     },
     zj_gl: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     zj_sl: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: true
     },
     unit_price: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     jm_price: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     bg_price: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     dw_price: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     zfzy_percent: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     bt_country: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     bt_country_year: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: true
     },
     bt_province: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     bt_province_year: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: true
     },
     bt_city: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     bt_city_year: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: true
     },
     dk_percent: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     dk_year: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: true
     },
     dk_rate: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     sunlight_hour: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: true
     },
     qesw_price: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: true
     },
     qesw_type: {
       type: DataTypes.CHAR(2),
       allowNull: true,
-      defaultValue: '',
+      defaultValue: ''
     },
     gz_level: {
       type: DataTypes.STRING(20),
-      allowNull: true,
+      allowNull: true
     },
     bw_type: {
       type: DataTypes.INTEGER(1),
-      allowNull: true,
+      allowNull: true
     },
     ext_info: {
       type: DataTypes.STRING(512),
       allowNull: true,
-      defaultValue: '',
+      defaultValue: ''
     },
     created_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     updated_at: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: true
     },
     deleted_at: {
       type: DataTypes.TIME,
-      allowNull: true,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'tbl_query_history',
+    tableName: 'tbl_query_history'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

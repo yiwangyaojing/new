@@ -15,6 +15,10 @@ module.exports = app => {
       type: DataTypes.STRING(50),
       allowNull: true
     },
+    user_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
     cst_name: {
       type: DataTypes.STRING(255),
       allowNull: true
@@ -160,6 +164,10 @@ module.exports = app => {
     },
     pay_id: {
       type: DataTypes.INTEGER(10),
+      allowNull: true
+    },
+    overdue_date: {
+      type: DataTypes.STRING(10),
       allowNull: true
     },
     created_at: {

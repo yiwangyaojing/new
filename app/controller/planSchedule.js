@@ -26,7 +26,8 @@ class planScheduleController extends Controller {
       open_id: { type: 'string', required: true },
       plan_id: { type: 'string', required: true },
       scd_status: { type: 'int', required: true },
-      scd_time:{type: 'string',required:true}
+      scd_time:{type: 'string',required:true},
+      company_id:{type: 'int',required:true},
     };
     const req = ctx.request.body
     ctx.validate(rule, req);

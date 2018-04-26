@@ -51,6 +51,9 @@ class planPayService extends Service {
           pay_gap: result.pay_gap,
           pay_time:result.pay_time
         }
+        if(result.pay_gap === 0){
+          params.overdue_date = ''
+        }
         return ctx.model.XPlans.update(params,{where: {open_id:req.open_id,id:req.plan_id}}, {transaction: t})
       });
     }).catch(function(err) {

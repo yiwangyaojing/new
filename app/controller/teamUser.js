@@ -30,13 +30,11 @@ class TeamUserController extends Controller {
   async findTeamUsers(){
     const {ctx,service} = this
     const rule = {
-      // id:{type:"int",required:true},
-      // level:{type:"int",required:true},
+      id:{type:"int",required:false},
+      level:{type:"int",required:false},
       company_id:{type:"int",required:true}
     }
     const req = ctx.request.body
-    console.log('-----------------------------------')
-    console.log(req)
     ctx.validate(rule,req)
 
     // 当前团队所有的业务员
@@ -130,6 +128,17 @@ class TeamUserController extends Controller {
 
 
     ctx.body = await service.teamUser.destroy(req)
+  }
+
+  async deleteFromCompany() {
+    const {ctx, service} = this
+    const req = ctx.request.body
+    const rule = {
+      open_id: {type: 'string', required: true}
+    }
+    ctx.validate(rule, req)
+
+    ctx.body = await service.teamUser.deleteFromCompany(req.open_id)
   }
 
   /**

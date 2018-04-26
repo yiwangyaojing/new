@@ -309,8 +309,8 @@ class TeamUserController extends Controller {
   async join(){
     const {ctx, service} = this
     const rule = {
-      code: {type: 'string', required: true},
-      phone: {type: 'string', required: true},
+      validateCode: {type: 'string', required: true},
+      register_phone: {type: 'string', required: true},
       team_id:{type:'int',required:true},
       operator:{type:'string',required:true},
       open_id:{type:'string',required:true},

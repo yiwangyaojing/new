@@ -397,9 +397,15 @@ class TeamUserService extends Service {
       user_rank: params.user_rank
     }
     await this.create(addTeam)
+    const team = await this.ctx.model.XTeam.findOne({
+      where:{id:addTeam.team_id}
+    })
     const updateParams = {
-      phone: params.phone,
-      name: params.name
+      phone: params.register_phone,
+      name: params.name,
+      company_id:team.company_id || null,
+      company_name:team.company_name || null,
+      company_logo:team.company_logo || null
     }
 
     // 修改用户信息

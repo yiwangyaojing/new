@@ -403,7 +403,7 @@ class TeamUserService extends Service {
     }
 
     // 修改用户信息
-    return await this.ctx.model.XUser.updateParams(updateParams, params.open_id)
+    return await this.ctx.service.user.updateParams(updateParams, params.open_id)
   }
 
 

@@ -8,18 +8,19 @@ class Plans extends Controller {
   async findByPage() {
     const {ctx,service} = this
     const params = ctx.params
-    const req = ctx.request.body
+    let req = ctx.request.body
     const rule = {
       openId: { type: 'string', required: true },
       pageNumber: { type: 'string', required: true },
     };
     const ruleReq = {
-      managerTeams: { type: 'array', required: true }
+      managerTeams: { type: 'string', required: true }
     };
     this.ctx.validate(rule, params);
     this.ctx.validate(ruleReq, req);
 
-    params.managerTeams = req.managerTeams
+      req.managerTeams = JSON.parse(req.managerTeams)
+      params.managerTeams = req.managerTeams
 
 
     this.ctx.body = await service.plans.findByPage(params);
@@ -37,11 +38,12 @@ class Plans extends Controller {
 
     };
     const ruleReq = {
-      managerTeams: { type: 'array', required: true }
+      managerTeams: { type: 'string', required: true }
     };
     this.ctx.validate(rule, params);
     this.ctx.validate(ruleReq, req);
 
+    req.managerTeams = JSON.parse(req.managerTeams)
     params.managerTeams = req.managerTeams
 
     this.ctx.body = await service.plans.findByPage(params);

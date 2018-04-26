@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const Sequelize = require('sequelize')
+const FileType = require('../const/FileType')
 class planPayService extends Service {
 
   async index(req){
@@ -52,7 +53,8 @@ class planPayService extends Service {
           pay_time:result.pay_time
         }
         if(result.pay_gap === 0){
-          params.overdue_date = ''
+          params.overdue_date = '',
+          params.scd_status = FileType.schedule.hkwc
         }
         return ctx.model.XPlans.update(params,{where: {open_id:req.open_id,id:req.plan_id}}, {transaction: t})
       });

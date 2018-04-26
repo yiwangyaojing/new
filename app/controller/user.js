@@ -42,7 +42,7 @@ class UserController extends Controller {
   async show() {
     // URL参数参数校验
     this.ctx.validate(rule, { id: this.ctx.params.id });
-    this.ctx.body = await this.ctx.service.user.findByOpenId(this.ctx.params.id);
+    this.ctx.body = await this.ctx.service.user.findOrUpdateByOpenId(this.ctx.params.id);
 
   }
   // 模拟数据

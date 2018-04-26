@@ -34,8 +34,8 @@ module.exports = app => {
   router.post('/api/plans', controller.plans.basicCreate);
   router.get('/api/plans/:openId', controller.plans.findAllByUser);
   router.get('/api/plans/detail/:id', controller.plans.detail);
-  router.get('/api/plans/:openId/:pageNumber', controller.plans.findByPage);
-  router.get('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);
+  router.post('/api/plans/:openId/:pageNumber', controller.plans.findByPage);
+  router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);
   router.put('/api/plans', controller.plans.update);
   router.del('/api/plans/:id', controller.plans.destroy);
 
@@ -78,6 +78,7 @@ module.exports = app => {
   router.get('/api/teamUser/:teamId', controller.teamUser.index);
   router.put('/api/teamUser', controller.teamUser.updateRule);
   router.del('/api/teamUser', controller.teamUser.destroy);
+  router.del('/api/teamUser/delete', controller.teamUser.deleteFromCompany);
   router.post('/api/teamUser', controller.teamUser.create);
   router.post('/api/teamUser/manager', controller.teamUser.teamManagerInit);
   router.post('/api/teamUser/join', controller.teamUser.join);
@@ -90,14 +91,11 @@ module.exports = app => {
   router.get('/api/teamUser/friend/:company_id', controller.teamUser.friendList);
   router.get('/api/teamUser/company/:company_id', controller.teamUser.companyUsers);
 
-
-
   // 概况
   router.get('/api/teamUser/admin/:open_id/:company_id', controller.teamUser.getAdminTeams);
-
-
   // 逾期
   router.get('/api/overdue/:company_id', controller.overdue.index);
   router.put('/api/overdue', controller.overdue.update);
+  router.post('/api/overdue',controller.overdue.query);
 
 };

@@ -2,8 +2,11 @@
 
 const Service = require('egg').Service;
 const FileType =require('../const/FileType')
+const Sequelize = require('sequelize')
+
 // 时间工具插件;
 var moment = require('moment');
+
 class UserService extends Service {
   // async findByOpenId(openid) {
   //   const user = await this.ctx.model.XUsers.findOne({ where: { openid } });
@@ -11,21 +14,31 @@ class UserService extends Service {
   // }
 
   async create(user) {
-    let result = {};
-    let isCreated;
+    let result;
+
     let createUser = Object.assign({},user)
+
     createUser.name= user.nickName
-    await this.ctx.model.XUsers.findOrCreate({
-      where: { openid: user.openid },
-      defaults: createUser,
-    }).spread((model, created) => {
-      result = model.get({ plain: true });
-      isCreated = created;
-    });
-    if (isCreated === false) {
+
+    result = await this.findByOpenId(user.openid)
+
+    if(!result){
+      result = await this.ctx.model.XUsers.create(createUser)
+    }else{
       await this.ctx.model.XUsers.update(user, { where: { openid: user.openid } });
-      result = await this.findByOpenId(user.openid)
     }
+
+    // await this.ctx.model.XUsers.findOrCreate({
+    //   where: { openid: user.openid },
+    //   defaults: createUser,
+    // }).spread((model, created) => {
+    //   result = model.get({ plain: true });
+    //   isCreated = created;
+    // });
+    // if (isCreated === false) {
+    //   await this.ctx.model.XUsers.update(user, { where: { openid: user.openid } });
+    //   result = await this.findByOpenId(user.openid)
+    // }
 
     // console.log(result);
     return result;
@@ -43,13 +56,34 @@ class UserService extends Service {
       }
 
       // 获取所有可管理的团队Id
-      const managerTeams = []
+      let managerTeams = []
       const teamUser  = await this.ctx.model.XTeamUser.findOne({where:{open_id:open_id,team_company_id:result.company_id,user_rank:FileType.UserRank.admin},order:[['team_level','asc']]})
       if(teamUser){
         // 获取所有团队
+        const Op = Sequelize.Op;
+        managerTeams.push(teamUser.team_id)
+        result.dataValues.managerTeam = teamUser.team_id
+        result.dataValues.managerTeamLevel = teamUser.team_level
+        const teams = await  this.ctx.model.XTeam.findAll(
+          {
+            where:
+              {
+                company_id:result.company_id,
+                level:{
+                  [Op.gt]:teamUser.team_level
+                }
+              }
+          })
+        for(let team of teams){
+          if(managerTeams.indexOf(team.id) === -1 ){
+            managerTeams.push(team.id)
+          }
+        }
       }
-      result.managerTeams = managerTeams
+      result.dataValues.managerTeams = managerTeams
     }
+
+
     return result
   }
 

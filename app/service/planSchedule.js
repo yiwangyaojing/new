@@ -50,12 +50,25 @@ class planScheduleService extends Service {
 
     const result = await ctx.model.XPlanSchedule.create(req)
     if(result){
+      // 查询公司逾期规则
+      const overdue = await ctx.model.XOverdue.findOne({where:{company_id:req.company_id}})
+      let overdue_date = ''
+      if(overdue){
+        if(req.scd_status === FileType.schedule.htqd){
+          overdue_date = moment(req.scd_time).add(overdue.htqd+1,'days').format("YYYY-MM-DD")
+        }else if(req.scd_status === FileType.schedule.sgwc){
+          overdue_date = moment(req.scd_time).add(overdue.sgwc+1,'days').format("YYYY-MM-DD")
+        }else if(req.scd_status === FileType.schedule.bwwc){
+          overdue_date = moment(req.scd_time).add(overdue.bwwc+1,'days').format("YYYY-MM-DD")
+        }
+      }
        await ctx.model.XPlans.update(
          {
            scd_status:req.scd_status,
            scd_time:req.scd_time,
            scd_name:req.scd_name,
-           scd_id:result.id
+           scd_id:result.id,
+           overdue_date:overdue_date
          },
          {
            where:

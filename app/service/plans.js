@@ -37,8 +37,15 @@ class PlansService extends Service {
           cst_address: {
             [Op.like]: search,
           },
+        },
+        ],
+        [Op.or]:[{
+          team_id:{
+            [Op.in]:params.managerTeams
+          },
+        },{
+          open_id: params.openId,
         }],
-        open_id: params.openId,
       },
       order: [[ 'updated_at', 'desc' ]],
     });

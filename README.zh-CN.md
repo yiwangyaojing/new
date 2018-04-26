@@ -86,3 +86,8 @@ https://eggjs.org/zh-cn/contributing.html#commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%
 aaaa
 docs: 增加文档说明
 ```
+
+### 开发流程
+- 日常开发在2.0分支上提交代码
+- 当需要进行测试环境发布时，去网页上新建一个merage request 将2.0分支合并到develop分支即可
+- 当需要发布到生产是，同样去网页上新建merage request请求，将develop 分支合并到master

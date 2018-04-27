@@ -76,8 +76,8 @@ class UserController extends Controller {
       return;
     }
     const team = await service.user.findTeamByOpenId(company_id);
-	  // const data = await service.teamUser.findOneByOpenIdteamId(company_id, openId);
-	  ctx.body = { data};
+	  const data = await service.teamUser.findOneByOpenIdteamId(company_id, openId);
+	  ctx.body = { data, team };
   }
 
   // 获取公司子团队

@@ -26,7 +26,7 @@ class TeamController extends Controller {
 
         // 生成5位随机数
         let num = '';
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             num += Math.floor(Math.random() * 10);
         }
 

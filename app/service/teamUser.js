@@ -379,7 +379,7 @@ class TeamUserService extends Service {
   async findOneByOpenIdteamId(team_id, open_id) {
     console.log('开始获取成员团队职务' + open_id + ',' + team_id);
     const team = await this.ctx.model.XTeamUser.findOne({ where: {open_id:open_id,team_id:team_id}});
-    if( team && team.dataValues ){
+    if( team ){
       return team.dataValues;
     }else{
       return ''

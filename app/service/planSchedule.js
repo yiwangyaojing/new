@@ -75,7 +75,7 @@ class planScheduleService extends Service {
                 {
                     where:
                         {
-                            open_id: req.open_id, id: req.plan_id
+                            id: req.plan_id
                         }
                 })
         }

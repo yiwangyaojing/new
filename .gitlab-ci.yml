@@ -19,14 +19,14 @@ build:
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   tags:
-    - front-api
+    - shared-runner-tag
 
 test:
   stage: test
   script:
     - docker ps
   tags:
-    - front-api
+    - shared-runner-tag
 
 release_prod_image:
   stage: release
@@ -35,7 +35,7 @@ release_prod_image:
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_PROD_IMAGE
     - docker push $CONTAINER_PROD_IMAGE
   tags:
-    - front-api
+    - shared-runner-tag
   only:
     - master
 
@@ -52,7 +52,7 @@ deploy_develop:
     - ssh -p22 henry@106.14.210.95 "docker pull $CONTAINER_TEST_IMAGE"
     - ssh -p22 henry@106.14.210.95 "docker-compose -f ~/front-api/docker-compose.test.yml up -d"
   tags:
-    - front-api
+    - shared-runner-tag
   only:
     - develop
 
@@ -69,6 +69,6 @@ deploy_production:
     - ssh -p22 henry@47.100.206.81 "docker pull $CONTAINER_PROD_IMAGE"
     - ssh -p22 henry@47.100.206.81 "docker-compose -f ~/front-api/docker-compose.production.yml up -d"
   tags:
-    - front-api
+    - shared-runner-tag
   only:
     - master

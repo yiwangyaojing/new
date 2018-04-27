@@ -68,6 +68,10 @@ module.exports = app => {
             type: DataTypes.INTEGER(10),
             allowNull: true
         },
+        company_founder: {
+            type: DataTypes.STRING(63),
+            allowNull: true
+        },
         company_name: {
             type: DataTypes.STRING(255),
             allowNull: true

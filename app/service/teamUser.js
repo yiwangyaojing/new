@@ -136,6 +136,7 @@ class TeamUserService extends Service {
         return await ctx.model.XUsers.update({
             company_id: null,
             company_name: null,
+            company_founder:null,
             company_logo: null
         }, {
             where: {
@@ -219,7 +220,20 @@ class TeamUserService extends Service {
 
         //  result.user_rank 0，上级包括上上的管理员  1，本级团队管理员 ，2.业务员
         if (req.max_level > req.team_level) {  // 如果最高团队低于当前团队，在当前团队统一为业务员权限
+
             result.user_rank = FileType.UserRank.agent
+
+        } else if (req.max_level === req.team_level) {  // 如果进入的是本级团队，判断是否为创始人
+            let team = await ctx.model.XTeam.findOne({where: {id: req.team_id, open_id: req.open_id}})
+            if (team) {
+                result.user_rank = 0
+            } else {
+                if (teamUser) {
+                    result.user_rank = teamUser.user_rank
+                } else {
+                    result.user_rank = FileType.UserRank.agent
+                }
+            }
         } else {
             // 如果进入的是下级团队 ，先判断在上级是否为管理员
             if (req.max_level_rank === FileType.UserRank.admin.toString()) {
@@ -395,7 +409,7 @@ class TeamUserService extends Service {
     // 通过团队 id 和普通用户 id 获取该 用户所在团队的职位,管理员或者普通员工,及其公司子团队父团队等等
     async findOneByOpenIdteamId(team_id, open_id) {
         console.log('开始获取成员团队职务' + open_id + ',' + team_id);
-        const team = await this.ctx.model.XTeamUser.findOne({where: {open_id: open_id, team_company_id: team_id}});
+        const team = await this.ctx.model.XTeamUser.findOne({where: {open_id: open_id, team_id: team_id}});
         if (team && team.dataValues) {
             return team.dataValues;
         } else {
@@ -414,15 +428,17 @@ class TeamUserService extends Service {
             user_rank: params.user_rank
         }
         await this.create(addTeam)
-        const team = await this.ctx.model.XTeam.findOne({
-            where: {id: addTeam.team_id}
+
+        let company = await this.ctx.model.XTeam.findOne({
+            where: {id: params.company_id}
         })
         const updateParams = {
             phone: params.register_phone,
             name: params.name,
-            company_id: team.company_id || null,
-            company_name: team.company_name || null,
-            company_logo: team.logo || null
+            company_id: company.company_id,
+            company_name: company.company_name,
+            company_founder: company.open_id,
+            company_logo: company.logo
         }
 
         // 修改用户信息

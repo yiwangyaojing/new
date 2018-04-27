@@ -55,7 +55,7 @@ class planPayService extends Service {
           params.overdue_date = '',
           params.scd_status = FileType.schedule.hkwc
         }
-        return ctx.model.XPlans.update(params,{where: {open_id:req.open_id,id:req.plan_id}}, {transaction: t})
+        return ctx.model.XPlans.update(params,{where: {id:req.plan_id}}, {transaction: t})
       });
     }).catch(function(err) {
       console.log(err);

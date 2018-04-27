@@ -12,14 +12,14 @@ class planScheduleService extends Service {
     async index(req) {
 
         const result = await this.ctx.model.XPlanSchedule.findAll({
-            where: {plan_id: req.plan_id, open_id: req.open_id},
+            where: {plan_id: req.plan_id},
             order: [["created_at", "desc"]]
         })
 
         if (result) {
             for (let scd of result) {
                 if (scd.scd_time) {
-                    scd.scd_time = moment(scd.scd_time).format("MM/DD hh:mm")
+                    scd.scd_time = moment(scd.scd_time).format("MM/DD")
                 }
             }
         }
@@ -38,7 +38,6 @@ class planScheduleService extends Service {
         const scd = await ctx.model.XPlanSchedule.findOne(
             {
                 where: {
-                    open_id: req.open_id,
                     plan_id: req.plan_id
                 },
                 order: [["created_at", "desc"]],

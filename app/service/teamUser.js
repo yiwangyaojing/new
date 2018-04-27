@@ -363,8 +363,7 @@ class TeamUserService extends Service {
 
         // 封装团队信息
         let agents = []
-
-        let teams = []
+        let teams
 
         for (let teamUser of teamUsers) {
             let team = {}
@@ -372,21 +371,13 @@ class TeamUserService extends Service {
             team.team_id = teamUser.team_id
             team.teamName = teamUser.team_name
             team.userRank = teamUser.user_rank
+
             let agent
             for (let tempAgent of agents) {
                 if (tempAgent.open_id === teamUser.open_id) {
                     agent = tempAgent
                 }
             }
-
-            let flag = true
-            for (let t of teams) {
-                if (t.team_id === team.team_id) {
-                    flag = false
-                }
-            }
-
-            if (flag && team.team_id) teams.push(team)
 
             if (!agent) {
                 teamUser.teams = []
@@ -398,6 +389,10 @@ class TeamUserService extends Service {
                 if (team.team_id) agent.teams.push(team)
             }
         }
+
+        // 获取所有公司所有team
+        teams = await this.ctx.model.findAll({where:{company_id:company_id}, order: [['level', "ASC"]] })
+
         result.agents = agents
         result.teams = teams
 

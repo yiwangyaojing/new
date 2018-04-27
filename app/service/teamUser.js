@@ -241,7 +241,7 @@ class TeamUserService extends Service {
 
         for (let team of teams) {
             if (team.level <= req.team_level) {
-                if(team.level.toString() === req.team_level){  // 保存团队创始人信息
+                if (team.level.toString() === req.team_level) {  // 保存团队创始人信息
                     result.founder = team.open_id
                 }
                 if (!parentId || team.id === parentId) {

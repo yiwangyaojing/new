@@ -391,7 +391,7 @@ class TeamUserService extends Service {
         }
 
         // 获取所有公司所有team
-        teams = await this.ctx.model.findAll({where:{company_id:company_id}, order: [['level', "ASC"]] })
+        teams = await this.ctx.model.XTeam.findAll({where:{company_id:company_id}, order: [['level', "ASC"]] })
 
         result.agents = agents
         result.teams = teams

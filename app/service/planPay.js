@@ -7,7 +7,7 @@ class planPayService extends Service {
 
   async index(req){
 
-    return await this.ctx.model.XPlanPay.findAll({where:{open_id:req.open_id,plan_id:req.plan_id} , order:[['created_at','desc']]})
+    return await this.ctx.model.XPlanPay.findAll({where:{plan_id:req.plan_id} , order:[['created_at','desc']]})
   }
 
 
@@ -23,7 +23,6 @@ class planPayService extends Service {
       pay  = await ctx.model.XPlanPay.findOne(
         {
           where:{
-            open_id:req.open_id,
             plan_id:req.plan_id,
             id:payId
           },
@@ -56,7 +55,7 @@ class planPayService extends Service {
           params.overdue_date = '',
           params.scd_status = FileType.schedule.hkwc
         }
-        return ctx.model.XPlans.update(params,{where: {open_id:req.open_id,id:req.plan_id}}, {transaction: t})
+        return ctx.model.XPlans.update(params,{where: {id:req.plan_id}}, {transaction: t})
       });
     }).catch(function(err) {
       console.log(err);

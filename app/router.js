@@ -99,6 +99,6 @@ module.exports = app => {
     router.post('/api/overdue', controller.overdue.query);
 
     // 计算排板子规则计算
-    router.post('/api/roof', controller.roof.index)
+    router.post('/api/roof', controller.roof.index);
 
 };

@@ -42,7 +42,7 @@ class UserController extends Controller {
   async show() {
     // URL参数参数校验
     this.ctx.validate(rule, { id: this.ctx.params.id });
-    this.ctx.body = await this.ctx.service.user.findByOpenId(this.ctx.params.id);
+    this.ctx.body = await this.ctx.service.user.findOrUpdateByOpenId(this.ctx.params.id);
 
   }
   // 模拟数据
@@ -69,7 +69,7 @@ class UserController extends Controller {
     const body = ctx.request.body;
     let openId = body.openId;
     const userInfo = await this.ctx.service.user.findByOpenId(openId);
-    let company_id = userInfo.company_id;
+    let company_id = userInfo.maxTeamId;
     console.log('通过公司 id, 开始获取公司信息');
     if( !company_id ){
       ctx.body =  null ;

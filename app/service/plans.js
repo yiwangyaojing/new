@@ -29,16 +29,23 @@ class PlansService extends Service {
       offset: start,
       limit: page.pageSize,
       where: {
-        [Op.or]: [{
-          cst_name: {
-            [Op.like]: search,
+        [Op.or]:[{
+          team_id:{
+            [Op.in]:params.managerTeams
           },
-        }, {
-          cst_address: {
-            [Op.like]: search,
-          },
-        }],
-        open_id: params.openId,
+        },{
+          open_id: params.openId,
+        },],
+       [Op.and]:{[Op.or]: [{
+               cst_name: {
+                   [Op.like]: search,
+               },
+           }, {
+               cst_address: {
+                   [Op.like]: search,
+               },
+           },
+           ]}
       },
       order: [[ 'updated_at', 'desc' ]],
     });

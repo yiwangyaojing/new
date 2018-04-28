@@ -6,23 +6,47 @@ class Plans extends Controller {
 
   // 分页查询
   async findByPage() {
+    const {ctx,service} = this
+    const params = ctx.params
+    let req = ctx.request.body
     const rule = {
       openId: { type: 'string', required: true },
       pageNumber: { type: 'string', required: true },
     };
-    this.ctx.validate(rule, this.ctx.params);
-    this.ctx.body = await this.ctx.service.plans.findByPage(this.ctx.params);
+    const ruleReq = {
+      managerTeams: { type: 'string', required: true }
+    };
+    this.ctx.validate(rule, params);
+    this.ctx.validate(ruleReq, req);
+
+      req.managerTeams = JSON.parse(req.managerTeams)
+      params.managerTeams = req.managerTeams
+
+
+    this.ctx.body = await service.plans.findByPage(params);
   }
 
   // 分页带条件查询
   async findByPageAndSearch() {
+    const {ctx,service} = this
+    const params = ctx.params
+    const req = ctx.request.body
     const rule = {
       openId: { type: 'string', required: true },
       pageNumber: { type: 'string', required: true },
       search: { type: 'string', required: true },
+
     };
-    this.ctx.validate(rule, this.ctx.params);
-    this.ctx.body = await this.ctx.service.plans.findByPage(this.ctx.params);
+    const ruleReq = {
+      managerTeams: { type: 'string', required: true }
+    };
+    this.ctx.validate(rule, params);
+    this.ctx.validate(ruleReq, req);
+
+    req.managerTeams = JSON.parse(req.managerTeams)
+    params.managerTeams = req.managerTeams
+
+    this.ctx.body = await service.plans.findByPage(params);
   }
 
   // 创建方案基本信息

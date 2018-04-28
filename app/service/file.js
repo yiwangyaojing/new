@@ -93,7 +93,7 @@ class FileService extends Service {
   }
 
   async findBySource(params) {
-    return await this.ctx.model.XFiles.findAll({ where: { plan_id: params.plan_id, open_id: params.open_id, source_type: params.source_type } });
+    return await this.ctx.model.XFiles.findAll({ where: { plan_id: params.plan_id, source_type: params.source_type } });
   }
 
   /**

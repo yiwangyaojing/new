@@ -37,5 +37,20 @@ class OverDueController extends Controller {
 
   }
 
+  async query(){
+    const {ctx,service} = this
+    const rule = {
+      id:{type:"int",required:false},
+      level:{type:"int",required:false},
+      open_id:{type:"string",required:false},
+      company_id:{type:"int",required:false},
+    }
+    const req = ctx.request.body
+    ctx.validate(rule,req)
+
+    ctx.body =await service.overdue.query(req)
+  }
+
+
 }
 module.exports = OverDueController

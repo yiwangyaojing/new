@@ -249,25 +249,33 @@ class TeamUserService extends Service {
             }
         }
 
-        const parentId = teamUser ? teamUser.team_parent_id : null
+        // const parentId = teamUser ? teamUser.team_parent_id : null
         // 获取当前团队下 所有团队列表
-        const teams = await  ctx.model.XTeam.findAll({where: {company_id: req.company_id}})
+        const companyTeams = await  ctx.model.XTeam.findAll({where: {company_id: req.company_id},order:[['level','desc']]})
 
-        for (let team of teams) {
-            if (team.level <= req.team_level) {
-                if (team.level.toString() === req.team_level) {  // 保存团队创始人信息
-                    result.founder = team.open_id
-                }
-                if (!parentId || team.id === parentId) {
-                    teamParent.push(team)
-                }
-            } else {
-                if (team.parent_id.toString() === req.team_id) {
-                    teamChild.push(team)
-                }
+        // 获取当前team信息
+        let team = {}
+        let parentIds = []
+
+        for(let t of companyTeams){
+            if(t.id.toString() === req.team_id){
+                result.founder  = t.open_id
+                parentIds.push(t.id)
+                team = t
             }
         }
+        await this.service.team.linealTeam(companyTeams,team,parentIds,'parents') // 获取直系父级团队
 
+        console.log(parentIds)
+
+        for(let t of companyTeams){
+            if(parentIds.indexOf(t.id) !== -1){
+                teamParent.push(t)
+            }
+            if(t.parent_id === team.id){
+                teamChild.push(t)
+            }
+        }
 
         // 获取当前团队所有的用户
         const cfg = this.config.sequelize;

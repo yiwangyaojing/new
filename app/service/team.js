@@ -238,7 +238,7 @@ class TeamService extends Service {
             if (team.level === 0) return;
             for (let c of company) {
                 if (c.level < team.level) {
-                    if (c.parent_id == team.id) {
+                    if (c.id == team.parent_id) {
                         linIds.push(c.id)
                         this.linealTeam(company, c, linIds, 'parents')
                     }

@@ -208,7 +208,9 @@ class UserService extends Service {
                 // 客户姓名
                 'cst_name': data[i].dataValues.cst_name,
                 // 负责人姓名
-                'duty_name': (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name
+                'duty_name': (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
+                // 当前项目的 id
+                'id':data[i].dataValues.id
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)

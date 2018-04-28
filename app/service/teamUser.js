@@ -418,7 +418,6 @@ class TeamUserService extends Service {
         } else {
             return ''
         }
-
     }
 
     // 通过转发邀请用户

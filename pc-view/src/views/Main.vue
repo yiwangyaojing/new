@@ -12,58 +12,84 @@
       <el-menu :router="true" class="el-menu-vertical" text-color="#cfcfcf" active-text-color="#FFFFFF"
                background-color="#222837" :collapse="collapsed">
         <el-menu-item-group>
-          <span slot="title">设置</span>
-            <el-menu-item index="0" :route="{name: 'Index'}">
-              <i class="el-icon-view" style="color: #be6d0d"></i>
-              <span slot="title" class="clear_margin">统计</span>
-            </el-menu-item>
-          <el-submenu index="1">
-            <div slot="title">
-              <i class="el-icon-picture" style="color: #19be6b"></i>
-              <span >首页设置</span>
-            </div>
-            <el-menu-item index="1-1" :route="{name: 'IndexAd'}" >
-              <span slot="title">开屏广告</span>
-            </el-menu-item>
-            <el-menu-item index="1-2" :route="{name: 'IndexSliderAd'}">
-              <i  style="color: #bdbe0a"></i>
-              <span slot="title">轮播广告</span>
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="2">
-            <div slot="title">
-              <i class="el-icon-mobile-phone" style="color: #19be6b"></i>
-              <span slot="title">用户管理</span>
-            </div>
-            <el-menu-item index="2-1" :route="{name: 'XuserList'}">
-              <i ></i>
-              <span slot="title">用户列表</span>
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="3">
-            <div slot="title">
-              <i class="el-icon-vueboot-friend" style="color: #19be6b"></i>
-              <span slot="title">客户管理</span>
-            </div>
-            <el-menu-item index="3-1" :route="{name: 'XcustomerList'}">
-              <i ></i>
-              <span slot="title">客户列表</span>
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="4">
-            <div slot="title">
-              <i class="el-icon-service" style="color: #19be6b"></i>
-              <span slot="title">用户反馈</span>
-            </div>
-            <el-menu-item index="4-1" :route="{name: 'FeedbackList'}">
-              <i ></i>
-              <span slot="title">用户反馈</span>
-            </el-menu-item>
-            <el-menu-item index="4-2" :route="{name: 'FeedbackRoofList'}">
-              <i ></i>
-              <span slot="title">特殊屋型</span>
-            </el-menu-item>
-          </el-submenu>
+          <!--<span slot="title">设置</span>-->
+            <!--<el-menu-item index="0" :route="{name: 'Index'}">-->
+              <!--<i class="el-icon-view" style="color: #be6d0d"></i>-->
+              <!--<span slot="title" class="clear_margin">统计</span>-->
+            <!--</el-menu-item>-->
+          <!--<el-submenu index="1">-->
+            <!--<div slot="title">-->
+              <!--<i class="el-icon-picture" style="color: #19be6b"></i>-->
+              <!--<span >首页设置</span>-->
+            <!--</div>-->
+            <!--<el-menu-item index="1-1" :route="{name: 'IndexAd'}" >-->
+              <!--<span slot="title">开屏广告</span>-->
+            <!--</el-menu-item>-->
+            <!--<el-menu-item index="1-2" :route="{name: 'IndexSliderAd'}">-->
+              <!--<i  style="color: #bdbe0a"></i>-->
+              <!--<span slot="title">轮播广告</span>-->
+            <!--</el-menu-item>-->
+          <!--</el-submenu>-->
+          <!--<el-submenu index="2">-->
+            <!--<div slot="title">-->
+              <!--<i class="el-icon-mobile-phone" style="color: #19be6b"></i>-->
+              <!--<span slot="title">用户管理</span>-->
+            <!--</div>-->
+            <!--<el-menu-item index="2-1" :route="{name: 'XuserList'}">-->
+              <!--<i ></i>-->
+              <!--<span slot="title">用户列表</span>-->
+            <!--</el-menu-item>-->
+          <!--</el-submenu>-->
+          <!--<el-submenu index="3">-->
+            <!--<div slot="title">-->
+              <!--<i class="el-icon-vueboot-friend" style="color: #19be6b"></i>-->
+              <!--<span slot="title">客户管理</span>-->
+            <!--</div>-->
+            <!--<el-menu-item index="3-1" :route="{name: 'XcustomerList'}">-->
+              <!--<i ></i>-->
+              <!--<span slot="title">客户列表</span>-->
+            <!--</el-menu-item>-->
+          <!--</el-submenu>-->
+          <!--<el-submenu index="4">-->
+            <!--<div slot="title">-->
+              <!--<i class="el-icon-service" style="color: #19be6b"></i>-->
+              <!--<span slot="title">用户反馈</span>-->
+            <!--</div>-->
+            <!--<el-menu-item index="4-1" :route="{name: 'FeedbackList'}">-->
+              <!--<i ></i>-->
+              <!--<span slot="title">用户反馈</span>-->
+            <!--</el-menu-item>-->
+            <!--<el-menu-item index="4-2" :route="{name: 'FeedbackRoofList'}">-->
+              <!--<i ></i>-->
+              <!--<span slot="title">特殊屋型</span>-->
+            <!--</el-menu-item>-->
+          <!--</el-submenu>-->
+          <!--<el-submenu index="5">-->
+            <!--<div slot="title">-->
+              <!--<i class="el-icon-setting" style="color: #19be6b"></i>-->
+              <!--<span slot="title">安全设置</span>-->
+            <!--</div>-->
+            <!--<el-menu-item index="5-1" :route="{name: 'ModifyPassword'}">-->
+              <!--<i></i>-->
+              <!--<span slot="title">修改密码</span>-->
+            <!--</el-menu-item>-->
+          <!--</el-submenu>-->
+          <el-menu-item index="0" :route="{name: 'Home'}">
+            <i></i>
+            <span slot="title">首页</span>
+          </el-menu-item>
+          <el-menu-item index="1" :route="{name: 'SettingDetails'}">
+            <i></i>
+            <span slot="title">进度详情</span>
+          </el-menu-item>
+          <el-menu-item index="2" :route="{name: 'CustomerData'}">
+            <i></i>
+            <span slot="title">客户资料</span>
+          </el-menu-item>
+          <el-menu-item index="3" :route="{name: 'Signin'}">
+            <i></i>
+            <span slot="title">签到统计</span>
+          </el-menu-item>
           <!--<el-submenu index="2">
             <div slot="title">
               <i class="el-icon-vueboot-friendadd" style="color: #19be6b"></i>
@@ -123,7 +149,13 @@
          <!-- <el-col>
             <el-button class="circle none toggle" size="mini" round icon="el-icon-vueboot-menu"/>
           </el-col>-->
-          <el-col/>
+          <el-col>
+            <div class="clearfix">
+              <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" src="/static/img/00_logo_xiaosolar.png"/></div>
+              <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">董忽悠团队</div>
+            </div>
+          </el-col>
+
           <el-col :span="5" :xs="5" :sm="5" :lg="3" :xl="2">
             <el-row justify="right" align="middle" type="flex">
               <el-col :span="10">
@@ -391,5 +423,21 @@ export default {
   .item {
     /*margin-top: 10px;*/
     /*margin-right: 50px;*/
+  }
+  .fl{
+    float: left;
+  }
+  .fr{
+    float: right;
+  }
+  .clearfix:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+  }
+  .clearfix {
+    zoom: 1;
   }
 </style>

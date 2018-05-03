@@ -101,4 +101,6 @@ module.exports = app => {
     // 计算排板子规则计算
     router.post('/api/roof', controller.roof.index);
 
+    // 签到
+    router.post('/api/sign/sign',controller.sign.signs);
 };

@@ -49,7 +49,7 @@ class UserService extends Service {
 
         if (result && result.managerTeams) {
 
-            result.dataValues.managerTeams =result.managerTeams
+            result.dataValues.managerTeams = result.managerTeams
 
         }
         return result
@@ -69,37 +69,35 @@ class UserService extends Service {
             }
 
             // 获取所有可管理的团队Id
-            let managerTeams = []
-            const teamUser = await this.ctx.model.XTeamUser.findOne({
-                where: {
-                    open_id: open_id,
-                    team_company_id: result.company_id,
-                    user_rank: FileType.UserRank.admin
-                }, order: [['team_level', 'asc']]
-            })
-            if (teamUser) {
-                // 获取所有团队
-                const Op = Sequelize.Op;
-                managerTeams.push(teamUser.team_id)
-                user.managerTeam = teamUser.team_id
-                user.managerTeamLevel = teamUser.team_level
-                const teams = await  this.ctx.model.XTeam.findAll(
-                    {
-                        where:
-                            {
-                                company_id: result.company_id,
-                                level: {
-                                    [Op.gt]: teamUser.team_level
+            /*  let managerTeams = []
+              const teamUser = await this.ctx.model.XTeamUser.findOne({
+                  where: {
+                      open_id: open_id,
+                      team_company_id: result.company_id,
+                      user_rank: FileType.UserRank.admin
+                  }, order: [['team_level', 'asc']]
+              })*/
+            /*    if (teamUser) {
+                    // 获取所有团队
+                    // const Op = Sequelize.Op;
+                    managerTeams.push(teamUser.team_id)
+                   /!* const teams = await  this.ctx.model.XTeam.findAll(
+                        {
+                            where:
+                                {
+                                    company_id: result.company_id,
+                                    level: {
+                                        [Op.gt]: teamUser.team_level
+                                    }
                                 }
-                            }
-                    })
-                for (let team of teams) {
-                    if (managerTeams.indexOf(team.id) === -1) {
-                        managerTeams.push(team.id)
-                    }
-                }
-            }
-            user.managerTeams = JSON.stringify(managerTeams)
+                        })
+                    for (let team of teams) {
+                        if (managerTeams.indexOf(team.id) === -1) {
+                            managerTeams.push(team.id)
+                        }
+                    }*!/
+                }*/
+            // user.managerTeams = JSON.stringify(managerTeams)  // 无用字段
 
             await this.ctx.model.XUsers.update(user, {where: {openid: user.openid}})
         }
@@ -210,7 +208,7 @@ class UserService extends Service {
                 // 负责人姓名
                 'duty_name': (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
                 // 当前项目的 id
-                'id':data[i].dataValues.id
+                'id': data[i].dataValues.id
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)

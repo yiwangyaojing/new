@@ -10,7 +10,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/front-api': {
+      '/backend': {
         target: 'http://localhost:7002',
         debug: true,
         changeOrigin: true,

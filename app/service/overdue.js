@@ -28,13 +28,19 @@ class OverDueService extends Service {
         // 查询单个业务员
         if (req.open_id) {
             console.log("查询单个业务员")
+            const user = ctx.model.XUsers.findOne({
+              where: {
+                  openid: req.open_id
+              }
+            })
             result = await ctx.model.XPlans.findAll(
                 {
                     attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price'],
                     where: {
                         open_id: req.open_id,
                         overdue_date: {[Op.lte]: dateNow},
-                        scd_status: {[Op.in]: scdList}
+                        scd_status: {[Op.in]: scdList},
+                        company_id: user.company_id
                     }
                 }
             )

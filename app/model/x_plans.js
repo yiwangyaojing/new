@@ -63,11 +63,23 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
+    zj_input_format: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
     zj_capacity: {
       type: "DOUBLE(8,2)",
       allowNull: true
     },
+    zj_input_capacity: {
+      type: "DOUBLE(8,2)",
+      allowNull: true
+    },
     zj_num: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    zj_input_num: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },

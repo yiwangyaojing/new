@@ -177,13 +177,14 @@
 
         </el-row>
       </el-header>
-      <el-main>
+      <el-main style="background:rgb(238, 238, 238);">
         <transition name="fade" mode="out-in">
-          <div style="background:#eee;padding: 20px">
+          <div style="padding: 20px">
             <router-view/>
           </div>
         </transition>
       </el-main>
+
       <el-footer height="60px">
         <span>上海西樵软件有限公司</span>
       </el-footer>

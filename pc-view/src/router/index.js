@@ -19,6 +19,7 @@ import Index from '../views/index'
 import IndexAd from '../views/setting/indexAd'
 import IndexSliderAd from '../views/setting/IndexSliderAd'
 import Download from '@/views/download/Download'
+import Home from '../views/home/home'
 import SettingDetails from '../views/settingdetails/settingdetails'
 import CustomerData from '../views/settingdetails/customerdata'
 import CustomerDetails from '../views/customerdetails/customerdetails'
@@ -27,7 +28,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/', redirect: '/login'},
+    //{path: '/', redirect: '/login'},
     {path: '/login', name: 'Login', component: Login},
     {path: '/download', name: 'Download', component: Download},
     {
@@ -36,6 +37,7 @@ export default new Router({
       component: Main,
       redirect: 'resources',
       children: [
+        {path: '/Home', name: 'Home', component: Home},
         {path: '/SettingDetails', name: 'SettingDetails', component: SettingDetails},
         {path: '/CustomerData', name: 'CustomerData', component: CustomerData},
         {path: '/CustomerDetails', name: 'CustomerDetails', component: CustomerDetails},

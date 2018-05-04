@@ -112,7 +112,7 @@ export default {
         password: md5(this.loginForm.password + this.loginForm.username),
         captcha: this.loginForm.captcha
       }
-      axios.post('/login', form).then(response => {
+      axios.post('/api/user', form).then(response => {
         this.$message.success('登录成功')
         this.$router.replace('/Index')
         window.sessionStorage.setItem(values.storage.user, JSON.stringify({username: this.loginForm.username}))

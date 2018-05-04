@@ -58,7 +58,7 @@ class TeamUserService extends Service {
             }
         } else {
             // 查找总公司所有业务员
-            const teamUsers = await  this.ctx.model.XTeamUser.findAll({where: {team_id: req.company_id}})
+            const teamUsers = await  this.ctx.model.XTeamUser.findAll({where: {team_company_id: req.company_id}})
             for (let u of teamUsers) {
                 if (users.indexOf(u.open_id) === -1) users.push(u.open_id)
             }

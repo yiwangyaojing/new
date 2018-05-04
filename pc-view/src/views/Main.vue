@@ -12,68 +12,6 @@
       <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF"
                background-color="#fff" :collapse="collapsed">
         <el-menu-item-group>
-          <!--<span slot="title">设置</span>-->
-            <!--<el-menu-item index="0" :route="{name: 'Index'}">-->
-              <!--<i class="el-icon-view" style="color: #be6d0d"></i>-->
-              <!--<span slot="title" class="clear_margin">统计</span>-->
-            <!--</el-menu-item>-->
-          <!--<el-submenu index="1">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-picture" style="color: #19be6b"></i>-->
-              <!--<span >首页设置</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="1-1" :route="{name: 'IndexAd'}" >-->
-              <!--<span slot="title">开屏广告</span>-->
-            <!--</el-menu-item>-->
-            <!--<el-menu-item index="1-2" :route="{name: 'IndexSliderAd'}">-->
-              <!--<i  style="color: #bdbe0a"></i>-->
-              <!--<span slot="title">轮播广告</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="2">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-mobile-phone" style="color: #19be6b"></i>-->
-              <!--<span slot="title">用户管理</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="2-1" :route="{name: 'XuserList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">用户列表</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="3">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-vueboot-friend" style="color: #19be6b"></i>-->
-              <!--<span slot="title">客户管理</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="3-1" :route="{name: 'XcustomerList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">客户列表</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="4">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-service" style="color: #19be6b"></i>-->
-              <!--<span slot="title">用户反馈</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="4-1" :route="{name: 'FeedbackList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">用户反馈</span>-->
-            <!--</el-menu-item>-->
-            <!--<el-menu-item index="4-2" :route="{name: 'FeedbackRoofList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">特殊屋型</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="5">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-setting" style="color: #19be6b"></i>-->
-              <!--<span slot="title">安全设置</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="5-1" :route="{name: 'ModifyPassword'}">-->
-              <!--<i></i>-->
-              <!--<span slot="title">修改密码</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
           <el-menu-item index="0" :route="{name: 'Home'}">
             <i></i>
             <span slot="title">首页</span>
@@ -109,32 +47,6 @@
           <i></i>
           <span slot="title">账户设置</span>
         </el-menu-item>
-
-        <!--<el-menu-item-group v-for="(menu, m) in data.menus" v-if="menu.resourceType === '菜单组' && !menu.parentCode" :key="m">
-          <span slot="title">{{menu.name}}</span>
-          <el-submenu :index="menu2.id+''" v-for="(menu2, n) in data.menus" v-if="menu2.parentCode === menu.code" :key="n">
-            <div slot="title">
-              <i :class="menu2.theme.icon" :style="{color: menu2.theme.color}"></i>
-              <span slot="title">{{menu2.name}}</span>
-            </div>
-            <el-menu-item :index="menu2.id + '' + menu3.id" v-for="(menu3, i) in data.menus" v-if="menu3.parentCode === menu2.code" :key="i" :route="menu3.url">
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">{{menu3.name}}</span>
-            </el-menu-item>
-          </el-submenu>
-        </el-menu-item-group>
-
-      <el-submenu :index="menu.id+''" v-for="(menu, m) in data.menus" v-if="menu.resourceType === '菜单' && !menu.parentCode" :key="m">
-        <div slot="title">
-          <i :class="menu.theme.icon" :style="{color: menu.theme.color}"></i>
-          <span slot="title">{{menu.name}}</span>
-        </div>
-        <el-menu-item :index="menu.id + '' + menu2.id" v-for="(menu2, n) in data.menus" v-if="menu2.parentCode === menu2.code" :key="n" :route="menu2.url">
-          <i class="el-icon-vueboot-dot-o"></i>
-          <span slot="title">{{menu2.name}}</span>
-        </el-menu-item>
-      </el-submenu>-->
-
       </el-menu>
     </el-aside>
     <el-container>

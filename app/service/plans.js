@@ -24,7 +24,11 @@ class PlansService extends Service {
         // 计算当前条数
         const start = (page.pageNumber - 1) * page.pageSize;
 
-
+        const user = await this.ctx.model.XUsers.findOne({
+          where: {
+              openid: params.openId
+          }
+        })
         // 获取所有可管理的团队
         let managerTeams = []
 
@@ -95,7 +99,8 @@ class PlansService extends Service {
                         },
                     },
                     ]
-                }
+                },
+                company_id: user.company_id
             },
             order: [['updated_at', 'desc']],
         });
@@ -272,7 +277,17 @@ class PlansService extends Service {
     async findAllByUser(openId) {
 
         const results = [];
-        const plans = await this.ctx.model.XPlans.findAll({where: {open_id: openId}});
+        const user = await this.ctx.model.XUsers.findOne({
+          where: {
+              openid: openId
+          }
+        })
+        const plans = await this.ctx.model.XPlans.findAll({
+          where: {
+              open_id: openId,
+              company_id: user.company_id
+          }
+        });
 
         for (const plan of plans) {
             const result = {};

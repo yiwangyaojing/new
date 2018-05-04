@@ -9,8 +9,8 @@
         <!--<img src="../asserts/images/logo.png"/>-->
         <span>光伏好销售</span>
       </el-row>
-      <el-menu :router="true" class="el-menu-vertical" text-color="#cfcfcf" active-text-color="#FFFFFF"
-               background-color="#222837" :collapse="collapsed">
+      <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF"
+               background-color="#fff" :collapse="collapsed">
         <el-menu-item-group>
           <!--<span slot="title">设置</span>-->
             <!--<el-menu-item index="0" :route="{name: 'Index'}">-->
@@ -144,12 +144,12 @@
       </el-menu>
     </el-aside>
     <el-container>
-      <el-header height="54px">
+      <el-header height="60px">
         <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px;" :gutter="8">
          <!-- <el-col>
             <el-button class="circle none toggle" size="mini" round icon="el-icon-vueboot-menu"/>
           </el-col>-->
-          <el-col>
+          <el-col  class="y-Center">
             <div class="clearfix">
               <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" src="/static/img/00_logo_xiaosolar.png"/></div>
               <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">董忽悠团队</div>
@@ -328,7 +328,7 @@ export default {
   }
 
   .el-aside {
-    background: #222837;
+    /*background: #222837;*/
   }
 
   .el-header {
@@ -376,13 +376,14 @@ export default {
     height: 45px;
     line-height: 45px;
     min-width: 220px;
-    background-color: #1f212d !important;
-    font-size: 13px;
+    /*background-color: #1f212d !important;*/
+    font-size: 14px;
     padding-left: 21px !important;
+    /*color: #303133 !important;*/
   }
 
   .el-menu-item.is-active {
-    background-color: #1c1f27 !important;
+    /*background-color: #1c1f27 !important;*/
   }
 
   .el-menu-item.is-active [class^="el-icon-vueboot-"] {
@@ -398,14 +399,16 @@ export default {
   }
 
   .logo {
-    height: 120px;
-    padding-top: 20px;
+    height: 60px;
+    /*padding-top: 20px;*/
     padding-left: 24px;
+    background: #67c23a;
+    line-height: 60px;
   }
   .logo span {
     font-weight: bold;
     font-size: 24px;
-    color: #bfbec0;
+    color: #303133;
     margin-left:25px;
   }
   .el-menu-item span{
@@ -415,7 +418,12 @@ export default {
   .el-menu-item .clear_margin {
     margin: 0;
   }
-
+  .y-Center{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    align-items: center;
+  }
   .el-footer {
     text-align: center;
     line-height: 60px;
@@ -440,5 +448,12 @@ export default {
   }
   .clearfix {
     zoom: 1;
+  }
+  .el-menu-item:hover {
+    background: unset !important;
+    color: #67c23a !important;
+  }
+  .el-menu-item.is-active {
+    color: #67c23a !important;
   }
 </style>

@@ -117,24 +117,44 @@
           <el-tab-pane label="拍房子" name="3">
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
-                <div class="fl" style="width: 80px;">电话</div>
-                <div class="fl"style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;">133333333888</div>
+                <div class="fl" style="width: 80px;">房屋朝向</div>
+                <div class="fl"style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">165°正南</div>
               </div>
             </div>
-            <div class="clearfix y-Center" style="margin-top: 20px;">
-              <div class="fl" style="width: 100px;">房屋照片</div>
-              <div class="fl" style="margin-right: 5px;"><img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl" style="width: 80px;">房屋照片</div>
+              <div class="fl imgs" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              </div>
+              <div class="fl imgs">
+                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
+              </div>
             </div>
-            <div class="clearfix">
-              <div class="fl" style="width: 100px;">电表箱</div>
-              <div class="fl" style="margin-right: 5px;"><img style="width: 60px; height: 60px;" src="/static/img/sky.871d198.jpg" alt=""></div>
-              <div class="fl" style="margin-right: 5px;"><img style="width: 60px; height: 60px;" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl" style="width: 80px;">电表箱</div>
+              <div class="fl imgs" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              </div>
+              <div class="fl imgs">
+                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄用户的电表</div>
+              </div>
             </div>
-            <div class="clearfix">
-              <div class="fl" style="width: 100px;">其他</div>
-              <div class="fl" style="margin-right: 5px;"><img style="width: 60px; height: 60px;" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl" style="width: 80px;">其他</div>
+              <div class="fl imgs" style="margin-right: 5px;width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              </div>
+              <div class="fl imgs">
+                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">可以拍摄用户房屋周边环境</div>
+              </div>
             </div>
-            <div>备注: XXXXXXXXXXXXXXXX</div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl" style="width: 80px;">备注</div>
+              <div class="fl" style="width: 4 00px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
+            </div>
           </el-tab-pane>
           <el-tab-pane label="收资料" name="4">
             <div class="clearfix">
@@ -248,5 +268,8 @@ export default {
     font-weight: 500;
     color: #303133;
     position: relative;
+  }
+  .imgs {
+    margin-right: 10px;
   }
 </style>

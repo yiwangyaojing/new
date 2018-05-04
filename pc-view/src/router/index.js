@@ -24,6 +24,7 @@ import SettingDetails from '../views/settingdetails/settingdetails'
 import CustomerData from '../views/settingdetails/customerdata'
 import CustomerDetails from '../views/customerdetails/customerdetails'
 import Signin from '../views/signin/signin'
+import SigninDetails from '../views/signin/signindetails'
 Vue.use(Router)
 
 export default new Router({
@@ -42,6 +43,7 @@ export default new Router({
         {path: '/CustomerData', name: 'CustomerData', component: CustomerData},
         {path: '/CustomerDetails', name: 'CustomerDetails', component: CustomerDetails},
         {path: '/Signin', name: 'Signin', component: Signin},
+        {path: '/SigninDetails', name: 'SigninDetails', component: SigninDetails},
 
         {path: '/Index', name: 'Index', component: Index},
         {path: '/IndexAd', name: 'IndexAd', component: IndexAd},

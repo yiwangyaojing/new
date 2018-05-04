@@ -124,7 +124,17 @@ class UserService extends Service {
     }
 
     async getAllProject(openId) {
-        const team = await this.ctx.model.XPlans.findAll({where: {open_id: openId}});
+        const user = await this.ctx.model.XUsers.findOne({
+          where: {
+              openid: openId
+          }
+        })
+        const team = await this.ctx.model.XPlans.findAll({
+          where: {
+              open_id: openId,
+              company_id: user.company_id
+          }
+        });
         if (!team) {
             return false;
         }

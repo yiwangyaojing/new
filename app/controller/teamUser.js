@@ -332,6 +332,15 @@ class TeamUserController extends Controller {
     }
     ctx.body = await service.teamUser.join(req)
   }
+
+    // 获取团队内成员的签到信息
+    async teamGetSign(){
+      const {ctx, service} = this
+      const body = ctx.request.body
+      let data = await service.teamUser.teamGetSign(body)
+      console.log(body)
+      ctx.body = data
+    }
 }
 
 module.exports = TeamUserController

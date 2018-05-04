@@ -71,8 +71,8 @@ class UserController extends Controller {
     const userInfo = await this.ctx.service.user.findByOpenId(openId);
     let company_id = userInfo.maxTeamId;
     console.log('通过公司 id, 开始获取公司信息');
-    if( !company_id ){
-      ctx.body =  null ;
+    if( !userInfo.company_id || !company_id ){
+      ctx.body =  {} ;
       return;
     }
     const team = await service.user.findTeamByOpenId(company_id);

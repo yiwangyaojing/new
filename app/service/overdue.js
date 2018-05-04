@@ -65,7 +65,7 @@ class OverDueService extends Service {
                     {
                         attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price'],
                         where: {
-                            team_id: req.company_id,
+                            // team_id: req.company_id,
                             company_id: req.company_id,
                             overdue_date: {[Op.lte]: dateNow},
                             scd_status: {[Op.in]: scdList}

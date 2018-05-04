@@ -58,7 +58,7 @@ class TeamUserService extends Service {
             }
         } else {
             // 查找总公司所有业务员
-            const teamUsers = await  this.ctx.model.XTeamUser.findAll({where: {team_id: req.company_id}})
+            const teamUsers = await  this.ctx.model.XTeamUser.findAll({where: {team_company_id: req.company_id}})
             for (let u of teamUsers) {
                 if (users.indexOf(u.open_id) === -1) users.push(u.open_id)
             }
@@ -137,7 +137,11 @@ class TeamUserService extends Service {
             company_id: null,
             company_name: null,
             company_founder:null,
-            company_logo: null
+            company_logo: null,
+            maxTeamLevel: null,
+            maxTeamId: null,
+            maxTeamRank: null,
+            managerTeams: '[]'
         }, {
             where: {
                 openid: openid
@@ -421,6 +425,16 @@ class TeamUserService extends Service {
     }
     // 通过转发邀请用户
     async join(params) {
+        // 校验该成员是否已经加入团队
+        const users = await this.ctx.model.XTeamUser.findAll({
+          where: {
+            open_id: params.open_id
+          }
+        })
+        if (users && users.length > 0) {
+          throw new Error('对不起，您已经加入团队，不得重复加入！')
+          return
+        }
         // 添加用户团队
         const addTeam = {
             team_id: params.team_id,

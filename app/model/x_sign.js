@@ -81,6 +81,31 @@ module.exports = app => {
             type: DataTypes.TIME,
             allowNull: true
         },
+        // 省略的地点
+        min_site:{
+            type: DataTypes.STRING(255),
+            allowNull: true
+        },
+        // 签到者的名字
+         name:{
+            type: DataTypes.STRING(255),
+            allowNull: true
+        },
+        // 当前公司的名字
+        team_name:{
+            type: DataTypes.STRING(255),
+            allowNull: true
+        },
+        // 当前省略的时间
+        min_date:{
+            type: DataTypes.STRING(255),
+            allowNull: true
+        },
+        // 签到者的头像
+        url:{
+            type: DataTypes.STRING(255),
+            allowNull: true
+        }
     }, {
             tableName: 'x_sign'
         });

@@ -208,7 +208,7 @@ class UserService extends Service {
                 // 客户姓名
                 'cst_name': data[i].dataValues.cst_name,
                 // 负责人姓名
-                'duty_name': (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
+                'duty_name': '' + (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
                 // 当前项目的 id
                 'id':data[i].dataValues.id
             };
@@ -268,6 +268,51 @@ class UserService extends Service {
         ;
         let allInfo = await this.getProjectInfo('', data);
         return allInfo
+    }
+
+    // 获取单个业务员的签到信息
+    async oneUserGetSign(info){
+        let openId = info.openId;
+        let time = info.time;
+        let data = await this.ctx.model.XSign.findAll({where: {open_id: openId}});
+        let all = []
+        if( data.length > 0 ){
+            for( var i = 0 ; i < data.length ; i ++ ){
+                let date = moment(data[i].create_time).format('YYYY-MM-DD')
+                if( date === time ){
+                    let tt = moment(data[i].create_time).format('YYYY-MM-DD HH:mm')
+                    data[i].create_time = moment(moment(tt).add(8, 'h')).format('HH:mm')
+                    console.log(data[i].create_time)
+                    all.push(data[i])
+                }
+            }
+        }
+        return all
+    }
+    // 判断底层用户是否是管理员
+    async isRank(openId){
+        let data = await this.ctx.model.XTeamUser.findAll({where: {open_id: openId.openId}});
+        let more = [];
+        for( let i = 0 ; i < data.length ; i ++ ){
+            console.log(data[i].dataValues);
+            if( data[i].dataValues.user_rank === 1 ){
+                more.push(data[i].dataValues)
+            }
+        }
+        if( more.length === 1 || more.length === 0 ){
+            return more
+        }
+        if( more.length > 1 ){
+            function compare(property){
+                return function(a,b){
+                    var value1 = a[property];
+                    var value2 = b[property];
+                    return value1 - value2;
+                }
+            }
+            more.sort(compare('team_level'))
+        }
+        return more[0]
     }
 }
 

@@ -43,12 +43,12 @@
         <el-card class="right-card">
           <br/><br/>
           <el-row type="flex" align="middle">
-            <el-col style="font-size: 26px; color: white;">光伏好销售后台管理系统</el-col>
+            <el-col style="font-size: 26px; color: white;">光伏好销售系统</el-col>
           </el-row>
           <br/>
           <el-row type="flex" align="middle">
             <el-col style="font-size: 12px; color: #484f66;">
-              后台管理功能
+              团队管理功能
             </el-col>
           </el-row>
           <br/>
@@ -112,7 +112,7 @@ export default {
         password: md5(this.loginForm.password + this.loginForm.username),
         captcha: this.loginForm.captcha
       }
-      axios.post('/backend/login', form).then(response => {
+      axios.post('/login', form).then(response => {
         this.$message.success('登录成功')
         this.$router.replace('/Index')
         window.sessionStorage.setItem(values.storage.user, JSON.stringify({username: this.loginForm.username}))
@@ -126,7 +126,7 @@ export default {
   },
   computed: {
     captchaUrl: function () {
-      return '/backend/captcha?time=' + this.now
+      return '/captcha?time=' + this.now
     }
   },
   mounted () {

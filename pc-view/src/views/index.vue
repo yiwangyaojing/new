@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     initData () {
-      axios.get('/backend/index/' + this.province).then(resp => {
+      axios.get('/index/' + this.province).then(resp => {
         this.dataInfo = resp
       })
     },

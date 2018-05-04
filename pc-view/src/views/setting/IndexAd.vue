@@ -14,7 +14,7 @@
               @imageuploaded="imageUploaded"
               :max-file-size="5242880"
               class="ivu-btn ivu-btn-success"
-              url="/backend/file"
+              url="/file"
               extensions="gif,jpg,jpeg,png,webp"
               inputAccept="image/png,image/gif,image/jpeg,image/webp"
               :headers="headers">
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     init () {
-      axios.get('/backend/security/setting/queryIndexAd').then(response => {
+      axios.get('/security/setting/queryIndexAd').then(response => {
         if (response && response.id) {
           this.indexForm.id = response.id
           this.indexForm.linkUrl = response.linkUrl
@@ -107,7 +107,7 @@ export default {
     saveIndexAd () {
       this.indexLoadingBtn = true
       let req = {imageUrl: this.indexAdUrl, linkUrl: this.indexForm.linkUrl, id: this.indexForm.id}
-      axios.post('/backend/security/setting/saveIndexAd', req).then(response => {
+      axios.post('/security/setting/saveIndexAd', req).then(response => {
         this.$message.success('保存成功！')
         this.indexLoadingBtn = false
       }, response => {

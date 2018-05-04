@@ -235,7 +235,7 @@ export default {
     initData () {
       let planId = this.$route.query.planId
       if (planId) {
-        axios.get('/backend/plans/' + planId).then(resp => {
+        axios.get('/plans/' + planId).then(resp => {
           this.cstInfo = resp
         })
       }
@@ -278,7 +278,7 @@ export default {
 
         return
       }
-      window.open('/backend/file/download/' + shortUrl)
+      window.open('/file/download/' + shortUrl)
       this.downloadDialog = false
     }
   },

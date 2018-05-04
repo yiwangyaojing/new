@@ -147,13 +147,13 @@ export default {
       const loading = this.$loading({
         lock: true, text: 'Loading', spinner: 'el-icon-loading', background: 'rgba(0, 0, 0, 0.7)'
       })
-      axios.post('/backend/plans', this.pagePlan).then(resp => {
+      axios.post('/plans', this.pagePlan).then(resp => {
         this.pagePlan = resp
         loading.close()
       })
     },
     initSelect () {
-      axios.get('/backend/users').then(resp => {
+      axios.get('/users').then(resp => {
         for (let user of resp) {
           let option = {}
           option.label = user.nickName

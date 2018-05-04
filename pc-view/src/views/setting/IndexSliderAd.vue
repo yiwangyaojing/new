@@ -104,7 +104,7 @@ export default {
       showModal: false,
       loadingBtn: false,
       tableData: [],
-      uploadUrl: process.env.CONTEXT + '/backend/file',
+      uploadUrl: process.env.CONTEXT + '/file',
       addForm: {
         id: null,
         linkUrl: '',
@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     init () {
-      axios.get('/backend/security/setting/queryIndexSliderAd').then(response => {
+      axios.get('/security/setting/queryIndexSliderAd').then(response => {
         this.tableData = response.body.content
       })
     },
@@ -128,7 +128,7 @@ export default {
     // 保存首页图片
     handleSubmit () {
       this.loadingBtn = true
-      axios.post('/backend/security/setting/saveIndexSliderAd', this.addForm).then(response => {
+      axios.post('/security/setting/saveIndexSliderAd', this.addForm).then(response => {
         this.$message.success('保存成功！')
         this.loadingBtn = false
         this.showModal = false
@@ -172,7 +172,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.loadingBtn = true
-        throw axios.post('/backend/security/setting/delete', params).then(resp => {
+        throw axios.post('/security/setting/delete', params).then(resp => {
           this.$message.success('删除成功！')
           this.loadingBtn = false
           this.init()

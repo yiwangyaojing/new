@@ -116,7 +116,7 @@ export default {
         this.pageUser.params[key] = value
       }
       this.pageUser.pageIndex = (this.pageUser.pageNumber - 1) * this.pageUser.pageSize
-      axios.post('/backend/users', this.pageUser).then(resp => {
+      axios.post('/users', this.pageUser).then(resp => {
         this.pageUser = resp
       })
     },

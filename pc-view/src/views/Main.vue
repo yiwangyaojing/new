@@ -281,7 +281,7 @@ export default {
       this.$confirm('确定要退出当前系统吗', {
         callback: (action) => {
           if (action === 'confirm') {
-            axios.post('/backend/security/logout').then(() => {
+            axios.post('/security/logout').then(() => {
               this.$message.success('退出成功!')
               this.$router.push({name: 'Login'})
             }, (response) => {
@@ -302,7 +302,7 @@ export default {
             oldPassword: md5(this.pwdForm.originPwd + this.loginName),
             newPassword: md5(this.pwdForm.newPwd + this.loginName)
           }
-          axios.post('/backend/security/updatePassword', jsonData).then((data) => {
+          axios.post('/security/updatePassword', jsonData).then((data) => {
             // 关闭浮层
             this.passwordModel = false
             this.$message.success('修改成功,下次登录请用新密码登录, 谢谢!')

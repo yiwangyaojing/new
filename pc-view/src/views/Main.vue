@@ -90,31 +90,25 @@
             <i></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
-          <!--<el-submenu index="2">
+          <el-submenu index="4">
             <div slot="title">
-              <i class="el-icon-vueboot-friendadd" style="color: #19be6b"></i>
-              <span slot="title">权限管理</span>
+              <i></i>
+              <span slot="title" style="margin-left: 32px;">人员管理</span>
             </div>
-            <el-menu-item index="2-1" >
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">资源管理</span>
-            </el-menu-item>
-            <el-menu-item index="2-2" >
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">角色权限</span>
+            <el-menu-item index="4-1" :route="{name: 'PersonnelManagement'}">
+              <i></i>
+              <span slot="title">团队结构</span>
             </el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
-            <div slot="title">
-              <i class="el-icon-vueboot-friend" style="color: #2d8cf0"></i>
-              <span slot="title">用户管理</span>
-            </div>
-            <el-menu-item index="3-1">
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">用户管理</span>
-            </el-menu-item>
-          </el-submenu>-->
         </el-menu-item-group>
+        <el-menu-item index="5" :route="{name: 'TeamInformation'}">
+          <i></i>
+          <span slot="title">团队信息</span>
+        </el-menu-item>
+        <el-menu-item index="6" :route="{name: 'AccountSetting'}">
+          <i></i>
+          <span slot="title">账户设置</span>
+        </el-menu-item>
 
         <!--<el-menu-item-group v-for="(menu, m) in data.menus" v-if="menu.resourceType === '菜单组' && !menu.parentCode" :key="m">
           <span slot="title">{{menu.name}}</span>
@@ -174,7 +168,6 @@
               </el-col>
             </el-row>
           </el-col>
-
         </el-row>
       </el-header>
       <el-main style="background:rgb(238, 238, 238);">
@@ -455,5 +448,8 @@ export default {
   }
   .el-menu-item.is-active {
     color: #67c23a !important;
+  }
+  .el-submenu__title:hover {
+    background-color: unset !important;
   }
 </style>

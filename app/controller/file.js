@@ -41,8 +41,11 @@ class FileController extends Controller {
       plan.d_remark = req.remark;
     } else if (req.source_type === 5) { // 排板子资料上传
       plan.zj_num = req.zj_num;
+      plan.zj_input_num = req.zj_num;
       plan.zj_source = req.zj_source;
+      plan.zj_input_format = req.zj_format;
       plan.zj_format = req.zj_format;
+      plan.zj_input_capacity = req.zj_capacity;
       plan.zj_capacity = req.zj_capacity;
       plan.zj_price = req.zj_price;
       plan.zj_unit_price = req.zj_unit_price;

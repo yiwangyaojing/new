@@ -306,7 +306,6 @@ class PlansService extends Service {
                 }, {
                     open_id: openId,
                 },],
-                company_id: user.company_id
             }
         });
 

@@ -322,6 +322,14 @@ class UserService extends Service {
         }
         return more[0]
     }
+
+    /**
+     * 根据电话找人
+     */
+    async findByPhone(phone) {
+        let result = await this.ctx.model.XUsers.findOne({where: {phone: phone}})
+        return result
+    }
 }
 
 module.exports = UserService;

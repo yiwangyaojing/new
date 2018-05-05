@@ -102,6 +102,10 @@ module.exports = app => {
     // 计算排板子规则计算
     router.post('/api/roof', controller.roof.index);
 
+    // PC端登录
+    router.post('/api/login/sms/:phone', controller.login.sms);
+    router.post('/api/login', controller.login.userLogin);
+
     // 签到
     router.post('/api/sign/sign',controller.sign.signs);
 };

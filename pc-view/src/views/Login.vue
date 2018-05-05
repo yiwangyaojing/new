@@ -14,10 +14,11 @@
           </el-row>
           <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px" class="form">
             <el-form-item prop="username">
-              <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="账号"/>
+              <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
             </el-form-item>
-            <el-form-item prop="password">
-              <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码"/>
+            <el-form-item prop="validateCode">
+              <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
+              <el-button type="danger" @click="getValidateCode">获取验证码</el-button>
             </el-form-item>
             <el-form-item prop="captcha">
               <el-row>
@@ -79,8 +80,8 @@ export default {
       loading: false,
       // 登录form admin 123456
       loginForm: {
-        username: '',
-        password: '',
+        phone: '',
+        validateCode: '',
         captcha: ''
       },
       rules: {},
@@ -89,17 +90,23 @@ export default {
   },
   methods: {
     // 刷新验证码
-    changeCaptchaUrl: function () {
-      this.now = new Date()
+    getValidateCode: function () {
+      if(this.loginForm.phone===''){
+        this.$message.error('手机号不能为空')
+      }
+      axios.post('/api/login/sms/'+this.loginForm.phone, 'POST').then(response=>{
+          this.$message.success('验证码发送成功！')
+      }
+      )
     },
     // 确认登录操作
     handleSubmit (name) {
-      if (this.loginForm.username === '') {
-        this.$message.error('账号不能为空')
+      if (this.loginForm.phone === '') {
+        this.$message.error('手机号不能为空')
         return
       }
-      if (this.loginForm.password === '') {
-        this.$message.error('密码不能为空')
+      if (this.loginForm.validateCode === '') {
+        this.$message.error('验证码不能为空')
         return
       }
       // if (this.loginForm.captcha === '') {
@@ -108,19 +115,21 @@ export default {
       // }
       this.loading = true
       let form = {
-        username: this.loginForm.username,
-        password: md5(this.loginForm.password + this.loginForm.username),
+        phone: this.loginForm.phone,
+        validateCode: this.loginForm.validateCode,
         captcha: this.loginForm.captcha
       }
-      axios.post('/api/user', form).then(response => {
+      axios.post('/api/login', form).then(response => {
+        console.log("this is the response=====>>>",response)
+        let userInfo = response.name;
         this.$message.success('登录成功')
         this.$router.replace('/Index')
-        window.sessionStorage.setItem(values.storage.user, JSON.stringify({username: this.loginForm.username}))
-        this.loading = false
+        window.sessionStorage.setItem(values.storage.user, JSON.stringify({username: userInfo}))
+//        this.loading = false
       }, (response) => {
         this.$message.error(response.message)
-        this.changeCaptchaUrl()
-        this.loading = false
+//        this.changeCaptchaUrl()
+//        this.loading = false
       })
     }
   },

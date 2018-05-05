@@ -276,7 +276,7 @@ class TeamUserController extends Controller {
     const req= ctx.params
     ctx.validate(rule, req)
     const result = await service.teamUser.getAdminTeams(req.company_id,req.open_id)
-    console.log(result)
+
     ctx.body = result
   }
 

@@ -225,7 +225,7 @@ class TeamService extends Service {
     async linealTeam(company, team, linIds, type) {
 
         if (type === 'child') {
-            // if (team.level === 3) return;
+            if (team.level === 3) return;
             for (let c of company) {
                 if (c.level > team.level) {
                     if (c.parent_id == team.id) {

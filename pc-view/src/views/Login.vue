@@ -18,17 +18,19 @@
             </el-form-item>
             <el-form-item prop="validateCode">
               <el-col :span="24">
-                <el-col :span="18">
+                <el-col :span="15">
                   <el-col :span="20">
                     <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
                   </el-col>
                 </el-col>
                 <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
-                <el-col :span="6">
-                  <div style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px">获取验证码</div>
+                <el-col v-if="codeShow" :span="9">
+                  <div @click="getValidateCode" style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;"><span style="padding: 5px">获取验证码</span></div>
+                </el-col>
+                <el-col v-if="!codeShow" :span="9">
+                  <el-button disabled="true" style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;">{{numCode}}秒</el-button>
                 </el-col>
               </el-col>
-
             </el-form-item>
             <el-form-item prop="captcha">
               <el-row>
@@ -95,19 +97,36 @@
           captcha: ''
         },
         rules: {},
-        now: new Date()
+        now: new Date(),
+        codeShow:true,
+        numCode: 120,
       }
     },
     methods: {
       // 刷新验证码
       getValidateCode: function () {
-        if(this.loginForm.phone===''){
+        if (this.loginForm.phone !== '') {
+          this.codeShow = false
+          this.countDown()
+        }else{
           this.$message.error('手机号不能为空')
         }
         axios.post('/api/login/sms/'+this.loginForm.phone, 'POST').then(response=>{
             this.$message.success('验证码发送成功！')
           }
         )
+      },
+      countDown () {
+        let _this = this
+        setTimeout(() => {
+          if (_this.numCode > 0) {
+            _this.numCode--
+            this.countDown()
+          } else {
+            _this.numCode = 120
+            this.codeShow = true
+          }
+        }, 1000)
       },
       // 确认登录操作
       handleSubmit (name) {

@@ -27,8 +27,8 @@ class OverDueService extends Service {
         let result = {}
         // 查询单个业务员
         if (req.open_id) {
-            console.log("查询单个业务员")
-            const user = ctx.model.XUsers.findOne({
+            console.log("查询单个业务员",req.open_id)
+            const user = await ctx.model.XUsers.findOne({
               where: {
                   openid: req.open_id
               }

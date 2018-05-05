@@ -21,7 +21,7 @@
         <el-col :span="3"><el-input v-model="input" size="small" placeholder="请输入内容"></el-input></el-col>
         <el-col :span="3"><div class="xy-Center" style="border: 1px solid #dcdfe6;width: 90px;height: 32px;border-radius: 5px;margin-left: 30px;">获取验证码</div></el-col>
       </el-col>
-      <el-button size="medium" style="margin-top: 40px;">保存修改</el-button>
+      <el-button size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">保存修改</el-button>
     </el-row>
   </el-card>
 </template>

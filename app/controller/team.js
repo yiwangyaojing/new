@@ -80,8 +80,8 @@ class TeamController extends Controller {
             open_id: {type: 'string', required: true},
             register_phone: {type: 'string', required: true}, // 注册手机号
             name: {type: 'string', required: true},
-            oss_name: {type: 'string', required: true}, // oss文件名称
-            logo: {type: 'string', required: true},
+            // oss_name: {type: 'string', required: false, // oss文件名称
+            // logo: {type: 'string', required: false},
             validateCode: {type: 'string', required: true}, // 验证码
         };
 

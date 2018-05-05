@@ -144,7 +144,7 @@ class TeamService extends Service {
             throw new Error('权限不足');
         }
         // 清空oss文件
-        if (team.level === FileType.TeamLevel.company && req.logo !== team.logo) {
+        if (team.level === FileType.TeamLevel.company && req.logo !== team.logo && team.oss_name) {
             await ctx.oss.delete(team.oss_name);
         }
         req.company_name = req.name

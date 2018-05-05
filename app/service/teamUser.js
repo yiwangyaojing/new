@@ -312,7 +312,7 @@ class TeamUserService extends Service {
 
         const adminTeam = await this.findManagerTeams(company_id,open_id)
 
-        result.maxLevel = adminTeam
+        result.maxLevel = adminTeam.maxLevel
        // 获取所有团队信息
         const teams = await ctx.model.XTeam.findAll({where:{id:adminTeam.managerTeamIds}})
         result.teams = teams

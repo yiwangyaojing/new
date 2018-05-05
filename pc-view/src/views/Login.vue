@@ -17,8 +17,18 @@
               <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
             </el-form-item>
             <el-form-item prop="validateCode">
-              <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
-              <el-button type="danger" @click="getValidateCode">获取验证码</el-button>
+              <el-col :span="24">
+                <el-col :span="18">
+                  <el-col :span="20">
+                    <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
+                  </el-col>
+                </el-col>
+                <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
+                <el-col :span="6">
+                  <div style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px">获取验证码</div>
+                </el-col>
+              </el-col>
+
             </el-form-item>
             <el-form-item prop="captcha">
               <el-row>

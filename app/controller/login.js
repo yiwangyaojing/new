@@ -39,7 +39,7 @@ class LoginController extends Controller {
 
         //初始化sms_client
         let smsClient = new SMSClient({accessKeyId, secretAccessKey})
-        发送短信
+        //发送短信
         await smsClient.sendSMS({
             PhoneNumbers: req.phone,
             SignName: signName,

@@ -40,22 +40,22 @@ class LoginController extends Controller {
         //初始化sms_client
         let smsClient = new SMSClient({accessKeyId, secretAccessKey})
         //发送短信
-        // await smsClient.sendSMS({
-        //     PhoneNumbers: req.phone,
-        //     SignName: signName,
-        //     TemplateCode: templateCode,
-        //     TemplateParam: '{"' + param + '":"' + num + '"}'
-        // }).then(function (res) {
-        //     let {Code} = res
-        //     if (Code === 'OK') {
-        //         // 处理返回参数 保存随机数值redis中  失效时间10分钟
-        //         app.redis.set(redisKey, num, 'EX', 60 * 10);
-        //         ctx.body = {message: '验证码发送成功！'}
-        //     }
-        // }, function (err) {
-        //     ctx.body = {message: '验证码发送失败 ！'}
-        //     console.log(err)
-        // })
+        await smsClient.sendSMS({
+            PhoneNumbers: req.phone,
+            SignName: signName,
+            TemplateCode: templateCode,
+            TemplateParam: '{"' + param + '":"' + num + '"}'
+        }).then(function (res) {
+            let {Code} = res
+            if (Code === 'OK') {
+                // 处理返回参数 保存随机数值redis中  失效时间10分钟
+                app.redis.set(redisKey, num, 'EX', 60 * 10);
+                ctx.body = {message: '验证码发送成功！'}
+            }
+        }, function (err) {
+            ctx.body = {message: '验证码发送失败 ！'}
+            console.log(err)
+        })
 
         await app.redis.set(redisKey, num, 'EX', 60 * 10);
         console.log("验证码发送成功！ ---------" + req.phone + "-------------->>>", num)

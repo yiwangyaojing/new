@@ -123,7 +123,7 @@ export default {
         console.log("this is the response=====>>>",response)
         let userInfo = response.name;
         this.$message.success('登录成功')
-        this.$router.replace('/Index')
+        this.$router.replace('/Home')
         window.sessionStorage.setItem(values.storage.user, JSON.stringify({username: userInfo}))
 //        this.loading = false
       }, (response) => {

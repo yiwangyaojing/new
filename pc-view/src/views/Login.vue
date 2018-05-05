@@ -121,10 +121,10 @@
         }
         axios.post('/api/login', form).then(response => {
           console.log("this is the response=====>>>",response)
-          let userInfo = response.name;
+          let userInfo =JSON.parse(response.login_infor);
           this.$message.success('登录成功')
-          this.$router.replace('/Index')
-          window.sessionStorage.setItem(values.storage.user, JSON.stringify({username: userInfo}))
+          this.$router.replace('/Home')
+          window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))
 //        this.loading = false
         }, (response) => {
           this.$message.error(response.message)

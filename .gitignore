@@ -8,5 +8,4 @@ run/
 .DS_Store
 *.sw*
 *.un~
-.idea
-.idea/workspace.xml
+

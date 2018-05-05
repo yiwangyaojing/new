@@ -291,7 +291,8 @@ class TeamUserService extends Service {
             "select u.name ,u.avatarUrl , u.openid , tu.user_rank  from x_team_user tu,  x_users u " +
             "where tu.open_id =  u.openid " +
             "and tu.team_id = :team_id " +
-            "and tu.team_company_id = :company_id ",
+            "and tu.team_company_id = :company_id " +
+            "order by tu.created_at desc ",
             {replacements: {team_id: req.team_id, company_id: req.company_id}, type: Sequelize.QueryTypes.SELECT})
 
 

@@ -49,6 +49,7 @@ npm install --save mysql2
 ## 数据库表结构反向生成model文件
 ```bash
 egg-sequelize-auto -o "./model" -d xiaotaiyang -h 120.26.102.228 -u root -p 3306 -x accp  -e mysql
+
 ```
 
 ## 开发示例

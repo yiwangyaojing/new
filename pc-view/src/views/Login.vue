@@ -17,16 +17,28 @@
               <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
             </el-form-item>
             <el-form-item prop="validateCode">
-              <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
-              <el-button type="danger" @click="getValidateCode">获取验证码</el-button>
+              <el-col :span="24">
+                <el-col :span="15">
+                  <el-col :span="20">
+                    <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
+                  </el-col>
+                </el-col>
+                <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
+                <el-col v-if="codeShow" :span="9">
+                  <div @click="getValidateCode" style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;"><span style="padding: 5px">获取验证码</span></div>
+                </el-col>
+                <el-col v-if="!codeShow" :span="9">
+                  <div style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;">{{numCode}}秒</div>
+                </el-col>
+              </el-col>
             </el-form-item>
             <el-form-item prop="captcha">
               <el-row>
                 <!--<el-col :span=16>-->
-                  <!--<el-input type="text" :maxlength="6" v-model="loginForm.captcha" auto-complete="off" placeholder="验证码"/>-->
+                <!--<el-input type="text" :maxlength="6" v-model="loginForm.captcha" auto-complete="off" placeholder="验证码"/>-->
                 <!--</el-col>-->
                 <!--<el-col :span=8>-->
-                  <!--<img :src="captchaUrl" width="100%" style="height: 35px;" @keyup.enter="handleSubmit"/>-->
+                <!--<img :src="captchaUrl" width="100%" style="height: 35px;" @keyup.enter="handleSubmit"/>-->
                 <!--</el-col>-->
               </el-row>
             </el-form-item>
@@ -68,80 +80,97 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
-import md5 from 'md5'
-import values from '../utils/values'
+  import axios from 'axios'
+  import md5 from 'md5'
+  import values from '../utils/values'
 
-export default {
-  data () {
-    return {
-      formName: 'loginForm',
-      // 提交按钮loading
-      loading: false,
-      // 登录form admin 123456
-      loginForm: {
-        phone: '',
-        validateCode: '',
-        captcha: ''
-      },
-      rules: {},
-      now: new Date()
-    }
-  },
-  methods: {
-    // 刷新验证码
-    getValidateCode: function () {
-      if(this.loginForm.phone===''){
-        this.$message.error('手机号不能为空')
+  export default {
+    data () {
+      return {
+        formName: 'loginForm',
+        // 提交按钮loading
+        loading: false,
+        // 登录form admin 123456
+        loginForm: {
+          phone: '',
+          validateCode: '',
+          captcha: ''
+        },
+        rules: {},
+        now: new Date(),
+        codeShow:true,
+        numCode: 120,
       }
-      axios.post('/api/login/sms/'+this.loginForm.phone, 'POST').then(response=>{
-          this.$message.success('验证码发送成功！')
-      }
-      )
     },
-    // 确认登录操作
-    handleSubmit (name) {
-      if (this.loginForm.phone === '') {
-        this.$message.error('手机号不能为空')
-        return
-      }
-      if (this.loginForm.validateCode === '') {
-        this.$message.error('验证码不能为空')
-        return
-      }
-      // if (this.loginForm.captcha === '') {
-      //   this.$message.error('验证码不能为空')
-      //   return
-      // }
-      this.loading = true
-      let form = {
-        phone: this.loginForm.phone,
-        validateCode: this.loginForm.validateCode,
-        captcha: this.loginForm.captcha
-      }
-      axios.post('/api/login', form).then(response => {
-        console.log("this is the response=====>>>",response)
-        let userInfo = JSON.parse(response.login_infor);
-        this.$message.success('登录成功')
-        this.$router.replace('/Home')
-        window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))
+    methods: {
+      // 刷新验证码
+      getValidateCode: function () {
+        if (this.loginForm.phone !== '') {
+          this.codeShow = false
+          this.countDown()
+        }else{
+          this.$message.error('手机号不能为空')
+        }
+        axios.post('/api/login/sms/'+this.loginForm.phone, 'POST').then(response=>{
+            this.$message.success('验证码发送成功！')
+          }
+        )
+      },
+      countDown () {
+        let _this = this
+        setTimeout(() => {
+          if (_this.numCode > 0) {
+            _this.numCode--
+            this.countDown()
+          } else {
+            _this.numCode = 120
+            this.codeShow = true
+          }
+        }, 1000)
+      },
+      // 确认登录操作
+      handleSubmit (name) {
+        if (this.loginForm.phone === '') {
+          this.$message.error('手机号不能为空')
+          return
+        }
+        if (this.loginForm.validateCode === '') {
+          this.$message.error('验证码不能为空')
+          return
+        }
+        // if (this.loginForm.captcha === '') {
+        //   this.$message.error('验证码不能为空')
+        //   return
+        // }
+        this.loading = true
+        let form = {
+          phone: this.loginForm.phone,
+          validateCode: this.loginForm.validateCode,
+          captcha: this.loginForm.captcha
+        }
+        axios.post('/api/login', form).then(response => {
+          console.log("this is the response=====>>>",response)
+          let userInfo =JSON.parse(response.login_infor);
+          this.$message.success('登录成功')
+          this.$router.replace('/Home')
+          window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))
 //        this.loading = false
-      }, (response) => {
-        this.$message.error(response.message)
+        }, (response) => {
+          this.$message.error(response.message)
 //        this.changeCaptchaUrl()
 //        this.loading = false
-      })
-    }
-  },
-  computed: {
-    captchaUrl: function () {
-      return '/captcha?time=' + this.now
-    }
-  },
-  mounted () {
+        })
+      }
+    },
+    computed: {
+      captchaUrl: function () {
+        return '/captcha?time=' + this.now
+      }
+    },
+    mounted () {
 
+    }
   }
-}
 </script>
 
 <style scoped>
@@ -160,7 +189,7 @@ export default {
     box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.05);
   }
 
-   .form .el-input .el-input__inner {
+  .form .el-input .el-input__inner {
     border-radius: 0px;
     border-width: 0px;
     border-bottom: 1px solid #dcdfe6;

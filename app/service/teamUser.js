@@ -309,27 +309,13 @@ class TeamUserService extends Service {
         const ctx = this.ctx
 
         let result = {}
-        let teams = []
 
-        const teamUser = await ctx.model.XTeamUser.findOne({
-            where: {team_company_id: company_id, open_id: open_id, user_rank: FileType.UserRank.admin},
-            order: [['team_level', 'asc']]
-        })
+        const adminTeam = await this.findManagerTeams(company_id,open_id)
 
-        // console.log(teamUser)
-        if (teamUser) {
-            // 获取团队下所有用户
-            const Op = Sequelize.Op;
-            teams = await ctx.model.XTeam.findAll({
-                where: {
-                    company_id: company_id,
-                    level: {[Op.gte]: teamUser.team_level}
-                },
-                order: [['level', 'asc']]
-            })
-            result.maxLevel = teamUser.team_level
-            result.teams = teams
-        }
+        result.maxLevel = adminTeam.maxLevel
+       // 获取所有团队信息
+        const teams = await ctx.model.XTeam.findAll({where:{id:adminTeam.managerTeamIds}})
+        result.teams = teams
 
         return result
     }
@@ -567,6 +553,54 @@ class TeamUserService extends Service {
         all['未签到'] = f_user_all
         all['数量'] = true_sign_open_id.length
         return all
+    }
+
+
+
+    // 根据用户id获取所有管理的团队信息
+    async findManagerTeams(company_id,open_id){
+
+        const ctx = this.ctx
+
+        let result = {}
+        let managerTeamIds = []
+
+        const cfg = this.config.sequelize;
+        cfg.logging = false;
+        const sequelize = new Sequelize(cfg);
+
+
+        // 根据用户获取最高团管理团队
+        const teamUsers = await sequelize.query(
+            "select  tu.*,  MIN(tu.team_level) as max_level  " +
+            "from x_team_user tu where tu.open_id =:open_id  " +
+            "and user_rank=:user_rank " +
+            "and tu.team_company_id =:company_id ",
+            {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
+
+        // 获取公司所有团队
+        const company = await  ctx.model.XTeam.findAll({where:{company_id:company_id}})
+
+        // 获取最高等级
+        for(let i =0;i<teamUsers.length;i++){
+            let teamUser = teamUsers[i]
+            if(i === 0){
+                result.maxLevel = teamUser.max_level
+            }
+            let team ={
+                id:teamUser.team_id,
+                level:teamUser.team_level,
+            }
+            managerTeamIds.push(teamUser.team_id)
+            //递归过去所有的团队
+            await  this.service.team.linealTeam(company,team,managerTeamIds,'child');
+        }
+        console.log('-----------------------------》managerTeamIds',managerTeamIds)
+
+        result.managerTeamIds = managerTeamIds
+
+        return result
+
     }
 
 }

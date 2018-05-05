@@ -25,14 +25,19 @@ class PlansService extends Service {
         const start = (page.pageNumber - 1) * page.pageSize;
 
         const user = await this.ctx.model.XUsers.findOne({
-          where: {
-              openid: params.openId
-          }
+            where: {
+                openid: params.openId
+            }
         })
         // 获取所有可管理的团队
         let managerTeams = []
 
-         const teamUsers = await this.ctx.model.XTeamUser.findAll({
+        if (user.company_id) {
+            let result = await  this.service.teamUser.findManagerTeams(user.company_id, params.openId)
+            managerTeams = result.managerTeamIds
+        }
+
+        /* const teamUsers = await this.ctx.model.XTeamUser.findAll({
             attributes: ['team_id','team_company_id','team_level'],
             where: {
                 open_id: params.openId,
@@ -58,22 +63,21 @@ class PlansService extends Service {
                 }
             }
         }
-
+*/
         params.managerTeams = managerTeams
 
-     /*   if(params.managerTeamId && params.managerTeamLevel){
-            params.managerTeams = await this.ctx.model.XTeamUser.findAll({
-                attributes: ['id'],
-                where: {
-                    company_id: params.company_id,
-                    level: {[Op.gt]: params.managerTeamLevel},
-                    [Op.or]:[{
-                        id:params.managerTeamId
-                    }]
-                }
-            })
-        }*/
-
+        /*   if(params.managerTeamId && params.managerTeamLevel){
+               params.managerTeams = await this.ctx.model.XTeamUser.findAll({
+                   attributes: ['id'],
+                   where: {
+                       company_id: params.company_id,
+                       level: {[Op.gt]: params.managerTeamLevel},
+                       [Op.or]:[{
+                           id:params.managerTeamId
+                       }]
+                   }
+               })
+           }*/
 
 
         // 开始分页查询
@@ -99,8 +103,7 @@ class PlansService extends Service {
                         },
                     },
                     ]
-                },
-                company_id: user.company_id
+                }
             },
             order: [['updated_at', 'desc']],
         });
@@ -169,31 +172,36 @@ class PlansService extends Service {
         if (detail.zj_price) {
             detail.pay_gap = detail.zj_price
         }
+
+        if( plan.pay_sum &&  plan.zj_price !== detail.zj_price){
+            detail.pay_gap = detail.zj_price  - plan.pay_sum
+        }
+        console.log(detail)
+
         const result = await this.ctx.model.XPlans.update(detail, {
             where: {
                 id: detail.id,
             },
         });
-        console.log(result)
-        // 判断总价是否影响回款金额
-        if (result > 0 && detail.zj_price > 0) {
-            // 获取planPay
-            const planPay = await this.ctx.model.XPlanPay.findAll({where: {open_id: plan.open_id, plan_id: plan.id}})
-            if (planPay) {
-                if (plan.zj_price - detail.zj_price !== 0) {
-
-                    let differ = plan.zj_price - detail.zj_price  // 与原来的差价
-                    console.log(differ)
-                    for (let pay of planPay) {
-                        let data = {
-                            zj_price: detail.zj_price,
-                            pay_gap: pay.pay_gap + differ
-                        }
-                        await this.ctx.model.XPlanPay.update(data, {where: {id: pay.id}})
-                    }
-                }
-            }
-        }
+        // // 判断总价是否影响回款金额
+        // if (result > 0 && detail.zj_price > 0) {
+        //     // 获取planPay
+        //     const planPay = await this.ctx.model.XPlanPay.findAll({where: {open_id: plan.open_id, plan_id: plan.id}})
+        //     if (planPay) {
+        //         if (plan.zj_price - detail.zj_price !== 0) {
+        //
+        //             let differ = plan.zj_price - detail.zj_price  // 与原来的差价
+        //             console.log(differ)
+        //             for (let pay of planPay) {
+        //                 let data = {
+        //                     zj_price: detail.zj_price,
+        //                     pay_gap: pay.pay_gap + differ
+        //                 }
+        //                 await this.ctx.model.XPlanPay.update(data, {where: {id: pay.id}})
+        //             }
+        //         }
+        //     }
+        // }
         return result;
     }
 
@@ -275,19 +283,33 @@ class PlansService extends Service {
     }
 
     async findAllByUser(openId) {
-
+        const Op = Sequelize.Op
         const results = [];
         const user = await this.ctx.model.XUsers.findOne({
-          where: {
-              openid: openId
-          }
+            where: {
+                openid: openId
+            }
         })
+
+        // 获取所有可管理的团队
+        let managerTeams = []
+
+        if (user.company_id) {
+            let result = await  this.service.teamUser.findManagerTeams(user.company_id, openId)
+            managerTeams = result.managerTeamIds
+        }
+        // 根据用户的openid 和 companyid 获取所有可管理的团队
         const plans = await this.ctx.model.XPlans.findAll({
-          where: {
-              open_id: openId,
-              company_id: user.company_id
-          }
+            where: {
+                [Op.or]: [{
+                    team_id: managerTeams,
+                }, {
+                    open_id: openId,
+                },],
+                company_id: user.company_id
+            }
         });
+
 
         for (const plan of plans) {
             const result = {};

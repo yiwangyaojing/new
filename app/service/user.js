@@ -210,7 +210,7 @@ class UserService extends Service {
                 // 总价
                 'zj_price': data[i].dataValues.zj_price,
                 // 装机容量
-                'zj_capacity': data[i].dataValues.zj_capacity,
+                'zj_capacity': data[i].dataValues.zj_input_capacity || data[i].dataValues.zj_capacity,
                 // 状态
                 'scd_status': data[i].dataValues.scd_status,
                 // 客户姓名
@@ -324,7 +324,7 @@ class UserService extends Service {
     }
 
     /**
-     * 根据电话找人
+     * PC端根据电话找人
      */
     async findByPhone(phone) {
         let result = await this.ctx.model.XUsers.findOne({where: {phone: phone}})

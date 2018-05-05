@@ -68,11 +68,11 @@ module.exports = app => {
       allowNull: true
     },
     zj_capacity: {
-      type: "DOUBLE(8,2)",
+      type: "DOUBLE(10,3)",
       allowNull: true
     },
     zj_input_capacity: {
-      type: "DOUBLE(8,2)",
+      type: "DOUBLE(10,3)",
       allowNull: true
     },
     zj_num: {

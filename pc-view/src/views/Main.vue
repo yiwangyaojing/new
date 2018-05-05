@@ -13,38 +13,38 @@
                background-color="#fff" :collapse="collapsed">
         <el-menu-item-group>
           <el-menu-item index="0" :route="{name: 'Home'}">
-            <i></i>
+            <i class="el-icon-setting" style="color: #303133"></i>
             <span slot="title">首页</span>
           </el-menu-item>
           <el-menu-item index="1" :route="{name: 'SettingDetails'}">
-            <i></i>
+            <i class="el-icon-setting" style="color: #303133"></i>
             <span slot="title">进度详情</span>
           </el-menu-item>
           <el-menu-item index="2" :route="{name: 'CustomerData'}">
-            <i></i>
+            <i class="el-icon-setting" style="color: #303133"></i>
             <span slot="title">客户资料</span>
           </el-menu-item>
           <el-menu-item index="3" :route="{name: 'Signin'}">
-            <i></i>
+            <i class="el-icon-location" style="color: #303133;"></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
           <el-submenu index="4">
-            <div slot="title">
-              <i></i>
-              <span slot="title" style="margin-left: 32px;">人员管理</span>
+            <div slot="title"style="margin-left: 20px">
+              <i class="el-icon-setting" style="color: #303133"></i>
+              <span slot="title">人员管理</span>
             </div>
             <el-menu-item index="4-1" :route="{name: 'PersonnelManagement'}">
               <i></i>
-              <span slot="title">团队结构</span>
+              <span slot="title" style="margin-left: 32px;">团队结构</span>
             </el-menu-item>
           </el-submenu>
         </el-menu-item-group>
         <el-menu-item index="5" :route="{name: 'TeamInformation'}">
-          <i></i>
+          <i class="el-icon-setting" style="color: #303133"></i>
           <span slot="title">团队信息</span>
         </el-menu-item>
         <el-menu-item index="6" :route="{name: 'AccountSetting'}">
-          <i></i>
+          <i class="el-icon-setting" style="color: #303133"></i>
           <span slot="title">账户设置</span>
         </el-menu-item>
       </el-menu>
@@ -90,8 +90,8 @@
         </transition>
       </el-main>
 
-      <el-footer height="60px">
-        <span>上海西樵软件有限公司</span>
+      <el-footer style="background:rgb(238, 238, 238);font-size: 10px;text-align: right; " height="40px">
+        <a href="http://www.xiqiao.io" style="color: #999">技术支持:上海西樵软件有限公司</a>
       </el-footer>
       <!--修改密码弹出层-->
       <div>
@@ -283,7 +283,7 @@ export default {
     min-width: 220px;
     /*background-color: #1f212d !important;*/
     font-size: 14px;
-    padding-left: 21px !important;
+    padding-left: 40px !important;
     /*color: #303133 !important;*/
   }
 
@@ -317,7 +317,7 @@ export default {
     margin-left:25px;
   }
   .el-menu-item span{
-    margin-left: 32px;
+    /*margin-left: 32px;*/
     text-align: left;
   }
   .el-menu-item .clear_margin {
@@ -363,5 +363,8 @@ export default {
   }
   .el-submenu__title:hover {
     background-color: unset !important;
+  }
+  .el-icon-location:hover {
+    color: #67c23a !important;
   }
 </style>

@@ -9,71 +9,9 @@
         <!--<img src="../asserts/images/logo.png"/>-->
         <span>光伏好销售</span>
       </el-row>
-      <el-menu :router="true" class="el-menu-vertical" text-color="#cfcfcf" active-text-color="#FFFFFF"
-               background-color="#222837" :collapse="collapsed">
+      <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF"
+               background-color="#fff" :collapse="collapsed">
         <el-menu-item-group>
-          <!--<span slot="title">设置</span>-->
-            <!--<el-menu-item index="0" :route="{name: 'Index'}">-->
-              <!--<i class="el-icon-view" style="color: #be6d0d"></i>-->
-              <!--<span slot="title" class="clear_margin">统计</span>-->
-            <!--</el-menu-item>-->
-          <!--<el-submenu index="1">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-picture" style="color: #19be6b"></i>-->
-              <!--<span >首页设置</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="1-1" :route="{name: 'IndexAd'}" >-->
-              <!--<span slot="title">开屏广告</span>-->
-            <!--</el-menu-item>-->
-            <!--<el-menu-item index="1-2" :route="{name: 'IndexSliderAd'}">-->
-              <!--<i  style="color: #bdbe0a"></i>-->
-              <!--<span slot="title">轮播广告</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="2">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-mobile-phone" style="color: #19be6b"></i>-->
-              <!--<span slot="title">用户管理</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="2-1" :route="{name: 'XuserList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">用户列表</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="3">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-vueboot-friend" style="color: #19be6b"></i>-->
-              <!--<span slot="title">客户管理</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="3-1" :route="{name: 'XcustomerList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">客户列表</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="4">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-service" style="color: #19be6b"></i>-->
-              <!--<span slot="title">用户反馈</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="4-1" :route="{name: 'FeedbackList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">用户反馈</span>-->
-            <!--</el-menu-item>-->
-            <!--<el-menu-item index="4-2" :route="{name: 'FeedbackRoofList'}">-->
-              <!--<i ></i>-->
-              <!--<span slot="title">特殊屋型</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
-          <!--<el-submenu index="5">-->
-            <!--<div slot="title">-->
-              <!--<i class="el-icon-setting" style="color: #19be6b"></i>-->
-              <!--<span slot="title">安全设置</span>-->
-            <!--</div>-->
-            <!--<el-menu-item index="5-1" :route="{name: 'ModifyPassword'}">-->
-              <!--<i></i>-->
-              <!--<span slot="title">修改密码</span>-->
-            <!--</el-menu-item>-->
-          <!--</el-submenu>-->
           <el-menu-item index="0" :route="{name: 'Home'}">
             <i></i>
             <span slot="title">首页</span>
@@ -90,66 +28,34 @@
             <i></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
-          <!--<el-submenu index="2">
+          <el-submenu index="4">
             <div slot="title">
-              <i class="el-icon-vueboot-friendadd" style="color: #19be6b"></i>
-              <span slot="title">权限管理</span>
+              <i></i>
+              <span slot="title" style="margin-left: 32px;">人员管理</span>
             </div>
-            <el-menu-item index="2-1" >
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">资源管理</span>
-            </el-menu-item>
-            <el-menu-item index="2-2" >
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">角色权限</span>
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="3">
-            <div slot="title">
-              <i class="el-icon-vueboot-friend" style="color: #2d8cf0"></i>
-              <span slot="title">用户管理</span>
-            </div>
-            <el-menu-item index="3-1">
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">用户管理</span>
-            </el-menu-item>
-          </el-submenu>-->
-        </el-menu-item-group>
-
-        <!--<el-menu-item-group v-for="(menu, m) in data.menus" v-if="menu.resourceType === '菜单组' && !menu.parentCode" :key="m">
-          <span slot="title">{{menu.name}}</span>
-          <el-submenu :index="menu2.id+''" v-for="(menu2, n) in data.menus" v-if="menu2.parentCode === menu.code" :key="n">
-            <div slot="title">
-              <i :class="menu2.theme.icon" :style="{color: menu2.theme.color}"></i>
-              <span slot="title">{{menu2.name}}</span>
-            </div>
-            <el-menu-item :index="menu2.id + '' + menu3.id" v-for="(menu3, i) in data.menus" v-if="menu3.parentCode === menu2.code" :key="i" :route="menu3.url">
-              <i class="el-icon-vueboot-dot-o"></i>
-              <span slot="title">{{menu3.name}}</span>
+            <el-menu-item index="4-1" :route="{name: 'PersonnelManagement'}">
+              <i></i>
+              <span slot="title">团队结构</span>
             </el-menu-item>
           </el-submenu>
         </el-menu-item-group>
-
-      <el-submenu :index="menu.id+''" v-for="(menu, m) in data.menus" v-if="menu.resourceType === '菜单' && !menu.parentCode" :key="m">
-        <div slot="title">
-          <i :class="menu.theme.icon" :style="{color: menu.theme.color}"></i>
-          <span slot="title">{{menu.name}}</span>
-        </div>
-        <el-menu-item :index="menu.id + '' + menu2.id" v-for="(menu2, n) in data.menus" v-if="menu2.parentCode === menu2.code" :key="n" :route="menu2.url">
-          <i class="el-icon-vueboot-dot-o"></i>
-          <span slot="title">{{menu2.name}}</span>
+        <el-menu-item index="5" :route="{name: 'TeamInformation'}">
+          <i></i>
+          <span slot="title">团队信息</span>
         </el-menu-item>
-      </el-submenu>-->
-
+        <el-menu-item index="6" :route="{name: 'AccountSetting'}">
+          <i></i>
+          <span slot="title">账户设置</span>
+        </el-menu-item>
       </el-menu>
     </el-aside>
     <el-container>
-      <el-header height="54px">
+      <el-header height="60px">
         <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px;" :gutter="8">
          <!-- <el-col>
             <el-button class="circle none toggle" size="mini" round icon="el-icon-vueboot-menu"/>
           </el-col>-->
-          <el-col>
+          <el-col  class="y-Center">
             <div class="clearfix">
               <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" src="/static/img/00_logo_xiaosolar.png"/></div>
               <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">董忽悠团队</div>
@@ -174,16 +80,16 @@
               </el-col>
             </el-row>
           </el-col>
-
         </el-row>
       </el-header>
-      <el-main>
+      <el-main style="background:rgb(238, 238, 238);">
         <transition name="fade" mode="out-in">
-          <div style="background:#eee;padding: 20px">
+          <div style="padding: 20px">
             <router-view/>
           </div>
         </transition>
       </el-main>
+
       <el-footer height="60px">
         <span>上海西樵软件有限公司</span>
       </el-footer>
@@ -327,7 +233,7 @@ export default {
   }
 
   .el-aside {
-    background: #222837;
+    /*background: #222837;*/
   }
 
   .el-header {
@@ -375,13 +281,14 @@ export default {
     height: 45px;
     line-height: 45px;
     min-width: 220px;
-    background-color: #1f212d !important;
-    font-size: 13px;
+    /*background-color: #1f212d !important;*/
+    font-size: 14px;
     padding-left: 21px !important;
+    /*color: #303133 !important;*/
   }
 
   .el-menu-item.is-active {
-    background-color: #1c1f27 !important;
+    /*background-color: #1c1f27 !important;*/
   }
 
   .el-menu-item.is-active [class^="el-icon-vueboot-"] {
@@ -397,14 +304,16 @@ export default {
   }
 
   .logo {
-    height: 120px;
-    padding-top: 20px;
+    height: 60px;
+    /*padding-top: 20px;*/
     padding-left: 24px;
+    background: #67c23a;
+    line-height: 60px;
   }
   .logo span {
     font-weight: bold;
     font-size: 24px;
-    color: #bfbec0;
+    color: #303133;
     margin-left:25px;
   }
   .el-menu-item span{
@@ -414,7 +323,12 @@ export default {
   .el-menu-item .clear_margin {
     margin: 0;
   }
-
+  .y-Center{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    align-items: center;
+  }
   .el-footer {
     text-align: center;
     line-height: 60px;
@@ -439,5 +353,15 @@ export default {
   }
   .clearfix {
     zoom: 1;
+  }
+  .el-menu-item:hover {
+    background: unset !important;
+    color: #67c23a !important;
+  }
+  .el-menu-item.is-active {
+    color: #67c23a !important;
+  }
+  .el-submenu__title:hover {
+    background-color: unset !important;
   }
 </style>

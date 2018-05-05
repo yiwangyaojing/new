@@ -43,6 +43,10 @@ module.exports = app => {
       type: DataTypes.STRING(500),
       allowNull: true
     },
+    scd_r_remark: {
+      type: DataTypes.STRING(500),
+      allowNull: true
+    },
     created_at: {
       type: DataTypes.TIME,
       allowNull: true

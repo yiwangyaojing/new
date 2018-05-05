@@ -1,49 +1,46 @@
 <template>
   <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <span style="font-size: 18px;">签到统计</span>
-    </div>
     <el-row>
       <el-col :span="24">
         <el-col :span="10" class="y-Center">
           <el-col :span="4" class="fl">统计周期</el-col>
-          <el-select class="fl" v-model="value" placeholder="请选择">
+          <el-select size="small" class="fl" v-model="value" placeholder="请选择">
             <el-option v-for="item in cycleoptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-col>
         <el-col :span="10" class="y-Center">
           <el-col :span="4" class="fl">自定义时间段</el-col>
-          <el-date-picker v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+          <el-date-picker size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
           </el-date-picker>
         </el-col>
       </el-col>
       <el-col :span="24" style="margin-top: 30px;">
         <el-col :span="10" class="y-Center">
           <el-col :span="4" class="fl">团队范围</el-col>
-          <el-select class="fl" v-model="value" placeholder="请选择">
+          <el-select class="fl" size="small" v-model="value" placeholder="请选择">
             <el-option v-for="item in teamoptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-col>
         <el-col :span="10" class="y-Center">
           <el-col :span="4" class="fl">人员</el-col>
-          <el-select class="fl" v-model="value" placeholder="请选择">
+          <el-select class="fl" size="small" v-model="value" placeholder="请选择">
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-col>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="24">
-        <el-table :data="tableData" border style="width: 100%">
-          <el-table-column fixed prop="date" label="日期" width="150">
+      <el-col :span="24" style="margin-top: 30px;">
+        <el-table :data="tableData" size="mini" border="true" style="width: 100%">
+          <el-table-column  prop="date" label="姓名">
           </el-table-column>
-          <el-table-column prop="name" label="姓名" width="120">
+          <el-table-column prop="name" label="所属团队">
           </el-table-column>
-          <el-table-column prop="province" label="省份" width="120">
+          <el-table-column prop="province" label="签到次数">
           </el-table-column>
-          <el-table-column fixed="right" label="操作" width="100">
+          <el-table-column label="操作" width="100">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>
+              <router-link to="/signindetails" @click="handleClick(scope.row)" type="text" size="small">详情</router-link>
             </template>
           </el-table-column>
         </el-table>
@@ -104,7 +101,24 @@ export default {
           value: '选项5',
           label: '子团队3'
         }
-      ]
+      ],
+      tableData: [{
+        date: '董志永团队',
+        name: '王小虎',
+        address: '2'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }]
     }
   },
   methods: {

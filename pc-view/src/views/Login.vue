@@ -28,7 +28,7 @@
                   <div @click="getValidateCode" style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;"><span style="padding: 5px">获取验证码</span></div>
                 </el-col>
                 <el-col v-if="!codeShow" :span="9">
-                  <el-button disabled="true" style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;">{{numCode}}秒</el-button>
+                  <div style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;">{{numCode}}秒</div>
                 </el-col>
               </el-col>
             </el-form-item>

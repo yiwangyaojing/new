@@ -17,8 +17,20 @@
               <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
             </el-form-item>
             <el-form-item prop="validateCode">
-              <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
-              <el-button type="danger" @click="getValidateCode">获取验证码</el-button>
+              <el-col :span="24">
+                <el-col :span="15">
+                  <el-col :span="20">
+                    <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
+                  </el-col>
+                </el-col>
+                <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
+                <el-col v-if="codeShow" :span="9">
+                  <div @click="getValidateCode" style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;"><span style="padding: 5px">获取验证码</span></div>
+                </el-col>
+                <el-col v-if="!codeShow" :span="9">
+                  <div style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;">{{numCode}}秒</div>
+                </el-col>
+              </el-col>
             </el-form-item>
             <el-form-item prop="captcha">
               <el-row>
@@ -85,19 +97,36 @@
           captcha: ''
         },
         rules: {},
-        now: new Date()
+        now: new Date(),
+        codeShow:true,
+        numCode: 120,
       }
     },
     methods: {
       // 刷新验证码
       getValidateCode: function () {
-        if(this.loginForm.phone===''){
+        if (this.loginForm.phone !== '') {
+          this.codeShow = false
+          this.countDown()
+        }else{
           this.$message.error('手机号不能为空')
         }
         axios.post('/api/login/sms/'+this.loginForm.phone, 'POST').then(response=>{
             this.$message.success('验证码发送成功！')
           }
         )
+      },
+      countDown () {
+        let _this = this
+        setTimeout(() => {
+          if (_this.numCode > 0) {
+            _this.numCode--
+            this.countDown()
+          } else {
+            _this.numCode = 120
+            this.codeShow = true
+          }
+        }, 1000)
       },
       // 确认登录操作
       handleSubmit (name) {
@@ -121,10 +150,10 @@
         }
         axios.post('/api/login', form).then(response => {
           console.log("this is the response=====>>>",response)
-          let userInfo = response.name;
+          let userInfo =JSON.parse(response.login_infor);
           this.$message.success('登录成功')
-          this.$router.replace('/Index')
-          window.sessionStorage.setItem(values.storage.user, JSON.stringify({username: userInfo}))
+          this.$router.replace('/Home')
+          window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))
 //        this.loading = false
         }, (response) => {
           this.$message.error(response.message)

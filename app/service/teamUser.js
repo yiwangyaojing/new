@@ -87,7 +87,7 @@ class TeamUserService extends Service {
         }
 
         for (let user of users) {
-            await ctx.model.XTeamUser.update({user_rank: user.user_rank}, {where: {open_id: user.open_id}})
+            await ctx.model.XTeamUser.update({user_rank: user.user_rank}, {where: {open_id: user.open_id , team_id:req.team_id}})
         }
 
     }

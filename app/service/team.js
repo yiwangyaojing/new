@@ -96,8 +96,6 @@ class TeamService extends Service {
             level: req.level,
             parent_id: req.parent_id,
             company_id: req.company_id,
-            company_name: company.name,
-            logo:company.logo
         };
 
         const cfg = this.config.sequelize;
@@ -120,7 +118,8 @@ class TeamService extends Service {
                         ctx.model.XUsers.update({
                             company_id: req.company_id,
                             company_name: company.name,
-                            company_logo :company.logo
+                            company_logo :company.logo,
+                            company_founder:company.open_id
                         }, {where: {openid: agent.open_id}});
                     }
                     return ctx.model.XTeamUser.bulkCreate(agents, {transaction: t});

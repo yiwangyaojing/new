@@ -96,6 +96,8 @@ class TeamUserService extends Service {
         const ctx = this.ctx
 
         const team = await ctx.model.XTeam.findOne({where: {id: req.team_id}})
+
+
         if (!team) {
             throw new Error("团队不存在")
         }
@@ -104,8 +106,14 @@ class TeamUserService extends Service {
             throw  new Error("权限不足")
         }
 
+        // 获取公司
+        let company = await this.ctx.model.XTeam.findOne({
+            where: {id: team.company_id}
+        })
+
         let agents = req.users  //要添加的业务员
-        let createUsers = []
+        let openIds = []
+        let bulkCreate =[]
 
 
         // 获取当前团队所有的用户
@@ -119,20 +127,28 @@ class TeamUserService extends Service {
                     }
                 }
                 if(flag){
-                    createUsers.push(agent)
+                    openIds.push(agent)
                 }
             }
-        for(let agent of createUsers){
+            console.log(agents)
+        for(let openId of openIds){
+            let agent = {}
+            agent.open_id = openId
             agent.team_parent_id = team.parent_id
             agent.team_company_id = team.company_id
             agent.team_level = team.level
+            agent.user_rank = req.user_rank
+            agent.team_id= req.team_id
             await ctx.model.XUsers.update({
-                company_id:   team.company_id,
-                company_name: team.company_name,
-                company_logo: team.logo
+                company_id:   company.id,
+                company_name: company.name,
+                company_logo: company.logo,
+                company_founder:company.open_id,
             }, {where: {openid: agent.open_id}});
+            bulkCreate.push(agent)
         }
-        return ctx.model.XTeamUser.bulkCreate(createUsers);
+
+        return await  ctx.model.XTeamUser.bulkCreate(bulkCreate);
     }
 
     async destroy(req) {
@@ -446,23 +462,33 @@ class TeamUserService extends Service {
           throw new Error('对不起，您已经加入团队，不得重复加入！')
           return
         }
+
+        // 获取团队
+        let team = await this.ctx.model.XTeam.findOne({where: {id: params.team_id}})
+
+        // 获取公司
+        let company = await this.ctx.model.XTeam.findOne({
+            where: {id: params.company_id}
+        })
+
         // 添加用户团队
         const addTeam = {
             team_id: params.team_id,
             operator: params.operator,
             open_id: params.open_id,
-            user_rank: params.user_rank
-        }
-        await this.create(addTeam)
+            user_rank: params.user_rank,
+            team_level:team.level,
+            team_parent_id :team.parent_id,
+            team_company_id:team.company_id,
 
-        let company = await this.ctx.model.XTeam.findOne({
-            where: {id: params.company_id}
-        })
+        }
+        await this.ctx.model.XTeamUser.create(addTeam)
+
         const updateParams = {
             phone: params.register_phone,
             name: params.name,
-            company_id: company.company_id,
-            company_name: company.company_name,
+            company_id: company.id,
+            company_name: company.name,
             company_founder: company.open_id,
             company_logo: company.logo
         }

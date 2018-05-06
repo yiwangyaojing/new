@@ -622,10 +622,17 @@ class TeamUserService extends Service {
 
 
         // 根据用户获取最高团管理团队
-        const teamUsers = await sequelize.query(
+    /*    const teamUsers = await sequelize.query(
             "select  tu.*,  MIN(tu.team_level) as max_level  " +
             "from x_team_user tu where tu.open_id =:open_id  " +
             "and user_rank=:user_rank " +
+            "and tu.team_company_id =:company_id ",
+            {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})*/
+        
+        const teamUsers = await sequelize.query(
+            "select tu.* ,tu.team_level as max_level  from  x_team_user tu where tu.open_id =:open_id " +
+            "and tu.team_level = (select MIN(tu1.team_level) from x_team_user tu1 where tu1.open_id = :open_id and tu1.user_rank =:user_rank  and tu1.team_company_id =:company_id ) " +
+            "and user_rank =:user_rank " +
             "and tu.team_company_id =:company_id ",
             {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
 

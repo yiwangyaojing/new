@@ -464,7 +464,7 @@ class TeamUserService extends Service {
         }
 
         // 获取团队
-        let team = await ctx.model.XTeam.findOne({where: {id: req.team_id}})
+        let team = await this.ctx.model.XTeam.findOne({where: {id: params.team_id}})
 
         // 获取公司
         let company = await this.ctx.model.XTeam.findOne({
@@ -487,8 +487,8 @@ class TeamUserService extends Service {
         const updateParams = {
             phone: params.register_phone,
             name: params.name,
-            company_id: company.company_id,
-            company_name: company.company_name,
+            company_id: company.id,
+            company_name: company.name,
             company_founder: company.open_id,
             company_logo: company.logo
         }

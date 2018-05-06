@@ -103,6 +103,8 @@ class PlansService extends Service {
                         },
                     },
                     ]
+                },company_id:{
+                    [Op.eq]:user.company_id
                 }
             },
             order: [['updated_at', 'desc']],
@@ -305,8 +307,10 @@ class PlansService extends Service {
                     team_id: managerTeams,
                 }, {
                     open_id: openId,
-                },],
-                company_id: user.company_id
+                },]
+                , company_id:{
+                    [Op.eq]:user.company_id
+                }
             }
         });
 

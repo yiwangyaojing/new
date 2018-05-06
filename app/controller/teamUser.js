@@ -102,7 +102,7 @@ class TeamUserController extends Controller {
     const rule = {
       team_id:{type:'int',required:true},
       operator:{type:'string',required:true},
-      open_id:{type:'string',required:true},
+      users:{type:'array',required:true},
       user_rank:{type:'int',required:true},
     }
 

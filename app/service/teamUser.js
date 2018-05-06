@@ -104,11 +104,35 @@ class TeamUserService extends Service {
             throw  new Error("权限不足")
         }
 
-        req.team_parent_id = team.parent_id
-        req.team_company_id = team.company_id
-        req.team_level = team.level
+        let agents = req.users  //要添加的业务员
+        let createUsers = []
 
-        return ctx.model.XTeamUser.create(req)
+
+        // 获取当前团队所有的用户
+        const users = await ctx.model.XTeamUser.findAll({where: {team_id: req.team_id}})
+
+            for(let agent of agents){
+               let flag = true
+                for(let user of users){
+                    if(agent.open_id === user.dataValues.open_id){
+                        flag = false
+                    }
+                }
+                if(flag){
+                    createUsers.push(agent)
+                }
+            }
+        for(let agent of createUsers){
+            agent.team_parent_id = team.parent_id
+            agent.team_company_id = team.company_id
+            agent.team_level = team.level
+            await ctx.model.XUsers.update({
+                company_id:   team.company_id,
+                company_name: team.company_name,
+                company_logo: team.logo
+            }, {where: {openid: agent.open_id}});
+        }
+        return ctx.model.XTeamUser.bulkCreate(createUsers);
     }
 
     async destroy(req) {

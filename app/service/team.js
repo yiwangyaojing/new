@@ -85,6 +85,10 @@ class TeamService extends Service {
 
         const ctx = this.ctx;
 
+
+        // 获取公司信息
+        const company = await ctx.model.XTeam.findOne({where:{id:req.company_id}})
+
         // 保存的team信息
         const team = {
             open_id: req.open_id,
@@ -92,7 +96,8 @@ class TeamService extends Service {
             level: req.level,
             parent_id: req.parent_id,
             company_id: req.company_id,
-            company_name: req.company_name,
+            company_name: company.name,
+            logo:company.logo
         };
 
         const cfg = this.config.sequelize;
@@ -114,7 +119,8 @@ class TeamService extends Service {
                         agent.team_company_id = result.company_id;
                         ctx.model.XUsers.update({
                             company_id: req.company_id,
-                            company_name: req.company_name
+                            company_name: company.name,
+                            company_logo :company.logo
                         }, {where: {openid: agent.open_id}});
                     }
                     return ctx.model.XTeamUser.bulkCreate(agents, {transaction: t});

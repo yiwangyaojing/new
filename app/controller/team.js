@@ -41,9 +41,13 @@ class TeamController extends Controller {
 
         ctx.validate(rule, req)
 
-        //验证码校验
-        if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
-            return;
+        try{
+            //验证码校验
+            if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
+                return;
+            }
+        }catch(e){
+            throw e;
         }
         const result = await service.team.companyCreate(req);
 
@@ -88,9 +92,13 @@ class TeamController extends Controller {
             logo: {type: 'string', required: true}, // logo地址
         };
         ctx.validate(rule, req)
-        //验证码校验
-        if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
-            return;
+        try{
+            //验证码校验
+            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+                return;
+            }
+        }catch(e){
+            throw e;
         }
         // 修改公司团队信息
         const result = await  service.team.update(req)

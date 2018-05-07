@@ -66,7 +66,7 @@ module.exports = app => {
     router.post('/api/feedback', controller.feedback.create);
 
     // 团队
-    router.get('/api/team/sms/:open_id/:register_phone', controller.team.sms);
+    router.post('/api/team/sms', controller.team.sms);
     router.get('/api/team/user/:open_id', controller.team.getUserTeam);
     router.get('/api/team/:id/:open_id', controller.team.index);
     router.post('/api/team/company', controller.team.companyCreate);
@@ -103,7 +103,7 @@ module.exports = app => {
     router.post('/api/roof', controller.roof.index);
 
     // PC端登录
-    router.post('/api/login/sms/:phone', controller.login.sms);
+    router.post('/api/login/sms', controller.login.sms);
     router.post('/api/login', controller.login.userLogin);
 
     // 签到

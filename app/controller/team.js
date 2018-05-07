@@ -1,8 +1,6 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const SMSClient = require('@alicloud/sms-sdk');
-
 
 class TeamController extends Controller {
 
@@ -11,16 +9,16 @@ class TeamController extends Controller {
      */
     async sms() {
 
-        const {ctx, config, app} = this
+        const {ctx, service} = this
         const rule = {
             register_phone: {type: 'string', required: true},
             open_id: {type: 'string', required: true},
             template_code: {type: 'string', required: true},
         };
 
-        const req = ctx.params
+        const req = ctx.request.body
         ctx.validate(rule, req);
-        ctx.body = await service.sms.sendValidateCode(req.open_id, req.template_code);
+        ctx.body = await service.sms.sendValidateCode(req.open_id, req.register_phone, req.template_code);
     }
 
     /**

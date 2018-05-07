@@ -11,8 +11,8 @@ class SmsService extends Service {
      * @param templateCode 模板
      * @returns {Promise<*>}
      */
-    async sendValidateCode(phone, templateCode) {
-        let redisKey = phone + "validateCode";
+    async sendValidateCode(key,phone, templateCode) {
+        let redisKey = key + "validateCode";
         const {app, config} = this;
         let existCode = await app.redis.get(redisKey);
         let num = '';
@@ -55,13 +55,13 @@ class SmsService extends Service {
 
     /**
      * 校验验证码是否正确，正确后，会清空缓存
-     * @param phone
+     * @param key
      * @param validateCode
      * @returns {Promise<void>}
      */
-    async  doValidate(phone, validateCode) {
+    async  doValidate(key, validateCode) {
         const {app, config} = this;
-        let redisKey = phone + "validateCode";
+        let redisKey = key + "validateCode";
         const num = await this.app.redis.get(redisKey);
         if (!num) {
             throw new Error('验证码已失效或不存在!')

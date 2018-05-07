@@ -187,7 +187,7 @@ class TeamUserController extends Controller {
 
         ctx.validate(rule, req)
         //验证码校验
-        if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
+        if (!await service.sms.doValidate(req.phone, req.validateCode)) {
             return;
         }
 

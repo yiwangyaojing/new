@@ -27,6 +27,32 @@ class TeamUserService extends Service {
 
     }
 
+    async findTeamChildPlan(req){
+
+        let teams = []
+
+
+        if(req.id){
+            // 查询所有团队
+            console.log("概况：查询团队以及团队一下。")
+            const companyTeams = await this.ctx.model.XTeam.findAll({where: {company_id: req.company_id}})
+            teams.push(req.id)
+            await this.service.team.linealTeam(companyTeams, req, teams, 'child')
+        }else{
+            console.log("概况：查询公司本级。")
+            teams.push(req.company_id)
+        }
+
+        const plans = await this.ctx.model.XPlans.findAll({where:{team_id:teams}})
+
+        console.log(req)
+        console.log("====================================================",plans)
+
+        let allInfo = await this.service.user.getProjectInfo('', plans);
+
+        return allInfo
+    }
+
     async findTeamUsers(req) {
 
         const users = []

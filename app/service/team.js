@@ -214,7 +214,7 @@ class TeamService extends Service {
                 where: {open_id, user_rank: FileType.UserRank.admin},
                 order: [['team_level', 'ASC']]
             });
-            if (!teamUser || teamUser.team_level > teamLevel) {
+            if (!teamUser || teamUser.team_level >= teamLevel) {
                 return false;
             }
             // 根据团队id 和 openId  和用户等级 查询上级团队用户

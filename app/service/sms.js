@@ -2,7 +2,6 @@
 
 const Service = require('egg').Service;
 const SMSClient = require('@alicloud/sms-sdk');
-
 class SmsService extends Service {
 
     /**
@@ -30,7 +29,7 @@ class SmsService extends Service {
         const secretAccessKey = config.sms.client.accessKeySecret;
         const signName = config.sms.client.signName;
         const param = config.sms.client.param;
-        console.log(param, num);
+        console.info("短信发送,phone,valiedateCode",phone, num);
         //初始化sms_client
         let smsClient = new SMSClient({accessKeyId, secretAccessKey});
         let retval = {message: '验证码发送成功！'};
@@ -47,9 +46,10 @@ class SmsService extends Service {
                 app.redis.set(redisKey, num, 'EX', 60 * 10);
             }
         }, function (err) {
-            console.log(err)
-            retval = {message: '短信发送失败！'}
+            console.error(err)
+            throw new Error("短信发送失败！")
         });
+        console.info("短信发送结果",retval)
         return retval;
     }
 

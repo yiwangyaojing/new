@@ -96,6 +96,11 @@ module.exports = app => {
             type: DataTypes.STRING(500),
             allowNull: true,
             defaultValue: '[]'
+        },
+        showSampleClient: {
+            type: DataTypes.INTEGER(1),
+            allowNull: false,
+            defaultValue: 1
         }
     }, {
         tableName: 'x_users'

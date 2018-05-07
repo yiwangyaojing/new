@@ -109,6 +109,31 @@ class PlansService extends Service {
             },
             order: [['updated_at', 'desc']],
         });
+
+        // sampleClient start
+        // 如果page.pageNumber == 1,则将示例客户添加到其他客户的最前，此次返回16条数据，原本返回15条
+        if (parseInt(page.pageNumber) === 1) {
+            // 查看用户是否删除了示例客户
+            const userInfo = await this.ctx.model.XUsers.findOne({
+                limit: 1,
+                where: {
+                    openid: params.openId,
+                }
+            });
+            if(userInfo.showSampleClient === 1){
+                // 通过固定id获取sampleClient
+                const sampleClient = await this.ctx.model.XPlans.findOne({
+                    limit: 1,
+                    where: {
+                        id: FileType.sampleClientId,
+                    }
+                });
+                // 将示例客户添加到其他客户最前
+                pageList.unshift(sampleClient);
+            }
+        }
+        // sampleClient end
+
         // 获取方案拍房子图片
         for (const page of pageList) {
             let houseImg = '';
@@ -222,6 +247,12 @@ class PlansService extends Service {
             },
         });
     }
+
+    // luchen 用户删除示例客户 start
+    async updateSampleClient(userOpenId) {
+        return await this.ctx.model.XUsers.update({ showSampleClient: 0 }, { where: { openid: userOpenId } });
+    }
+    // luchen 用户删除示例客户 end
 
     // 获取详情
     async detail(rowId) {

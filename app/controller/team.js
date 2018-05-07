@@ -15,11 +15,12 @@ class TeamController extends Controller {
         const rule = {
             register_phone: {type: 'string', required: true},
             open_id: {type: 'string', required: true},
+            template_code: {type: 'string', required: true},
         };
 
         const req = ctx.params
         ctx.validate(rule, req);
-        ctx.body = await service.sms.sendValidateCode(req.open_id, "SMS_132095605");
+        ctx.body = await service.sms.sendValidateCode(req.open_id, req.template_code);
     }
 
     /**

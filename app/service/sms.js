@@ -12,14 +12,14 @@ class SmsService extends Service {
      * @returns {Promise<*>}
      */
     async sendValidateCode(phone, templateCode) {
-        let redisKey = phone+"validateCode";
-        const {app,config} = this;
+        let redisKey = phone + "validateCode";
+        const {app, config} = this;
         let existCode = await app.redis.get(redisKey);
         let num = '';
         // 存在则继续使用原有的
-        if(existCode!=null){
+        if (existCode != null) {
             num = existCode;
-        }else{
+        } else {
             // 生成5位随机数
             for (let i = 0; i < 4; i++) {
                 num += Math.floor(Math.random() * 10);
@@ -30,7 +30,7 @@ class SmsService extends Service {
         const secretAccessKey = config.sms.client.accessKeySecret;
         const signName = config.sms.client.signName;
         const param = config.sms.client.param;
-        console.log(param,num);
+        console.log(param, num);
         //初始化sms_client
         let smsClient = new SMSClient({accessKeyId, secretAccessKey});
         let retval = {message: '验证码发送成功！'};
@@ -48,10 +48,32 @@ class SmsService extends Service {
             }
         }, function (err) {
             console.log(err)
-           retval =  {message: '短信发送失败！'}
+            retval = {message: '短信发送失败！'}
         });
         return retval;
     }
+
+    /**
+     * 校验验证码是否正确，正确后，会清空缓存
+     * @param phone
+     * @param validateCode
+     * @returns {Promise<void>}
+     */
+    async  doValidate(phone, validateCode) {
+        const {app, config} = this;
+        let redisKey = phone + "validateCode";
+        const num = await this.app.redis.get(redisKey);
+        if (!num) {
+            throw new Error('验证码已失效或不存在!')
+        } else {
+            if (num !== validateCode) {
+                throw new Error('验证码不匹配!')
+            }
+        }
+        await  this.app.redis.del(redisKey);
+        return true;
+    }
+
 }
 
 module.exports = SmsService;

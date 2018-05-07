@@ -24,7 +24,6 @@ class LoginController extends Controller {
      */
     async userLogin() {
         const {ctx, service} = this;
-        console.log(" ctx.request-------------->>>", ctx.request)
         const req = ctx.request.body;
 
         const rule = {
@@ -34,21 +33,12 @@ class LoginController extends Controller {
 
         ctx.validate(rule, req)
 
-        // 验证码校验
-        const redisKey = req.phone + 'validateCode'
-        const num = await this.app.redis.get(redisKey)
-        if (!num) {
-            throw new Error('验证码已失效或不存在!')
-        } else {
-            if (num !== ctx.request.body.validateCode) {
-                throw new Error('验证码不匹配!')
-            }
-        }
-
         let phone = req.phone;
-
+        if(!await service.sms.doValidate(phone,req.validateCode)){
+            return;
+        }
         const userInfo = await service.user.findByPhone(phone);
-        this.app.redis.del(redisKey);
+
         if (!userInfo) {
             throw new Error('当前用户不存在!')
         } else {

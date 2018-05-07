@@ -222,7 +222,7 @@ class TeamUserService extends Service {
             where: {open_id: open_id, user_rank: FileType.UserRank.admin},
             order: [['team_level', "ASC"]]
         })
-        if (!teamUser || teamUser.team_level >= teamLevel) {
+        if (!teamUser || teamUser.team_level > teamLevel) {
             return false;
         }
 

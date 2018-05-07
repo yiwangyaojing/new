@@ -99,6 +99,11 @@ class TeamService extends Service {
             company_name:company.name
         };
 
+        // 判断权限
+        if (!await this.validatePower(team, req.open_id)) {
+            throw new Error('权限不足');
+        }
+
         const cfg = this.config.sequelize;
         cfg.logging = false;
         const sequelize = new Sequelize(cfg);

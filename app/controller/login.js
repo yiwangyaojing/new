@@ -14,7 +14,7 @@ class LoginController extends Controller {
         const rule = {
             phone: {type: 'string', required: true},
         };
-        const req = ctx.params
+        const req = ctx.request.body
         ctx.validate(rule, req);
         ctx.body = await service.sms.sendValidateCode(req.phone,req.phone, "SMS_134240358");
     }

@@ -503,8 +503,22 @@ class TeamUserService extends Service {
         let teamId = info.teamId;
         let level = info.level - 0;
         let time = info.time;
+        let userOpenId = info.openId;
+
+
+        let data_sign = await this.findManagerTeams(info.teamId,info.openId)
         // 这是所有已经签到的人的信息;
-        let data = await this.ctx.model.XSign.findAll({where:{team_company_id:teamId,min_date:time,level:{$between: [level - 1, 5]}}})
+        let data = []
+        for( let m = 0 ; m < data_sign.managerTeamIds.length ; m++ ){
+            let min_data =  await this.ctx.model.XSign.findAll({where:{team_id:data_sign.managerTeamIds[m],min_date:time}})
+            if( min_data.length > 0 ){
+                for( let ii = 0 ; ii < min_data.length ; ii++ ){
+                    data.push(min_data[ii])
+                }
+            }
+        }
+        console.log('输出所有的用户签到')
+        console.log(data)
         // 这是签到人数,以及其 open_id
         let obj_signNum = {};
         // 这是清理之后的签到信息,因为一个人会签到多次,需要进行排重
@@ -575,7 +589,15 @@ class TeamUserService extends Service {
         let n_sign_open_id = [];
         // 未签到人的详细信息
         let f_user_all = [];
-        let n_data = await this.ctx.model.XTeamUser.findAll({where:{team_id:teamId,team_level:{$between: [level - 1, 5]}}})
+        let n_data = []
+        for( let ji = 0 ; ji < data_sign.managerTeamIds.length ; ji++ ){
+            let min_n_data =  await this.ctx.model.XTeamUser.findAll({where:{team_id:data_sign.managerTeamIds[ji]}})
+            if( min_n_data.length > 0 ) {
+                for( let yy = 0 ; yy < min_n_data.length ; yy++ ){
+                    n_data.push(min_n_data[yy])
+                }
+            }
+        }
         if( n_data.length > 0 ){
             for( let m = 0 ; m < n_data.length ; m ++ ){
             // 所有的openid

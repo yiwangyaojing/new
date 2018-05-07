@@ -96,6 +96,7 @@ class TeamService extends Service {
             level: req.level,
             parent_id: req.parent_id,
             company_id: req.company_id,
+            company_name:company.name
         };
 
         const cfg = this.config.sequelize;

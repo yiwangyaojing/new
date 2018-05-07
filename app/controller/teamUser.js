@@ -186,9 +186,13 @@ class TeamUserController extends Controller {
         const req = ctx.request.body
 
         ctx.validate(rule, req)
-        //验证码校验
-        if (!await service.sms.doValidate(req.phone, req.validateCode)) {
-            return;
+        try{
+            //验证码校验
+            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+                return;
+            }
+        }catch(e){
+            throw e;
         }
 
         let param = {
@@ -240,9 +244,13 @@ class TeamUserController extends Controller {
         const req = ctx.request.body
         ctx.validate(rule, req)
 
-        //验证码校验
-        if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
-            return;
+        try{
+            //验证码校验
+            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+                return;
+            }
+        }catch(e){
+            throw e;
         }
 
         const result = await service.teamUser.delUser(req.open_id);
@@ -307,9 +315,13 @@ class TeamUserController extends Controller {
         const req = ctx.request.body
         ctx.validate(rule, req)
 
-        //验证码校验
-        if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
-            return;
+        try{
+            //验证码校验
+            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+                return;
+            }
+        }catch(e){
+            throw e;
         }
         ctx.body = await service.teamUser.join(req)
     }

@@ -69,7 +69,7 @@ module.exports = appInfo => {
     config.onerror = {
         html(err, ctx) {
             // html hander
-            ctx.body = { message: err.message };
+            ctx.body =  err.message;
             ctx.status = 500;
             console.error(err)
         },
@@ -78,6 +78,10 @@ module.exports = appInfo => {
             ctx.body = { message: err.message };
             ctx.status = 500;
         },
+        accepts(ctx) {
+            if (ctx.get('x-requested-with') === 'XMLHttpRequest') return 'json';
+            return 'html';
+        }
     };
     return config;
 };

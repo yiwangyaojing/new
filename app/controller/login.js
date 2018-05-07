@@ -10,58 +10,13 @@ class LoginController extends Controller {
      * 发送手机验证码
      */
     async sms() {
-        const {ctx, config, app} = this
+        const {ctx, config, app, service} = this
         const rule = {
             phone: {type: 'string', required: true},
         };
-
         const req = ctx.params
         ctx.validate(rule, req);
-
-        // 获取当天的redis序列
-        const redisKey = req.phone + 'validateCode';
-
-
-        // 生成5位随机数
-        let num = '';
-        for (let i = 0; i < 4; i++) {
-            num += Math.floor(Math.random() * 10);
-        }
-
-        console.log("validate_code:", num)
-
-        // ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
-        const accessKeyId = config.sms.client.accessKeyId
-        const secretAccessKey = config.sms.client.accessKeySecret
-        const signName = config.sms.client.signName
-        const templateCode = config.sms.client.templateCode
-        const param = config.sms.client.param
-
-        //初始化sms_client
-        let smsClient = new SMSClient({accessKeyId, secretAccessKey})
-        //发送短信
-        await smsClient.sendSMS({
-            PhoneNumbers: req.phone,
-            SignName: signName,
-            TemplateCode: templateCode,
-            TemplateParam: '{"' + param + '":"' + num + '"}'
-        }).then(function (res) {
-            let {Code} = res
-            if (Code === 'OK') {
-                // 处理返回参数 保存随机数值redis中  失效时间10分钟
-                app.redis.set(redisKey, num, 'EX', 60 * 10);
-                ctx.body = {message: '验证码发送成功！'}
-            }
-        }, function (err) {
-            ctx.body = {message: '验证码发送失败 ！'}
-            console.log(err)
-        })
-
-        await app.redis.set(redisKey, num, 'EX', 60 * 10);
-        console.log("验证码发送成功！ ---------" + req.phone + "-------------->>>", num)
-        ctx.body = {
-            code: num
-        }
+        ctx.body = await service.sms.sendValidateCode(req.phone, "SMS_132095605");
     }
 
     /**
@@ -69,7 +24,7 @@ class LoginController extends Controller {
      */
     async userLogin() {
         const {ctx, service} = this;
-        console.log(" ctx.request-------------->>>",  ctx.request)
+        console.log(" ctx.request-------------->>>", ctx.request)
         const req = ctx.request.body;
 
         const rule = {
@@ -94,9 +49,9 @@ class LoginController extends Controller {
 
         const userInfo = await service.user.findByPhone(phone);
         this.app.redis.del(redisKey);
-        if(!userInfo){
+        if (!userInfo) {
             throw new Error('当前用户不存在!')
-        }else {
+        } else {
             ctx.body = userInfo;
         }
     }

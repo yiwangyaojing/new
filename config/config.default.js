@@ -69,8 +69,9 @@ module.exports = appInfo => {
     config.onerror = {
         html(err, ctx) {
             // html hander
-            ctx.body = '<h3>error</h3>';
+            ctx.body = { message: err.message };
             ctx.status = 500;
+            console.error(err)
         },
         json(err, ctx) {
             // json hander

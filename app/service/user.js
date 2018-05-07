@@ -344,13 +344,15 @@ class UserService extends Service {
         let data = await this.ctx.model.XTeamUser.findAll({where: {open_id: openId.openId}});
         let more = [];
         for( let i = 0 ; i < data.length ; i ++ ){
-            console.log(data[i].dataValues);
             if( data[i].dataValues.user_rank === 1 ){
                 more.push(data[i].dataValues)
             }
         }
+
+        console.log('输出底层是否是管理员的公司信息,如果有输出,证明底层是管理员,如果没有,则不是')
+        console.log(more)
         if( more.length === 1 || more.length === 0 ){
-            return more
+            return more[0]
         }
         if( more.length > 1 ){
             function compare(property){

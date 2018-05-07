@@ -56,12 +56,12 @@
         <el-card class="right-card">
           <br/><br/>
           <el-row type="flex" align="middle">
-            <el-col style="font-size: 26px; color: white;">光伏好销售系统</el-col>
+            <el-col style="font-size: 26px; color: white;">光伏好销售系统-团队管理功能</el-col>
           </el-row>
           <br/>
           <el-row type="flex" align="middle">
             <el-col style="font-size: 12px; color: #484f66;">
-              团队管理功能
+
             </el-col>
           </el-row>
           <br/>
@@ -80,97 +80,97 @@
   </div>
 </template>
 <script>
-  import axios from 'axios'
-  import md5 from 'md5'
-  import values from '../utils/values'
+import axios from 'axios'
+import md5 from 'md5'
+import values from '../utils/values'
 
-  export default {
-    data () {
-      return {
-        formName: 'loginForm',
-        // 提交按钮loading
-        loading: false,
-        // 登录form admin 123456
-        loginForm: {
-          phone: '',
-          validateCode: '',
-          captcha: ''
-        },
-        rules: {},
-        now: new Date(),
-        codeShow:true,
-        numCode: 120,
-      }
-    },
-    methods: {
-      // 刷新验证码
-      getValidateCode: function () {
-        if (this.loginForm.phone !== '') {
-          this.codeShow = false
-          this.countDown()
-        }else{
-          this.$message.error('手机号不能为空')
-        }
-        axios.post('/api/login/sms/'+this.loginForm.phone, 'POST').then(response=>{
-            this.$message.success('验证码发送成功！')
-          }
-        )
+export default {
+  data () {
+    return {
+      formName: 'loginForm',
+      // 提交按钮loading
+      loading: false,
+      // 登录form admin 123456
+      loginForm: {
+        phone: '',
+        validateCode: '',
+        captcha: ''
       },
-      countDown () {
-        let _this = this
-        setTimeout(() => {
-          if (_this.numCode > 0) {
-            _this.numCode--
-            this.countDown()
-          } else {
-            _this.numCode = 120
-            this.codeShow = true
-          }
-        }, 1000)
-      },
-      // 确认登录操作
-      handleSubmit (name) {
-        if (this.loginForm.phone === '') {
-          this.$message.error('手机号不能为空')
-          return
-        }
-        if (this.loginForm.validateCode === '') {
-          this.$message.error('验证码不能为空')
-          return
-        }
-        // if (this.loginForm.captcha === '') {
-        //   this.$message.error('验证码不能为空')
-        //   return
-        // }
-        this.loading = true
-        let form = {
-          phone: this.loginForm.phone,
-          validateCode: this.loginForm.validateCode,
-          captcha: this.loginForm.captcha
-        }
-        axios.post('/api/login', form).then(response => {
-          console.log("this is the response=====>>>",response)
-          let userInfo =JSON.parse(response.login_infor);
-          this.$message.success('登录成功')
-          this.$router.replace('/Home')
-          window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))
-//        this.loading = false
-        }, (response) => {
-          this.$message.error(response.message)
-//        this.changeCaptchaUrl()
-//        this.loading = false
-        })
-      }
-    },
-    computed: {
-      captchaUrl: function () {
-        return '/captcha?time=' + this.now
-      }
-    },
-    mounted () {
-
+      rules: {},
+      now: new Date(),
+      codeShow: true,
+      numCode: 120
     }
+  },
+  methods: {
+    // 刷新验证码
+    getValidateCode: function () {
+      if (this.loginForm.phone !== '') {
+        this.codeShow = false
+        this.countDown()
+      } else {
+        this.$message.error('手机号不能为空')
+      }
+      axios.post('/api/login/sms/' + this.loginForm.phone, 'POST').then(response => {
+        this.$message.success('验证码发送成功！')
+      }
+      )
+    },
+    countDown () {
+      let _this = this
+      setTimeout(() => {
+        if (_this.numCode > 0) {
+          _this.numCode--
+          this.countDown()
+        } else {
+          _this.numCode = 120
+          this.codeShow = true
+        }
+      }, 1000)
+    },
+    // 确认登录操作
+    handleSubmit (name) {
+      if (this.loginForm.phone === '') {
+        this.$message.error('手机号不能为空')
+        return
+      }
+      if (this.loginForm.validateCode === '') {
+        this.$message.error('验证码不能为空')
+        return
+      }
+      // if (this.loginForm.captcha === '') {
+      //   this.$message.error('验证码不能为空')
+      //   return
+      // }
+      this.loading = true
+      let form = {
+        phone: this.loginForm.phone,
+        validateCode: this.loginForm.validateCode,
+        captcha: this.loginForm.captcha
+      }
+      axios.post('/api/login', form).then(response => {
+        console.log('this is the response=====>>>', response)
+        let userInfo = JSON.parse(response.login_infor)
+        this.$message.success('登录成功')
+        this.$router.replace('/Home')
+        window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))
+        //        this.loading = false
+      }, (response) => {
+        this.$message.error(response.message)
+        //        this.changeCaptchaUrl()
+        //        this.loading = false
+      })
+    }
+  },
+  computed: {
+    captchaUrl: function () {
+      return '/captcha?time=' + this.now
+    }
+  },
+  mounted () {
+
   }
+}
 </script>
 
 <style scoped>

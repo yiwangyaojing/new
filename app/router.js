@@ -109,7 +109,4 @@ module.exports = app => {
     // 签到
     router.post('/api/sign/sign',controller.sign.signs);
 
-    // PC端登录
-    router.post('/api/login/sms/:phone', controller.login.sms);
-    router.post('/api/login', controller.login.userLogin);
 };

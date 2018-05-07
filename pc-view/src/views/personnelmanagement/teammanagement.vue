@@ -47,66 +47,65 @@
   </el-card>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        value8: '',
-        data: [{
-          label: '董志永团队',
+export default {
+  data () {
+    return {
+      value8: '',
+      data: [{
+        label: '董志永团队',
+        children: [{
+          label: '一级 1',
           children: [{
-            label: '一级 1',
+            label: '二级 1'
+          }]
+        }, {
+          label: '一级 2',
+          children: [{
+            label: '二级 1',
             children: [{
-              label: '二级 1'
+              label: '三级 1'
             }]
-          },{
-            label: '一级 2',
-            children: [{
-              label: '二级 1',
-              children: [{
-                label: '三级 1'
-              }]
-            }]
-          }],
-        }],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
+          }]
+        }]
+      }],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      },
+      options: [
+        {
+          value: '吕',
+          label: '吕'
         },
-        options: [
-          {
-            value: '吕',
-            label: '吕'
-          },
-          {
-            value: '1',
-            label: '董'
-          },
-          {
-            value: '2',
-            label: '地点'
-          },
-          {
-            value: '3',
-            label: '发个'
-          },
-          {
-            value: '4',
-            label: '嘎嘎嘎'
-          },
-          {
-            value: '5',
-            label: '逛淘宝'
-          }
-        ]
-      }
-    },
-    methods: {
-      handleNodeClick(data) {
-        console.log(data);
-
-      }
+        {
+          value: '1',
+          label: '董'
+        },
+        {
+          value: '2',
+          label: '地点'
+        },
+        {
+          value: '3',
+          label: '发个'
+        },
+        {
+          value: '4',
+          label: '嘎嘎嘎'
+        },
+        {
+          value: '5',
+          label: '逛淘宝'
+        }
+      ]
     }
-  };
+  },
+  methods: {
+    handleNodeClick (data) {
+      console.log(data)
+    }
+  }
+}
 </script>
 <style>
   .fl{

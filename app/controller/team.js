@@ -43,7 +43,7 @@ class TeamController extends Controller {
 
         try{
             //验证码校验
-            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+            if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
                 return;
             }
         }catch(e){

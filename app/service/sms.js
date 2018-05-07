@@ -47,7 +47,7 @@ class SmsService extends Service {
             }
         }, function (err) {
             console.error(err)
-            retval = {message: '短信发送失败！'}
+            throw new Error("短信发送失败！")
         });
         console.info("短信发送结果",retval)
         return retval;

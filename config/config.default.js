@@ -66,11 +66,17 @@ module.exports = appInfo => {
         secret: 'cf5450752f7639a753f57acaa796da7d',
         openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
     };
-    // yk本地开发
-    /* config.wechat = {
-       appId: 'wx0c878877bf2012f7',
-       secret: '07bab2ddd65628a535fb529b7b02e422',
-       openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
-     };*/
+    config.onerror = {
+        html(err, ctx) {
+            // html hander
+            ctx.body = '<h3>error</h3>';
+            ctx.status = 500;
+        },
+        json(err, ctx) {
+            // json hander
+            ctx.body = { message: err.message };
+            ctx.status = 500;
+        },
+    };
     return config;
 };

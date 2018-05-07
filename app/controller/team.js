@@ -19,52 +19,7 @@ class TeamController extends Controller {
 
         const req = ctx.params
         ctx.validate(rule, req);
-
-        // 获取当天的redis序列
-        const redisKey = req.open_id + 'validateCode';
-
-
-        // 生成5位随机数
-        let num = '';
-        for (let i = 0; i < 4; i++) {
-            num += Math.floor(Math.random() * 10);
-        }
-
-        console.log("validate_code:", num)
-
-        // ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
-        const accessKeyId = config.sms.client.accessKeyId
-        const secretAccessKey = config.sms.client.accessKeySecret
-        const signName = config.sms.client.signName
-        const templateCode = config.sms.client.templateCode
-        const param = config.sms.client.param
-
-        //初始化sms_client
-        let smsClient = new SMSClient({accessKeyId, secretAccessKey})
-        //发送短信
-        await smsClient.sendSMS({
-            PhoneNumbers: req.register_phone,
-            SignName: signName,
-            TemplateCode: templateCode,
-            TemplateParam: '{"' + param + '":"' + num + '"}'
-        }).then(function (res) {
-            let {Code} = res
-            if (Code === 'OK') {
-                // 处理返回参数 保存随机数值redis中  失效时间10分钟
-                app.redis.set(redisKey, num, 'EX', 60 * 10);
-                ctx.body = {message: '验证码发送成功！'}
-            }
-        }, function (err) {
-            ctx.body = {message: '验证码发送失败 ！'}
-            console.log(err)
-        })
-
-        await app.redis.set(redisKey, num, 'EX', 60 * 10);
-        console.log("验证码发送成功！ ---------" + req.phone + "-------------->>>", num)
-        ctx.body = {
-            code: num
-        }
-
+        ctx.body = await service.sms.sendValidateCode(req.open_id, "SMS_132095605");
     }
 
     /**

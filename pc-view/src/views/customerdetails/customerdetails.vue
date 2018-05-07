@@ -11,7 +11,7 @@
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">电话</div>
-                <div class="fl"style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;">133333333888</div>
+                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;">133333333888</div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">地址</div>
@@ -118,7 +118,7 @@
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">房屋朝向</div>
-                <div class="fl"style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">165°正南</div>
+                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">165°正南</div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">

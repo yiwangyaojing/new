@@ -83,7 +83,7 @@ class LoginController extends Controller {
         const redisKey = req.phone + 'validateCode'
         const num = await this.app.redis.get(redisKey)
         if (!num) {
-            throw new Error('验证码已失效!')
+            throw new Error('验证码已失效或不存在!')
         } else {
             if (num !== ctx.request.body.validateCode) {
                 throw new Error('验证码不匹配!')
@@ -93,9 +93,9 @@ class LoginController extends Controller {
         let phone = req.phone;
 
         const userInfo = await service.user.findByPhone(phone);
-        console.log("userInfo", userInfo)
+        this.app.redis.del(redisKey);
         if(!userInfo){
-            throw new Error('找不到该电话的用户!')
+            throw new Error('当前用户不存在!')
         }else {
             ctx.body = userInfo;
         }

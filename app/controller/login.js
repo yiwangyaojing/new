@@ -16,7 +16,7 @@ class LoginController extends Controller {
         };
         const req = ctx.params
         ctx.validate(rule, req);
-        ctx.body = await service.sms.sendValidateCode(req.phone, "SMS_132095605");
+        ctx.body = await service.sms.sendValidateCode(req.phone,req.phone, "SMS_134240358");
     }
 
     /**

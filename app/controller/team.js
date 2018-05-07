@@ -1,8 +1,6 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const SMSClient = require('@alicloud/sms-sdk');
-
 
 class TeamController extends Controller {
 
@@ -11,15 +9,16 @@ class TeamController extends Controller {
      */
     async sms() {
 
-        const {ctx, config, app} = this
+        const {ctx, service} = this
         const rule = {
             register_phone: {type: 'string', required: true},
             open_id: {type: 'string', required: true},
+            template_code: {type: 'string', required: true},
         };
 
-        const req = ctx.params
+        const req = ctx.request.body
         ctx.validate(rule, req);
-        ctx.body = await service.sms.sendValidateCode(req.open_id, "SMS_132095605");
+        ctx.body = await service.sms.sendValidateCode(req.open_id, req.register_phone, req.template_code);
     }
 
     /**
@@ -42,15 +41,9 @@ class TeamController extends Controller {
 
         ctx.validate(rule, req)
 
-        // 验证码校验
-        const redisKey = req.open_id + 'validateCode'
-        const num = await this.app.redis.get(redisKey)
-        if (!num) {
-            throw new Error('验证码已失效!')
-        } else {
-            if (num !== ctx.request.body.validateCode) {
-                throw new Error('验证码不匹配!')
-            }
+        //验证码校验
+        if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
+            return;
         }
         const result = await service.team.companyCreate(req);
 
@@ -95,15 +88,9 @@ class TeamController extends Controller {
             logo: {type: 'string', required: true}, // logo地址
         };
         ctx.validate(rule, req)
-        // 验证码校验
-        const redisKey = req.open_id + 'validateCode'
-        const num = await this.app.redis.get(redisKey)
-        if (!num) {
-            throw new Error('验证码已失效!')
-        } else {
-            if (num !== ctx.request.body.validateCode) {
-                throw new Error('验证码不匹配!')
-            }
+        //验证码校验
+        if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
+            return;
         }
         // 修改公司团队信息
         const result = await  service.team.update(req)

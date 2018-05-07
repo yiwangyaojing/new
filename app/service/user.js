@@ -154,6 +154,40 @@ class UserService extends Service {
         return arr
     }
 
+    async getUserProjects(openId) {
+
+        const Op = Sequelize.Op
+
+        const user = await this.ctx.model.XUsers.findOne({
+          where: {
+              openid: openId
+          }
+        })
+        const team = await this.ctx.model.XPlans.findAll({
+          where: {
+              [Op.or]:[
+                  {
+                   open_id: openId,
+                   company_id: user.company_id
+                  },{
+                   open_id: openId,
+                   company_id: null
+                  },
+              ]
+
+          }
+        });
+        if (!team) {
+            return false;
+        }
+        // 所有未排序的业务项目
+        let arr = [];
+        for (var i = 0; i < team.length; i++) {
+            arr.push(team[i])
+        }
+        return arr
+    }
+
     // 业务员的 openid,在这里进行排序;
     async getProjectInfo(openId, type) {
         moment().format();
@@ -196,7 +230,7 @@ class UserService extends Service {
 
         var data;
         if (type == 'one') {
-            data = await this.getAllProject(openId);
+            data = await this.getUserProjects(openId);
 
         } else {
             data = type;

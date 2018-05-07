@@ -17,6 +17,14 @@ class UserService extends Service {
         let result;
 
         let createUser = Object.assign({}, user)
+        let updateUser = {
+            nickName:user.nickName,
+            gender:user.gender,
+            province:user.province,
+            city:user.city,
+            avatarUrl:user.avatarUrl,
+            login_infor:user.login_infor
+        }
 
         createUser.name = user.nickName
 
@@ -25,7 +33,7 @@ class UserService extends Service {
         if (!result) {
             result = await this.ctx.model.XUsers.create(createUser)
         } else {
-            await this.ctx.model.XUsers.update(user, {where: {openid: user.openid}});
+            await this.ctx.model.XUsers.update(updateUser, {where: {openid: user.openid}});
         }
 
         // await this.ctx.model.XUsers.findOrCreate({

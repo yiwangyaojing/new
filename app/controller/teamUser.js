@@ -38,10 +38,14 @@ class TeamUserController extends Controller {
         ctx.validate(rule, req)
 
         // 当前团队所有的业务员
-        const result = await service.teamUser.findTeamUsers(req)
+       // const result = await service.teamUser.findTeamUsers(req)
 
         // 对每个业务员进行便利查找他们的业务信息;
-        const data = await service.user.allUserGetProjectInfo(result)
+        // const data = await service.user.allUserGetProjectInfo(result)
+
+        // 获取概要信息
+        const data = await service.teamUser.findTeamChildPlan(req)
+
         console.log(data)
         ctx.body = data
     }
@@ -188,7 +192,7 @@ class TeamUserController extends Controller {
         ctx.validate(rule, req)
         try{
             //验证码校验
-            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+            if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
                 return;
             }
         }catch(e){
@@ -246,7 +250,7 @@ class TeamUserController extends Controller {
 
         try{
             //验证码校验
-            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+            if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
                 return;
             }
         }catch(e){
@@ -317,7 +321,7 @@ class TeamUserController extends Controller {
 
         try{
             //验证码校验
-            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+            if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
                 return;
             }
         }catch(e){

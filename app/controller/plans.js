@@ -8,18 +8,18 @@ class Plans extends Controller {
     async findByPage() {
         const {ctx, service} = this
         let params = ctx.params
-       // let req = ctx.request.body
+        let req = ctx.request.body
         const rule = {
             openId: {type: 'string', required: true},
             pageNumber: {type: 'string', required: true},
         };
-        // const ruleReq = {
-        //   managerTeams: { type: 'string', required: true }
-        // };
+        const ruleReq = {
+          company_id: { type: 'int', required: false }
+        };
         this.ctx.validate(rule, params);
+        this.ctx.validate(ruleReq, req);
 
-        // req.managerTeams = JSON.parse(req.managerTeams)
-        // params.managerTeams = req.managerTeams
+        params.company_id = req.company_id
 
 
         this.ctx.body = await service.plans.findByPage(params);
@@ -29,13 +29,20 @@ class Plans extends Controller {
     async findByPageAndSearch() {
         const {ctx, service} = this
         let params = ctx.params
+        let req = ctx.request.body
         const rule = {
             openId: {type: 'string', required: true},
             pageNumber: {type: 'string', required: true},
             search: {type: 'string', required: true},
         };
 
+        const ruleReq = {
+            company_id: { type: 'int', required: false }
+        };
+
         this.ctx.validate(rule, params);
+        this.ctx.validate(ruleReq, req);
+        params.company_id = req.company_id
 
         this.ctx.body = await service.plans.findByPage(params);
     }
@@ -45,7 +52,7 @@ class Plans extends Controller {
         const rule = {
             open_id: {type: 'string', required: true},
             cst_name: {type: 'string', required: true},
-            team_id: {type: 'int', required: true},
+            // team_id: {type: 'int', required: false},
             // cst_phone: { type: 'string', required: true },
             // cst_remark: { type: 'string', required: false },
         };
@@ -62,6 +69,7 @@ class Plans extends Controller {
             // zj_num: { type: 'string', required: true },
             // zj_price: { type: 'string', required: true },
         };
+        console.log(this.ctx.request.body)
         // 校验
         this.ctx.validate(rule, this.ctx.request.body);// 参数校验
         // 开始创建
@@ -97,6 +105,7 @@ class Plans extends Controller {
         ctx.body = await service.plans.findAllByUser(ctx.params.openId);
 
     }
+
 
 }
 

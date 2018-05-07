@@ -102,7 +102,7 @@ class TeamUserController extends Controller {
     const rule = {
       team_id:{type:'int',required:true},
       operator:{type:'string',required:true},
-      open_id:{type:'string',required:true},
+      users:{type:'array',required:true},
       user_rank:{type:'int',required:true},
     }
 
@@ -276,7 +276,7 @@ class TeamUserController extends Controller {
     const req= ctx.params
     ctx.validate(rule, req)
     const result = await service.teamUser.getAdminTeams(req.company_id,req.open_id)
-    console.log(result)
+
     ctx.body = result
   }
 

@@ -85,6 +85,10 @@ class TeamService extends Service {
 
         const ctx = this.ctx;
 
+
+        // 获取公司信息
+        const company = await ctx.model.XTeam.findOne({where:{id:req.company_id}})
+
         // 保存的team信息
         const team = {
             open_id: req.open_id,
@@ -92,7 +96,6 @@ class TeamService extends Service {
             level: req.level,
             parent_id: req.parent_id,
             company_id: req.company_id,
-            company_name: req.company_name,
         };
 
         const cfg = this.config.sequelize;
@@ -114,7 +117,9 @@ class TeamService extends Service {
                         agent.team_company_id = result.company_id;
                         ctx.model.XUsers.update({
                             company_id: req.company_id,
-                            company_name: req.company_name
+                            company_name: company.name,
+                            company_logo :company.logo,
+                            company_founder:company.open_id
                         }, {where: {openid: agent.open_id}});
                     }
                     return ctx.model.XTeamUser.bulkCreate(agents, {transaction: t});
@@ -144,7 +149,7 @@ class TeamService extends Service {
             throw new Error('权限不足');
         }
         // 清空oss文件
-        if (team.level === FileType.TeamLevel.company && req.logo !== team.logo) {
+        if (team.level === FileType.TeamLevel.company && req.logo !== team.logo && team.oss_name) {
             await ctx.oss.delete(team.oss_name);
         }
         req.company_name = req.name
@@ -225,7 +230,7 @@ class TeamService extends Service {
     async linealTeam(company, team, linIds, type) {
 
         if (type === 'child') {
-            // if (team.level === 3) return;
+            if (team.level === 3) return;
             for (let c of company) {
                 if (c.level > team.level) {
                     if (c.parent_id == team.id) {

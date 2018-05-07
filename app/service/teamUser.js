@@ -87,7 +87,7 @@ class TeamUserService extends Service {
         }
 
         for (let user of users) {
-            await ctx.model.XTeamUser.update({user_rank: user.user_rank}, {where: {open_id: user.open_id}})
+            await ctx.model.XTeamUser.update({user_rank: user.user_rank}, {where: {open_id: user.open_id , team_id:req.team_id}})
         }
 
     }
@@ -96,6 +96,8 @@ class TeamUserService extends Service {
         const ctx = this.ctx
 
         const team = await ctx.model.XTeam.findOne({where: {id: req.team_id}})
+
+
         if (!team) {
             throw new Error("团队不存在")
         }
@@ -104,11 +106,49 @@ class TeamUserService extends Service {
             throw  new Error("权限不足")
         }
 
-        req.team_parent_id = team.parent_id
-        req.team_company_id = team.company_id
-        req.team_level = team.level
+        // 获取公司
+        let company = await this.ctx.model.XTeam.findOne({
+            where: {id: team.company_id}
+        })
 
-        return ctx.model.XTeamUser.create(req)
+        let agents = req.users  //要添加的业务员
+        let openIds = []
+        let bulkCreate =[]
+
+
+        // 获取当前团队所有的用户
+        const users = await ctx.model.XTeamUser.findAll({where: {team_id: req.team_id}})
+
+            for(let agent of agents){
+               let flag = true
+                for(let user of users){
+                    if(agent.open_id === user.dataValues.open_id){
+                        flag = false
+                    }
+                }
+                if(flag){
+                    openIds.push(agent)
+                }
+            }
+            console.log(agents)
+        for(let openId of openIds){
+            let agent = {}
+            agent.open_id = openId
+            agent.team_parent_id = team.parent_id
+            agent.team_company_id = team.company_id
+            agent.team_level = team.level
+            agent.user_rank = req.user_rank
+            agent.team_id= req.team_id
+            await ctx.model.XUsers.update({
+                company_id:   company.id,
+                company_name: company.name,
+                company_logo: company.logo,
+                company_founder:company.open_id,
+            }, {where: {openid: agent.open_id}});
+            bulkCreate.push(agent)
+        }
+
+        return await  ctx.model.XTeamUser.bulkCreate(bulkCreate);
     }
 
     async destroy(req) {
@@ -291,7 +331,8 @@ class TeamUserService extends Service {
             "select u.name ,u.avatarUrl , u.openid , tu.user_rank  from x_team_user tu,  x_users u " +
             "where tu.open_id =  u.openid " +
             "and tu.team_id = :team_id " +
-            "and tu.team_company_id = :company_id ",
+            "and tu.team_company_id = :company_id " +
+            "order by tu.created_at desc ",
             {replacements: {team_id: req.team_id, company_id: req.company_id}, type: Sequelize.QueryTypes.SELECT})
 
 
@@ -309,27 +350,13 @@ class TeamUserService extends Service {
         const ctx = this.ctx
 
         let result = {}
-        let teams = []
 
-        const teamUser = await ctx.model.XTeamUser.findOne({
-            where: {team_company_id: company_id, open_id: open_id, user_rank: FileType.UserRank.admin},
-            order: [['team_level', 'asc']]
-        })
+        const adminTeam = await this.findManagerTeams(company_id,open_id)
 
-        // console.log(teamUser)
-        if (teamUser) {
-            // 获取团队下所有用户
-            const Op = Sequelize.Op;
-            teams = await ctx.model.XTeam.findAll({
-                where: {
-                    company_id: company_id,
-                    level: {[Op.gte]: teamUser.team_level}
-                },
-                order: [['level', 'asc']]
-            })
-            result.maxLevel = teamUser.team_level
-            result.teams = teams
-        }
+        result.maxLevel = adminTeam.maxLevel
+       // 获取所有团队信息
+        const teams = await ctx.model.XTeam.findAll({where:{id:adminTeam.managerTeamIds}})
+        result.teams = teams
 
         return result
     }
@@ -435,23 +462,33 @@ class TeamUserService extends Service {
           throw new Error('对不起，您已经加入团队，不得重复加入！')
           return
         }
+
+        // 获取团队
+        let team = await this.ctx.model.XTeam.findOne({where: {id: params.team_id}})
+
+        // 获取公司
+        let company = await this.ctx.model.XTeam.findOne({
+            where: {id: params.company_id}
+        })
+
         // 添加用户团队
         const addTeam = {
             team_id: params.team_id,
             operator: params.operator,
             open_id: params.open_id,
-            user_rank: params.user_rank
-        }
-        await this.create(addTeam)
+            user_rank: params.user_rank,
+            team_level:team.level,
+            team_parent_id :team.parent_id,
+            team_company_id:team.company_id,
 
-        let company = await this.ctx.model.XTeam.findOne({
-            where: {id: params.company_id}
-        })
+        }
+        await this.ctx.model.XTeamUser.create(addTeam)
+
         const updateParams = {
             phone: params.register_phone,
             name: params.name,
-            company_id: company.company_id,
-            company_name: company.company_name,
+            company_id: company.id,
+            company_name: company.name,
             company_founder: company.open_id,
             company_logo: company.logo
         }
@@ -567,6 +604,61 @@ class TeamUserService extends Service {
         all['未签到'] = f_user_all
         all['数量'] = true_sign_open_id.length
         return all
+    }
+
+
+
+    // 根据用户id获取所有管理的团队信息
+    async findManagerTeams(company_id,open_id){
+
+        const ctx = this.ctx
+
+        let result = {}
+        let managerTeamIds = []
+
+        const cfg = this.config.sequelize;
+        cfg.logging = false;
+        const sequelize = new Sequelize(cfg);
+
+
+        // 根据用户获取最高团管理团队
+    /*    const teamUsers = await sequelize.query(
+            "select  tu.*,  MIN(tu.team_level) as max_level  " +
+            "from x_team_user tu where tu.open_id =:open_id  " +
+            "and user_rank=:user_rank " +
+            "and tu.team_company_id =:company_id ",
+            {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})*/
+        
+        const teamUsers = await sequelize.query(
+            "select tu.* ,tu.team_level as max_level  from  x_team_user tu where tu.open_id =:open_id " +
+            "and tu.team_level = (select MIN(tu1.team_level) from x_team_user tu1 where tu1.open_id = :open_id and tu1.user_rank =:user_rank  and tu1.team_company_id =:company_id ) " +
+            "and user_rank =:user_rank " +
+            "and tu.team_company_id =:company_id ",
+            {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
+
+        // 获取公司所有团队
+        const company = await  ctx.model.XTeam.findAll({where:{company_id:company_id}})
+
+        // 获取最高等级
+        for(let i =0;i<teamUsers.length;i++){
+            let teamUser = teamUsers[i]
+            if(i === 0){
+                result.maxLevel = teamUser.max_level
+            }
+            let team ={
+                id:teamUser.team_id,
+                level:teamUser.team_level,
+            }
+            managerTeamIds.push(teamUser.team_id)
+            //递归过去所有的团队
+            await  this.service.team.linealTeam(company,team,managerTeamIds,'child');
+        }
+        console.log('-----------------------------》managerTeamIds',managerTeamIds)
+
+        result.managerTeamIds = managerTeamIds
+
+        return result
+
     }
 
 }

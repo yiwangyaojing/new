@@ -575,7 +575,7 @@ class TeamUserService extends Service {
         let n_sign_open_id = [];
         // 未签到人的详细信息
         let f_user_all = [];
-        let n_data = await this.ctx.model.XTeamUser.findAll({where:{team_company_id:teamId,team_level:{$between: [level - 1, 5]}}})
+        let n_data = await this.ctx.model.XTeamUser.findAll({where:{team_id:teamId,team_level:{$between: [level - 1, 5]}}})
         if( n_data.length > 0 ){
             for( let m = 0 ; m < n_data.length ; m ++ ){
             // 所有的openid

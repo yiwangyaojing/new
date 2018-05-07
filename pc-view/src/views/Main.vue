@@ -29,7 +29,7 @@
             <span slot="title">签到统计</span>
           </el-menu-item>
           <el-submenu index="4">
-            <div slot="title"style="margin-left: 20px">
+            <div slot="title" style="margin-left: 20px">
               <i class="el-icon-setting" style="color: #303133"></i>
               <span slot="title">人员管理</span>
             </div>

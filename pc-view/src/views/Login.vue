@@ -12,7 +12,8 @@
           <el-row type="flex" justify="center" align="middle">
             <el-col style="font-size: 30px;text-align: center">Sign In</el-col>
           </el-row>
-          <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px" class="form">
+          <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
+                   class="form">
             <el-form-item prop="username">
               <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
             </el-form-item>
@@ -20,15 +21,18 @@
               <el-col :span="24">
                 <el-col :span="15">
                   <el-col :span="20">
-                    <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off" placeholder="验证码"/>
+                    <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off"
+                              placeholder="验证码"/>
                   </el-col>
                 </el-col>
                 <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
                 <el-col v-if="codeShow" :span="9">
-                  <div @click="getValidateCode" style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;"><span style="padding: 5px">获取验证码</span></div>
+                  <el-button size="medium" @click="getValidateCode" type="primary" :disabled="!codeShow">获取验证码
+                  </el-button>
                 </el-col>
                 <el-col v-if="!codeShow" :span="9">
-                  <div style="border: 1px solid #ccc;font-size: 12px;text-align: center;border-radius: 5px;height: 32px;">{{numCode}}秒</div>
+                  <el-button size="medium" @click="getValidateCode" type="primary" disabled>{{numCode}}秒</el-button>
+
                 </el-col>
               </el-col>
             </el-form-item>
@@ -56,12 +60,12 @@
         <el-card class="right-card">
           <br/><br/>
           <el-row type="flex" align="middle">
-            <el-col style="font-size: 26px; color: white;">光伏好销售系统</el-col>
+            <el-col style="font-size: 26px; color: white;">光伏好销售系统-团队管理功能</el-col>
           </el-row>
           <br/>
           <el-row type="flex" align="middle">
             <el-col style="font-size: 12px; color: #484f66;">
-              团队管理功能
+
             </el-col>
           </el-row>
           <br/>
@@ -85,7 +89,7 @@
   import values from '../utils/values'
 
   export default {
-    data () {
+    data() {
       return {
         formName: 'loginForm',
         // 提交按钮loading
@@ -98,8 +102,8 @@
         },
         rules: {},
         now: new Date(),
-        codeShow:true,
-        numCode: 120,
+        codeShow: true,
+        numCode: 120
       }
     },
     methods: {
@@ -108,15 +112,22 @@
         if (this.loginForm.phone !== '') {
           this.codeShow = false
           this.countDown()
-        }else{
+        } else {
           this.$message.error('手机号不能为空')
         }
-        axios.post('/api/login/sms/'+this.loginForm.phone, 'POST').then(response=>{
-            this.$message.success('验证码发送成功！')
+        axios.post('/api/login/sms/' + this.loginForm.phone, 'POST').then(response => {
+            let message = response.message;
+            if (message.indexOf("失败") > -1) {
+              this.$message.error(message)
+            } else {
+              this.$message.success(message)
+
+            }
+
           }
         )
       },
-      countDown () {
+      countDown() {
         let _this = this
         setTimeout(() => {
           if (_this.numCode > 0) {
@@ -129,7 +140,7 @@
         }, 1000)
       },
       // 确认登录操作
-      handleSubmit (name) {
+      handleSubmit(name) {
         if (this.loginForm.phone === '') {
           this.$message.error('手机号不能为空')
           return
@@ -149,16 +160,16 @@
           captcha: this.loginForm.captcha
         }
         axios.post('/api/login', form).then(response => {
-          console.log("this is the response=====>>>",response)
-          let userInfo =JSON.parse(response.login_infor);
+          console.log('this is the response=====>>>', response)
+          let userInfo = JSON.parse(response.login_infor)
           this.$message.success('登录成功')
           this.$router.replace('/Home')
           window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))
-//        this.loading = false
+          //        this.loading = false
         }, (response) => {
           this.$message.error(response.message)
-//        this.changeCaptchaUrl()
-//        this.loading = false
+          //        this.changeCaptchaUrl()
+          //        this.loading = false
         })
       }
     },
@@ -167,7 +178,7 @@
         return '/captcha?time=' + this.now
       }
     },
-    mounted () {
+    mounted() {
 
     }
   }
@@ -177,12 +188,14 @@
   .el-button + .el-button {
     margin-left: 3px;
   }
+
   .el-card {
     box-shadow: 0 0px 50px 0 rgba(0, 0, 0, 0.05);
     border-radius: 0px;
     border: 0px;
     height: 380px;
   }
+
   .right-card {
     background: #23293b;
     height: 300px;

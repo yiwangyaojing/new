@@ -69,6 +69,10 @@ class UserController extends Controller {
     const body = ctx.request.body;
     let openId = body.openId;
     const userInfo = await this.ctx.service.user.findByOpenId(openId);
+    if(!userInfo){
+        ctx.body =  {} ;
+        return;
+    }
     let company_id = userInfo.maxTeamId;
     console.log('通过公司 id, 开始获取公司信息');
     if( !userInfo.company_id || !company_id ){

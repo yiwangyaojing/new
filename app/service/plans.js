@@ -47,7 +47,7 @@ class PlansService extends Service {
             managerTeams  = await  this.service.teamUser.findAgentTeams(user.company_id, params.openId)
 
             if(managerTeams && managerTeams.length > 0){
-                userRank = FileType.UserRank.admin
+                userRank = FileType.UserRank.agent
                 console.log('业务员：',userRank)
             }else{
                 managerTeams = null
@@ -411,7 +411,7 @@ class PlansService extends Service {
             managerTeams  = await  this.service.teamUser.findAgentTeams(user.company_id, openId)
 
             if(managerTeams && managerTeams.length > 0){
-                userRank = FileType.UserRank.admin
+                userRank = FileType.UserRank.agent
                 console.log('业务员：',userRank)
             }else{
                 managerTeams = null

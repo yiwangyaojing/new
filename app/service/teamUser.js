@@ -685,12 +685,21 @@ class TeamUserService extends Service {
         cfg.logging = false;
         const sequelize = new Sequelize(cfg);
 
-         const teams = await sequelize.query(
+         const result = await sequelize.query(
             "select tu.team_id  from  x_team_user tu where tu.open_id =:open_id " +
             "and user_rank =:user_rank " +
             "and tu.team_company_id =:company_id " +
             "order by tu.team_level asc ",
             {replacements: {open_id: open_id ,user_rank:FileType.UserRank.agent,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
+
+        let teams = []
+
+        for(let r of result){
+             if(teams.indexOf(r.team_id) === -1){
+                 teams.push(r.team_id)
+             }
+        }
+
 
         return teams
 

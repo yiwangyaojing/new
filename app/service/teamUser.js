@@ -263,23 +263,6 @@ class TeamUserService extends Service {
 
     }
 
-
-    // 判断直系团队
-    async JudgeLineal(company, id ,maxId ,ids) {
-
-        for(let c of company){
-            if(c.id === id){
-                if(c.parent_id === maxId ){
-                    ids.push(maxId)
-                }else{
-                    if(c.level !==0 ){
-                        await this.JudgeLineal(company,c.parent_id,maxId,ids) // 递归
-                    }
-                }
-            }
-        }
-    }
-
     /**
      * 根据用户获取 用户团队信息team_
      */

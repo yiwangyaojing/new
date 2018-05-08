@@ -23,21 +23,6 @@ class UserController extends Controller {
 
   }
 
-  // DEL /api/user
-  async destroy() {
-    this.ctx.body = 'hi, destroy';
-  }
-
-  // PUT /api/user
-  async update() {
-    this.ctx.body = 'hi, update';
-  }
-
-  // GET /api/user
-  async index() {
-    this.ctx.body = 'hi, index';
-  }
-
   // GET /api/user/:id
   async show() {
     // URL参数参数校验

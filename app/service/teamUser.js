@@ -478,13 +478,16 @@ class TeamUserService extends Service {
     }
     // 通过转发邀请用户
     async join(params) {
+
+        let resp = null;
+
         // 校验该成员是否已经加入团队
         const users = await this.ctx.model.XTeamUser.findAll({
           where: {
             open_id: params.open_id
           }
         })
-        if (users && users.length > 0) {
+        if (users || users.length > 0) {
           throw new Error('对不起，您已经加入团队，不得重复加入！')
           return
         }
@@ -492,10 +495,24 @@ class TeamUserService extends Service {
         // 获取团队
         let team = await this.ctx.model.XTeam.findOne({where: {id: params.team_id}})
 
+        if(!team){
+            throw new Error('团队不存在！')
+            return
+        }
+
+        const cfg = this.config.sequelize;
+        cfg.logging = false;
+        const sequelize = new Sequelize(cfg);
+
         // 获取公司
         let company = await this.ctx.model.XTeam.findOne({
             where: {id: params.company_id}
         })
+
+        if(!company){
+            throw new Error('公司不存在！')
+            return
+        }
 
         // 添加用户团队
         const addTeam = {
@@ -508,7 +525,7 @@ class TeamUserService extends Service {
             team_company_id:team.company_id,
 
         }
-        await this.ctx.model.XTeamUser.create(addTeam)
+        // await this.ctx.model.XTeamUser.create(addTeam)
 
         const updateParams = {
             phone: params.register_phone,
@@ -519,8 +536,17 @@ class TeamUserService extends Service {
             company_logo: company.logo
         }
 
-        // 修改用户信息
-        return await this.ctx.service.user.updateParams(updateParams, params.open_id)
+        await sequelize.transaction(function (t) {
+            return this.ctx.model.XTeamUser.create(addTeam,{transaction: t}).then(function (result){
+                if(result){
+                    resp =  this.ctx.service.user.updateParams(updateParams, params.open_id)
+                }
+            })
+        })
+        if(!resp){
+            throw new Error('团队加入失败！')
+        }
+        return resp
     }
     
     // 通过团队的总 id 和等级获取下限所有的业务员签到信息
@@ -656,6 +682,7 @@ class TeamUserService extends Service {
 
 
 
+
     // 根据用户id获取所有管理的团队信息
     async findManagerTeams(company_id,open_id){
 
@@ -677,17 +704,31 @@ class TeamUserService extends Service {
             "and tu.team_company_id =:company_id ",
             {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})*/
         
-        const teamUsers = await sequelize.query(
-            "select tu.* ,tu.team_level as max_level  from  x_team_user tu where tu.open_id =:open_id " +
-            "and tu.team_level = (select MIN(tu1.team_level) from x_team_user tu1 where tu1.open_id = :open_id and tu1.user_rank =:user_rank  and tu1.team_company_id =:company_id ) " +
+        let teamUsers = await sequelize.query(
+            "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
             "and user_rank =:user_rank " +
-            "and tu.team_company_id =:company_id ",
+            "and tu.team_company_id =:company_id " +
+            "order by tu.team_level asc ",
             {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
 
         // 获取公司所有团队
         const company = await  ctx.model.XTeam.findAll({where:{company_id:company_id}})
 
-        // 获取最高等级
+        for(let index in teamUsers){
+            if(index === 0){
+                result.maxLevel = teamUsers[index].max_level
+            }
+            let team ={
+                id:teamUsers[index].team_id,
+                level:teamUsers[index].team_level,
+            }
+            //递归过去所有的团队
+            managerTeamIds.push(teamUsers[index].team_id)
+            await  this.service.team.linealTeamArray(company,team,managerTeamIds,'child',teamUsers,index);
+
+        }
+
+       /* // 获取最高等级
         for(let i =0;i<teamUsers.length;i++){
             let teamUser = teamUsers[i]
             if(i === 0){
@@ -700,7 +741,7 @@ class TeamUserService extends Service {
             managerTeamIds.push(teamUser.team_id)
             //递归过去所有的团队
             await  this.service.team.linealTeam(company,team,managerTeamIds,'child');
-        }
+        }*/
         console.log('-----------------------------》managerTeamIds',managerTeamIds)
 
         result.managerTeamIds = managerTeamIds

@@ -33,6 +33,9 @@ class UserService extends Service {
         if (!result) {
             result = await this.ctx.model.XUsers.create(createUser)
         } else {
+            if(!result.source_scene && user.source_scene){
+                updateUser.source_scene = user.source_scene
+            }
             await this.ctx.model.XUsers.update(updateUser, {where: {openid: user.openid}});
         }
 

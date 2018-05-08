@@ -39,7 +39,7 @@ class OverDueService extends Service {
             if(user.company_id){
                 const teams = await  this.ctx.model.XTeamUser.findAll({where:{open_id:req.open_id}})
                 for(let team of teams){
-                    if(teamIds.indexOf(team.id)!==-1){
+                    if(teamIds.indexOf(team.id) ===-1){
                         teamIds.push(team.id)
                     }
                 }

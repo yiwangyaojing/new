@@ -351,8 +351,11 @@ class UserService extends Service {
 
         console.log('输出底层是否是管理员的公司信息,如果有输出,证明底层是管理员,如果没有,则不是')
         console.log(more)
-        if( more.length === 1 || more.length === 0 ){
+        if( more.length === 1){
             return more[0]
+        }
+        if( more.length === 0){
+            return []
         }
         if( more.length > 1 ){
             function compare(property){

@@ -6,6 +6,7 @@ class Plans extends Controller {
 
     // 分页查询
     async findByPage() {
+        console.log('分页查询')
         const {ctx, service} = this
         let params = ctx.params
         let req = ctx.request.body

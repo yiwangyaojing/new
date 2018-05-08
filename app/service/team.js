@@ -259,6 +259,39 @@ class TeamService extends Service {
 
     }
 
+    // 获取数组团队列表
+    async linealTeamArray(company, team, linIds, type,array,index) {
+
+        if (type === 'child') {
+            if (team.level === 3) return;
+            for (let c of company) {
+                if (c.level > team.level) {
+                    if (c.parent_id == team.id) {
+                        if(array[index] === c.id){
+                            delete array[index]   // 删除数组元素
+                        }
+                        linIds.push(c.id)
+                        await this.linealTeam(company, c, linIds, 'child')
+                    }
+                }
+            }
+        } else if (type === 'parents') {
+            if (team.level === 0) return;
+            for (let c of company) {
+                if (c.level < team.level) {
+                    if (c.id == team.parent_id) {
+                        if(array[index] === c.id){
+                            delete array[index]   // 删除数组元素
+                        }
+                        linIds.push(c.id)
+                        await this.linealTeam(company, c, linIds, 'parents')
+                    }
+                }
+            }
+        }
+
+    }
+
     async disband(team) {
 
         const ctx = this.ctx;

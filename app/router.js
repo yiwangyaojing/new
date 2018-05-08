@@ -8,9 +8,6 @@ module.exports = app => {
     router.get('/', controller.home.index);
     // 用户相关rest服务
     router.post('/api/user', controller.user.create);
-    router.del('/api/user/:id', controller.user.destroy);
-    router.put('/api/user', controller.user.update);
-    router.get('/api/user', controller.user.index);
     router.get('/api/user/:id', controller.user.show);
 
     router.post('/api/user/getTeam', controller.user.getTeam); // 用户获取当前的公司团队

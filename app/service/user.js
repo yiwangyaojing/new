@@ -33,6 +33,9 @@ class UserService extends Service {
         if (!result) {
             result = await this.ctx.model.XUsers.create(createUser)
         } else {
+            if(!result.source_scene && user.source_scene){
+                updateUser.source_scene = user.source_scene
+            }
             await this.ctx.model.XUsers.update(updateUser, {where: {openid: user.openid}});
         }
 
@@ -163,12 +166,27 @@ class UserService extends Service {
               openid: openId
           }
         })
+
+        if(!user) throw new Error('获取用户信息失败！')
+
+        let teamIds = []
+
+        // 获取个人所在团队
+        if(user.company_id){
+            const teams = await  this.ctx.model.XTeamUser.findAll({where:{open_id:openId}})
+            for(let team of teams){
+                if(teamIds.indexOf(team.id)!==-1){
+                    teamIds.push(team.id)
+                }
+            }
+        }
+
         const team = await this.ctx.model.XPlans.findAll({
           where: {
               [Op.or]:[
                   {
                    open_id: openId,
-                   company_id: user.company_id
+                   team_id:teamIds,
                   },{
                    open_id: openId,
                    company_id: null

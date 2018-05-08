@@ -23,6 +23,10 @@ module.exports = app => {
             type: DataTypes.STRING(255),
             allowNull: true
         },
+        source_scene: {
+            type: DataTypes.STRING(255),
+            allowNull: true
+        },
         inviter_openid: {
             type: DataTypes.STRING(63),
             allowNull: true

@@ -481,8 +481,10 @@ class TeamUserService extends Service {
 
         let resp = null;
 
+        const ctx = this.ctx
+
         // 校验该成员是否已经加入团队
-        const user = await this.ctx.model.XUsers.findOne({
+        const user = await ctx.model.XUsers.findOne({
           where: {
             openid: params.open_id
           }
@@ -492,7 +494,7 @@ class TeamUserService extends Service {
         }
 
         // 获取团队
-        let team = await this.ctx.model.XTeam.findOne({where: {id: params.team_id}})
+        let team = await ctx.model.XTeam.findOne({where: {id: params.team_id}})
 
         if(!team){
             throw new Error('团队不存在！')
@@ -535,9 +537,9 @@ class TeamUserService extends Service {
         }
 
         await sequelize.transaction(function (t) {
-            return this.ctx.model.XTeamUser.create(addTeam,{transaction: t}).then(function (result){
+            return  ctx.model.XTeamUser.create(addTeam,{transaction: t}).then(function (result){
                 if(result){
-                    resp =  this.ctx.service.user.updateParams(updateParams, params.open_id)
+                    resp =  ctx.service.user.updateParams(updateParams, params.open_id)
                 }
             })
         })
@@ -740,7 +742,7 @@ class TeamUserService extends Service {
             //递归过去所有的团队
             await  this.service.team.linealTeam(company,team,managerTeamIds,'child');
         }*/
-        console.log('-----------------------------》managerTeamIds',managerTeamIds)
+        console.log('-----------------------------》managerTeamIds',result)
 
         result.managerTeamIds = managerTeamIds
 

@@ -556,6 +556,7 @@ class TeamUserService extends Service {
 
 
         let data_sign = await this.findManagerTeams(info.teamId,info.openId)
+        console.log(data_sign)
         // 这是所有已经签到的人的信息;
         let data = []
         for( let m = 0 ; m < data_sign.managerTeamIds.length ; m++ ){

@@ -38,7 +38,7 @@
     "dev": "egg-bin dev",
     "yk": "EGG_SERVER_ENV=yk npm run lint -- --fix && egg-bin dev",
     "debug": "egg-bin debug",
-    "test": "npm run lint -- --fix && npm run test-local",
+    "test": "npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint . --fix",

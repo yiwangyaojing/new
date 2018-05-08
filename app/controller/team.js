@@ -1,8 +1,6 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const SMSClient = require('@alicloud/sms-sdk');
-
 
 class TeamController extends Controller {
 
@@ -11,60 +9,16 @@ class TeamController extends Controller {
      */
     async sms() {
 
-        const {ctx, config, app} = this
+        const {ctx, service} = this
         const rule = {
             register_phone: {type: 'string', required: true},
             open_id: {type: 'string', required: true},
+            template_code: {type: 'string', required: true},
         };
 
-        const req = ctx.params
+        const req = ctx.request.body
         ctx.validate(rule, req);
-
-        // 获取当天的redis序列
-        const redisKey = req.open_id + 'validateCode';
-
-
-        // 生成5位随机数
-        let num = '';
-        for (let i = 0; i < 4; i++) {
-            num += Math.floor(Math.random() * 10);
-        }
-
-        console.log("validate_code:", num)
-
-        // ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
-        const accessKeyId = config.sms.client.accessKeyId
-        const secretAccessKey = config.sms.client.accessKeySecret
-        const signName = config.sms.client.signName
-        const templateCode = config.sms.client.templateCode
-        const param = config.sms.client.param
-
-        //初始化sms_client
-        let smsClient = new SMSClient({accessKeyId, secretAccessKey})
-        //发送短信
-        await smsClient.sendSMS({
-            PhoneNumbers: req.register_phone,
-            SignName: signName,
-            TemplateCode: templateCode,
-            TemplateParam: '{"' + param + '":"' + num + '"}'
-        }).then(function (res) {
-            let {Code} = res
-            if (Code === 'OK') {
-                // 处理返回参数 保存随机数值redis中  失效时间10分钟
-                app.redis.set(redisKey, num, 'EX', 60 * 10);
-                ctx.body = {message: '验证码发送成功！'}
-            }
-        }, function (err) {
-            ctx.body = {message: '验证码发送失败 ！'}
-            console.log(err)
-        })
-
-        await app.redis.set(redisKey, num, 'EX', 60 * 10);
-        console.log("验证码发送成功！ ---------" + req.phone + "-------------->>>", num)
-        ctx.body = {
-            code: num
-        }
-
+        ctx.body = await service.sms.sendValidateCode(req.open_id, req.register_phone, req.template_code);
     }
 
     /**
@@ -87,15 +41,13 @@ class TeamController extends Controller {
 
         ctx.validate(rule, req)
 
-        // 验证码校验
-        const redisKey = req.open_id + 'validateCode'
-        const num = await this.app.redis.get(redisKey)
-        if (!num) {
-            throw new Error('验证码已失效!')
-        } else {
-            if (num !== ctx.request.body.validateCode) {
-                throw new Error('验证码不匹配!')
+        try{
+            //验证码校验
+            if (!await service.sms.doValidate(req.open_id, req.validateCode)) {
+                return;
             }
+        }catch(e){
+            throw e;
         }
         const result = await service.team.companyCreate(req);
 
@@ -140,15 +92,13 @@ class TeamController extends Controller {
             logo: {type: 'string', required: true}, // logo地址
         };
         ctx.validate(rule, req)
-        // 验证码校验
-        const redisKey = req.open_id + 'validateCode'
-        const num = await this.app.redis.get(redisKey)
-        if (!num) {
-            throw new Error('验证码已失效!')
-        } else {
-            if (num !== ctx.request.body.validateCode) {
-                throw new Error('验证码不匹配!')
+        try{
+            //验证码校验
+            if (!await service.sms.doValidate(req.phone, req.validateCode)) {
+                return;
             }
+        }catch(e){
+            throw e;
         }
         // 修改公司团队信息
         const result = await  service.team.update(req)

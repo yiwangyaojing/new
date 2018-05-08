@@ -23,6 +23,14 @@ module.exports = app => {
             type: DataTypes.STRING(255),
             allowNull: true
         },
+        inviter_openid: {
+            type: DataTypes.STRING(63),
+            allowNull: true
+        },
+        inviter_name: {
+            type: DataTypes.STRING(255),
+            allowNull: true
+        },
         gender: {
             type: DataTypes.INTEGER(1),
             allowNull: true

@@ -17,6 +17,14 @@ class UserService extends Service {
         let result;
 
         let createUser = Object.assign({}, user)
+        let updateUser = {
+            nickName:user.nickName,
+            gender:user.gender,
+            province:user.province,
+            city:user.city,
+            avatarUrl:user.avatarUrl,
+            login_infor:user.login_infor
+        }
 
         createUser.name = user.nickName
 
@@ -25,7 +33,7 @@ class UserService extends Service {
         if (!result) {
             result = await this.ctx.model.XUsers.create(createUser)
         } else {
-            await this.ctx.model.XUsers.update(user, {where: {openid: user.openid}});
+            await this.ctx.model.XUsers.update(updateUser, {where: {openid: user.openid}});
         }
 
         // await this.ctx.model.XUsers.findOrCreate({
@@ -146,6 +154,40 @@ class UserService extends Service {
         return arr
     }
 
+    async getUserProjects(openId) {
+
+        const Op = Sequelize.Op
+
+        const user = await this.ctx.model.XUsers.findOne({
+          where: {
+              openid: openId
+          }
+        })
+        const team = await this.ctx.model.XPlans.findAll({
+          where: {
+              [Op.or]:[
+                  {
+                   open_id: openId,
+                   company_id: user.company_id
+                  },{
+                   open_id: openId,
+                   company_id: null
+                  },
+              ]
+
+          }
+        });
+        if (!team) {
+            return false;
+        }
+        // 所有未排序的业务项目
+        let arr = [];
+        for (var i = 0; i < team.length; i++) {
+            arr.push(team[i])
+        }
+        return arr
+    }
+
     // 业务员的 openid,在这里进行排序;
     async getProjectInfo(openId, type) {
         moment().format();
@@ -188,7 +230,7 @@ class UserService extends Service {
 
         var data;
         if (type == 'one') {
-            data = await this.getAllProject(openId);
+            data = await this.getUserProjects(openId);
 
         } else {
             data = type;
@@ -302,13 +344,15 @@ class UserService extends Service {
         let data = await this.ctx.model.XTeamUser.findAll({where: {open_id: openId.openId}});
         let more = [];
         for( let i = 0 ; i < data.length ; i ++ ){
-            console.log(data[i].dataValues);
             if( data[i].dataValues.user_rank === 1 ){
                 more.push(data[i].dataValues)
             }
         }
+
+        console.log('输出底层是否是管理员的公司信息,如果有输出,证明底层是管理员,如果没有,则不是')
+        console.log(more)
         if( more.length === 1 || more.length === 0 ){
-            return more
+            return more[0]
         }
         if( more.length > 1 ){
             function compare(property){

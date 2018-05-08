@@ -33,12 +33,23 @@ class OverDueService extends Service {
                   openid: req.open_id
               }
             })
+            let teamIds = []
+
+            // 获取个人所在团队
+            if(user.company_id){
+                const teams = await  this.ctx.model.XTeamUser.findAll({where:{open_id:req.open_id}})
+                for(let team of teams){
+                    if(teamIds.indexOf(team.id)!==-1){
+                        teamIds.push(team.id)
+                    }
+                }
+            }
             result = await ctx.model.XPlans.findAll(
                 {
                     attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price'],
                     where: {
                         [Op.or]:[
-                            {open_id: req.open_id, company_id: user.company_id},
+                            {open_id: req.open_id, team_id:teamIds},
                             {open_id: req.open_id, company_id: null},
                         ],
                         overdue_date: {[Op.lte]: dateNow},

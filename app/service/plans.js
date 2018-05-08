@@ -113,8 +113,11 @@ class PlansService extends Service {
 
         }else {
             Queryparams = {
-                open_id: params.openId,
-                company_id: null,
+                [Op.and]:[{
+                  open_id: params.openId,
+                },{
+                  company_id: null,
+                }],
                 [Op.or]: [{
                     cst_name: {
                         [Op.like]: search,
@@ -197,7 +200,10 @@ class PlansService extends Service {
                     }
                 });
                 // 将示例客户添加到其他客户最前
-                pageList.unshift(sampleClient);
+                if(sampleClient){
+
+                    pageList.unshift(sampleClient);
+                }
             }
         }
         // sampleClient end

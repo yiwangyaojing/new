@@ -481,23 +481,23 @@ class TeamUserService extends Service {
 
         let resp = null;
 
-        const ctx = this.ctx
-
         // 校验该成员是否已经加入团队
-        const user = await ctx.model.XUsers.findOne({
+        const users = await this.ctx.model.XTeamUser.findAll({
           where: {
-            openid: params.open_id
+            open_id: params.open_id
           }
         })
-        if (user && user.company_id) {
+        if (users || users.length > 0) {
           throw new Error('对不起，您已经加入团队，不得重复加入！')
+          return
         }
 
         // 获取团队
-        let team = await ctx.model.XTeam.findOne({where: {id: params.team_id}})
+        let team = await this.ctx.model.XTeam.findOne({where: {id: params.team_id}})
 
         if(!team){
             throw new Error('团队不存在！')
+            return
         }
 
         const cfg = this.config.sequelize;
@@ -537,9 +537,9 @@ class TeamUserService extends Service {
         }
 
         await sequelize.transaction(function (t) {
-            return  ctx.model.XTeamUser.create(addTeam,{transaction: t}).then(function (result){
+            return this.ctx.model.XTeamUser.create(addTeam,{transaction: t}).then(function (result){
                 if(result){
-                    resp =  ctx.service.user.updateParams(updateParams, params.open_id)
+                    resp =  this.ctx.service.user.updateParams(updateParams, params.open_id)
                 }
             })
         })
@@ -548,7 +548,7 @@ class TeamUserService extends Service {
         }
         return resp
     }
-    
+
     // 通过团队的总 id 和等级获取下限所有的业务员签到信息
     async teamGetSign(info){
         let all = {};
@@ -628,7 +628,7 @@ class TeamUserService extends Service {
             //     }
             // }
 
-            // 
+            //
         }
         all['已签到'] = obj_signNum
 
@@ -703,7 +703,7 @@ class TeamUserService extends Service {
             "and user_rank=:user_rank " +
             "and tu.team_company_id =:company_id ",
             {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})*/
-        
+
         let teamUsers = await sequelize.query(
             "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
             "and user_rank =:user_rank " +
@@ -716,7 +716,7 @@ class TeamUserService extends Service {
 
         for(let index in teamUsers){
             if(index === 0){
-                result.maxLevel = teamUsers[index].team_level
+                result.maxLevel = teamUsers[index].max_level
             }
             let team ={
                 id:teamUsers[index].team_id,
@@ -742,7 +742,7 @@ class TeamUserService extends Service {
             //递归过去所有的团队
             await  this.service.team.linealTeam(company,team,managerTeamIds,'child');
         }*/
-        console.log('-----------------------------》managerTeamIds',result)
+        console.log('-----------------------------》managerTeamIds',managerTeamIds)
 
         result.managerTeamIds = managerTeamIds
 

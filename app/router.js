@@ -36,6 +36,7 @@ module.exports = app => {
     router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);
     router.put('/api/plans', controller.plans.update);
     router.del('/api/plans/:id', controller.plans.destroy);
+    router.put('/api/plans/sampleClient/:id', controller.plans.updateSampleClient);
 
     // 方案进度
     router.post('/api/planSchedule', controller.planSchedule.create);

@@ -76,6 +76,16 @@ class Plans extends Controller {
         this.ctx.body = await this.ctx.service.plans.create(this.ctx.request.body);
     }
 
+    // 用户删除示例客户 start
+    async updateSampleClient() {
+        const rule = {
+            id: { type: 'string', required: true },
+        };
+        this.ctx.validate(rule, { id: this.ctx.params.id });
+        this.ctx.body = await this.ctx.service.plans.updateSampleClient(this.ctx.params.id);
+    }
+    // 用户删除示例客户 end
+
     // 删除客户信息
     async destroy() {
         const rule = {

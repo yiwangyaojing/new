@@ -24,8 +24,6 @@ class CalculatorService extends Service {
       resp.bt_province_year = TblCityPrice.bt_province_year;
       resp.sunlight_hour = TblCityPrice.sunlight_hour;
     }
-
-
     return resp;
   }
 
@@ -121,12 +119,12 @@ class CalculatorService extends Service {
     }
 
     let provinceBt = 0;
-    if (request.bt_country_year >= 1) {
+    if (request.bt_province_year >= 1) {
       provinceBt = result.nfdl * request.bt_province; // 省补贴 = 年度电量 * 补贴金额
     }
 
     let cityBt = 0;
-    if (request.bt_country_year >= 1) {
+    if (request.bt_city_year >= 1) {
       cityBt = result.nfdl * request.bt_city; // 地区补贴 = 年度电量 * 补贴金额
     }
     result.bt = countryBt + provinceBt + cityBt;
@@ -200,7 +198,7 @@ class CalculatorService extends Service {
         provinceBt = matrix.year_total * request.bt_province; // 省补贴 = 年度电量 * 补贴金额
       }
       let cityBt = 0;
-      if (request.bt_country_year >= i) {
+      if (request.bt_city_year >= i) {
         cityBt = matrix.year_total * request.bt_city; // 地区补贴 = 年度电量 * 补贴金额
       }
       matrix.bt_country = countryBt;
@@ -239,7 +237,9 @@ class CalculatorService extends Service {
     result.bt_total = Math.round(result.bt_total);
     result.y25_profit = Math.round(y25_profit);
     result.total_profit = Math.round(matrixList[24].user_sum_profit); // 25年净收益
-
+    if (result.bt) {
+      result.bt = Math.round(result.bt)
+    }
     result.y25_list = JSON.stringify(y25List);
 
     // 保存request
@@ -274,6 +274,35 @@ class CalculatorService extends Service {
 
     return result;
 
+  }
+
+  // 加法
+  async add(a, b, precise = 2, beforeRound = true) {
+    if (beforeRound) {
+      a = Math.round(a * Math.pow(10, precise)) / Math.pow(10, precise)
+      b = Math.round(b * Math.pow(10, precise)) / Math.pow(10, precise)
+    }
+    return (a * Math.pow(10, precise) + b * Math.pow(10, precise)) / Math.pow(10, precise)
+  }
+
+  // 减法
+  async subtract(a, b, precise = 2, beforeRound = true) {
+    if (beforeRound) {
+      a = Math.round(a * Math.pow(10, precise)) / Math.pow(10, precise)
+      b = Math.round(b * Math.pow(10, precise)) / Math.pow(10, precise)
+    }
+    return (a * Math.pow(10, precise) - b * Math.pow(10, precise)) / Math.pow(10, precise)
+  }
+
+  // 乘法
+  async multiply(a, b, precise = 2, beforeRound = false) {
+    if (beforeRound) {
+      a = Math.round(a * Math.pow(10, precise)) / Math.pow(10, precise)
+      b = Math.round(b * Math.pow(10, precise)) / Math.pow(10, precise)
+      return (a * Math.pow(10, precise) * b * Math.pow(10, precise)) / Math.pow(10, precise * 2)
+    } else {
+
+    }
   }
 }
 

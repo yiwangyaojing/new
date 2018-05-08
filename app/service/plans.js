@@ -113,8 +113,11 @@ class PlansService extends Service {
 
         }else {
             Queryparams = {
-                open_id: params.openId,
-                company_id: null,
+                [Op.and]:[{
+                  open_id: params.openId,
+                },{
+                  company_id: null,
+                }],
                 [Op.or]: [{
                     cst_name: {
                         [Op.like]: search,

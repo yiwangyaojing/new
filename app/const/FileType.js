@@ -65,5 +65,5 @@ module.exports = {
         '累计': '累计'
     },
     // 示例客户的数据库id，需要手动先新建一个数据完整的用户，然后更改此处的值
-    sampleClientId: 263,
+    sampleClientId: 284,
 };

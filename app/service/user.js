@@ -175,8 +175,8 @@ class UserService extends Service {
         if(user.company_id){
             const teams = await  this.ctx.model.XTeamUser.findAll({where:{open_id:openId}})
             for(let team of teams){
-                if(teamIds.indexOf(team.id) === -1){
-                    teamIds.push(team.id)
+                if(teamIds.indexOf(team.team_id) === -1){
+                    teamIds.push(team.team_id)
                 }
             }
         }

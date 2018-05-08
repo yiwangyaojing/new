@@ -536,7 +536,7 @@ class TeamUserService extends Service {
         await sequelize.transaction(function (t) {
             return  ctx.model.XTeamUser.create(addTeam,{transaction: t}).then(function (result){
                 if(result){
-                     return ctx.model.XUsers.update(updateParams, {where: {openid: open_id}},{transaction: t}).then(function(result1){
+                     return ctx.model.XUsers.update(updateParams, {where: {openid:params.open_id}},{transaction: t}).then(function(result1){
                          resp = result1
                      })
                 }

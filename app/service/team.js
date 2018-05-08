@@ -85,6 +85,10 @@ class TeamService extends Service {
 
         const ctx = this.ctx;
 
+
+        // 获取公司信息
+        const company = await ctx.model.XTeam.findOne({where:{id:req.company_id}})
+
         // 保存的team信息
         const team = {
             open_id: req.open_id,
@@ -92,8 +96,13 @@ class TeamService extends Service {
             level: req.level,
             parent_id: req.parent_id,
             company_id: req.company_id,
-            company_name: req.company_name,
+            company_name:company.name
         };
+
+        // 判断权限
+        if (!await this.validatePower(team, req.open_id)) {
+            throw new Error('权限不足');
+        }
 
         const cfg = this.config.sequelize;
         cfg.logging = false;
@@ -114,7 +123,9 @@ class TeamService extends Service {
                         agent.team_company_id = result.company_id;
                         ctx.model.XUsers.update({
                             company_id: req.company_id,
-                            company_name: req.company_name
+                            company_name: company.name,
+                            company_logo :company.logo,
+                            company_founder:company.open_id
                         }, {where: {openid: agent.open_id}});
                     }
                     return ctx.model.XTeamUser.bulkCreate(agents, {transaction: t});
@@ -144,7 +155,7 @@ class TeamService extends Service {
             throw new Error('权限不足');
         }
         // 清空oss文件
-        if (team.level === FileType.TeamLevel.company && req.logo !== team.logo) {
+        if (team.level === FileType.TeamLevel.company && req.logo !== team.logo && team.oss_name) {
             await ctx.oss.delete(team.oss_name);
         }
         req.company_name = req.name
@@ -203,7 +214,7 @@ class TeamService extends Service {
                 where: {open_id, user_rank: FileType.UserRank.admin},
                 order: [['team_level', 'ASC']]
             });
-            if (!teamUser || teamUser.team_level > teamLevel) {
+            if (!teamUser || teamUser.team_level >= teamLevel) {
                 return false;
             }
             // 根据团队id 和 openId  和用户等级 查询上级团队用户
@@ -230,7 +241,7 @@ class TeamService extends Service {
                 if (c.level > team.level) {
                     if (c.parent_id == team.id) {
                         linIds.push(c.id)
-                        this.linealTeam(company, c, linIds, 'child')
+                        await this.linealTeam(company, c, linIds, 'child')
                     }
                 }
             }
@@ -240,7 +251,40 @@ class TeamService extends Service {
                 if (c.level < team.level) {
                     if (c.id == team.parent_id) {
                         linIds.push(c.id)
-                        this.linealTeam(company, c, linIds, 'parents')
+                        await this.linealTeam(company, c, linIds, 'parents')
+                    }
+                }
+            }
+        }
+
+    }
+
+    // 获取数组团队列表
+    async linealTeamArray(company, team, linIds, type,array,index) {
+
+        if (type === 'child') {
+            if (team.level === 3) return;
+            for (let c of company) {
+                if (c.level > team.level) {
+                    if (c.parent_id == team.id) {
+                        if(array[index] === c.id){
+                            delete array[index]   // 删除数组元素
+                        }
+                        linIds.push(c.id)
+                        await this.linealTeam(company, c, linIds, 'child')
+                    }
+                }
+            }
+        } else if (type === 'parents') {
+            if (team.level === 0) return;
+            for (let c of company) {
+                if (c.level < team.level) {
+                    if (c.id == team.parent_id) {
+                        if(array[index] === c.id){
+                            delete array[index]   // 删除数组元素
+                        }
+                        linIds.push(c.id)
+                        await this.linealTeam(company, c, linIds, 'parents')
                     }
                 }
             }

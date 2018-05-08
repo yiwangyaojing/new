@@ -23,21 +23,6 @@ class UserController extends Controller {
 
   }
 
-  // DEL /api/user
-  async destroy() {
-    this.ctx.body = 'hi, destroy';
-  }
-
-  // PUT /api/user
-  async update() {
-    this.ctx.body = 'hi, update';
-  }
-
-  // GET /api/user
-  async index() {
-    this.ctx.body = 'hi, index';
-  }
-
   // GET /api/user/:id
   async show() {
     // URL参数参数校验
@@ -69,10 +54,14 @@ class UserController extends Controller {
     const body = ctx.request.body;
     let openId = body.openId;
     const userInfo = await this.ctx.service.user.findByOpenId(openId);
+    if(!userInfo){
+        ctx.body =  {} ;
+        return;
+    }
     let company_id = userInfo.maxTeamId;
     console.log('通过公司 id, 开始获取公司信息');
-    if( !company_id ){
-      ctx.body =  null ;
+    if( !userInfo.company_id || !company_id ){
+      ctx.body =  {} ;
       return;
     }
     const team = await service.user.findTeamByOpenId(company_id);
@@ -94,6 +83,23 @@ class UserController extends Controller {
     let ProjectInfo = await service.user.getProjectInfo(openId,'one');
     // console.log(ProjectInfo)
     ctx.body = {ProjectInfo};
+  }
+  // 获取业务员的签到信息
+  async getSign(){
+    const { ctx, service } = this;
+    let body = ctx.request.body;
+    let signInfo = await service.user.oneUserGetSign(body);
+    console.log(body);
+    console.log(signInfo)
+    ctx.body = signInfo
+  }
+  // 检测该用户底层是否是管理员
+  async isRank(){
+    const { ctx, service } = this;
+    let body = ctx.request.body;
+    console.log(body)
+    let teamInfo = await service.user.isRank(body);
+    ctx.body = teamInfo
   }
 }
 

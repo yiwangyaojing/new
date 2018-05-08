@@ -8,15 +8,13 @@ module.exports = app => {
     router.get('/', controller.home.index);
     // 用户相关rest服务
     router.post('/api/user', controller.user.create);
-    router.del('/api/user/:id', controller.user.destroy);
-    router.put('/api/user', controller.user.update);
-    router.get('/api/user', controller.user.index);
     router.get('/api/user/:id', controller.user.show);
 
     router.post('/api/user/getTeam', controller.user.getTeam); // 用户获取当前的公司团队
     router.post('/api/user/getMinTeam', controller.user.getMinTeam); // 获取子公司
     router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 获取业务员的项目信息
-
+    router.post('/api/user/getSign',controller.user.getSign); //获取业务员的签到信息
+    router.post('/api/user/isRank',controller.user.isRank);//判断底层是否是管理员
 
     // 文件上传rest服务
     router.get('/api/file', controller.file.index);
@@ -38,6 +36,7 @@ module.exports = app => {
     router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);
     router.put('/api/plans', controller.plans.update);
     router.del('/api/plans/:id', controller.plans.destroy);
+    router.put('/api/plans/sampleClient/:id', controller.plans.updateSampleClient);
 
     // 方案进度
     router.post('/api/planSchedule', controller.planSchedule.create);
@@ -65,7 +64,7 @@ module.exports = app => {
     router.post('/api/feedback', controller.feedback.create);
 
     // 团队
-    router.get('/api/team/sms/:open_id/:register_phone', controller.team.sms);
+    router.post('/api/team/sms', controller.team.sms);
     router.get('/api/team/user/:open_id', controller.team.getUserTeam);
     router.get('/api/team/:id/:open_id', controller.team.index);
     router.post('/api/team/company', controller.team.companyCreate);
@@ -73,7 +72,6 @@ module.exports = app => {
     router.post('/api/team', controller.team.create);
     router.put('/api/team', controller.team.update);
     router.del('/api/team/:id/:open_id', controller.team.destroy);
-
     // 团队成员
     router.get('/api/teamUser/:teamId', controller.teamUser.index);
     router.put('/api/teamUser', controller.teamUser.updateRule);
@@ -90,6 +88,7 @@ module.exports = app => {
     router.del('/api/teamUser/user', controller.teamUser.delUser);
     router.get('/api/teamUser/friend/:company_id', controller.teamUser.friendList);
     router.get('/api/teamUser/company/:company_id', controller.teamUser.companyUsers);
+    router.post('/api/teamUser/getSign',controller.teamUser.teamGetSign); // 获取团队内的所有人的签到信息
 
     // 概况
     router.get('/api/teamUser/admin/:open_id/:company_id', controller.teamUser.getAdminTeams);
@@ -100,5 +99,12 @@ module.exports = app => {
 
     // 计算排板子规则计算
     router.post('/api/roof', controller.roof.index);
+
+    // PC端登录
+    router.post('/api/login/sms', controller.login.sms);
+    router.post('/api/login', controller.login.userLogin);
+
+    // 签到
+    router.post('/api/sign/sign',controller.sign.signs);
 
 };

@@ -17,13 +17,21 @@ module.exports = appInfo => {
         },
     };
 
+    // config.sequelize = {
+    //     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    //     database: 'xiaosolar_development',
+    //     host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+    //     port: '3306',
+    //     username: 'xiaosolar_dev_user',
+    //     password: 'aiy1ohqu0Yopheet',
+    // };
     config.sequelize = {
-        dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-        database: 'xiaosolar_development',
-        host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
-        port: '3306',
-        username: 'xiaosolar_dev_user',
-        password: 'aiy1ohqu0Yopheet',
+      dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+      database: 'xiaosolar_test',
+      host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+      port: '3306',
+      username: 'xiaosolar_test_user',
+      password: 'ooMoo8wun0etaaso',
     };
     config.security = {
         csrf: {
@@ -58,11 +66,22 @@ module.exports = appInfo => {
         secret: 'cf5450752f7639a753f57acaa796da7d',
         openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
     };
-    // yk本地开发
-    /* config.wechat = {
-       appId: 'wx0c878877bf2012f7',
-       secret: '07bab2ddd65628a535fb529b7b02e422',
-       openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
-     };*/
+    config.onerror = {
+        html(err, ctx) {
+            // html hander
+            ctx.body =  err.message;
+            ctx.status = 500;
+            console.error(err)
+        },
+        json(err, ctx) {
+            // json hander
+            ctx.body = { message: err.message };
+            ctx.status = 500;
+        },
+        accepts(ctx) {
+            if (ctx.get('x-requested-with') === 'XMLHttpRequest') return 'json';
+            return 'html';
+        }
+    };
     return config;
 };

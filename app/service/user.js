@@ -17,6 +17,14 @@ class UserService extends Service {
         let result;
 
         let createUser = Object.assign({}, user)
+        let updateUser = {
+            nickName:user.nickName,
+            gender:user.gender,
+            province:user.province,
+            city:user.city,
+            avatarUrl:user.avatarUrl,
+            login_infor:user.login_infor
+        }
 
         createUser.name = user.nickName
 
@@ -25,7 +33,10 @@ class UserService extends Service {
         if (!result) {
             result = await this.ctx.model.XUsers.create(createUser)
         } else {
-            await this.ctx.model.XUsers.update(user, {where: {openid: user.openid}});
+            if(!result.source_scene && user.source_scene){
+                updateUser.source_scene = user.source_scene
+            }
+            await this.ctx.model.XUsers.update(updateUser, {where: {openid: user.openid}});
         }
 
         // await this.ctx.model.XUsers.findOrCreate({
@@ -49,7 +60,7 @@ class UserService extends Service {
 
         if (result && result.managerTeams) {
 
-            result.dataValues.managerTeams =result.managerTeams
+            result.dataValues.managerTeams = result.managerTeams
 
         }
         return result
@@ -69,37 +80,35 @@ class UserService extends Service {
             }
 
             // 获取所有可管理的团队Id
-            let managerTeams = []
-            const teamUser = await this.ctx.model.XTeamUser.findOne({
-                where: {
-                    open_id: open_id,
-                    team_company_id: result.company_id,
-                    user_rank: FileType.UserRank.admin
-                }, order: [['team_level', 'asc']]
-            })
-            if (teamUser) {
-                // 获取所有团队
-                const Op = Sequelize.Op;
-                managerTeams.push(teamUser.team_id)
-                user.managerTeam = teamUser.team_id
-                user.managerTeamLevel = teamUser.team_level
-                const teams = await  this.ctx.model.XTeam.findAll(
-                    {
-                        where:
-                            {
-                                company_id: result.company_id,
-                                level: {
-                                    [Op.gt]: teamUser.team_level
+            /*  let managerTeams = []
+              const teamUser = await this.ctx.model.XTeamUser.findOne({
+                  where: {
+                      open_id: open_id,
+                      team_company_id: result.company_id,
+                      user_rank: FileType.UserRank.admin
+                  }, order: [['team_level', 'asc']]
+              })*/
+            /*    if (teamUser) {
+                    // 获取所有团队
+                    // const Op = Sequelize.Op;
+                    managerTeams.push(teamUser.team_id)
+                   /!* const teams = await  this.ctx.model.XTeam.findAll(
+                        {
+                            where:
+                                {
+                                    company_id: result.company_id,
+                                    level: {
+                                        [Op.gt]: teamUser.team_level
+                                    }
                                 }
-                            }
-                    })
-                for (let team of teams) {
-                    if (managerTeams.indexOf(team.id) === -1) {
-                        managerTeams.push(team.id)
-                    }
-                }
-            }
-            user.managerTeams = JSON.stringify(managerTeams)
+                        })
+                    for (let team of teams) {
+                        if (managerTeams.indexOf(team.id) === -1) {
+                            managerTeams.push(team.id)
+                        }
+                    }*!/
+                }*/
+            // user.managerTeams = JSON.stringify(managerTeams)  // 无用字段
 
             await this.ctx.model.XUsers.update(user, {where: {openid: user.openid}})
         }
@@ -126,7 +135,66 @@ class UserService extends Service {
     }
 
     async getAllProject(openId) {
-        const team = await this.ctx.model.XPlans.findAll({where: {open_id: openId}});
+        const user = await this.ctx.model.XUsers.findOne({
+          where: {
+              openid: openId
+          }
+        })
+        const team = await this.ctx.model.XPlans.findAll({
+          where: {
+              open_id: openId,
+              company_id: user.company_id
+          }
+        });
+        if (!team) {
+            return false;
+        }
+        // 所有未排序的业务项目
+        let arr = [];
+        for (var i = 0; i < team.length; i++) {
+            arr.push(team[i])
+        }
+        return arr
+    }
+
+    async getUserProjects(openId) {
+
+        const Op = Sequelize.Op
+
+        const user = await this.ctx.model.XUsers.findOne({
+          where: {
+              openid: openId
+          }
+        })
+
+        if(!user) throw new Error('获取用户信息失败！')
+
+        let teamIds = []
+
+        // 获取个人所在团队
+        if(user.company_id){
+            const teams = await  this.ctx.model.XTeamUser.findAll({where:{open_id:openId}})
+            for(let team of teams){
+                if(teamIds.indexOf(team.team_id) === -1){
+                    teamIds.push(team.team_id)
+                }
+            }
+        }
+
+        const team = await this.ctx.model.XPlans.findAll({
+          where: {
+              [Op.or]:[
+                  {
+                   open_id: openId,
+                   team_id:teamIds,
+                  },{
+                   open_id: openId,
+                   company_id: null
+                  },
+              ]
+
+          }
+        });
         if (!team) {
             return false;
         }
@@ -180,7 +248,7 @@ class UserService extends Service {
 
         var data;
         if (type == 'one') {
-            data = await this.getAllProject(openId);
+            data = await this.getUserProjects(openId);
 
         } else {
             data = type;
@@ -202,15 +270,15 @@ class UserService extends Service {
                 // 总价
                 'zj_price': data[i].dataValues.zj_price,
                 // 装机容量
-                'zj_capacity': data[i].dataValues.zj_capacity,
+                'zj_capacity': data[i].dataValues.zj_input_capacity || data[i].dataValues.zj_capacity,
                 // 状态
                 'scd_status': data[i].dataValues.scd_status,
                 // 客户姓名
                 'cst_name': data[i].dataValues.cst_name,
                 // 负责人姓名
-                'duty_name': (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
+                'duty_name': '' + (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
                 // 当前项目的 id
-                'id':data[i].dataValues.id
+                'id': data[i].dataValues.id
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)
@@ -268,6 +336,64 @@ class UserService extends Service {
         ;
         let allInfo = await this.getProjectInfo('', data);
         return allInfo
+    }
+
+    // 获取单个业务员的签到信息
+    async oneUserGetSign(info){
+        let openId = info.openId;
+        let time = info.time;
+        let data = await this.ctx.model.XSign.findAll({where: {open_id: openId}});
+        let all = []
+        if( data.length > 0 ){
+            for( var i = 0 ; i < data.length ; i ++ ){
+                let date = moment(data[i].create_time).format('YYYY-MM-DD')
+                if( date === time ){
+                    let tt = moment(data[i].create_time).format('YYYY-MM-DD HH:mm')
+                    data[i].create_time = moment(moment(tt).add(8, 'h')).format('HH:mm')
+                    console.log(data[i].create_time)
+                    all.push(data[i])
+                }
+            }
+        }
+        return all
+    }
+    // 判断底层用户是否是管理员
+    async isRank(openId){
+        let data = await this.ctx.model.XTeamUser.findAll({where: {open_id: openId.openId}});
+        let more = [];
+        for( let i = 0 ; i < data.length ; i ++ ){
+            if( data[i].dataValues.user_rank === 1 ){
+                more.push(data[i].dataValues)
+            }
+        }
+
+        console.log('输出底层是否是管理员的公司信息,如果有输出,证明底层是管理员,如果没有,则不是')
+        console.log(more)
+        if( more.length === 1){
+            return more[0]
+        }
+        if( more.length === 0){
+            return []
+        }
+        if( more.length > 1 ){
+            function compare(property){
+                return function(a,b){
+                    var value1 = a[property];
+                    var value2 = b[property];
+                    return value1 - value2;
+                }
+            }
+            more.sort(compare('team_level'))
+        }
+        return more[0]
+    }
+
+    /**
+     * PC端根据电话找人
+     */
+    async findByPhone(phone) {
+        let result = await this.ctx.model.XUsers.findOne({where: {phone: phone}})
+        return result
     }
 }
 

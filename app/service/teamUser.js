@@ -482,14 +482,13 @@ class TeamUserService extends Service {
         let resp = null;
 
         // 校验该成员是否已经加入团队
-        const users = await this.ctx.model.XTeamUser.findAll({
+        const user = await this.ctx.model.XUsers.findOne({
           where: {
-            open_id: params.open_id
+            openid: params.open_id
           }
         })
-        if (users || users.length > 0) {
+        if (user && user.company_id) {
           throw new Error('对不起，您已经加入团队，不得重复加入！')
-          return
         }
 
         // 获取团队
@@ -497,7 +496,6 @@ class TeamUserService extends Service {
 
         if(!team){
             throw new Error('团队不存在！')
-            return
         }
 
         const cfg = this.config.sequelize;
@@ -716,7 +714,7 @@ class TeamUserService extends Service {
 
         for(let index in teamUsers){
             if(index === 0){
-                result.maxLevel = teamUsers[index].max_level
+                result.maxLevel = teamUsers[index].team_level
             }
             let team ={
                 id:teamUsers[index].team_id,

@@ -29,14 +29,105 @@ class PlansService extends Service {
                 openid: params.openId
             }
         })
-        // 获取所有可管理的团队
-        let managerTeams = []
 
+        let  userRank = FileType.UserRank.other // 用户角色
+        let managerTeams = []         // 团队查询参数
+
+
+        //管理员获取所有管理的团队
         if (user.company_id) {
             let result = await  this.service.teamUser.findManagerTeams(user.company_id, params.openId)
             managerTeams = result.managerTeamIds
         }
 
+        if(managerTeams && managerTeams.length > 0){
+            userRank = FileType.UserRank.admin
+            console.log('管理员：',userRank)
+        }else{
+            managerTeams  = await  this.service.teamUser.findAgentTeams(user.company_id, params.openId)
+
+            if(managerTeams && managerTeams.length > 0){
+                userRank = FileType.UserRank.admin
+                console.log('业务员：',userRank)
+            }else{
+                managerTeams = null
+                console.log('游客',userRank)
+            }
+        }
+
+        params.managerTeams = managerTeams
+
+
+        let Queryparams = {}
+        // 生成查询参数
+        if(userRank === 1){ //管理员
+            Queryparams = {
+                [Op.or]: [
+                    {
+                        team_id:managerTeams
+                    },
+
+                {
+                    open_id: params.openId,
+                    team_id:managerTeams
+                },{
+                    open_id:params.openId,
+                    company_id:null
+                }],
+                [Op.and]: {
+                    [Op.or]: [{
+                        cst_name: {
+                            [Op.like]: search,
+                        },
+                    }, {
+                        cst_address: {
+                            [Op.like]: search,
+                        },
+                    },
+                    ]
+                }
+            }
+        }else if(userRank === 2) {
+            Queryparams = {
+                [Op.or]: [
+                    {
+                        open_id: params.openId,
+                        team_id:managerTeams
+                    },{
+                        open_id: params.openId,
+                        company_id: null
+                    }],
+                [Op.and]: {
+                    [Op.or]: [{
+                        cst_name: {
+                            [Op.like]: search,
+                        },
+                    }, {
+                        cst_address: {
+                            [Op.like]: search,
+                        },
+                    },
+                    ]
+                }
+            }
+
+        }else {
+            Queryparams = {
+                open_id: params.openId,
+                company_id: null,
+                [Op.or]: [{
+                    cst_name: {
+                        [Op.like]: search,
+                    },
+                }, {
+                    cst_address: {
+                        [Op.like]: search,
+                    },
+                },
+                ]
+
+            }
+        }
         /* const teamUsers = await this.ctx.model.XTeamUser.findAll({
             attributes: ['team_id','team_company_id','team_level'],
             where: {
@@ -64,7 +155,6 @@ class PlansService extends Service {
             }
         }
 */
-        params.managerTeams = managerTeams
 
         /*   if(params.managerTeamId && params.managerTeamLevel){
                params.managerTeams = await this.ctx.model.XTeamUser.findAll({
@@ -84,31 +174,7 @@ class PlansService extends Service {
         const pageList = await this.ctx.model.XPlans.findAll({
             offset: start,
             limit: page.pageSize,
-            where: {
-                [Op.or]: [{
-                    team_id: {
-                        [Op.in]: params.managerTeams
-                    },
-                }, {
-                    open_id: params.openId,
-                    company_id:null
-                },{
-                    open_id: params.openId,
-                    company_id:user.company_id
-                }],
-                [Op.and]: {
-                    [Op.or]: [{
-                        cst_name: {
-                            [Op.like]: search,
-                        },
-                    }, {
-                        cst_address: {
-                            [Op.like]: search,
-                        },
-                    },
-                    ]
-                }
-            },
+            where: Queryparams,
             order: [['updated_at', 'desc']],
         });
 
@@ -326,26 +392,71 @@ class PlansService extends Service {
             }
         })
 
+
+        let  userRank = FileType.UserRank.other // 用户角色
+
         // 获取所有可管理的团队
         let managerTeams = []
 
+        //管理员获取所有管理的团队
         if (user.company_id) {
             let result = await  this.service.teamUser.findManagerTeams(user.company_id, openId)
             managerTeams = result.managerTeamIds
         }
+
+        if(managerTeams && managerTeams.length > 0){
+            userRank = FileType.UserRank.admin
+            console.log('管理员：',userRank)
+        }else{
+            managerTeams  = await  this.service.teamUser.findAgentTeams(user.company_id, openId)
+
+            if(managerTeams && managerTeams.length > 0){
+                userRank = FileType.UserRank.admin
+                console.log('业务员：',userRank)
+            }else{
+                managerTeams = null
+                console.log('游客',userRank)
+            }
+        }
+
+        let Queryparams = {}
+        // 生成查询参数
+        if(userRank === 1){ //管理员
+            Queryparams = {
+                [Op.or]: [
+                    {
+                        team_id:managerTeams
+                    },
+
+                    {
+                        open_id: openId,
+                        team_id:user.company_id
+                    },{
+                        open_id:openId,
+                        company_id:null
+                    }],
+            }
+        }else if(userRank === 2) {
+            Queryparams = {
+                [Op.or]: [
+                    {
+                        open_id: openId,
+                        team_id:managerTeams
+                    },{
+                        open_id: openId,
+                        company_id: null
+                    }],
+            }
+
+        }else {
+            Queryparams = {
+                open_id: openId,
+                company_id: null,
+            }
+        }
         // 根据用户的openid 和 companyid 获取所有可管理的团队
         const plans = await this.ctx.model.XPlans.findAll({
-            where: {
-                [Op.or]: [{
-                    team_id: managerTeams,
-                }, {
-                    open_id: openId,
-                    company_id:null
-                },{
-                    open_id: openId,
-                    company_id:user.company_id
-                },]
-            }
+            where: Queryparams
         });
 
 

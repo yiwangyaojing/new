@@ -167,7 +167,7 @@ class UserService extends Service {
           }
         })
 
-        if(!user) throw new Error('获取用户信息失败！')
+        if(!user) throw new Error('获取用户信息失败,open_id 错误或者是找不到用户！')
 
         let teamIds = []
 
@@ -350,7 +350,6 @@ class UserService extends Service {
                 if( date === time ){
                     let tt = moment(data[i].create_time).format('YYYY-MM-DD HH:mm')
                     data[i].create_time = moment(moment(tt).add(8, 'h')).format('HH:mm')
-                    console.log(data[i].create_time)
                     all.push(data[i])
                 }
             }
@@ -367,8 +366,8 @@ class UserService extends Service {
             }
         }
 
-        console.log('输出底层是否是管理员的公司信息,如果有输出,证明底层是管理员,如果没有,则不是')
-        console.log(more)
+        // console.log('输出底层是否是管理员的公司信息,如果有输出,证明底层是管理员,如果没有,则不是')
+        // console.log(more)
         if( more.length === 1){
             return more[0]
         }

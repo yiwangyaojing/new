@@ -46,7 +46,7 @@ class OverDueService extends Service {
             }
             result = await ctx.model.XPlans.findAll(
                 {
-                    attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price'],
+                    attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price', 'zj_input_capacity'],
                     where: {
                         [Op.or]:[
                             {open_id: req.open_id, team_id:teamIds},

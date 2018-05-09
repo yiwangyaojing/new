@@ -398,7 +398,6 @@ class PlansService extends Service {
         let  userRank = FileType.UserRank.other // 用户角色
         let managerTeams = []         // 团队查询参数
         let agentTeams = [] // 业务员团队
-
         //管理员获取所有管理的团队
         if (user.company_id) {
             let result = await  this.service.teamUser.findManagerTeams(user.company_id, openId)

@@ -69,10 +69,6 @@ class UserController extends Controller {
 	  ctx.body = { data, team };
   }
 
-  // 获取公司子团队
-  async getMinTeam() {
-    this.ctx.body = '子团队成功';
-  }
   // 获取业务员的项目信息
   async getSalesmanProject(){
     const { ctx, service } = this;  
@@ -90,7 +86,6 @@ class UserController extends Controller {
     let body = ctx.request.body;
     let signInfo = await service.user.oneUserGetSign(body);
     console.log(body);
-    console.log(signInfo)
     ctx.body = signInfo
   }
   // 检测该用户底层是否是管理员

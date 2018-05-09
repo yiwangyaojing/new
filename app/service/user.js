@@ -55,6 +55,11 @@ class UserService extends Service {
         return result;
     }
 
+    async update(req){
+
+        return await this.ctx.model.XUsers.update(req,{where:{openid:req.openid}})
+    }
+
     async findByOpenId(open_id) {
         let result = await this.ctx.model.XUsers.findOne({where: {openid: open_id}})
 

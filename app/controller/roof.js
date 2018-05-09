@@ -535,19 +535,19 @@ class RoofController extends Controller {
   // 判断点在三角形之内
   async checkPointInTriangle(pos, triangle) {
     let x = pos.x;
-    let y = pos.z;
+    let y = pos.y;
     let v0 = triangle[0]
     let v1 = triangle[1]
     let v2 = triangle[2]
 
     let v0x = v0.x;
-    let v0y = v0.z;
+    let v0y = v0.y;
 
     let v1x = v1.x;
-    let v1y = v1.z;
+    let v1y = v1.y;
 
     let v2x = v2.x;
-    let v2y = v2.z;
+    let v2y = v2.y;
 
     let t = await this.triangleArea(v0x, v0y, v1x, v1y, v2x, v2y);
     let a = await this.triangleArea(v0x, v0y, v1x, v1y, x, y) + await this.triangleArea(v0x, v0y, x, y, v2x, v2y) + await this.triangleArea(x, y, v1x, v1y, v2x, v2y);

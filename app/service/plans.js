@@ -32,30 +32,26 @@ class PlansService extends Service {
 
         let  userRank = FileType.UserRank.other // 用户角色
         let managerTeams = []         // 团队查询参数
-
+        let agentTeams = [] // 业务员团队
 
         //管理员获取所有管理的团队
         if (user.company_id) {
             let result = await  this.service.teamUser.findManagerTeams(user.company_id, params.openId)
             managerTeams = result.managerTeamIds
-        }
-
-        if(managerTeams && managerTeams.length > 0){
-            userRank = FileType.UserRank.admin
-            console.log('管理员：',userRank)
-        }else{
-            managerTeams  = await  this.service.teamUser.findAgentTeams(user.company_id, params.openId)
 
             if(managerTeams && managerTeams.length > 0){
+                userRank = FileType.UserRank.admin
+                console.log('管理员：',userRank)
+            }
+
+            agentTeams  = await  this.service.teamUser.findAgentTeams(user.company_id, params.openId)
+
+            if(managerTeams.length === 0 && agentTeams.length !== 0 ){
                 userRank = FileType.UserRank.agent
                 console.log('业务员：',userRank)
-            }else{
-                managerTeams = null
-                console.log('游客',userRank)
             }
-        }
 
-        params.managerTeams = managerTeams
+        }
 
 
         let Queryparams = {}
@@ -69,7 +65,7 @@ class PlansService extends Service {
 
                 {
                     open_id: params.openId,
-                    team_id:managerTeams
+                    team_id:agentTeams
                 },{
                     open_id:params.openId,
                     company_id:null
@@ -92,7 +88,7 @@ class PlansService extends Service {
                 [Op.or]: [
                     {
                         open_id: params.openId,
-                        team_id:managerTeams
+                        team_id:agentTeams
                     },{
                         open_id: params.openId,
                         company_id: null
@@ -400,29 +396,26 @@ class PlansService extends Service {
 
 
         let  userRank = FileType.UserRank.other // 用户角色
-
-        // 获取所有可管理的团队
-        let managerTeams = []
+        let managerTeams = []         // 团队查询参数
+        let agentTeams = [] // 业务员团队
 
         //管理员获取所有管理的团队
         if (user.company_id) {
             let result = await  this.service.teamUser.findManagerTeams(user.company_id, openId)
             managerTeams = result.managerTeamIds
-        }
-
-        if(managerTeams && managerTeams.length > 0){
-            userRank = FileType.UserRank.admin
-            console.log('管理员：',userRank)
-        }else{
-            managerTeams  = await  this.service.teamUser.findAgentTeams(user.company_id, openId)
 
             if(managerTeams && managerTeams.length > 0){
+                userRank = FileType.UserRank.admin
+                console.log('管理员：',userRank)
+            }
+
+            agentTeams  = await  this.service.teamUser.findAgentTeams(user.company_id,openId)
+
+            if(managerTeams.length === 0 && agentTeams.length !== 0 ){
                 userRank = FileType.UserRank.agent
                 console.log('业务员：',userRank)
-            }else{
-                managerTeams = null
-                console.log('游客',userRank)
             }
+
         }
 
         let Queryparams = {}
@@ -436,7 +429,7 @@ class PlansService extends Service {
 
                     {
                         open_id: openId,
-                        team_id:user.company_id
+                        team_id: agentTeams
                     },{
                         open_id:openId,
                         company_id:null
@@ -447,7 +440,7 @@ class PlansService extends Service {
                 [Op.or]: [
                     {
                         open_id: openId,
-                        team_id:managerTeams
+                        team_id: agentTeams
                     },{
                         open_id: openId,
                         company_id: null

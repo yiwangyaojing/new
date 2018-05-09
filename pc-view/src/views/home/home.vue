@@ -48,7 +48,7 @@
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
                 <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">6</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                <div class="fl" style="width: 60%;font-size: 18px;">
+                <div class="fl" style="width: 59%;font-size: 18px;">
                   <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
                   <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>
@@ -58,7 +58,7 @@
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工完成</div>
                 <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00abca;font-size: 30px;">3</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                <div class="fl" style="width: 60%;font-size: 18px;">
+                <div class="fl" style="width: 59%;font-size: 18px;">
                   <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
                   <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>
@@ -68,7 +68,7 @@
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网完成</div>
                 <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #ca9b00;font-size: 30px;">3</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                <div class="fl" style="width: 60%;font-size: 18px;">
+                <div class="fl" style="width: 59%;font-size: 18px;">
                   <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
                   <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>
@@ -78,7 +78,7 @@
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款完成</div>
                 <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc87;font-size: 30px;">3</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                <div class="fl" style="width: 60%;font-size: 18px;">
+                <div class="fl" style="width: 59%;font-size: 18px;">
                   <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
                   <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>

@@ -23,6 +23,24 @@ class UserController extends Controller {
 
   }
 
+  async update() {
+
+    const { ctx, service } = this;
+    const req = ctx.request.body;
+
+    if(!req.openid){
+        ctx.body = {message:'open_id不存在'};
+        return
+    }
+
+    const result = await service.user.update(req);
+
+    ctx.body = result;
+
+  }
+
+
+
   // GET /api/user/:id
   async show() {
     // URL参数参数校验

@@ -8,7 +8,8 @@ module.exports = app => {
     router.get('/', controller.home.index);
     // 用户相关rest服务
     router.post('/api/user', controller.user.create);           //已写入测试-
-    router.get('/api/user/:id', controller.user.show);          //已写入测试-正常运行
+    router.get('/api/user/:id', controller.user.show);
+    router.put('/api/user', controller.user.update);
 
     router.post('/api/user/getTeam', controller.user.getTeam); // 已写入测试-正常运行     用户获取当前的公司团队
     router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 已写入测试-正常运行 获取业务员的项目信息

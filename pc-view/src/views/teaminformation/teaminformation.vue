@@ -26,7 +26,24 @@
   </el-card>
 </template>
 <script>
-
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      open_id: ''
+    }
+  },
+  methods: {
+    requestdata () {
+      axios.get('/api/user/' + this.open_id, {}).then(res => {
+        console.log('查询团队', res)
+      })
+    }
+  },
+  mounted () {
+    this.requestdata()
+  }
+}
 </script>
 <style>
   .fl{

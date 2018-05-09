@@ -9,7 +9,7 @@
           <el-col :span="24">
             <div style="font-size: 14px;">
               <div class="fl">创建者: &nbsp;&nbsp;张三</div>
-              <div class="fl"style="margin-left: 20px;">解散团队</div>
+              <div class="fl" style="margin-left: 20px;">解散团队</div>
             </div>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">

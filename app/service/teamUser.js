@@ -285,9 +285,6 @@ class TeamUserService extends Service {
             }
         })
 
-        // 获取当前团队下 所有团队列表
-        const companyTeams = await  ctx.model.XTeam.findAll({where: {company_id: req.company_id},order:[['level','desc']]})
-
         //  result.user_rank 0，上级包括上上的管理员  1，本级团队管理员 ，2.业务员
         if (req.max_level > req.team_level) {  // 如果最高团队低于当前团队，在当前团队统一为业务员权限
 
@@ -307,44 +304,9 @@ class TeamUserService extends Service {
         } else {
             // 如果进入的是下级团队 ，先判断在上级是否为管理员
             if (req.max_level_rank === FileType.UserRank.admin.toString()) {
-
-                const cfg = this.config.sequelize;
-                cfg.logging = false;
-                const sequelize = new Sequelize(cfg);
-
-                let teams= []
-
-                // 获取用户最高管理员team_id
-                let teamUsers = await sequelize.query(
-                    "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
-                    "and user_rank =:user_rank " +
-                    "and tu.team_company_id =:company_id " +
-                    "order by tu.team_level asc ",
-                    {replacements: {open_id: req.open_id ,user_rank:FileType.UserRank.admin,company_id:req.company_id}, type: Sequelize.QueryTypes.SELECT})
-
-                for(let index in teamUsers){
-                    if(index === 0 || index === '0' ){
-                        result.maxLevel = teamUsers[index].team_level
-                    }
-                    let team ={
-                        id:teamUsers[index].team_id,
-                        level:teamUsers[index].team_level,
-                    }
-                    //递归过去所有的团队
-                    teams.push(teamUsers[index].team_id)
-                    await  this.service.team.linealTeamArray(companyTeams,team,teams,'child',teamUsers,index);
-
-                }
-
-                console.log(teams,req.team_id)
-
-                if(teams.indexOf(Number.parseInt(req.team_id)) !== -1 ){
-                    result.user_rank = 0   // 超管
-                }else{
-                    result.user_rank = FileType.UserRank.agent
-                }
+                result.user_rank = 0  // 超管
             } else {
-                // 上级最高不是管理员
+                // 上级最高不是业务员
                 if (teamUser) {
                     result.user_rank = teamUser.user_rank
                 } else {
@@ -354,6 +316,9 @@ class TeamUserService extends Service {
             }
         }
 
+        // const parentId = teamUser ? teamUser.team_parent_id : null
+        // 获取当前团队下 所有团队列表
+        const companyTeams = await  ctx.model.XTeam.findAll({where: {company_id: req.company_id},order:[['level','desc']]})
 
         // 获取当前team信息
         let team = {}
@@ -571,9 +536,7 @@ class TeamUserService extends Service {
         await sequelize.transaction(function (t) {
             return  ctx.model.XTeamUser.create(addTeam,{transaction: t}).then(function (result){
                 if(result){
-                     return ctx.model.XUsers.update(updateParams, {where: {openid:params.open_id}},{transaction: t}).then(function(result1){
-                         resp = result1
-                     })
+                    resp =  ctx.service.user.updateParams(updateParams, params.open_id)
                 }
             })
         })
@@ -593,19 +556,33 @@ class TeamUserService extends Service {
 
 
         let data_sign = await this.findManagerTeams(info.teamId,info.openId)
+        console.log('输出签到的公司')
         console.log(data_sign)
         // 这是所有已经签到的人的信息;
         let data = []
-        for( let m = 0 ; m < data_sign.managerTeamIds.length ; m++ ){
-            let min_data =  await this.ctx.model.XSign.findAll({where:{team_id:data_sign.managerTeamIds[m],min_date:time}})
-            if( min_data.length > 0 ){
-                for( let ii = 0 ; ii < min_data.length ; ii++ ){
-                    data.push(min_data[ii])
+        // 未签到的
+        let n_data = []
+        //获取当前公司下的所有用户
+        for( let ji = 0 ; ji < data_sign.managerTeamIds.length ; ji++ ){
+            let min_n_data =  await this.ctx.model.XTeamUser.findAll({where:{team_id:data_sign.managerTeamIds[ji]}})
+            if( min_n_data.length > 0 ) {
+                for( let yy = 0 ; yy < min_n_data.length ; yy++ ){
+                    n_data.push(min_n_data[yy])
                 }
             }
         }
-        console.log('输出所有的用户签到')
-        console.log(data)
+        if( n_data.length > 0 ){
+            for( let u = 0 ; u < n_data.length ; u++ ){
+                let min_open_id = n_data[u].dataValues.open_id
+                console.log('输出当前的所有用户')
+                let min_data =  await this.ctx.model.XSign.findAll({where:{open_id:min_open_id,min_date:time}})
+                if( min_data.length > 0 ){
+                    for( let ii = 0 ; ii < min_data.length ; ii++ ){
+                        data.push(min_data[ii])
+                    }
+                 }
+            }
+        }
         // 这是签到人数,以及其 open_id
         let obj_signNum = {};
         // 这是清理之后的签到信息,因为一个人会签到多次,需要进行排重
@@ -676,15 +653,6 @@ class TeamUserService extends Service {
         let n_sign_open_id = [];
         // 未签到人的详细信息
         let f_user_all = [];
-        let n_data = []
-        for( let ji = 0 ; ji < data_sign.managerTeamIds.length ; ji++ ){
-            let min_n_data =  await this.ctx.model.XTeamUser.findAll({where:{team_id:data_sign.managerTeamIds[ji]}})
-            if( min_n_data.length > 0 ) {
-                for( let yy = 0 ; yy < min_n_data.length ; yy++ ){
-                    n_data.push(min_n_data[yy])
-                }
-            }
-        }
         if( n_data.length > 0 ){
             for( let m = 0 ; m < n_data.length ; m ++ ){
             // 所有的openid
@@ -709,7 +677,6 @@ class TeamUserService extends Service {
                 }
             }
         }
-        console.log('未签到的',n_sign_open_id)
         all['未签到'] = f_user_all
         all['数量'] = true_sign_open_id.length
         return all

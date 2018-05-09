@@ -7,18 +7,17 @@ module.exports = app => {
     const {router, controller} = app;
     router.get('/', controller.home.index);
     // 用户相关rest服务
-    router.post('/api/user', controller.user.create);
+    router.post('/api/user', controller.user.create);           //已写入测试-
     router.get('/api/user/:id', controller.user.show);
     router.put('/api/user', controller.user.update);
 
-    router.post('/api/user/getTeam', controller.user.getTeam); // 用户获取当前的公司团队
-    router.post('/api/user/getMinTeam', controller.user.getMinTeam); // 获取子公司
-    router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 获取业务员的项目信息
-    router.post('/api/user/getSign',controller.user.getSign); //获取业务员的签到信息
-    router.post('/api/user/isRank',controller.user.isRank);//判断底层是否是管理员
+    router.post('/api/user/getTeam', controller.user.getTeam); // 已写入测试-正常运行     用户获取当前的公司团队
+    router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 已写入测试-正常运行 获取业务员的项目信息
+    router.post('/api/user/getSign',controller.user.getSign); // 已写入测试-正常运行      获取业务员的签到信息
+    router.post('/api/user/isRank',controller.user.isRank);// 已写入测试-正常运行 判断底层是否是管理员
 
     // 文件上传rest服务
-    router.get('/api/file', controller.file.index);
+    router.get('/api/file', controller.file.index);   //
     router.post('/api/file', controller.file.create);
     router.post('/api/file/upload', controller.file.upload);
     router.put('/api/file', controller.file.update);
@@ -31,9 +30,9 @@ module.exports = app => {
 
     // 客户相关rest服务
     router.post('/api/plans', controller.plans.basicCreate);
-    router.get('/api/plans/:openId', controller.plans.findAllByUser);
-    router.get('/api/plans/detail/:id', controller.plans.detail);
-    router.post('/api/plans/:openId/:pageNumber', controller.plans.findByPage);
+    router.get('/api/plans/:openId', controller.plans.findAllByUser); //已写入测试-正常运行 获取用户的所有客户信息
+    router.get('/api/plans/detail/:id', controller.plans.detail);   //已写入测试-正常运行 通过项目 id查看项目详情
+    router.post('/api/plans/:openId/:pageNumber', controller.plans.findByPage);  //通过用户 id 和当前页面数量查询客户项目信息
     router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);
     router.put('/api/plans', controller.plans.update);
     router.del('/api/plans/:id', controller.plans.destroy);

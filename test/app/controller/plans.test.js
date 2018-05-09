@@ -1,6 +1,6 @@
 'use strict';
 
-const { app } = require('egg-mock/bootstrap');
+const { app, assert } = require('egg-mock/bootstrap');
 
 describe('test/app/controller/plans.test.js', () => {
   it('创建客户方案基本信息 POST /api/plans', () => {
@@ -15,4 +15,39 @@ describe('test/app/controller/plans.test.js', () => {
       })
       .expect(200);
   });
+
+  it('获取用户的所有客户信息 GET /api/plans/:openId',() => {
+      app.mockCsrf();
+      return app.httpRequest()
+          .get('/api/plans/osT8H0QFSjZdqWqJ-PKSS57pzdx0')
+          .expect(200)
+          .then(response => {
+              assert(response.body.length > -1, true)
+          })
+  })
+
+    it('通过项目 id, 查看项目详情 GET /api/plans/detail/:id',() => {
+        app.mockCsrf();
+        let id = 1;
+        return app.httpRequest()
+            .get('/api/plans/detail/' + id)
+            .expect(200)
+            .then(response => {
+                assert(response.body.id, id)
+            })
+
+    })
+
+    it('通过用户 id 和翻页数量查询客户项目信息 POST /api/plans/:openId/:pageNumber',() => {
+        app.mockCsrf();
+        let id = 'osT8H0QFSjZdqWqJ-PKSS57pzdx0';
+        let num = 3;
+        return app.httpRequest()
+            .post('/api/plans/'+ id +'/' + num)
+            .expect(200)
+            .then(response => {
+                assert(response.body.length > -1, true)
+            })
+
+    })
 });

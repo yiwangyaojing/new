@@ -9,6 +9,7 @@ module.exports = app => {
     // 用户相关rest服务
     router.post('/api/user', controller.user.create);
     router.get('/api/user/:id', controller.user.show);
+    router.put('/api/user', controller.user.update);
 
     router.post('/api/user/getTeam', controller.user.getTeam); // 用户获取当前的公司团队
     router.post('/api/user/getMinTeam', controller.user.getMinTeam); // 获取子公司

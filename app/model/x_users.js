@@ -113,6 +113,26 @@ module.exports = app => {
             type: DataTypes.INTEGER(1),
             allowNull: false,
             defaultValue: 1
+        },
+        brand: {
+            type: DataTypes.STRING(50),
+            allowNull: true
+        },
+        model: {
+            type: DataTypes.STRING(50),
+            allowNull: true
+        },
+        version: {
+            type: DataTypes.STRING(50),
+            allowNull: true
+        },
+        system: {
+            type: DataTypes.STRING(50),
+            allowNull: true
+        },
+        sdkversion: {
+            type: DataTypes.STRING(50),
+            allowNull: true
         }
     }, {
         tableName: 'x_users'

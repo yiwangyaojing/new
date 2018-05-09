@@ -24,9 +24,9 @@ class OverDueController extends Controller {
 
     const rule = {
       id:{type:"string",required:true},
-      htqd:{type:"string",required:true},
-      sgwc:{type:"string",required:true},
-      bwwc:{type:"string",required:true},
+      htqd:{type:'int',required:true},
+      sgwc:{type:'int',required:true},
+      bwwc:{type:'int',required:true},
       company_id:{type:"string",required:true},
     }
     const req = ctx.request.body

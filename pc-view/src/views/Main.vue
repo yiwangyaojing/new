@@ -221,7 +221,7 @@ export default {
   },
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
-    this.loginName = sessionUser.nickName// 登录账号名称
+    this.loginName = sessionUser.name// 登录账号名称
   }
 }
 </script>

@@ -61,6 +61,8 @@ export default {
       axios.get('/api/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
         console.log('查询团队', res)
         this.oss_name = res.oss_name
+        this.company_name = res.company_name
+        this.company_logo = res.logo
       })
     },
     successImg (response, file, fileList) {
@@ -105,7 +107,6 @@ export default {
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
     this.open_id = sessionUser.openid
-    this.company_name = sessionUser.company_name
     this.phone = sessionUser.phone
     this.company_logo = sessionUser.company_logo
     this.company_id = sessionUser.company_id

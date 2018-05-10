@@ -172,6 +172,7 @@ class UserService extends Service {
           }
         })
 
+        console.log('当前用户 id'+openId)
         if(!user) throw new Error('获取用户信息失败,open_id 错误或者是找不到用户！')
 
         let teamIds = []

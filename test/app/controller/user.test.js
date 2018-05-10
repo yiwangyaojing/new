@@ -121,7 +121,7 @@ describe('test/app/controller/user.test.js', () => {
         return app.httpRequest()
             .post('/api/user/isRank')
             .send({
-                openId:'osT8H0QFSjZdqWqJ-PKSS57dx0',
+                openId:'osT8H0QFSjZdqWqJ-PKSS57pzdx0',
             })
             .expect(200)
 

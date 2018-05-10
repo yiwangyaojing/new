@@ -57,8 +57,8 @@
           </el-col>-->
           <el-col  class="y-Center">
             <div class="clearfix">
-              <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" src="/static/img/00_logo_xiaosolar.png"/></div>
-              <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">董忽悠团队</div>
+              <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" :src="company_logo"/></div>
+              <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">{{company_name}}</div>
             </div>
           </el-col>
 
@@ -152,6 +152,8 @@ export default {
     }
     return {
       collapsed: false,
+      company_logo: '',
+      company_name: '',
       loginName: '', // 登录账号名称
       menus: [],
       passwordModel: false, // 弹出修改密码弹出层
@@ -222,6 +224,8 @@ export default {
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
     this.loginName = sessionUser.name// 登录账号名称
+    this.company_name = sessionUser.company_name
+    this.company_logo = sessionUser.company_logo
   }
 }
 </script>

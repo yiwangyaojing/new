@@ -56,7 +56,7 @@ module.exports = app => {
       allowNull: true
     },
     cst_remark: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(1000),
       allowNull: true
     },
     zj_format: {
@@ -109,7 +109,7 @@ module.exports = app => {
       allowNull: true
     },
     rf_remark: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(1000),
       allowNull: true
     },
     h_is_finish: {
@@ -122,7 +122,7 @@ module.exports = app => {
       allowNull: true
     },
     h_remark: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(1000),
       allowNull: true
     },
     d_is_finish: {
@@ -131,7 +131,7 @@ module.exports = app => {
       defaultValue: '0'
     },
     d_remark: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(1000),
       allowNull: true
     },
     short_url: {

@@ -107,4 +107,10 @@ module.exports = app => {
     // 签到
     router.post('/api/sign/sign',controller.sign.signs);    //创建签到信息
 
+    //PC端进度详情
+    router.post('/api/detailSettingPc/settingDetails', controller.detailSettingPc.findParamsByPage);
+    router.post('/api/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
+    router.post('/api/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);
+    router.post('/api/detailSettingPc/payStatus/:id', controller.detailSettingPc.findPayStatusById);
+
 };

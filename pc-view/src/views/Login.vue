@@ -158,7 +158,7 @@ export default {
       }
       axios.post('/api/login', form).then(response => {
         console.log('this is the response=====>>>', response)
-        let userInfo = JSON.parse(response.login_infor)
+        let userInfo = response
         this.$message.success('登录成功')
         this.$router.replace('/Home')
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(userInfo))

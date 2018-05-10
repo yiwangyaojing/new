@@ -84,13 +84,23 @@
           </el-table-column>
           <el-table-column fixed="right" label="操作">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>
+              <router-link to="/customerdetails" type="text">详情</router-link>
+              <!--<el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>-->
               <el-button type="text" size="small">下载</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-col>
     </el-row>
+    <el-pagination style="margin-top: 20px;"
+                   @size-change="handleSizeChange"
+                   @current-change="handleCurrentChange"
+                   :current-page="currentPage4"
+                   :page-sizes="[10, 20, 30, 40,50]"
+                   :page-size="100"
+                   layout="total, sizes, prev, pager, next, jumper"
+                   :total="tableData.length">
+    </el-pagination>
   </el-card>
 </template>
 <script>
@@ -107,6 +117,7 @@ export default {
         zip: 200333
       }, {
         date: '2016-05-02',
+        customerName: '董志永',
         name: '王小虎',
         province: '上海',
         city: '普陀区',
@@ -114,6 +125,7 @@ export default {
         zip: 200333
       }, {
         date: '2016-05-04',
+        customerName: '董志永',
         name: '王小虎',
         province: '上海',
         city: '普陀区',
@@ -121,12 +133,101 @@ export default {
         zip: 200333
       }, {
         date: '2016-05-01',
+        customerName: '董志永',
         name: '王小虎',
         province: '上海',
         city: '普陀区',
         address: '上海市普陀区金沙江路 1518 弄',
         zip: 200333
-      }]
+      }],
+      options: [{
+        value: '选项1',
+        label: '今天'
+      }, {
+        value: '选项2',
+        label: '昨天'
+      }, {
+        value: '选项3',
+        label: '本周'
+      }, {
+        value: '选项4',
+        label: '上周'
+      }, {
+        value: '选项5',
+        label: '本月'
+      }, {
+        value: '选项6',
+        label: '上月'
+      }, {
+        value: '选项7',
+        label: '本年'
+      }, {
+        value: '选项8',
+        label: '累计'
+      }],
+      tdfwoptions: [
+        {
+          value: '选项1',
+          label: '全部'
+        },
+        {
+          value: '选项2',
+          label: '总团队'
+        },
+        {
+          value: '选项3',
+          label: '子团队1'
+        },
+        {
+          value: '选项4',
+          label: '子团队2'
+        },
+        {
+          value: '选项5',
+          label: '子团队3'
+        }
+      ],
+      contractoptions: [
+        {
+          value: '选项1',
+          label: '合同签订'
+        },
+        {
+          value: '选项2',
+          label: '施工完成'
+        },
+        {
+          value: '选项3',
+          label: '并网完成'
+        },
+        {
+          value: '选项4',
+          label: '回款完成'
+        }
+      ],
+      overdueoptions: [
+        {
+          value: '选项1',
+          label: '全部'
+        },
+        {
+          value: '选项2',
+          label: '正常'
+        },
+        {
+          value: '选项3',
+          label: '逾期'
+        }
+      ],
+      fuzerenoptions: [],
+      tjzqvalue: '',
+      datevalue: '',
+      tdfwvalue: '',
+      fuzerenvalue: '',
+      contractvalue: '',
+      overduevalue: '',
+      searchvalue: '',
+      currentPage4: 1
     }
   },
   methods: {

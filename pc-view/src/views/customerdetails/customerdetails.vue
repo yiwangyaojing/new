@@ -2,7 +2,7 @@
   <el-card class="box-card">
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
-        <div class="fl">冬至用</div>
+        <div class="fl">董志永</div>
         <div class="fr" style="border: 1px solid #999;padding: 5px;border-radius: 5px;">打包下载</div>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">
@@ -22,14 +22,14 @@
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">组件规格</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 75%;padding-left: 10px">186</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">组件数量</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 75%;padding-left: 10px">32</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
                 </div>
               </div>
@@ -38,14 +38,14 @@
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">系统容量</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 75%;padding-left: 10px">186</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">系统单价</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 75%;padding-left: 10px">32</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
                 </div>
               </div>
@@ -54,14 +54,14 @@
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">系统总价</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 75%;padding-left: 10px">186</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">已回款</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 75%;padding-left: 10px">32</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
                 </div>
               </div>

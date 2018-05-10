@@ -92,7 +92,6 @@ class UserController extends Controller {
     const { ctx, service } = this;  
     let body = ctx.request.body;
     let openId = body.openId;
-    let date = body.date;
     // 
     let ProjectInfo = await service.user.getProjectInfo(openId,'one');
     // console.log(ProjectInfo)

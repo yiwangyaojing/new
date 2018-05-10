@@ -113,9 +113,9 @@ module.exports = app => {
 
     //PC端进度详情
     router.post('/api/detailSettingPc/settingDetails', controller.detailSettingPc.findParamsByPage);
-    router.post('/api/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
-    router.post('/api/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);
-    router.post('/api/detailSettingPc/payStatus/:id', controller.detailSettingPc.findPayStatusById);
+    router.get('/api/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
+    router.get('/api/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);
+    router.get('/api/detailSettingPc/payStatus/:id', controller.detailSettingPc.findPayStatusById);
 
 
     // PC 用户团队

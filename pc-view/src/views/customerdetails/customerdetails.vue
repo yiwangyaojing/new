@@ -2,7 +2,7 @@
   <el-card class="box-card">
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
-        <div class="fl">冬至用</div>
+        <div class="fl">董志永</div>
         <div class="fr" style="border: 1px solid #999;padding: 5px;border-radius: 5px;">打包下载</div>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">

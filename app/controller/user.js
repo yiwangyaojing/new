@@ -23,6 +23,24 @@ class UserController extends Controller {
 
   }
 
+  async update() {
+
+    const { ctx, service } = this;
+    const req = ctx.request.body;
+
+    if(!req.openid){
+        ctx.body = {message:'open_id不存在'};
+        return
+    }
+
+    const result = await service.user.update(req);
+
+    ctx.body = result;
+
+  }
+
+
+
   // GET /api/user/:id
   async show() {
     // URL参数参数校验
@@ -69,16 +87,11 @@ class UserController extends Controller {
 	  ctx.body = { data, team };
   }
 
-  // 获取公司子团队
-  async getMinTeam() {
-    this.ctx.body = '子团队成功';
-  }
   // 获取业务员的项目信息
   async getSalesmanProject(){
     const { ctx, service } = this;  
     let body = ctx.request.body;
     let openId = body.openId;
-    let date = body.date;
     // 
     let ProjectInfo = await service.user.getProjectInfo(openId,'one');
     // console.log(ProjectInfo)
@@ -90,7 +103,6 @@ class UserController extends Controller {
     let body = ctx.request.body;
     let signInfo = await service.user.oneUserGetSign(body);
     console.log(body);
-    console.log(signInfo)
     ctx.body = signInfo
   }
   // 检测该用户底层是否是管理员

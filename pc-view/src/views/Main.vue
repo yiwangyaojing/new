@@ -65,7 +65,7 @@
           <el-col :span="5" :xs="5" :sm="5" :lg="3" :xl="2">
             <el-row justify="right" align="middle" type="flex">
               <el-col :span="10">
-                <img class="header" height="36" src="../asserts/images/header.png"/>
+                <img class="header" height="36" :src="avatarUrl"/>
               </el-col>
               <el-col :span="14">
                 <el-dropdown @command="handleCommand">
@@ -154,6 +154,7 @@ export default {
       collapsed: false,
       company_logo: '',
       company_name: '',
+      avatarUrl: '',
       loginName: '', // 登录账号名称
       menus: [],
       passwordModel: false, // 弹出修改密码弹出层
@@ -226,6 +227,7 @@ export default {
     this.loginName = sessionUser.name// 登录账号名称
     this.company_name = sessionUser.company_name
     this.company_logo = sessionUser.company_logo
+    this.avatarUrl = sessionUser.avatarUrl
   }
 }
 </script>

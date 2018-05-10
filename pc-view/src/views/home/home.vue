@@ -2,16 +2,11 @@
   <div>
     <el-card class="box-card">
       <el-row>
-        <!--<div class="y-Center clearfix">-->
-          <!--<div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" src="/static/img/00_logo_xiaosolar.png"/></div>-->
-          <!--<div class="fl" style="margin-left: 10px;font-size: 18px;">董忽悠团队</div>-->
-        <!--</div>-->
-
         <div v-if="!yqgzgzsz">
           <div style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
-              <el-select class="fl" v-model="tjzqvalue" placeholder="请选择" size="small">
+              <el-select @change="tjzqChange" class="fl" v-model="tjzqvalue" size="small">
                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
@@ -19,7 +14,7 @@
             <el-col :span="16" class="y-Center">
               <div class="grid-content bg-purple" style="font-size: 14px;width: 100px">自定义时间段</div>
               <div class="block">
-                <el-date-picker size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
               </div>
             </el-col>
@@ -157,33 +152,37 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       options: [{
-        value: '选项1',
+        value: 'today',
         label: '今天'
       }, {
-        value: '选项2',
+        value: 'yesterday',
         label: '昨天'
       }, {
-        value: '选项3',
+        value: 'thisWeek',
         label: '本周'
       }, {
-        value: '选项4',
+        value: 'lastWeek',
         label: '上周'
       }, {
-        value: '选项5',
+        value: 'thisMonth',
         label: '本月'
       }, {
-        value: '选项6',
+        value: 'lastMonth',
         label: '上月'
       }, {
-        value: '选项7',
+        value: 'thisYear',
         label: '本年'
       }, {
-        value: '选项8',
+        value: 'total',
         label: '累计'
+      }, {
+        value: '自定义',
+        label: '自定义'
       }],
       tdfwoptions: [
         {
@@ -208,14 +207,18 @@ export default {
         }
       ],
       fuzerenoptions: [],
-      tjzqvalue: '',
-      datevalue: '',
+      tjzqvalue: '今天',
+      datevalue: [
+
+      ],
       tdfwvalue: '',
       fuzerenvalue: '',
       htqdday: '',
       sgwcday: '',
       bwwcday: '',
-      yqgzgzsz: false
+      yqgzgzsz: false,
+      datevalue1: '',
+      datevalue2: ''
     }
   },
   methods: {
@@ -224,7 +227,30 @@ export default {
     },
     sunmitClick () {
       this.yqgzgzsz = !this.yqgzgzsz
+    },
+    tjzqChange (e) {
+      this.datevalue = []
+      if (this.tjzqvalue !== '自定义') {
+        axios.get('/api/select/date/' + e).then(res => {
+          console.log(res)
+          for (let i in res) {
+            this.datevalue.push(res[i])
+          }
+        })
+      }
+    },
+    selectdateChange () {
+      this.tjzqvalue = '自定义'
+    },
+    requestdata () {
+      axios.get('/api/select/date/' + 'today').then(res => {
+        console.log(res)
+        this.datevalue.push(res.beginDate, res.endDate)
+      })
     }
+  },
+  mounted () {
+    this.requestdata()
   }
 }
 </script>

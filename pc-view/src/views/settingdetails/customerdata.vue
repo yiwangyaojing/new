@@ -117,6 +117,7 @@ export default {
         zip: 200333
       }, {
         date: '2016-05-02',
+        customerName: '董志永',
         name: '王小虎',
         province: '上海',
         city: '普陀区',
@@ -124,6 +125,7 @@ export default {
         zip: 200333
       }, {
         date: '2016-05-04',
+        customerName: '董志永',
         name: '王小虎',
         province: '上海',
         city: '普陀区',
@@ -131,6 +133,7 @@ export default {
         zip: 200333
       }, {
         date: '2016-05-01',
+        customerName: '董志永',
         name: '王小虎',
         province: '上海',
         city: '普陀区',

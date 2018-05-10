@@ -7,17 +7,17 @@ module.exports = app => {
     const {router, controller} = app;
     router.get('/', controller.home.index);
     // 用户相关rest服务
-    router.post('/api/user', controller.user.create);           //已写入测试-
-    router.get('/api/user/:id', controller.user.show);
-    router.put('/api/user', controller.user.update);
+    router.post('/api/user', controller.user.create);           //已写入测试-        将获取到的微信用户信息保存到数据库
+    router.get('/api/user/:id', controller.user.show);          //已写入测试-运行正常     通过用户 id 获取用户的信息
+    router.put('/api/user', controller.user.update);            //通过用户 id, 修改用户信息
 
-    router.post('/api/user/getTeam', controller.user.getTeam); // 已写入测试-正常运行     用户获取当前的公司团队
-    router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 已写入测试-正常运行 获取业务员的项目信息
+    router.post('/api/user/getTeam', controller.user.getTeam); // 已写入测试-正常运行     用户获取当前的公司团队(最高层级)
+    router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 已写入测试-正常运行   获取业务员的项目信息
     router.post('/api/user/getSign',controller.user.getSign); // 已写入测试-正常运行      获取业务员的签到信息
-    router.post('/api/user/isRank',controller.user.isRank);// 已写入测试-正常运行 判断底层是否是管理员
+    router.post('/api/user/isRank',controller.user.isRank);// 已写入测试-正常运行    判断底层是否是管理员
 
     // 文件上传rest服务
-    router.get('/api/file', controller.file.index);   //
+    router.get('/api/file', controller.file.index);
     router.post('/api/file', controller.file.create);
     router.post('/api/file/upload', controller.file.upload);
     router.put('/api/file', controller.file.update);
@@ -29,14 +29,14 @@ module.exports = app => {
     router.get('/api/wechat/:code', controller.wechat.getOpenId);
 
     // 客户相关rest服务
-    router.post('/api/plans', controller.plans.basicCreate);
-    router.get('/api/plans/:openId', controller.plans.findAllByUser); //已写入测试-正常运行 获取用户的所有客户信息
-    router.get('/api/plans/detail/:id', controller.plans.detail);   //已写入测试-正常运行 通过项目 id查看项目详情
-    router.post('/api/plans/:openId/:pageNumber', controller.plans.findByPage);  //通过用户 id 和当前页面数量查询客户项目信息
-    router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);
-    router.put('/api/plans', controller.plans.update);
-    router.del('/api/plans/:id', controller.plans.destroy);
-    router.put('/api/plans/sampleClient/:id', controller.plans.updateSampleClient);
+    router.post('/api/plans', controller.plans.basicCreate);    //已写入测试-正常运行   创建方案(项目)基本信息
+    router.get('/api/plans/:openId', controller.plans.findAllByUser); //已写入测试-正常运行      获取用户的所有客户信息
+    router.get('/api/plans/detail/:id', controller.plans.detail);   //已写入测试-正常运行     通过项目 id查看项目详情
+    router.post('/api/plans/:openId/:pageNumber', controller.plans.findByPage);  //已写入测试-正常         通过用户 id 和当前页面数量查询客户项目信息
+    router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);//通过用户 id +页面数量+搜索条件查询用户项目信息
+    router.put('/api/plans', controller.plans.update);  //更新方案,项目信息(创建方案,项目详细信息)
+    router.del('/api/plans/:id', controller.plans.destroy); //通过方案(项目)id 删除当前方案(项目)
+    router.put('/api/plans/sampleClient/:id', controller.plans.updateSampleClient); //删除示例客户(修改用户)
 
     // 方案进度
     router.post('/api/planSchedule', controller.planSchedule.create);
@@ -105,6 +105,6 @@ module.exports = app => {
     router.post('/api/login', controller.login.userLogin);
 
     // 签到
-    router.post('/api/sign/sign',controller.sign.signs);
+    router.post('/api/sign/sign',controller.sign.signs);    //创建签到信息
 
 };

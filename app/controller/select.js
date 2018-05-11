@@ -93,6 +93,7 @@ class SelectController extends Controller {
 
             teamLevels.push('one')
             //业务员和游客
+            resp.agents = []
             resp.agents.push(userInfo)
         }
 

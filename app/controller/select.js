@@ -65,6 +65,7 @@ class SelectController extends Controller {
         // 获取用户登录信息
         const userInfo  = ctx.session.user
 
+        console.log(userInfo)
 
         // 获取登录用户信息
         const openId = userInfo.openid
@@ -88,9 +89,7 @@ class SelectController extends Controller {
             teamLevels.push('one')
             // 获取团队业务员
             agents = await  service.teamUserPc.getAgents(managerTeamIds)
-
         }else {
-
             teamLevels.push('one')
             //业务员和游客
             resp.agents = []

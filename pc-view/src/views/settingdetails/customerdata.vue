@@ -6,18 +6,18 @@
       <!--<div class="fl" style="margin-left: 10px;font-size: 18px;">董忽悠团队</div>-->
       <!--</div>-->
       <div>
-        <div :span="24" style="margin-top: 20px;" class="clearfix">
+        <div style="margin-top: 20px;" class="clearfix">
           <el-col :span="8" class="y-Center">
             <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
-            <el-select size="small" class="fl" v-model="tjzqvalue" placeholder="请选择">
+            <el-select @change="tjzqChange" class="fl" v-model="tjzqvalue" size="small">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
           </el-col>
           <el-col :span="16" class="y-Center">
-            <div class="grid-content bg-purple" style="font-size: 14px;width: 100px;">自定义时间段</div>
+            <div class="grid-content bg-purple" style="font-size: 14px;width: 100px">自定义时间段</div>
             <div class="block">
-              <el-date-picker size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+              <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
               </el-date-picker>
             </div>
           </el-col>
@@ -66,26 +66,26 @@
     <el-row style="margin-top: 30px;">
       <el-col :span="24">
         <el-table :data="tableData" size="mini" border style="width: 100%" stripe>
-          <el-table-column fixed prop="customerName" label="客户名称">
+          <el-table-column fixed prop="cst_name" label="客户名称">
           </el-table-column>
-          <el-table-column prop="name" label="负责人">
+          <el-table-column prop="user_name" label="负责人">
           </el-table-column>
-          <el-table-column prop="address" show-overflow-tooltip label="地址" width="200">
+          <el-table-column prop="cst_address" show-overflow-tooltip label="地址" width="200">
           </el-table-column>
-          <el-table-column prop="city" label="装机容量" >
+          <el-table-column prop="zj_capacity" label="装机容量" >
           </el-table-column>
-          <el-table-column prop="zip" label="拍房子">
+          <el-table-column prop="h_is_finish" label="拍房子">
           </el-table-column>
-          <el-table-column prop="zip" label="收资料" >
+          <el-table-column prop="d_is_finish" label="收资料" >
           </el-table-column>
-          <el-table-column prop="zip" label="排版子" >
+          <el-table-column prop="rf_is_finish" label="排版子" >
           </el-table-column>
-          <el-table-column prop="date" label="添加时间" >
+          <el-table-column prop="created_at" label="添加时间" >
           </el-table-column>
           <el-table-column fixed="right" label="操作">
             <template slot-scope="scope">
-              <router-link to="/customerdetails" type="text">详情</router-link>
-              <!--<el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>-->
+              <!--<router-link to="/customerdetails" type="text">详情</router-link>-->
+              <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
               <el-button type="text" size="small">下载</el-button>
             </template>
           </el-table-column>
@@ -104,66 +104,38 @@
   </el-card>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        customerName: '董志永',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-02',
-        customerName: '董志永',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-04',
-        customerName: '董志永',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-01',
-        customerName: '董志永',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }],
+      tableData: [],
       options: [{
-        value: '选项1',
+        value: 'today',
         label: '今天'
       }, {
-        value: '选项2',
+        value: 'yesterday',
         label: '昨天'
       }, {
-        value: '选项3',
+        value: 'thisWeek',
         label: '本周'
       }, {
-        value: '选项4',
+        value: 'lastWeek',
         label: '上周'
       }, {
-        value: '选项5',
+        value: 'thisMonth',
         label: '本月'
       }, {
-        value: '选项6',
+        value: 'lastMonth',
         label: '上月'
       }, {
-        value: '选项7',
+        value: 'thisYear',
         label: '本年'
       }, {
-        value: '选项8',
+        value: 'total',
         label: '累计'
+      }, {
+        value: '自定义',
+        label: '自定义'
       }],
       tdfwoptions: [
         {
@@ -188,6 +160,10 @@ export default {
         }
       ],
       contractoptions: [
+        {
+          value: '选项11',
+          label: '全部'
+        },
         {
           value: '选项1',
           label: '合同签订'
@@ -220,20 +196,65 @@ export default {
         }
       ],
       fuzerenoptions: [],
-      tjzqvalue: '',
-      datevalue: '',
+      tjzqvalue: '2018-01-01',
+      datevalue: ['2018-01-01', '2018-05-09'],
       tdfwvalue: '',
       fuzerenvalue: '',
       contractvalue: '',
       overduevalue: '',
       searchvalue: '',
-      currentPage4: 1
+      currentPage4: 1,
+      cs: {
+        tjzqvalue: '2018-01-01',
+        datevalue: ['2018-01-01', '2018-05-09'],
+        tdfwvalue: '',
+        fuzerenvalue: '',
+        contractvalue: '',
+        overduevalue: '',
+        searchvalue: ''
+      }
     }
   },
   methods: {
-    handleClick (row) {
-      console.log(row)
+    handleClick (id) {
+      console.log('id:')
+      console.log(id)
+    },
+    tjzqChange (e) {
+      this.datevalue = []
+      if (this.tjzqvalue !== '自定义') {
+        axios.get('/api/select/date/' + e).then(res => {
+          console.log(res)
+          for (let i in res) {
+            this.datevalue.push(res[i])
+          }
+        })
+      }
+    },
+    selectdateChange () {
+      this.tjzqvalue = '自定义'
+    },
+    requestdata () {
+      axios.get('/api/select/date/' + 'today').then(res => {
+        console.log(res)
+        this.datevalue.push(res.beginDate, res.endDate)
+      })
+    },
+    handleSizeChange () {
+    },
+    handleCurrentChange () {
+    },
+    initPlan () {
+      axios.post('/api/customerDataPc/customerList', this.cs).then(res => {
+        console.log('列表数据', res)
+        this.tableData = res
+        console.log('tabdata', this.tableData)
+      })
     }
+
+  },
+  mounted () {
+    this.initPlan()
   }
 }
 </script>

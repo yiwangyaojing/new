@@ -108,18 +108,18 @@ module.exports = app => {
     router.post('/api/sign/sign',controller.sign.signs);
 
     /**
-     * P C端接口
+     * PC端接口
      */
 
     //PC端进度详情
-    router.get('/api/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
+    router.post('/api/select/date', controller.select.dateSelectConvert); //根据枚举值获取时间范围
+    router.post('/api/select/team', controller.select.teamSelect); //根据枚举值获取时间范围
 
 
     router.post('/api/detailSettingPc/settingDetails', controller.detailSettingPc.findParamsByPage);
     router.get('/api/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
     router.get('/api/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);
     router.get('/api/detailSettingPc/payStatus/:id', controller.detailSettingPc.findPayStatusById);
-
 
     // PC 用户团队
     router.put('/api/userPc', controller.userPc.update);

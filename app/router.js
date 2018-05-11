@@ -112,7 +112,7 @@ module.exports = app => {
      */
 
     //PC端进度详情
-    router.post('/api/select/date', controller.select.dateSelectConvert); //根据枚举值获取时间范围
+    router.get('/api/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
     router.post('/api/select/team', controller.select.teamSelect); //根据枚举值获取时间范围
 
 

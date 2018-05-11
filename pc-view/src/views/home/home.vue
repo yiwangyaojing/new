@@ -22,15 +22,22 @@
           <div style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>
-              <el-select size="small" class="fl" v-model="tdfwvalue">
+              <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
                 <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
             </el-col>
             <el-col :span="8" class="y-Center">
+              <div class="fl"  style="font-size: 14px;width: 100px;">团队名称</div>
+              <el-select @change="teannameChange" size="small" :disabled="teannameshow" class="fl" v-model="teamname">
+                <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8" class="y-Center">
               <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
-              <el-select size="small" class="fl" v-model="fuzerenvalue">
-                <el-option v-for="item in fuzerenoptions" :key="item.value" :label="item.label" :value="item.value">
+              <el-select size="small" class="fl" v-model="fuzerenvalue" :disabled="fuzerenshow">
+                <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
                 </el-option>
               </el-select>
             </el-col>
@@ -143,6 +150,7 @@
                 <div style="position: absolute;right: 4px;bottom: -2px;border-left: 1px solid #666;width: 1px;height: 10px;transform: rotate(-45deg)"></div>
               </div>
               <div class="fl" style="margin-top: 20px;">回款完成</div>
+
             </el-col>
           </el-col>
         </el-row>
@@ -153,6 +161,7 @@
 </template>
 <script>
 import axios from 'axios'
+import values from '../../utils/values'
 export default {
   data () {
     return {
@@ -186,33 +195,39 @@ export default {
       }],
       tdfwoptions: [
         {
-          value: '选项1',
-          label: '全部'
+          value: 'all',
+          label: '全部(可见范围)'
         },
         {
-          value: '选项2',
-          label: '总团队'
+          value: 1,
+          label: '一级团队'
         },
         {
-          value: '选项3',
-          label: '子团队1'
+          value: 2,
+          label: '二级团队'
         },
         {
-          value: '选项4',
-          label: '子团队2'
+          value: 3,
+          label: '三级团队'
         },
         {
-          value: '选项5',
-          label: '子团队3'
+          value: 'one',
+          label: '个人'
         }
       ],
+      teamoptions: [],
+      teamoptionsAll: [],
+      teamname: '全部(可见范围)',
       fuzerenoptions: [],
+      fuzerenoptionsAll: [],
       tjzqvalue: '今天',
       datevalue: [
 
       ],
-      tdfwvalue: '全部',
-      fuzerenvalue: '',
+      tdfwvalue: '全部(可见范围)',
+      fuzerenvalue: '全部(可见范围)',
+      teannameshow: true,
+      fuzerenshow: true,
       htqdday: '',
       sgwcday: '',
       bwwcday: '',
@@ -247,11 +262,86 @@ export default {
       })
       axios.get('/api/select/team').then(res => {
         console.log('团队范围', res)
+        res.teams.forEach(item => {
+          this.teamoptionsAll.push(item)
+          this.teamoptions.push(item)
+        })
+        res.agents.forEach(item => {
+          this.fuzerenoptions.push(item)
+          this.fuzerenoptionsAll.push(item)
+        })
+        console.log('团队名称', this.teamoptions)
+        console.log('负责人', this.fuzerenoptions)
       })
+    },
+    tdfwChange (e) {
+      console.log(e)
+      this.teamoptions = [
+        {
+          name: '全部(可见范围)'
+        }
+      ]
+      for (let i = 0; i < this.teamoptionsAll.length; i++) {
+        if (e === 'all') {
+          this.teamoptions.push(this.teamoptionsAll[i])
+          this.teannameshow = true
+          this.fuzerenshow = true
+        }
+        if (e === Number(this.teamoptionsAll[i].level)) {
+          this.teannameshow = false
+          this.fuzerenshow = true
+          this.teamoptions.push(this.teamoptionsAll[i])
+          console.log('这里是团队范围变化=====', this.teamoptionsAll[i])
+        }
+        this.teamname = this.teamoptions[0].name
+      }
+      if (e === 'one') {
+
+        this.teamoptions = [
+          {
+            name: '个人',
+            id: 'one'
+          }
+        ]
+        this.fuzerenoptions = [
+          {
+            name: '全部(可见范围)'
+          }
+        ]
+        this.teamname = this.teamoptions[0].name
+        for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
+          if (String(e) === String(this.fuzerenoptionsAll[i].team_id)) {
+            this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
+            this.fuzerenshow = false
+            console.log('进来了', this.fuzerenshow)
+          }
+        }
+      }
+    },
+    teannameChange (e) {
+      console.log('团队名称ID', e)
+      this.fuzerenoptions = [
+        {
+          name: '全部(可见范围)'
+        }
+      ]
+      if(!e) {
+        this.fuzerenshow = true
+        this.fuzerenvalue = this.fuzerenoptions[0].name
+      }
+      for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
+        if (e === Number(this.fuzerenoptionsAll[i].team_id)) {
+          this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
+          this.fuzerenshow = false
+          console.log('进来了', this.fuzerenshow)
+        }
+      }
     }
   },
   mounted () {
     this.requestdata()
+    let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+    console.log('user表', sessionUser)
   }
 }
 </script>

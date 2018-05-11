@@ -85,7 +85,7 @@ class TeamUserPcService extends Service {
     }
 
     // 获取业务员信息
-    async getAgents(teamIds){
+    async getAgents(teamIds,company_id){
 
         const cfg = this.config.sequelize;
         cfg.logging = false;
@@ -95,8 +95,9 @@ class TeamUserPcService extends Service {
         const agents = await sequelize.query(
             "select u.name,u.openid,tu.team_id from x_team_user tu , x_users u " +
             "where tu.open_id = u.openid " +
-            "and tu.team_id in (:teamIds) ",
-            {replacements: {teamIds: teamIds}, type: Sequelize.QueryTypes.SELECT})
+            "and tu.team_id in (:teamIds) " +
+            "and u.company_id =:company_id",
+            {replacements: {teamIds: teamIds,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
 
         return agents
     }

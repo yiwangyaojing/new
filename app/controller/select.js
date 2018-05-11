@@ -82,13 +82,13 @@ class SelectController extends Controller {
             teamLevels.push('all')
             // 遍历团队等级
             for(let team of teams){
-                if(teamLevels.indexOf(team.level) ===-1 ){
+                if(teamLevels.indexOf(team.level.toString()) === -1 ){
                     teamLevels.push(team.level.toString())
                 }
             }
             teamLevels.push('one')
             // 获取团队业务员
-            agents = await  service.teamUserPc.getAgents(managerTeam.managerTeamIds)
+            agents = await  service.teamUserPc.getAgents(managerTeam.managerTeamIds,userInfo.company_id)
         }else {
             teamLevels.push('one')
         }

@@ -50,6 +50,7 @@ export default {
       numcode: 120,
       oss_name: '',
       showcode: true,
+      sessionUser: '',
       dataImg: {
         source_type: 6,
         data_type: 0
@@ -101,16 +102,19 @@ export default {
       }
       axios.put('api/team/company', objdata).then(res => {
         console.log('修改成功', res)
+        this.sessionUser.company_logo = this.company_logo
+        window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
+        window.location.reload()
       })
     }
   },
   mounted () {
-    let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
-    this.open_id = sessionUser.openid
-    this.phone = sessionUser.phone
-    this.company_logo = sessionUser.company_logo
-    this.company_id = sessionUser.company_id
-    console.log(sessionUser)
+    this.sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+    this.open_id = this.sessionUser.openid
+    this.phone = this.sessionUser.phone
+    this.company_logo = this.sessionUser.company_logo
+    this.company_id = this.sessionUser.company_id
+    console.log(this.sessionUser)
     this.requestdata()
   }
 }

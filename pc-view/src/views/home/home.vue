@@ -22,14 +22,14 @@
           <div style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>
-              <el-select size="small" class="fl" v-model="tdfwvalue" placeholder="请选择">
+              <el-select size="small" class="fl" v-model="tdfwvalue">
                 <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
             </el-col>
             <el-col :span="8" class="y-Center">
               <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
-              <el-select size="small" class="fl" v-model="fuzerenvalue" placeholder="请选择">
+              <el-select size="small" class="fl" v-model="fuzerenvalue">
                 <el-option v-for="item in fuzerenoptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
@@ -211,14 +211,12 @@ export default {
       datevalue: [
 
       ],
-      tdfwvalue: '',
+      tdfwvalue: '全部',
       fuzerenvalue: '',
       htqdday: '',
       sgwcday: '',
       bwwcday: '',
-      overdueShow: false,
-      datevalue1: '',
-      datevalue2: ''
+      overdueShow: false
     }
   },
   methods: {
@@ -244,8 +242,11 @@ export default {
     },
     requestdata () {
       axios.get('/api/select/date/' + 'today').then(res => {
-        console.log(res)
+        console.log('统计周期', res)
         this.datevalue.push(res.beginDate, res.endDate)
+      })
+      axios.get('/api/select/team').then(res => {
+        console.log('团队范围', res)
       })
     }
   },

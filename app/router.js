@@ -124,4 +124,7 @@ module.exports = app => {
     // PC 用户团队
     router.put('/api/userPc', controller.userPc.update);
 
+    //PC端客户资料
+    router.post('/api/customerDataPc/customerList',controller.customerDataPc.findParamsByPage);
+
 };

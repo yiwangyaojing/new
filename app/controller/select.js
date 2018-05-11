@@ -73,11 +73,11 @@ class SelectController extends Controller {
 
 
         // 获取可管理的所有团队ID
-        let managerTeamIds = await  service.teamUser.findManagerTeams(companyId, openId)
+        let managerTeam = await  service.teamUser.findManagerTeams(companyId, openId)
 
-        if(managerTeamIds.size > 0){
+        if(managerTeam && managerTeam.managerTeamIds.length > 0){
             // 获取团队详细信息
-            teams = await  service.teamPc.findByIds(managerTeamIds)
+            teams = await  service.teamPc.findByIds(managerTeam.managerTeamIds)
 
             teamLevels.push('all')
             // 遍历团队等级
@@ -88,14 +88,17 @@ class SelectController extends Controller {
             }
             teamLevels.push('one')
             // 获取团队业务员
-            agents = await  service.teamUserPc.getAgents(managerTeamIds)
+            agents = await  service.teamUserPc.getAgents(managerTeam.managerTeamIds)
         }else {
             teamLevels.push('one')
-            //业务员和游客
-            resp.agents = []
-            resp.agents.push(userInfo)
         }
-
+        // 当前登录用户
+        let agent ={
+            openid:userInfo.openid,
+            name:userInfo.name,
+            team_id: 'one'
+        }
+        agents.push(agent)
         resp.teamLevels = teamLevels
         resp.teams = teams
         resp.agents = agents

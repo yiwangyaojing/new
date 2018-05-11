@@ -14,7 +14,7 @@ class TeamService extends Service {
 
 
     async findByIds(teamIds){
-        return await this.ctx.model.Team.findAll({where:{id:teamIds},order:[['level','asc']]})
+        return await this.ctx.model.XTeam.findAll({where:{id:teamIds},order:[['level','asc']]})
     }
 
 

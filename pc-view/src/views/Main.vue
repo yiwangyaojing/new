@@ -6,8 +6,7 @@
   <el-container>
     <el-aside width="auto">
       <el-row type="flex" align="middle" class="logo">
-        <!--<img src="../asserts/images/logo.png"/>-->
-        <span>光伏好销售</span>
+        <img src="/static/img/Logo.gif"/>
       </el-row>
       <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF"
                background-color="#fff" :collapse="collapsed">

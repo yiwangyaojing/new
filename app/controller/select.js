@@ -45,6 +45,65 @@ class SelectController extends Controller {
 
         ctx.body = {beginDate: beginDate, endDate: endDate}
     }
+
+
+    /**
+     * 团队范围下来列表查询
+     */
+
+    async teamSelect(){
+
+        const {ctx,service} = this
+
+        let resp = {}
+
+        let teamLevels =[]
+        let teams = []
+        let agents = []
+
+
+        // 获取用户登录信息
+        const userInfo  = ctx.session.user
+
+
+        // 获取登录用户信息
+        const openId = userInfo.openid
+        const companyId = userInfo.company_id
+
+
+        // 获取可管理的所有团队ID
+        let managerTeamIds = await  service.teamUser.findManagerTeams(companyId, openId)
+
+        if(managerTeamIds.size > 0){
+            // 获取团队详细信息
+            teams = await  service.teamPc.findByIds(managerTeamIds)
+
+            teamLevels.push('all')
+            // 遍历团队等级
+            for(let team of teams){
+                if(teamLevels.indexOf(team.level) ===-1 ){
+                    teamLevels.push(team.level.toString())
+                }
+            }
+            teamLevels.push('one')
+            // 获取团队业务员
+            agents = await  service.teamUserPc.getAgents(managerTeamIds)
+
+        }else {
+
+            teamLevels.push('one')
+            //业务员和游客
+            resp.agents.push(userInfo)
+        }
+
+        resp.teamLevels = teamLevels
+        resp.teams = teams
+        resp.agents = agents
+
+
+        ctx.body = resp
+
+    }
 }
 
 module.exports = SelectController

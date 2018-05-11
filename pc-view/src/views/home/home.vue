@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <el-row>
-        <div v-if="!yqgzgzsz">
+        <div v-if="!overdueShow">
           <div style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
@@ -36,7 +36,7 @@
             </el-col>
           </div>
         </div>
-        <div v-if="!yqgzgzsz" style="margin-top: 20px;">
+        <div v-if="!overdueShow" style="margin-top: 20px;">
           <div style="font-size: 16px;">项目更新</div>
           <el-row style="margin-top: 20px;">
             <el-col :span="6" class="x-Center">
@@ -81,7 +81,7 @@
             </el-col>
           </el-row>
         </div>
-        <div v-if="!yqgzgzsz" style="margin-top: 20px;">
+        <div v-if="!overdueShow" style="margin-top: 20px;">
           <div style="font-size: 16px;"><span>逾期项目</span> <span style="font-size: 10px;color: #409EFF;" @click="gzshow">规则设置</span></div>
           <el-row style="margin-top: 20px;">
             <el-col :span="6" class="x-Center">
@@ -113,7 +113,7 @@
             </el-col>
           </el-row>
         </div>
-        <el-row v-if="yqgzgzsz" style="margin-top: 20px;">
+        <el-row v-if="overdueShow" style="margin-top: 20px;">
           <div style="font-size: 20px;">逾期规则设置</div>
           <el-col :span="24">
             <el-col :span="6" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
@@ -146,7 +146,7 @@
             </el-col>
           </el-col>
         </el-row>
-        <el-button v-if="yqgzgzsz" @click="sunmitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
+        <el-button v-if="overdueShow" @click="sunmitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
       </el-row>
     </el-card>
   </div>
@@ -216,17 +216,17 @@ export default {
       htqdday: '',
       sgwcday: '',
       bwwcday: '',
-      yqgzgzsz: false,
+      overdueShow: false,
       datevalue1: '',
       datevalue2: ''
     }
   },
   methods: {
     gzshow () {
-      this.yqgzgzsz = !this.yqgzgzsz
+      this.overdueShow = !this.overdueShow
     },
     sunmitClick () {
-      this.yqgzgzsz = !this.yqgzgzsz
+      this.overdueShow = !this.overdueShow
     },
     tjzqChange (e) {
       this.datevalue = []

@@ -153,41 +153,77 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
-              <div class="fl" style="width: 4 00px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
+              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
             </div>
           </el-tab-pane>
           <el-tab-pane label="收资料" name="4">
-            <div class="clearfix">
-              <div class="fl" style="width: 100px;">身份证/户口本/结婚证</div>
-              <div class="fl" style="margin-right: 5px;"><img style="width: 60px; height: 60px;" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
+              <div class="fl imgs" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              </div>
+              <div class="fl imgs">
+                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
+              </div>
             </div>
-            <div class="clearfix">
-              <div class="fl" style="width: 100px;">产权证明/电费单/银行卡</div>
-              <div class="fl" style="margin-right: 5px;"><img style="width: 60px; height: 60px;" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl imgs" style="width: 80px;">产权证明/电费单/银行卡</div>
+              <div class="fl imgs" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              </div>
+              <div class="fl imgs">
+                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
+              </div>
             </div>
-            <div class="clearfix">
-              <div class="fl" style="width: 100px;">并网申请/合同/其他</div>
-              <div class="fl" style="margin-right: 5px;"><img style="width: 60px; height: 60px;" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl imgs" style="width: 80px;">并网申请/合同/其他</div>
+              <div class="fl imgs" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              </div>
+              <div class="fl imgs">
+                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
+              </div>
+            </div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl" style="width: 80px;">备注</div>
+              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
             </div>
           </el-tab-pane>
           <el-tab-pane label="排版子" name="5">
-            <div class="clearfix">
-              <div :span="10" class="clearfix fl" style="width: 300px;">
-                <div class="fl" style="width: 100px;">组件规格</div>
-                <div class="fl" >168瓦</div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
+                <div class="fl" style="width: 80px;">组件规格</div>
+                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
+                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
+                </div>
               </div>
-              <div :span="10" class="clearfix fl">
-                <div class="fl" style="width: 100px;">组件数量</div>
-                <div class="fl" >36块</div>
+              <div :span="10" class="clearfix fl y-Center">
+                <div class="fl" style="width: 80px;">组件数量</div>
+                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
+                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
+                </div>
               </div>
             </div>
-            <div :span="10" class="clearfix" style="width: 400px;">
-              <div class="fl" style="width: 100px;">装机容量</div>
-              <div class="fl" >168千瓦</div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div :span="10" class="clearfix y-Center" style="width: 400px;">
+                <div class="fl" style="width: 80px;">装机容量</div>
+                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                  <div class="fl" style="width: 70%;padding-left: 10px">168</div>
+                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
+                </div>
+              </div>
             </div>
-            <div>备注: XXXXXXXXXXXXXXXXXXX</div>
-            <div>排布示意图</div>
-            <div><img width="400" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl" style="width: 80px;">备注</div>
+              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
+            </div>
+            <div style="margin-top: 20px;font-size: 16px;">排布示意图</div>
+            <div style="margin-top: 20px;"><img width="400" src="/static/img/sky.871d198.jpg" alt=""></div>
           </el-tab-pane>
         </el-tabs>
       </el-col>

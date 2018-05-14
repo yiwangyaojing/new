@@ -119,7 +119,7 @@ module.exports = app => {
     router.get('/api/select/team', controller.select.teamSelect); //获取团队范围
 
 
-    router.post('/api/detailSettingPc/settingDetails', controller.detailSettingPc.findParamsByPage);
+    router.post('/api/detailSettingPc/settingDetails',controller.detailSettingPc.findParamsByPage);
     router.get('/api/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
     router.get('/api/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);
     router.get('/api/detailSettingPc/payStatus/:id', controller.detailSettingPc.findPayStatusById);
@@ -129,5 +129,7 @@ module.exports = app => {
 
     //PC端客户资料
     router.post('/api/customerDataPc/customerList',controller.customerDataPc.findParamsByPage);
-
+    router.get('/api/customerDataPc/planDetail/:id', controller.customerDataPc.details);
+    router.get('/api/customerDataPc/contractStatus/:id', controller.customerDataPc.findContractStatusById);
+    router.get('/api/customerDataPc/payStatus/:id', controller.customerDataPc.findPayStatusById);
 };

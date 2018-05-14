@@ -84,32 +84,23 @@
             </div>
           </el-tab-pane>
           <el-tab-pane label="合同动态" name="1">
-            <el-col :span="24" style="margin-bottom: 20px;">
+            <el-col v-for="(items, index) in contractProgressList" :key="index" :span="24" style="margin-bottom: 20px;">
               <el-col :span="10" style="margin-top: 20px;padding: 0 10px;line-height: 30px;border-radius: 5px;">
                 <el-card class="box-card">
-                  <div>2018年3月20日 15:23</div>
-                  <div>张三于 将合同状态由 <span style="color: #01cb32">施工完成</span> 改为 <span style="color: #01cb32">并网完成</span></div>
-                  <div style="color: #999;">备注：XXXXXXXXXXXXX</div>
-                </el-card>
-              </el-col>
-            </el-col>
-            <el-col :span="24" style="margin-bottom: 20px;">
-              <el-col :span="10" style="margin-top: 20px;padding: 0 10px;line-height: 30px;border-radius: 5px;">
-                <el-card class="box-card">
-                  <div>2018年3月20日 15:23</div>
-                  <div>张三于 将合同状态由 <span style="color: #01cb32">施工完成</span> 改为 <span style="color: #01cb32">并网完成</span></div>
-                  <div style="color: #999;">备注：XXXXXXXXXXXXX</div>
+                  <div> {{items.updated_at}}</div>
+                  <div> {{items.scd_remark}} 将合同状态由 <span style="color: #01cb32">{{items.from_name}}</span> 改为 <span style="color: #01cb32">{{items.scd_name}}</span></div>
+                  <div style="color: #999;">备注：{{items.scd_r_remark}}</div>
                 </el-card>
               </el-col>
             </el-col>
           </el-tab-pane>
           <el-tab-pane label="回款" name="2">
-            <el-col :span="24" style="margin-bottom: 20px;">
+            <el-col :span="24" style="margin-bottom: 20px;" v-for="(items, index) in payList" :key="index">
               <el-col :span="10" style="margin-top: 20px;padding: 0 10px;line-height: 30px;border-radius: 5px;">
                 <el-card class="box-card">
-                  <div>2018年3月20日 15:23</div>
-                  <div>张三 回款 <span style="color: #01cb32">1000</span> 元</div>
-                  <div style="color: #999;">备注：XXXXXXXXXXXXX</div>
+                  <div>{{items.pay_time}}</div>
+                  <div>{{items.name}} 回款 <span style="color: #01cb32">{{items.pay_money}}</span> 元</div>
+                  <div style="color: #999;">备注：{{items.pay_remark}}</div>
                 </el-card>
               </el-col>
             </el-col>
@@ -237,8 +228,11 @@ export default {
   data () {
     return {
       activeName: '0',
+      contractProgressList: [],
+      payList: [],
       updated_at1: '',
       details: {
+        user_name: '', // 负责人
         cst_name: '', //  客户名称
         cst_phone: '', //  客户电话
         cst_address: '', //  客户地址
@@ -265,7 +259,17 @@ export default {
         if (planId) {
           axios.get('/api/customerDataPc/contractStatus/' + planId).then(resp => {
             console.log('客户合同状态：')
-            console.log(resp)
+            this.contractProgressList = []
+            for (let i = 0; i < resp.length; i++) {
+              let contractProgress = {
+                scd_name: resp[i].scd_name, // 进度名称
+                from_name: resp[i].from_name, // 来源名称
+                scd_remark: resp[i].scd_remark, // 负责人
+                scd_r_remark: resp[i].scd_r_remark, // 进度备注
+                updated_at: dateFormat(resp[i].updated_at, 'yyyy-mm-dd') // 更新时间
+              }
+              this.contractProgressList.push(contractProgress)
+            }
           })
         }
       } else {
@@ -275,6 +279,16 @@ export default {
           axios.get('/api/customerDataPc/payStatus/' + planId).then(resp => {
             console.log('客户回款：')
             console.log(resp)
+            this.payList = []
+            for (let i = 0; i < resp.length; i++) {
+              let payProgress = {
+                name: resp[i].name, // 负责人
+                pay_money: resp[i].pay_money, // 回款金额
+                pay_remark: resp[i].pay_remark, // 进度备注
+                pay_time: dateFormat(resp[i].pay_time, 'yyyy-mm-dd') // 回款时间
+              }
+              this.payList.push(payProgress)
+            }
           })
         }
       }
@@ -284,9 +298,7 @@ export default {
       console.log('id', planId)
       if (planId) {
         axios.get('/api/customerDataPc/planDetail/' + planId).then(resp => {
-          console.log('返回某个客户详细数据：')
-          console.log(resp)
-          console.log(resp.updated_at)
+          console.log('返回某个客户详细数据：', resp)
           this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
           this.details = resp
         })

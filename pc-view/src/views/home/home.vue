@@ -48,41 +48,51 @@
           <el-row style="margin-top: 20px;">
             <el-col :span="6" class="x-Center">
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
-                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">6</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">新增项目</div>
+                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #e3023b;font-size: 30px;">{{stateupdate0.total ? stateupdate0.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                 <div class="fl" style="width: 59%;font-size: 18px;">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                  <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
+                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                  <div style="padding: 12px 0">{{stateupdate0.price ? stateupdate0.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                </div>
+              </el-col>
+            </el-col>
+            <el-col :span="6" class="x-Center">
+              <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
+                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">{{stateupdate2.total ? stateupdate2.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                <div class="fl" style="width: 59%;font-size: 18px;">
+                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate2.input_capacity ? stateupdate2.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                  <div style="padding: 12px 0">{{stateupdate2.price ? stateupdate2.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>
               </el-col>
             </el-col>
             <el-col :span="6" class="x-Center">
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工完成</div>
-                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00abca;font-size: 30px;">3</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00abca;font-size: 30px;">{{stateupdate3.total ? stateupdate3.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                 <div class="fl" style="width: 59%;font-size: 18px;">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                  <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
+                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate3.input_capacity ? stateupdate3.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                  <div style="padding: 12px 0">{{stateupdate3.price ? stateupdate3.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>
               </el-col>
             </el-col>
             <el-col :span="6" class="x-Center">
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网完成</div>
-                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #ca9b00;font-size: 30px;">3</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #ca9b00;font-size: 30px;">{{stateupdate4.total ? stateupdate4.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                 <div class="fl" style="width: 59%;font-size: 18px;">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                  <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
+                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate4.input_capacity ? stateupdate4.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                  <div style="padding: 12px 0">{{stateupdate4.price ? stateupdate4.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>
               </el-col>
             </el-col>
-            <el-col :span="6" class="x-Center">
+            <el-col :span="6" class="x-Center" style="margin-top: 30px;">
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款完成</div>
-                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc87;font-size: 30px;">3</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc87;font-size: 30px;">{{stateupdate6.total ? stateupdate6.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                 <div class="fl" style="width: 59%;font-size: 18px;">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">138 <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                  <div style="padding: 12px 0">10.8 <span style="color: #999;font-size: 12px;">万元</span></div>
+                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate6.input_capacity ? stateupdate6.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                  <div style="padding: 12px 0">{{stateupdate6.price ? stateupdate6.price / 10000: '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                 </div>
               </el-col>
             </el-col>
@@ -246,7 +256,12 @@ export default {
       overdueShow: false,
       teamLevel: 'all',
       teamId: 'all',
-      planOwner: 'all'
+      planOwner: 'all',
+      stateupdate0: {},
+      stateupdate2: {},
+      stateupdate3: {},
+      stateupdate4: {},
+      stateupdate6: {}
     }
   },
   methods: {
@@ -296,6 +311,7 @@ export default {
     tdfwChange (e) {
       console.log(e)
       this.teamLevel = e
+      this.teamId = 'all'
       this.teamoptions = [
         {
           name: '全部(可见范围)'
@@ -338,6 +354,7 @@ export default {
           }
         }
       }
+      this.statisticaldata()
     },
     teannameChange (e) {
       console.log('团队名称ID', e)
@@ -350,6 +367,7 @@ export default {
       if (!e) {
         this.fuzerenshow = true
         this.fuzerenvalue = this.fuzerenoptions[0].name
+        this.teamId = 'all'
       }
       for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
         if (e === Number(this.fuzerenoptionsAll[i].team_id)) {
@@ -358,6 +376,7 @@ export default {
           console.log('进来了', this.fuzerenshow)
         }
       }
+      this.statisticaldata()
     },
     statisticaldata () {
       let overduedata2length = []
@@ -367,13 +386,13 @@ export default {
         let objdata = {
           beginDate: this.datevalue[0],
           endDate: this.datevalue[1],
-          teamLevel: this.teamLevel,
+          teamLevel: String(this.teamLevel),
           teamId: this.teamId,
           planOwner: this.planOwner
         }
         axios.post('/api/home', objdata).then(res => {
           console.log('项目更新数据', res)
-          for (let i = 0; i< res.overDue.reverse().length; i++) {
+          for (let i = 0; i < res.overDue.reverse().length; i++) {
             if (res.overDue[i].scd_status === 3) {
               this.overduedata3.differ = res.overDue[i].differ
               overduedata3length.push(res.overDue[i])
@@ -390,8 +409,25 @@ export default {
               this.overduedata4.num = overduedata4length.length
             }
           }
+          for (let i = 0; i < res.schedule.length; i++) {
+            if (res.schedule[i].scd_status === 0) {
+              this.stateupdate0 = res.schedule[i]
+            }
+            if (res.schedule[i].scd_status === 2) {
+              this.stateupdate2 = res.schedule[i]
+            }
+            if (res.schedule[i].scd_status === 3) {
+              this.stateupdate3 = res.schedule[i]
+            }
+            if (res.schedule[i].scd_status === 4) {
+              this.stateupdate4 = res.schedule[i]
+            }
+            if (res.schedule[i].scd_status === 6) {
+              this.stateupdate6 = res.schedule[i]
+            }
+          }
         })
-      }, 100)
+      }, 200)
     }
   },
   mounted () {

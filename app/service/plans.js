@@ -232,7 +232,8 @@ class PlansService extends Service {
     async basicCreate(XPlansModel) {
 
         XPlansModel.scd_status = FileType.schedule.xzxm,
-            XPlansModel.scd_name = FileType.scheduleName[FileType.schedule.xzxm]
+        XPlansModel.scd_name = FileType.scheduleName[FileType.schedule.xzxm]
+        XPlansModel.scd_time = new Date()
 
         console.log(XPlansModel);
         const result = await this.ctx.model.XPlans.create(XPlansModel);

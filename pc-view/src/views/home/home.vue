@@ -36,7 +36,7 @@
             </el-col>
             <el-col :span="8" class="y-Center">
               <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
-              <el-select size="small" class="fl" v-model="fuzerenvalue" :disabled="fuzerenshow">
+              <el-select size="small" @change="fuzerenChange" class="fl" v-model="fuzerenvalue" :disabled="fuzerenshow">
                 <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
                 </el-option>
               </el-select>
@@ -105,8 +105,8 @@
               <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工逾期</div>
                 <div style="padding: 10px 0;">
-                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata2.num}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                  <div style="color: #999;font-size: 12px;">最长{{overduedata2.differ}}天</div>
+                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata2.num ? overduedata2.num : '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                  <div style="color: #999;font-size: 12px;">最长{{overduedata2.differ ? overduedata2.differ : '--'}}天</div>
                 </div>
               </el-col>
             </el-col>
@@ -114,8 +114,8 @@
               <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网逾期</div>
                 <div style="padding: 10px 0;">
-                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata3.num}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                  <div style="color: #999;font-size: 12px;">最长{{overduedata3.differ}}天</div>
+                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata3.num ? overduedata3.num: '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                  <div style="color: #999;font-size: 12px;">最长{{overduedata3.differ ? overduedata3.differ: '--'}}天</div>
                 </div>
               </el-col>
             </el-col>
@@ -123,8 +123,8 @@
               <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款逾期</div>
                 <div style="padding: 10px 0;">
-                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata4.num}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                  <div style="color: #999;font-size: 12px;">最长{{overduedata4.differ}}天</div>
+                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata4.num ? overduedata4.num :'--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                  <div style="color: #999;font-size: 12px;">最长{{overduedata4.differ ? overduedata4.differ: '--'}}天</div>
                 </div>
               </el-col>
             </el-col>
@@ -228,7 +228,9 @@ export default {
       teamoptions: [],
       teamoptionsAll: [],
       teamname: '全部(可见范围)',
-      fuzerenoptions: [],
+      fuzerenoptions: [
+
+      ],
       fuzerenoptionsAll: [],
       tjzqvalue: '今天',
       datevalue: [
@@ -261,7 +263,8 @@ export default {
       stateupdate2: {},
       stateupdate3: {},
       stateupdate4: {},
-      stateupdate6: {}
+      stateupdate6: {},
+      fuzerenID: ''
     }
   },
   methods: {
@@ -319,11 +322,15 @@ export default {
       ]
       for (let i = 0; i < this.teamoptionsAll.length; i++) {
         if (e === 'all') {
+          this.planOwner = 'all'
+          this.fuzerenvalue = '全部(可见范围)'
           this.teamoptions.push(this.teamoptionsAll[i])
           this.teannameshow = true
           this.fuzerenshow = true
         }
         if (e === Number(this.teamoptionsAll[i].level)) {
+          this.fuzerenvalue = '全部(可见范围)'
+          this.planOwner = 'all'
           this.teannameshow = false
           this.fuzerenshow = true
           this.teamoptions.push(this.teamoptionsAll[i])
@@ -332,19 +339,15 @@ export default {
         this.teamname = this.teamoptions[0].name
       }
       if (e === 'one') {
+        this.planOwner = this.fuzerenID
         this.teannameshow = true
-        this.planOwner = 'one'
         this.teamoptions = [
           {
             name: '个人',
             id: 'one'
           }
         ]
-        this.fuzerenoptions = [
-          {
-            name: '全部(可见范围)'
-          }
-        ]
+        this.fuzerenoptions = []
         this.teamname = this.teamoptions[0].name
         for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
           if (String(e) === String(this.fuzerenoptionsAll[i].team_id)) {
@@ -353,6 +356,8 @@ export default {
             console.log('进来了', this.fuzerenshow)
           }
         }
+        this.fuzerenvalue = this.fuzerenoptions[0].name
+        this.planOwner = this.fuzerenoptions[0].openid
       }
       this.statisticaldata()
     },
@@ -378,16 +383,42 @@ export default {
       }
       this.statisticaldata()
     },
+    fuzerenChange (e) {
+      this.fuzerenID = e
+      console.log('sdjkfdsjfjdsjfdjs', e)
+      this.planOwner = e
+      if (!e) {
+        this.planOwner = 'all'
+      }
+      this.statisticaldata()
+    },
     statisticaldata () {
       let overduedata2length = []
       let overduedata3length = []
       let overduedata4length = []
+      this.stateupdate0 = {}
+      this.stateupdate2 = {}
+      this.stateupdate3 = {}
+      this.stateupdate4 = {}
+      this.stateupdate6 = {}
+      this.overduedata2 = {
+        differ: '',
+        num: ''
+      }
+      this.overduedata3 = {
+        differ: '',
+        num: ''
+      }
+      this.overduedata4 = {
+        differ: '',
+        num: ''
+      }
       setTimeout(() => {
         let objdata = {
           beginDate: this.datevalue[0],
           endDate: this.datevalue[1],
           teamLevel: String(this.teamLevel),
-          teamId: this.teamId,
+          teamId: String(this.teamId),
           planOwner: this.planOwner
         }
         axios.post('/api/home', objdata).then(res => {
@@ -427,7 +458,7 @@ export default {
             }
           }
         })
-      }, 200)
+      }, 300)
     }
   },
   mounted () {

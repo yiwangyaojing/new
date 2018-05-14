@@ -95,8 +95,8 @@
               <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工逾期</div>
                 <div style="padding: 10px 0;">
-                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">3</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                  <div style="color: #999;font-size: 12px;">最长9天</div>
+                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata2.num}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                  <div style="color: #999;font-size: 12px;">最长{{overduedata2.differ}}天</div>
                 </div>
               </el-col>
             </el-col>
@@ -104,8 +104,8 @@
               <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网逾期</div>
                 <div style="padding: 10px 0;">
-                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">3</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                  <div style="color: #999;font-size: 12px;">最长9天</div>
+                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata3.num}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                  <div style="color: #999;font-size: 12px;">最长{{overduedata3.differ}}天</div>
                 </div>
               </el-col>
             </el-col>
@@ -113,8 +113,8 @@
               <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                 <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款逾期</div>
                 <div style="padding: 10px 0;">
-                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">3</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                  <div style="color: #999;font-size: 12px;">最长9天</div>
+                  <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata4.num}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                  <div style="color: #999;font-size: 12px;">最长{{overduedata4.differ}}天</div>
                 </div>
               </el-col>
             </el-col>
@@ -224,6 +224,18 @@ export default {
       datevalue: [
 
       ],
+      overduedata2: {
+        differ: '',
+        num: ''
+      },
+      overduedata3: {
+        differ: '',
+        num: ''
+      },
+      overduedata4: {
+        differ: '',
+        num: ''
+      },
       tdfwvalue: '全部(可见范围)',
       fuzerenvalue: '全部(可见范围)',
       teannameshow: true,
@@ -231,7 +243,10 @@ export default {
       htqdday: '',
       sgwcday: '',
       bwwcday: '',
-      overdueShow: false
+      overdueShow: false,
+      teamLevel: 'all',
+      teamId: 'all',
+      planOwner: 'all'
     }
   },
   methods: {
@@ -249,16 +264,20 @@ export default {
           for (let i in res) {
             this.datevalue.push(res[i])
           }
+          this.statisticaldata()
         })
       }
     },
-    selectdateChange () {
+    selectdateChange (e) {
       this.tjzqvalue = '自定义'
+      this.datevalue = e
+      console.log('时间统计', this.datevalue)
+      this.statisticaldata()
     },
     requestdata () {
       axios.get('/api/select/date/' + 'today').then(res => {
-        console.log('统计周期', res)
         this.datevalue.push(res.beginDate, res.endDate)
+        console.log('统计周期', this.datevalue)
       })
       axios.get('/api/select/team').then(res => {
         console.log('团队范围', res)
@@ -276,6 +295,7 @@ export default {
     },
     tdfwChange (e) {
       console.log(e)
+      this.teamLevel = e
       this.teamoptions = [
         {
           name: '全部(可见范围)'
@@ -296,7 +316,8 @@ export default {
         this.teamname = this.teamoptions[0].name
       }
       if (e === 'one') {
-
+        this.teannameshow = true
+        this.planOwner = 'one'
         this.teamoptions = [
           {
             name: '个人',
@@ -320,12 +341,13 @@ export default {
     },
     teannameChange (e) {
       console.log('团队名称ID', e)
+      this.teamId = e
       this.fuzerenoptions = [
         {
           name: '全部(可见范围)'
         }
       ]
-      if(!e) {
+      if (!e) {
         this.fuzerenshow = true
         this.fuzerenvalue = this.fuzerenoptions[0].name
       }
@@ -336,12 +358,47 @@ export default {
           console.log('进来了', this.fuzerenshow)
         }
       }
+    },
+    statisticaldata () {
+      let overduedata2length = []
+      let overduedata3length = []
+      let overduedata4length = []
+      setTimeout(() => {
+        let objdata = {
+          beginDate: this.datevalue[0],
+          endDate: this.datevalue[1],
+          teamLevel: this.teamLevel,
+          teamId: this.teamId,
+          planOwner: this.planOwner
+        }
+        axios.post('/api/home', objdata).then(res => {
+          console.log('项目更新数据', res)
+          for (let i = 0; i< res.overDue.reverse().length; i++) {
+            if (res.overDue[i].scd_status === 3) {
+              this.overduedata3.differ = res.overDue[i].differ
+              overduedata3length.push(res.overDue[i])
+              this.overduedata3.num = overduedata3length.length
+            }
+            if (res.overDue[i].scd_status === 2) {
+              this.overduedata2.differ = res.overDue[i].differ
+              overduedata2length.push(res.overDue[i])
+              this.overduedata2.num = overduedata2length.length
+            }
+            if (res.overDue[i].scd_status === 4) {
+              this.overduedata4.differ = res.overDue[i].differ
+              overduedata4length.push(res.overDue[i])
+              this.overduedata4.num = overduedata4length.length
+            }
+          }
+        })
+      }, 100)
     }
   },
   mounted () {
     this.requestdata()
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
     console.log('user表', sessionUser)
+    this.statisticaldata()
   }
 }
 </script>

@@ -31,7 +31,6 @@ class TeamUserService extends Service {
 
         let teams = []
 
-
         if(req.id){
             // 查询所有团队
             console.log("概况：查询团队以及团队一下。")

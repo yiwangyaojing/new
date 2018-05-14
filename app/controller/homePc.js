@@ -27,9 +27,9 @@ class HomePcController extends Controller {
         }
         ctx.validate(rule,req)
 
+        const result = await service.homePc.homeCount(req)
 
-
-
+        ctx.body = result
     }
 }
 

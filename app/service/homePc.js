@@ -186,6 +186,7 @@ class HomePcService extends Service {
             " p.overdue_date IS NOT NULL   " +
             " AND p.overdue_date != ''   " +
             " AND p.overdue_date < '2018-05-13'   " +
+            " "+sql+" " +
             "ORDER BY  " +
             " p.overdue_date ASC",
             {replacements: overDueParams, type: Sequelize.QueryTypes.SELECT})

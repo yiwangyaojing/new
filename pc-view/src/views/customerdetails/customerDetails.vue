@@ -287,7 +287,7 @@ export default {
           console.log('返回某个客户详细数据：')
           console.log(resp)
           console.log(resp.updated_at)
-          this.updated_at1 = dateFormat(resp.updated_at,'yyyy-mm-dd')
+          this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
           this.details = resp
         })
       }

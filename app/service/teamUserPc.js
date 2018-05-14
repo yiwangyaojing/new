@@ -153,10 +153,14 @@ class TeamUserPcService extends Service {
             //     await  this.service.team.linealTeam(company,team,managerTeamIds,'child');
             // }
 
-            //递归所有团队，去重
+            //递归所有团队
             managerTeamIds.push(teamUsers[index].team_id)
             await  this.service.team.linealTeamArray(company,team,managerTeamIds,'child',teamUsers,index);
 
+        }
+        //去重
+        if(managerTeamIds.length>0){
+            managerTeamIds = [...new Set(managerTeamIds)]
         }
 
         result.managerTeamIds = managerTeamIds

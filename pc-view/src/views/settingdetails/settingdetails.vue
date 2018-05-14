@@ -1,18 +1,11 @@
 <template>
     <el-card class="box-card">
-      <!--<div slot="header" class="clearfix" style="font-size: 18px;">-->
-        <!--<span>进度详情</span>-->
-      <!--</div>-->
       <el-row>
-        <!--<div class="y-Center clearfix">-->
-          <!--<div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" src="/static/img/00_logo_xiaosolar.png"/></div>-->
-          <!--<div class="fl" style="margin-left: 10px;font-size: 18px;">董忽悠团队</div>-->
-        <!--</div>-->
         <div>
           <div :span="24" style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
-              <el-select size="small" class="fl" v-model="tjzqvalue" placeholder="请选择">
+              <el-select @change="tjzqChange" class="fl" v-model="tjzqvalue" size="small">
                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
@@ -20,7 +13,7 @@
             <el-col :span="16" class="y-Center">
               <div class="grid-content bg-purple" style="font-size: 14px;;width: 100px;">自定义时间段</div>
               <div class="block">
-                <el-date-picker size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
               </div>
             </el-col>
@@ -28,15 +21,22 @@
           <div style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>
-              <el-select size="small" class="fl" v-model="tdfwvalue" placeholder="请选择">
+              <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
                 <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
             </el-col>
             <el-col :span="8" class="y-Center">
-              <div class="fl" style="font-size: 14px;;width: 100px;">负责人</div>
-              <el-select size="small" class="fl" v-model="fuzerenvalue" placeholder="请选择">
-                <el-option v-for="item in fuzerenoptions" :key="item.value" :label="item.label" :value="item.value">
+              <div class="fl"  style="font-size: 14px;width: 100px;">团队名称</div>
+              <el-select @change="teannameChange" size="small" :disabled="teannameshow" class="fl" v-model="teamname">
+                <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8" class="y-Center">
+              <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
+              <el-select size="small" class="fl" v-model="fuzerenvalue" :disabled="fuzerenshow">
+                <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
                 </el-option>
               </el-select>
             </el-col>
@@ -61,7 +61,7 @@
         <el-col :span="12" class="y-Center" style="margin-top: 20px;">
           <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
           <el-col :span="20">
-            <el-input size="small" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="search">
+            <el-input size="small" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
             </el-input>
           </el-col>
         </el-col>
@@ -71,7 +71,7 @@
           <el-table :data="tableData" size="mini" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
               <el-table-column fixed prop="date" label="客户" ></el-table-column>
               <el-table-column prop="name" label="负责人" ></el-table-column>
-              <el-table-column prop="address" show-overflow-tooltip="true" label="地址" width="200"></el-table-column>
+              <el-table-column prop="address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
               <el-table-column prop="city" label="装机容量" ></el-table-column>
               <el-table-column prop="zip" label="合同金额" ></el-table-column>
               <el-table-column prop="zip" label="回款金额" ></el-table-column>
@@ -102,15 +102,79 @@
     </el-card>
 </template>
 <script>
+import axios from 'axios'
+import values from '../../utils/values'
 export default {
   data () {
     return {
+      showOverflowTooltip: true,
+      tjzqvalue: '今天',
+      tdfwvalue: '全部(可见范围)',
+      fuzerenvalue: '全部(可见范围)',
+      teamname: '全部(可见范围)',
+      teannameshow: true,
+      fuzerenshow: true,
+      teamoptions: [],
+      teamoptionsAll: [],
+      fuzerenoptions: [],
+      fuzerenoptionsAll: [],
+      options: [{
+        value: 'today',
+        label: '今天'
+      }, {
+        value: 'yesterday',
+        label: '昨天'
+      }, {
+        value: 'thisWeek',
+        label: '本周'
+      }, {
+        value: 'lastWeek',
+        label: '上周'
+      }, {
+        value: 'thisMonth',
+        label: '本月'
+      }, {
+        value: 'lastMonth',
+        label: '上月'
+      }, {
+        value: 'thisYear',
+        label: '本年'
+      }, {
+        value: 'total',
+        label: '累计'
+      }, {
+        value: '自定义',
+        label: '自定义'
+      }],
+      tdfwoptions: [
+        {
+          value: 'all',
+          label: '全部(可见范围)'
+        },
+        {
+          value: 1,
+          label: '一级团队'
+        },
+        {
+          value: 2,
+          label: '二级团队'
+        },
+        {
+          value: 3,
+          label: '三级团队'
+        },
+        {
+          value: 'one',
+          label: '个人'
+        }
+      ],
+
       tableData: [{
         date: '2016-05-03',
         name: '王小虎',
         province: '上海',
         city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
+        address: '上海市普陀区金沙江路 1518 弄asdfasdfasdfasdfasdfasdfsaf',
         zip: 200333,
         tag: '正常'
       }, {
@@ -118,7 +182,7 @@ export default {
         name: '王小虎',
         province: '上海',
         city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
+        address: '上海市普陀区金沙江路 1518 弄asdfasdfasdfasdfasdfasdfsaf',
         zip: 200333,
         tag: '逾期'
       }, {
@@ -138,53 +202,10 @@ export default {
         zip: 200333,
         tag: '逾期'
       }],
-      options: [{
-        value: '选项1',
-        label: '今天'
-      }, {
-        value: '选项2',
-        label: '昨天'
-      }, {
-        value: '选项3',
-        label: '本周'
-      }, {
-        value: '选项4',
-        label: '上周'
-      }, {
-        value: '选项5',
-        label: '本月'
-      }, {
-        value: '选项6',
-        label: '上月'
-      }, {
-        value: '选项7',
-        label: '本年'
-      }, {
-        value: '选项8',
-        label: '累计'
-      }],
-      tdfwoptions: [
-        {
-          value: '选项1',
-          label: '全部'
-        },
-        {
-          value: '选项2',
-          label: '总团队'
-        },
-        {
-          value: '选项3',
-          label: '子团队1'
-        },
-        {
-          value: '选项4',
-          label: '子团队2'
-        },
-        {
-          value: '选项5',
-          label: '子团队3'
-        }
+      datevalue: [
+
       ],
+
       contractoptions: [
         {
           value: '选项1',
@@ -217,11 +238,7 @@ export default {
           label: '逾期'
         }
       ],
-      fuzerenoptions: [],
-      tjzqvalue: '',
-      datevalue: '',
-      tdfwvalue: '',
-      fuzerenvalue: '',
+
       contractvalue: '',
       overduevalue: '',
       searchvalue: '',
@@ -234,7 +251,115 @@ export default {
     },
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
+    },
+    tjzqChange (e) {
+      this.datevalue = []
+      if (this.tjzqvalue !== '自定义') {
+        axios.get('/api/select/date/' + e).then(res => {
+          console.log(res)
+          for (let i in res) {
+            this.datevalue.push(res[i])
+          }
+        })
+      }
+    },
+    selectdateChange (e) {
+      this.tjzqvalue = '自定义'
+      this.datevalue = e
+      console.log('时间统计', this.datevalue)
+    },
+    tdfwChange (e) {
+      console.log(e)
+      this.teamLevel = e
+      this.teamId = 'all'
+      this.teamoptions = [
+        {
+          name: '全部(可见范围)'
+        }
+      ]
+      for (let i = 0; i < this.teamoptionsAll.length; i++) {
+        if (e === 'all') {
+          this.teamoptions.push(this.teamoptionsAll[i])
+          this.teannameshow = true
+          this.fuzerenshow = true
+        }
+        if (e === Number(this.teamoptionsAll[i].level)) {
+          this.teannameshow = false
+          this.fuzerenshow = true
+          this.teamoptions.push(this.teamoptionsAll[i])
+          console.log('这里是团队范围变化=====', this.teamoptionsAll[i])
+        }
+        this.teamname = this.teamoptions[0].name
+      }
+      if (e === 'one') {
+        this.teannameshow = true
+        this.planOwner = 'one'
+        this.teamoptions = [
+          {
+            name: '个人',
+            id: 'one'
+          }
+        ]
+        this.fuzerenoptions = [
+          {
+            name: '全部(可见范围)'
+          }
+        ]
+        this.teamname = this.teamoptions[0].name
+        for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
+          if (String(e) === String(this.fuzerenoptionsAll[i].team_id)) {
+            this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
+            this.fuzerenshow = false
+            console.log('进来了', this.fuzerenshow)
+          }
+        }
+      }
+    },
+    teannameChange (e) {
+      console.log('团队名称ID', e)
+      this.teamId = e
+      this.fuzerenoptions = [
+        {
+          name: '全部(可见范围)'
+        }
+      ]
+      if (!e) {
+        this.fuzerenshow = true
+        this.fuzerenvalue = this.fuzerenoptions[0].name
+        this.teamId = 'all'
+      }
+      for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
+        if (e === Number(this.fuzerenoptionsAll[i].team_id)) {
+          this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
+          this.fuzerenshow = false
+          console.log('进来了', this.fuzerenshow)
+        }
+      }
+    },
+    requestdata () {
+      axios.get('/api/select/date/' + 'today').then(res => {
+        this.datevalue.push(res.beginDate, res.endDate)
+        console.log('统计周期', this.datevalue)
+      })
+      axios.get('/api/select/team').then(res => {
+        console.log('团队范围', res)
+        res.teams.forEach(item => {
+          this.teamoptionsAll.push(item)
+          this.teamoptions.push(item)
+        })
+        res.agents.forEach(item => {
+          this.fuzerenoptions.push(item)
+          this.fuzerenoptionsAll.push(item)
+        })
+        console.log('团队名称', this.teamoptions)
+        console.log('负责人', this.fuzerenoptions)
+      })
     }
+  },
+  mounted () {
+    this.requestdata()
+    let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+    console.log('user表', sessionUser)
   }
 }
 </script>

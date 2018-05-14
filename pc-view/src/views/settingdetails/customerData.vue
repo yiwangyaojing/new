@@ -204,6 +204,7 @@ export default {
       overduevalue: '',
       searchvalue: '',
       currentPage4: 1,
+      search: '',
       cs: {
         tjzqvalue: '2018-01-01',
         datevalue: ['2018-01-01', '2018-05-09'],
@@ -219,6 +220,7 @@ export default {
     handleClick (id) {
       console.log('id:')
       console.log(id)
+      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
     },
     tjzqChange (e) {
       this.datevalue = []

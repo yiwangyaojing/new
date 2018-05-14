@@ -22,6 +22,14 @@ class CustomerDataPc extends Controller {
         console.log("这里是service方法"+service.customerDataPc);
         ctx.body = await service.customerDataPc.findParamsByPage(ctx.request.body);
     }
+    // 获取详情
+    async detail() {
+        const rule = {
+            id: { type: 'string', required: true },
+        };
+        this.ctx.validate(rule, { id: this.ctx.params.id });
+        this.ctx.body = await this.ctx.customerDataPc.detail(this.ctx.params.id);
+    }
 
 
 }

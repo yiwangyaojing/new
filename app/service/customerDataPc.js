@@ -19,23 +19,54 @@ class CustomerDataPcService extends Service {
         page.pageNumber = params.pageNumber || 1;
         page.pageSize = 10;
 
-        let tjzqvalue = params.tjzqvalue;
-        let datevalue = params.datevalue;
-        let tdfwvalue = params.tdfwvalue;
-        let fuzerenvalue = params.fuzerenvalue;
-        let contractvalue = params.contractvalue;
-        let overduevalue = params.overduevalue;
-        let searchvalue = params.searchvalue;
-        let openId = params.openId;
-        let companyId = params.companyId;
-
-        if (!searchvalue) {
-            searchvalue = '';
+        let query_p = {
+            created_at: '',
+            tdfwvalue: '',
+            fuzerenvalue: '',
+            contractvalue: '',
+            overduevalue: '',
+            searchvalue: '',
+            open_id: '',
+            company_id: ''
         }
-        searchvalue = '%' + searchvalue + '%';
 
-        let tjzqStartDate = datevalue[0]+' '+'00:00:00';
-        let tjzqEndDateDate = datevalue[1]+' '+'23:59:59';
+        let req_p = {
+            datevalue: params.datevalue,//时间范围
+            tdfwvalue: params.tdfwvalue,//团队范围
+            fuzerenvalue: params.fuzerenvalue, //负责人
+            contractvalue: params.contractvalue, //合同状态
+            overduevalue: params.overduevalue,//逾期状态
+            searchvalue: params.searchvalue,//搜索条件
+            open_id: params.openId,
+            company_id: params.companyId //公司id
+        }
+
+        for(let key in query_p) {
+            if (req_p[key]) {
+                if (req_p[key] instanceof Array && req_p[key].length > 1) {
+                    query_p[key] = {
+                        [Op.gte]: req_p[key][0]+' '+'00:00:00',
+                        [Op.lte]: req_p[key][1]+' '+'23:59:59'
+                    }
+                    continue
+                }
+                query_p[key] = req_p[key]
+            } else {
+                delete query_p[key]
+            }
+        }
+
+
+
+
+
+
+
+        // if (!searchvalue) {
+        //     searchvalue = '';
+        // }
+        // searchvalue = '%' + searchvalue + '%';
+
 
         // 计算当前条数
         const start = (page.pageNumber - 1) * page.pageSize;
@@ -45,10 +76,7 @@ class CustomerDataPcService extends Service {
         const pageList = await this.ctx.model.XPlans.findAll({
             offset: start,
             limit: page.pageSize,
-            where: {
-                open_id:openId,
-                company_id: companyId
-            },
+            where: query_p,
             order: [['updated_at', 'desc']],
         });
         return pageList;
@@ -81,6 +109,56 @@ class CustomerDataPcService extends Service {
                 order: [['updated_at', 'desc']]
             },
         );
+        return result;
+    }
+
+
+
+    // 获取详情
+    async detail(rowId) {
+        const houseImgs = [];
+        const dataImgs = [];
+
+        const XPlans = await this.ctx.model.XPlans.findOne({ where: { id: rowId } });
+        if (XPlans === null) {
+            throw new Error('该方案数据不存在！');
+        }
+        const result = XPlans.dataValues;
+
+        if (result.h_is_finish === 1) {
+            // 获取拍房子图片
+            const fileHouse = await this.ctx.model.XFiles.findAll({
+                where: { plan_id: rowId, source_type: FileType.HouseImg},
+            });
+            if (fileHouse) {
+                for (const file of fileHouse) {
+                    const imgs = {};
+                    imgs.url = file.url;
+                    imgs.mini_url = file.mini_url;
+                    imgs.data_type =file.data_type
+                    houseImgs.push(imgs);
+                }
+                result.houseImgs = houseImgs;
+            }
+
+        }
+        if (result.d_is_finish === 1) {
+            // 获取收资料图片
+            const fileData = await this.ctx.model.XFiles.findAll({
+                where: { plan_id: rowId, source_type: FileType.DataImg},
+            });
+            if (fileData) {
+                for (const file of fileData) {
+                    const imgs = {};
+                    imgs.url = file.url;
+                    imgs.mini_url = file.mini_url;
+                    imgs.data_type =file.data_type
+                    dataImgs.push(imgs);
+                }
+                result.dataImgs = dataImgs;
+            }
+        }
+
         return result;
     }
 }

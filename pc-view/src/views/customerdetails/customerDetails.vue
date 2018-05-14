@@ -11,25 +11,25 @@
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">电话</div>
-                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;">133333333888</div>
+                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;">{{this.details.cst_phone}}</div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">地址</div>
-                <div class="fl one-txt-cut" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >上海市徐汇区万科中心</div>
+                <div class="fl one-txt-cut" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >{{this.details.cst_address}}</div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">组件规格</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_format}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">组件数量</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
                 </div>
               </div>
@@ -38,14 +38,14 @@
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">系统容量</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">系统单价</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_unit_price}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
                 </div>
               </div>
@@ -54,14 +54,14 @@
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">系统总价</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_price}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">已回款</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.pay_sum}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
                 </div>
               </div>
@@ -69,15 +69,15 @@
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
               <div class="fl">
-                <div style="width: 520px;height: 70px;border: 1px solid #e4e7ed;border-radius: 5px;"></div>
+                <div style="width: 520px;height: 70px;border: 1px solid #e4e7ed;border-radius: 5px;">{{this.details.cst_remark}}</div>
                 <div class="clearfix" style="margin-top: 20px;">
                   <div :span="4" class="clearfix fl" style="width: 200px">
                     <div class="fl" style="width: 80px;">合同状态:</div>
-                    <div class="fl" style="color: #01cb32;">施工完成</div>
+                    <div class="fl" style="color: #01cb32;">{{this.details.scd_name}}</div>
                   </div>
                   <div :span="4" class="clearfix fl">
                     <div class="fl" style="width: 80px;">更新时间:</div>
-                    <div class="fl" style="color: #01cb32;">2018/05/03</div>
+                    <div class="fl" style="color: #01cb32;">{{this.updated_at1}}</div>
                   </div>
                 </div>
               </div>
@@ -197,7 +197,7 @@
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">组件规格</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">186</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_format}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
                 </div>
               </div>
@@ -231,16 +231,70 @@
   </el-card>
 </template>
 <script>
+import axios from 'axios'
+import dateFormat from 'dateformat'
 export default {
   data () {
     return {
-      activeName: '0'
+      activeName: '0',
+      updated_at1: '',
+      details: {
+        cst_name: '', //  客户名称
+        cst_phone: '', //  客户电话
+        cst_address: '', //  客户地址
+        cst_remark: '', //  备注
+        zj_input_format: '', //  组件规格
+        zj_input_capacity: '', // 装机容量
+        zj_input_num: '', //  组件数量
+        zj_unit_price: '', //  系统单价
+        zj_price: '', //  总价
+        pay_sum: '', //  回款金额
+        updated_at: '', //  更新时间
+        scd_name: '' //  进度名称
+      }
     }
   },
   methods: {
     handleClick (tab, event) {
-      console.log(tab, event)
+      console.log('tab切换', tab.name)
+      if (tab.name === '0' || tab.name === '3' || tab.name === '4' || tab.name === '5') {
+        this.initData()
+      } else if (tab.name === '1') {
+        let planId = this.$route.query.planId
+        console.log('id', planId)
+        if (planId) {
+          axios.get('/api/customerDataPc/contractStatus/' + planId).then(resp => {
+            console.log('客户合同状态：')
+            console.log(resp)
+          })
+        }
+      } else {
+        let planId = this.$route.query.planId
+        console.log('id', planId)
+        if (planId) {
+          axios.get('/api/customerDataPc/payStatus/' + planId).then(resp => {
+            console.log('客户回款：')
+            console.log(resp)
+          })
+        }
+      }
+    },
+    initData () {
+      let planId = this.$route.query.planId
+      console.log('id', planId)
+      if (planId) {
+        axios.get('/api/customerDataPc/planDetail/' + planId).then(resp => {
+          console.log('返回某个客户详细数据：')
+          console.log(resp)
+          console.log(resp.updated_at)
+          this.updated_at1 = dateFormat(resp.updated_at,'yyyy-mm-dd')
+          this.details = resp
+        })
+      }
     }
+  },
+  mounted () {
+    this.initData()
   }
 }
 </script>

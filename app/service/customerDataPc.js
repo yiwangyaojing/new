@@ -56,12 +56,6 @@ class CustomerDataPcService extends Service {
             }
         }
 
-
-
-
-
-
-
         // if (!searchvalue) {
         //     searchvalue = '';
         // }
@@ -82,40 +76,12 @@ class CustomerDataPcService extends Service {
         return pageList;
     }
 
-    //PC端进度详情概况
-    async findPlanById(rowId){
-        const result = await this.ctx.model.XPlans.findOne({where: {id: rowId}});
-        return result;
-    }
-
-    //PC端进度详情合同状态
-    async findContractStatusById(rowId){
-        const result = await this.ctx.model.XPlanSchedule.findAll(
-            {
-                where: {id: rowId},
-                order: [['updated_at', 'desc']]
-            },
-        );
-        return result;
-    }
-
     /**
-     * PC端进度详情回款
+     * PC端 客户详情 概况 拍房子 收资料  排版子
+     * @param rowId
+     * @returns {Promise.<*>}
      */
-    async findPayStatusById(rowId){
-        const result = await this.ctx.model.XPlanPay.findAll(
-            {
-                where: {id: rowId},
-                order: [['updated_at', 'desc']]
-            },
-        );
-        return result;
-    }
-
-
-
-    // 获取详情
-    async detail(rowId) {
+    async details(rowId) {
         const houseImgs = [];
         const dataImgs = [];
 
@@ -161,8 +127,33 @@ class CustomerDataPcService extends Service {
 
         return result;
     }
+
+    /**
+     * PC端客户详情 合同状态
+     * @param rowId
+     * @returns {Promise.<*>}
+     */
+    async findContractStatusById(rowId){
+        const result = await this.ctx.model.XPlanSchedule.findAll(
+            {
+                where: {plan_id: rowId},
+                order: [['updated_at', 'desc']]
+            },
+        );
+        return result;
+    }
+    /**
+     * PC端客户详情 回款
+     */
+    async findPayStatusById(rowId){
+        const result = await this.ctx.model.XPlanPay.findAll(
+            {
+                where: {plan_id: rowId},
+                order: [['updated_at', 'desc']]
+            },
+        );
+        return result;
+    }
 }
-
-
 
 module.exports = CustomerDataPcService;

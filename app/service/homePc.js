@@ -59,7 +59,7 @@ class HomePcService extends Service {
 
         }else {
             if(teamId === 'all' || planOwner ==='all'){
-                sql = "and p.team_id =: teamId)  "
+                sql = "and p.team_id =: teamId "
                 sqlParams.team_id = teamId
                 params.push(
                     { team_id:teamId},

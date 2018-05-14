@@ -4,7 +4,6 @@
 
 const { app, assert } = require('egg-mock/bootstrap');
 const OBJ = require('./testConfig')
-console.log(OBJ)
 describe('test/app/controller/user.test.js', () => {
     it('创建客户信息===========>此为前提!  POST  /api/user',() => {
         app.mockCsrf();

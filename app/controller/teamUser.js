@@ -116,6 +116,7 @@ class TeamUserController extends Controller {
 
     }
 
+    //彻底删除团队
     async destroy() {
 
         const {ctx, service} = this

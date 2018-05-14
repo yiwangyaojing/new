@@ -114,7 +114,13 @@ module.exports = app => {
     // 首页
     router.post('/api/home',controller.homePc.query); //首页统计列表
 
-    //PC端进度详情
+    // 时间团队筛选器
+    router.get('/api/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
+    router.get('/api/select/team', controller.select.teamSelect); //获取团队范围
+
+    // PC端进度详情
+    router.post('/api/planSchedulePc', controller.planSchedulePc.query);
+
     router.get('/api/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
     router.get('/api/select/team', controller.select.teamSelect); //获取团队范围
 

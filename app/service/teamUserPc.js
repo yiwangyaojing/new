@@ -120,7 +120,7 @@ class TeamUserPcService extends Service {
                     "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
                     "and user_rank =:user_rank " +
                     "and tu.team_company_id =:company_id " +
-                    "and tu.team_level >=:team_level" +
+                    "and tu.team_level >=:team_level " +
                     "order by tu.team_level asc ",
                     {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,team_level:team_level,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
             }
@@ -130,7 +130,7 @@ class TeamUserPcService extends Service {
                 "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
                 "and user_rank =:user_rank " +
                 "and tu.team_company_id =:company_id " +
-                "and tu.team_id =:team_id" +
+                "and tu.team_id =:team_id " +
                 "order by tu.team_level asc ",
                 {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,team_id:team_id,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
         }

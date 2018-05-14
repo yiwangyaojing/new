@@ -1,7 +1,8 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-class HomePcController extends Controller {
+
+class planSchedulePcController extends Controller {
 
     /**
      * 初始化查询
@@ -22,14 +23,23 @@ class HomePcController extends Controller {
             endDate:{type:'string',require:true},
             teamLevel:{type:'string',require:true},
             teamId:{type:'string',require:true},
-            planOwner:{type:'string',require:true}
+            planOwner:{type:'string',require:true},
+
+            scdStatus:{type:'string',require:true}, // 进度状态 all,2,3,4,6
+            overDueStatus:{type:'string',require:true}, //逾期状态 all,0,1
+            // search:{type:'string',require:true}, //模糊搜索条件
+
+            pageIndex:{type:'int',require:true}, // 分页条件
+            pageSize:{type:'int',require:true}
         }
+
         ctx.validate(rule,req)
 
-        const result = await service.homePc.homeCount(req)
+        const result = await service.planSchedulePc.query(req)
 
         ctx.body = result
     }
+
 }
 
-module.exports = HomePcController
+module.exports = planSchedulePcController

@@ -59,14 +59,14 @@ class HomePcService extends Service {
 
         }else {
             if(teamId === 'all' || planOwner ==='all'){
-                sql = "and p.team_id =: teamId "
-                sqlParams.team_id = teamId
+                sql = "and p.team_id =:teamId "
+                sqlParams.teamId = teamId
                 params.push(
                     { team_id:teamId},
                 )
             }else{
-                sql = "and p.team_id =: teamId and open_id = :open_id "
-                sqlParams.team_id = teamId
+                sql = "and p.team_id =:teamId and open_id = :open_id "
+                sqlParams.teamId = teamId
                 sqlParams.open_id = planOwner
                 params.push(
                     { team_id:teamId},
@@ -138,7 +138,7 @@ class HomePcService extends Service {
             "FROM " +
             "  x_plans p  " +
             "where  " +
-            "p.scd_status in (2,3,4)  " +
+            "p.scd_status in (0,2,3,4)  " +
             "and  date_format(p.scd_time, '%Y-%m-%d') >=:beginDate " +
             "and  date_format(p.scd_time, '%Y-%m-%d') <=:endDate " +
             " "+sql+" " +

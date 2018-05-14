@@ -138,4 +138,10 @@ module.exports = app => {
     router.get('/api/customerDataPc/planDetail/:id', controller.customerDataPc.details);
     router.get('/api/customerDataPc/contractStatus/:id', controller.customerDataPc.findContractStatusById);
     router.get('/api/customerDataPc/payStatus/:id', controller.customerDataPc.findPayStatusById);
+    // PC 团队管理
+    router.get('/api/teamPc/:openid', controller.teamPc.index)
+    router.get('/api/teamPc/:openid/:id', controller.teamPc.findTeamUsersByPage)
+    router.del('/api/teamPc/:openid/:teamid', controller.teamPc.dissolveTeam)
+    router.put('/api/teamPc/changeTeamUsersRole', controller.teamPc.changeTeamUsersRole)
+
 };

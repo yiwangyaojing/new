@@ -38,7 +38,7 @@ class HomePcService extends Service {
         let sqlParams = {}
 
         if(teamLevel === 'all'){
-            sql = "or ( p.team_id in (:managerTeams) or (p.open_id=:open_id and p.team_id in (:agentTeams)) or (p.open_id=:open_id and p.company_id is null) )  "
+            sql = "or  p.team_id in (:managerTeams) or (p.open_id=:open_id and p.team_id in (:agentTeams)) or (p.open_id=:open_id and p.company_id is null)   "
             sqlParams.managerTeams = managerTeams
             sqlParams.agentTeams = agentTeams
             sqlParams.open_id = openId

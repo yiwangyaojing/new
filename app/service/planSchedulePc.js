@@ -85,7 +85,7 @@ class planSchedulePcService extends Service {
                     [Op.and]:[
                         andParams,
                         Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
-                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.beginDate),
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.endDate),
                     ]
 
                 }

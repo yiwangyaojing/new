@@ -2,6 +2,7 @@
 
 const { app, assert } = require('egg-mock/bootstrap');
 
+const OBJ = require('../../testConfig')
 describe('test/app/controller/user.test.js', () => {
   it('should GET /api/user', () => {
     app.mockCsrf();
@@ -40,8 +41,7 @@ describe('test/app/controller/user.test.js', () => {
 
     return app.httpRequest()
       .put('/api/user')
-      .expect('<h1>404 Not Found</h1>')
-      .expect(404);
+      .expect(200);
   });
 
   it('保存用户信息 POST /api/user', () => {
@@ -83,14 +83,9 @@ describe('test/app/controller/user.test.js', () => {
         return app.httpRequest()
             .post('/api/user/getSalesmanProject')
             .send({
-                openId:'osT8H0QFSjZdqWqJ-PKSS57pzdx0'
+                openId:OBJ.openId
             })
             .expect(200)
-            .then(response => {
-                if( response.body ){
-                    assert(response.body.ProjectInfo['累计'].length > -1, true)
-                }
-            })
 
         return app.httpRequest()
             .post('/api/user/getSalesmanProject')

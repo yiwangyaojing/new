@@ -783,6 +783,18 @@ class TeamUserService extends Service {
 
     }
 
+//    获取当前用户所管理的所有团队和子团队
+    async manageTeam(teams){
+        let data = []
+        for( let i = 0 ; i < teams.length ; i++ ){
+            let min = await this.ctx.model.XTeam.findOne({where:{id:teams[i]}})
+            data.push(min)
+        }
+        return data
+    }
+
+
+
 }
 
 module.exports = TeamUserService

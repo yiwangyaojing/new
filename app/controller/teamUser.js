@@ -339,6 +339,43 @@ class TeamUserController extends Controller {
         console.log(body)
         ctx.body = data
     }
+
+    // 获取当前用户所管理的所有团队和子团队
+    async manageTeam(){
+        const {ctx, service} = this;
+        const body = ctx.request.body;
+        let company_id = body.companyId;
+        let open_id = body.openId;
+        const data = await service.teamUser.findManagerTeams(company_id,open_id);
+        let setArr = [...new Set(data.managerTeamIds)];
+        if( setArr.length == 0 ){
+            ctx.body = []
+            return
+        }
+        let team = await service.teamUser.manageTeam(setArr)
+        ctx.body = [setArr,team]
+    }
+
+//    获取用户选择的团队及其以下所有的团队
+    async userChoose(){
+        const {ctx,service} = this;
+        const body = ctx.request.body;
+        //用户所能看到的所有团队 id
+        let team_id = body.array;
+        //用户选择查询的团队 id-单个
+        let company_id = body.companyId;
+        if( team_id.length == 0 ){
+            ctx.body = [];
+        }
+        //用户所能看到的所有团队信息
+        let teams = await service.teamUser.manageTeam(team_id);
+        //用户选择查询的团队信息-单个
+        let one_team = await ctx.model.XTeam.findOne({where:{id:company_id}});
+        //用户选择查询的团队-及其以下团队id;
+        let team_childs = [company_id];
+        await service.team.linealTeam(teams,one_team,team_childs,'child');
+        ctx.body = team_childs;
+    }
 }
 
 module.exports = TeamUserController

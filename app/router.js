@@ -89,7 +89,8 @@ module.exports = app => {
     router.get('/api/teamUser/friend/:company_id', controller.teamUser.friendList);
     router.get('/api/teamUser/company/:company_id', controller.teamUser.companyUsers);
     router.post('/api/teamUser/getSign',controller.teamUser.teamGetSign); // 获取团队内的所有人的签到信息
-
+    router.post('/api/teamUser/manageTeam',controller.teamUser.manageTeam);  // 获取当前用户能够管理的所有团队
+    router.post('/api/teamUser/userChoose',controller.teamUser.userChoose);  // 用户选择某个团队,获取该团队及其以下所有的团队
     // 概况
     router.get('/api/teamUser/admin/:open_id/:company_id', controller.teamUser.getAdminTeams);
     // 逾期

@@ -398,7 +398,14 @@ export default {
           teamId: String(this.teamId),
           planOwner: this.planOwner
         }
+        const loading = this.$loading({
+          lock: true,
+          text: '加载中...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.5)'
+        })
         axios.post('/api/pc/home', objdata).then(res => {
+          loading.close()
           console.log('项目更新数据', res)
           for (let i = 0; i < res.overDue.reverse().length; i++) {
             if (res.overDue[i].scd_status === 3) {
@@ -434,6 +441,10 @@ export default {
               this.stateupdate6 = res.schedule[i]
             }
           }
+        }, () => {
+          loading.close()
+        }).catch(() => {
+          loading.close()
         })
       }, 500)
     },

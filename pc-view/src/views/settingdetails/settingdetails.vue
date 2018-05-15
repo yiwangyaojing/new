@@ -395,7 +395,14 @@ export default {
           pageSize: this.pagesizeNum,
           search: this.searchvalue
         }
+        const loading = this.$loading({
+          lock: true,
+          text: '加载中...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.5)'
+        })
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
+          loading.close()
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
@@ -423,6 +430,10 @@ export default {
             console.log('', this.tableData[i].overdue)
           }
           console.log('表格数据', this.tableData, res)
+        }, () => {
+          loading.close()
+        }).catch(() => {
+          loading.close()
         })
       }, 500)
     },

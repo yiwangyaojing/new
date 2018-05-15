@@ -48,7 +48,7 @@ class planSchedulePcService extends Service {
         }
 
         if(req.overDueStatus === '0'){
-            andParams.overdue_date = {[Op.lt]:dateNow}
+            andParams.overdue_date = {[Op.lte]:dateNow}
         }else if(req.overDueStatus === '1'){
             andParams.overdue_date = {[Op.or]:[{[Op.gte]:dateNow},{[Op.eq]:null},{[Op.eq]:''}]}
         }
@@ -83,7 +83,9 @@ class planSchedulePcService extends Service {
                     }
                     ],
                     [Op.and]:[
-                        andParams
+                        andParams,
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.beginDate),
                     ]
 
                 }
@@ -95,6 +97,7 @@ class planSchedulePcService extends Service {
         }).then(result => {
             page.totalCount = result.count
             page.content = result.rows
+            console.log(page.content)
         })
 
         return page

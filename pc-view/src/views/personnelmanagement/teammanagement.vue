@@ -49,7 +49,9 @@
 <script>
 import axios from 'axios'
 import { getUserInfo } from '../../utils/tools'
+import UTree from '../../component/tree/UTree'
 export default {
+  components: {UTree},
   data () {
     return {
       hightlight: true,

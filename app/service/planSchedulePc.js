@@ -50,7 +50,7 @@ class planSchedulePcService extends Service {
         if(req.overDueStatus === '0'){
             andParams.overdue_date = {[Op.lt]:dateNow}
         }else if(req.overDueStatus === '1'){
-            andParams.overdue_date = {[Op.gte]:dateNow}
+            andParams.overdue_date = {[Op.or]:[{[Op.gte]:dateNow},{[Op.eq]:null},{[Op.eq]:''}]}
         }
 
         // 计算当前条数

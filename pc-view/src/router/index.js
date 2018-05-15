@@ -5,14 +5,17 @@ import Router from 'vue-router'
 
 import Download from '@/views/download/Download'
 import Home from '../views/home/home'
+import Overdue from '../views/home/overdue'
 import SettingDetails from '../views/settingdetails/settingdetails'
 import CustomerData from '../views/settingdetails/customerdata'
-import CustomerDetails from '../views/customerdetails/customerdetails'
+import ImportCustomer from '../views/settingdetails/importCustomer'
+import CustomerDetails from '../views/customerdetails/customerDetails'
 import Signin from '../views/signin/signin'
 import SigninDetails from '../views/signin/signindetails'
 import PersonnelManagement from '../views/personnelmanagement/teammanagement'
 import TeamInformation from '../views/teaminformation/teaminformation'
 import AccountSetting from '../views/accountsetting/accountsetting'
+import TeamUserDetail from '../views/personnelmanagement/teamuserdetail'
 Vue.use(Router)
 
 export default new Router({
@@ -27,15 +30,17 @@ export default new Router({
       redirect: 'resources',
       children: [
         {path: '/Home', name: 'Home', component: Home},
+        {path: '/Overdue', name: 'Overdue', component: Overdue},
         {path: '/SettingDetails', name: 'SettingDetails', component: SettingDetails},
         {path: '/CustomerData', name: 'CustomerData', component: CustomerData},
+        {path: '/ImportCustomer', name: 'ImportCustomer', component: ImportCustomer},
         {path: '/CustomerDetails', name: 'CustomerDetails', component: CustomerDetails},
         {path: '/Signin', name: 'Signin', component: Signin},
         {path: '/SigninDetails', name: 'SigninDetails', component: SigninDetails},
         {path: '/PersonnelManagement', name: 'PersonnelManagement', component: PersonnelManagement},
         {path: '/TeamInformation', name: 'TeamInformation', component: TeamInformation},
-        {path: '/AccountSetting', name: 'AccountSetting', component: AccountSetting}
-
+        {path: '/AccountSetting', name: 'AccountSetting', component: AccountSetting},
+        {path: '/TeamUserDetail', name: 'TeamUserDetail', component: TeamUserDetail}
         // {path: '/Index', name: 'Index', component: Index},
         // {path: '/IndexAd', name: 'IndexAd', component: IndexAd},
         // {path: '/IndexSliderAd', name: 'IndexSliderAd', component: IndexSliderAd},

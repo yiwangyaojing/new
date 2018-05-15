@@ -280,10 +280,21 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
+      const loading = this.$loading({
+        lock: true,
+        text: '加载中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.5)'
+      })
       axios.post('/api/pc/signPc', req).then(res => {
         console.log('这里是查询签到结果===>>', res)
+        loading.close()
         this.tableData = res.content
         this.totalNum = res.totalCount
+      }, () => {
+        loading.close()
+      }).catch(() => {
+        loading.close()
       })
     },
     requestdata (fn) {

@@ -26,13 +26,13 @@
         <el-col :span="15">
           <el-col :span="23">
             <el-table :data="tableData" stripe border size="mini" style="width: 100%">
-              <el-table-column prop="date" label="时间" width="180">
+              <el-table-column prop="createTime" label="时间" width="180">
               </el-table-column>
-              <el-table-column prop="name" label="地点" width="180">
+              <el-table-column prop="site" :show-overflow-tooltip="true" label="地点" width="180">
               </el-table-column>
-              <el-table-column prop="address" label="客户">
+              <el-table-column prop="cst_name" label="客户">
               </el-table-column>
-              <el-table-column prop="address" label="备注">
+              <el-table-column prop="remarks" label="备注">
               </el-table-column>
             </el-table>
             <el-pagination style="margin-top: 20px;"
@@ -47,7 +47,12 @@
           </el-col>
         </el-col>
         <el-col :span="9">
-          <img style="width: 480px;" src="/static/img/sky.871d198.jpg" alt="">
+          <div class="amap-wrapper">
+            <el-amap class="amap-box" :vid="'amap-vue'" :zoom="zoom">
+              <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker.position" :visible="marker.visible" :draggable="marker.draggable" :vid="index"></el-amap-marker>
+            </el-amap>
+          </div>
+          <!--<img style="width: 480px;" src="/static/img/sky.871d198.jpg" alt="">-->
         </el-col>
       </el-col>
     </el-row>
@@ -94,7 +99,10 @@ export default {
       totalNum: 0,
       pagesizeNum: 10,
       currentPage4: 0,
-      pageNum: 1
+      pageNum: 1,
+      tableData: [],
+      zoom: 16,
+      markers: []
     }
   },
   methods: {
@@ -138,10 +146,28 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
+      const loading = this.$loading({
+        lock: true,
+        text: '加载中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.5)'
+      })
       axios.post('/api/pc/signPc/detail', req).then(res => {
         console.log('这里是查询结果===>>', res)
+        loading.close()
         this.tableData = res.content
         this.totalNum = res.totalCount
+        res.content.forEach(item => {
+          this.markers.push({
+            position: [item.longitude, item.latitude],
+            visible: true,
+            draggable: false
+          })
+        })
+      }, () => {
+        loading.close()
+      }).catch(() => {
+        loading.close()
       })
     }
   },
@@ -193,5 +219,9 @@ export default {
   }
   .el-date-editor .el-range-separator {
     width: 10%;
+  }
+  .amap-wrapper {
+    width: 500px;
+    height: 300px;
   }
 </style>

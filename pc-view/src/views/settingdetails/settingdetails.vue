@@ -75,7 +75,7 @@
               <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
               <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
               <el-table-column prop="pay_sum" label="回款金额" ></el-table-column>
-              <el-table-column prop="scd_time" label="开始时间"></el-table-column>
+              <el-table-column prop="scdTime" label="开始时间"></el-table-column>
               <el-table-column prop="scd_status" label="合同状态"></el-table-column>
               <el-table-column prop="overdue" label="逾期状态" width="100" filter-placement="bottom-end">
                 <template slot-scope="scope">
@@ -390,7 +390,7 @@ export default {
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
-            this.tableData[i].scd_time = this.tableData[i].scd_time.slice(0, 10)
+            this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
             if (this.tableData[i].scd_status === 0) {
               this.tableData[i].scd_status = '新增项目'
             }

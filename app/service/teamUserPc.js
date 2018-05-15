@@ -140,7 +140,10 @@ class TeamUserPcService extends Service {
         }
         let resultIds = []
         console.log(managerTeamIds)
-        if(team_level!=='all' && team_id === 'all'){
+
+        if(team_level === 'all'){
+            result.managerTeamIds = managerTeamIds
+        }else if(team_level!=='all' && team_id === 'all'){
             for(let id of managerTeamIds){
                 for(let team of company){
                     if( team.id === id){
@@ -151,8 +154,14 @@ class TeamUserPcService extends Service {
                 }
             }
             result.managerTeamIds = resultIds
-        }else {
-            result.managerTeamIds = managerTeamIds
+        }else if(team_id !== 'all'){
+            resultIds.push(team_id)
+            let team = {
+                id:Number.parseInt(team_id),
+                level:Number.parseInt(team_level)
+            }
+            await this.service.team.linealTeam(company,team,resultIds,'child')
+            result.managerTeamIds = resultIds
         }
 
         console.log('-----------------------------》managerTeamIds',result)

@@ -115,6 +115,9 @@ module.exports = app => {
 
     // 首页
     router.post('/api/pc/home',controller.homePc.query); //首页统计列表
+    router.get('/api/pc/overduePc',controller.overduePc.index); //首页统计列表
+    router.post('/api/pc/overduePc',controller.overduePc.update); //首页统计列表
+
 
     // 时间团队筛选器
     router.get('/api/pc/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围

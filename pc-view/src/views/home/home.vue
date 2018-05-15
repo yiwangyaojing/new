@@ -458,7 +458,7 @@ export default {
             }
           }
         })
-      }, 300)
+      }, 500)
     }
   },
   mounted () {

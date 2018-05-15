@@ -112,24 +112,30 @@
                 <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
               </div>
             </div>
-            <div class="clearfix" style="margin-top: 20px;">
+            <div v-if="exhibition" class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">房屋照片</div>
-              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" v-if="item.data_type === 0" :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
+              <div v-if="exhibition && item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(index)" alt="暂无图片">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
               </div>
             </div>
+            <div v-if="!exhibition && item.data_type === 0" class=" imgs" v-for="(item,index) in details.houseImgs" :key="index"  >
+              <img style="width: 550px; "  :src="item.mini_url" @click="showMax1(index)" alt="暂无图片">
+            </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">电表箱</div>
-              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" v-if="item.data_type === 1" :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
+              <div v-if="exhibition && item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄用户的电表</div>
+              </div>
+              <div v-if="!exhibition && item.data_type === 1" class=" imgs" v-for="(item,index) in details.houseImgs" :key="index"  >
+                <img style="width: 550px; "  :src="item.mini_url" @click="showMax1()" alt="暂无图片">
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
@@ -260,7 +266,7 @@ export default {
       dialogMessage: '',
       imgVisible: false,
       imgUrl: '',
-      showIndex: 1,
+      exhibition: 'true', // 是否展示大图
       activeName: '0',
       contractProgressList: [],
       payList: [],
@@ -285,6 +291,7 @@ export default {
         cst_latitude: '', // 纬度
         cst_longitude: '', // 经度
         h_face: '' // 房屋朝向
+
       }
     }
   },
@@ -366,9 +373,18 @@ export default {
         })
       }
     },
-    showMax (url) {
-      console.log(url)
-      this.imgUrl = url
+    showMax (index) {
+      console.log('index',index)
+      for (let i =0; i < this.details.houseImgs.length; i++) {
+        if (index === i) {
+          this.exhibition = true
+        } else{
+          this.exhibition = !this.exhibition
+        }
+      }
+    },
+    showMax1 () {
+      this.exhibition = true
     }
   },
   mounted () {

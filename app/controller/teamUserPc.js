@@ -25,6 +25,16 @@ class TeamUsersPc extends Controller {
 
     }
 
+    async findTeamUserDetail(){
+      const { ctx, service } = this
+      const params = ctx.params
+      const rule = {
+        teamid: {type: 'string', require:true},
+        openid: {type: 'string', require: true}
+      }
+      ctx.validate(rule, params)
+      ctx.body = await service.teamUserPc.findTeamUserDetail(params.teamid, params.openid)
+    }
 }
 
 module.exports = TeamUsersPc

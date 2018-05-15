@@ -104,7 +104,7 @@ export default {
       console.log('这里是点击一行===>>', row)
       this.$router.push({path: '/PersonnelManagement', query: {teamid: row.team_id, id: row.id}})
     },
-    gotoCustomer() {
+    gotoCustomer () {
       this.$router.push({path: '/CustomerData', query: {openid: this.open_id}})
     }
   },

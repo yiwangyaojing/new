@@ -233,18 +233,26 @@ export default {
       this.pageNum = val
       this.formlistdata()
     },
-    tjzqChange (e) {
+    tjzqChange (e, isExcute) {
       this.datevalue = []
       this.pageNum = 1
+      this.tjzqvalue = e
+      console.log('这里是时间范围变化===>>', e, this.tjzqvalue)
       if (this.tjzqvalue !== '自定义') {
         axios.get('/api/pc/select/date/' + e).then(res => {
           console.log(res)
           for (let i in res) {
             this.datevalue.push(res[i])
           }
+          if (!isExcute) {
+            this.formlistdata()
+          }
         })
+      } else {
+        if (!isExcute) {
+          this.formlistdata()
+        }
       }
-      this.formlistdata()
     },
     selectdateChange (e) {
       this.pageNum = 1
@@ -253,10 +261,11 @@ export default {
       console.log('时间统计', this.datevalue)
       this.formlistdata()
     },
-    tdfwChange (e) {
+    tdfwChange (e, openid, fn) {
       this.pageNum = 1
-      console.log(e)
+      console.log('团队范围变化', e)
       this.teamLevel = e
+      this.tdfwvalue = e
       this.teamId = 'all'
       this.teamoptions = [
         {
@@ -302,7 +311,16 @@ export default {
         this.fuzerenvalue = this.fuzerenoptions[0].name
         this.planOwner = this.fuzerenoptions[0].openid
       }
-      this.formlistdata()
+
+      if (openid) {
+        if (fn) {
+          this.fuzerenChange(openid, fn)
+        } else {
+          this.fuzerenChange(openid)
+        }
+      } else {
+        this.formlistdata()
+      }
     },
     teannameChange (e) {
       this.pageNum = 1
@@ -328,11 +346,29 @@ export default {
       }
       this.formlistdata()
     },
-    requestdata () {
+    requestdata (fn, voidGetDate, openid) {
+      if (!voidGetDate) {
+        if (openid) {
+          this.getDateData(fn, openid)
+        } else {
+          this.getDateData(fn)
+        }
+      } else {
+        if (openid) {
+          this.getTeamData(fn, openid)
+        } else {
+          this.getTeamData(fn)
+        }
+      }
+    },
+    getDateData (fn, openid) {
       axios.get('/api/pc/select/date/' + 'today').then(res => {
         this.datevalue.push(res.beginDate, res.endDate)
         console.log('统计周期', this.datevalue)
+        this.getTeamData(fn, openid)
       })
+    },
+    getTeamData (fn, openid) {
       axios.get('/api/pc/select/team').then(res => {
         console.log('团队范围', res)
         res.teams.forEach(item => {
@@ -345,9 +381,16 @@ export default {
         })
         console.log('团队名称', this.teamoptions)
         console.log('负责人', this.fuzerenoptions)
+        if (openid) {
+          this.tdfwChange('one', openid, fn)
+        } else {
+          if (fn) {
+            fn()
+          }
+        }
       })
     },
-    fuzerenChange (e) {
+    fuzerenChange (e, fn) {
       this.pageNum = 1
       this.fuzerenID = e
       console.log('sdjkfdsjfjdsjfdjs', e)
@@ -355,7 +398,11 @@ export default {
       if (!e) {
         this.planOwner = 'all'
       }
-      this.formlistdata()
+      if (fn) {
+        fn()
+      } else {
+        this.formlistdata()
+      }
     },
     contractChange (e) {
       this.pageNum = 1
@@ -370,7 +417,7 @@ export default {
     },
     formlistdata () {
       setTimeout(() => {
-        console.log('撒打算大所大所多', this.datevalue[0])
+        console.log('客户资料列表', this.datevalue[0])
         let parameter = {
           beginDate: this.datevalue[0],
           endDate: this.datevalue[1],
@@ -415,13 +462,20 @@ export default {
       console.log('id:')
       console.log(id)
       this.$router.push({path: '/CustomerDetails', query: {planId: id}})
-    }
+    },
+    // 团队结构跳转过来的
+
   },
   mounted () {
-    this.requestdata()
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
     console.log('user表', sessionUser)
-    this.formlistdata()
+    let params = this.$route.query
+    console.log('这里是传过来的负责人===>>', params)
+    if (Object.keys(params).length !== 0) {
+      this.requestdata(this.tjzqChange('total', false), true, params.openid)
+    } else {
+      this.requestdata(this.formlistdata)
+    }
   }
 }
 </script>

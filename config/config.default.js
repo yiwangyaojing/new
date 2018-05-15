@@ -7,14 +7,27 @@ module.exports = appInfo => {
     config.keys = appInfo.name + '_1521168656806_9590';
 
     // add your config here
-    config.middleware = [];
+    config.middleware = [ 'adminAuthHandler' ];
+
+    config.adminAuthHandler = {
+        // 只针对这个路径开头的请求做拦截
+        match: '/api/pc',
+    };
+
+    // add your config here
     config.redis = {
         client: {
-            port: 6379, // Redis port
+            port: 6379, // Redis portn
             host: '120.26.102.228', // Redis host
             password: 'None',
             db: 0,
         },
+    };
+    config.session = {
+        key: "EGG_SESSION",
+        maxAge: 30 * 60 * 1000, // 30分钟
+        httpOnly: true,
+        encrypt: false
     };
 
     config.sequelize = {

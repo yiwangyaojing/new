@@ -48,6 +48,7 @@ class LoginController extends Controller {
             throw new Error('当前用户不存在!')
         } else {
             ctx.body = userInfo;
+            console.log(ctx.session.maxAge)
             ctx.session.user = userInfo
         }
     }

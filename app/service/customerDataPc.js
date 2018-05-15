@@ -145,14 +145,21 @@ class CustomerDataPcService extends Service {
     /**
      * PC端客户详情 回款
      */
-    async findPayStatusById(rowId){
-        const result = await this.ctx.model.XPlanPay.findAll(
-            {
-                where: {plan_id: rowId},
-                order: [['updated_at', 'desc']]
-            },
-        );
-        return result;
+    async findPayStatusById(params){
+        // 获取回款列表及用户
+        const cfg = this.config.sequelize;
+        cfg.logging = false;
+        const sequelize = new Sequelize(cfg);
+
+        // 获取公司
+        const payUser = await sequelize.query(
+            "select p.* , xu.name from x_plan_pay p , x_users xu " +
+            "where p.plan_id = :plan_id " +
+            "and  p.open_id = :open_id " +
+            "and  xu.openid = p.open_id " +
+            "order by p.updated_at desc",
+            {replacements: {open_id: params.openId,plan_id: params.id}, type: Sequelize.QueryTypes.SELECT})
+        return payUser
     }
 }
 

@@ -11,7 +11,7 @@ class CustomerDataPc extends Controller {
         const {ctx, service} = this;
         const openId = ctx.session.user.openid;
         const companyId = ctx.session.user.company_id;
-        const req = Object.assign(ctx.request.body, { companyId, openId});
+        Object.assign(ctx.request.body, { companyId, openId});
         const rule = {
             openId: {type: 'string', required: true},
         };
@@ -45,7 +45,6 @@ class CustomerDataPc extends Controller {
         const rule = {
             id: {type: 'string', required: true},
         };
-        console.log('plan_id 是：',ctx.params)
         ctx.validate(rule, ctx.params);
         ctx.body = await service.customerDataPc.findContractStatusById(ctx.params.id);
     }
@@ -54,13 +53,16 @@ class CustomerDataPc extends Controller {
      * PC端客户详情回款
      */
     async findPayStatusById(){
-        const {ctx, service} = this;
+        const {ctx, service} = this
+        const openId = ctx.session.user.openid;
+        const id = ctx.params.id
+        Object.assign(ctx.request.body, {openId, id});
         const rule = {
-            id: {type: 'string', required: true},
-        };
-        ctx.validate(rule, ctx.params);
-        console.log(ctx.params.id)
-        ctx.body = await service.customerDataPc.findPayStatusById(ctx.params.id);
+            openId: {type: 'string', required: true}, // 操作人id
+        }
+        ctx.validate(rule, ctx.request.body);
+        console.log(ctx.request.body);
+        ctx.body = await service.customerDataPc.findPayStatusById(ctx.request.body)
     }
 
 

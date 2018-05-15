@@ -13,7 +13,24 @@ class OverDuePcController extends Controller {
     req.open_id = userInfo.openid
     req.company_id = userInfo.company_id
 
-    ctx.body = await service.overdue.index(req);
+      // 判断是否有权限修改
+      const params ={
+          company_id:req.company_id,
+          open_id:req.open_id,
+          user_rank:1,
+          team_level:0,
+      }
+      let  result = {
+          rule:false
+      }
+      const userInfo = await service.teamUserPc.findByParams(params)
+
+      if(userInfo){
+          result.rule = true
+          result.content = userInfo
+      }
+
+    ctx.body = result
 
   }
 

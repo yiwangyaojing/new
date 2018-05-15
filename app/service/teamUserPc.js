@@ -201,5 +201,10 @@ class TeamUserPcService extends Service {
       };
     }
 
+    // 根据条件查询
+    async findByParams(params){
+        return this.ctx.model.XTeamUser.findAll({where:params})
+    }
+
 }
 module.exports = TeamUserPcService

@@ -100,9 +100,7 @@ module.exports = app => {
     // 计算排板子规则计算
     router.post('/api/roof', controller.roof.index);
 
-    // PC端登录
-    router.post('/api/login/sms', controller.login.sms);
-    router.post('/api/login', controller.login.userLogin);
+
 
     // 签到
     router.post('/api/sign/sign',controller.sign.signs);
@@ -111,42 +109,45 @@ module.exports = app => {
      * PC端接口
      */
 
+    // PC端登录
+    router.post('/api/pc/login/sms', controller.login.sms);
+    router.post('/api/pc/login', controller.login.userLogin);
+
     // 首页
-    router.post('/api/home',controller.homePc.query); //首页统计列表
+    router.post('/api/pc/home',controller.homePc.query); //首页统计列表
 
     // 时间团队筛选器
-    router.get('/api/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
-    router.get('/api/select/team', controller.select.teamSelect); //获取团队范围
+    router.get('/api/pc/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
+    router.get('/api/pc/select/team', controller.select.teamSelect); //获取团队范围
 
     // PC端进度详情
-    router.post('/api/planSchedulePc', controller.planSchedulePc.query);
+    router.post('/api/pc/planSchedulePc', controller.planSchedulePc.query);
 
     // PC签到统计
-    router.post('/api/signPc', controller.signPc.index);
-    router.post('/api/signPc/detail', controller.signPc.detail); // 获取签到详情
+    router.post('/api/pc/signPc', controller.signPc.index);
+    router.post('/api/pc/signPc/detail', controller.signPc.detail); // 获取签到详情
 
-    router.get('/api/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
-    router.get('/api/select/team', controller.select.teamSelect); //获取团队范围
-    router.post('/api/detailSettingPc/settingDetails',controller.detailSettingPc.findParamsByPage);
-    router.get('/api/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
-    router.get('/api/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);
-    router.get('/api/detailSettingPc/payStatus/:id', controller.detailSettingPc.findPayStatusById);
+
+    router.post('/api/pc/detailSettingPc/settingDetails',controller.detailSettingPc.findParamsByPage);
+    router.get('/api/pc/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
+    router.get('/api/pc/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);
+    router.get('/api/pc/detailSettingPc/payStatus/:id', controller.detailSettingPc.findPayStatusById);
 
     // PC 用户团队
-    router.put('/api/userPc', controller.userPc.update);
+    router.put('/api/pc/userPc', controller.userPc.update);
 
     //PC端客户资料
-    router.post('/api/customerDataPc/customerList',controller.customerDataPc.findParamsByPage);
-    router.get('/api/customerDataPc/planDetail/:id', controller.customerDataPc.details);
-    router.get('/api/customerDataPc/contractStatus/:id', controller.customerDataPc.findContractStatusById);
-    router.get('/api/customerDataPc/payStatus/:id', controller.customerDataPc.findPayStatusById);
+    router.post('/api/pc/customerDataPc/customerList',controller.customerDataPc.findParamsByPage);
+    router.get('/api/pc/customerDataPc/planDetail/:id', controller.customerDataPc.details);
+    router.get('/api/pc/customerDataPc/contractStatus/:id', controller.customerDataPc.findContractStatusById);
+    router.get('/api/pc/customerDataPc/payStatus/:id', controller.customerDataPc.findPayStatusById);
     // PC 团队管理
-    router.get('/api/teamPc/:openid', controller.teamPc.index)
-    router.get('/api/teamPc/:openid/:id', controller.teamPc.findTeamUsersByPage)
-    router.del('/api/teamPc/:openid/:teamid', controller.teamPc.dissolveTeam)
-    router.put('/api/teamPc/changeTeamUsersRole', controller.teamPc.changeTeamUsersRole)
+    router.get('/api/pc/teamPc/:openid', controller.teamPc.index)
+    router.get('/api/pc/teamPc/:openid/:id', controller.teamPc.findTeamUsersByPage)
+    router.del('/api/pc/teamPc/:openid/:teamid', controller.teamPc.dissolveTeam)
+    router.put('/api/pc/teamPc/changeTeamUsersRole', controller.teamPc.changeTeamUsersRole)
 
     // PC 查询团队用户信息
-    router.get('/api/teamUserPc/:teamid/:openid', controller.teamUserPc.findTeamUserDetail)
+    router.get('/api/pc/teamUserPc/:teamid/:openid', controller.teamUserPc.findTeamUserDetail)
 
 };

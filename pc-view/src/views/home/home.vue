@@ -47,23 +47,28 @@
           <div style="font-size: 16px;">项目更新</div>
           <el-row style="margin-top: 20px;">
             <el-col :span="6" class="x-Center">
-              <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">新增项目</div>
-                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #e3023b;font-size: 30px;">{{stateupdate0.total ? stateupdate0.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                <div class="fl" style="width: 59%;font-size: 18px;">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                  <div style="padding: 12px 0">{{stateupdate0.price ? stateupdate0.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+              <el-col  :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                <div @click="addprojectClick(0)">
+                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">新增项目</div>
+                  <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #e3023b;font-size: 30px;">{{stateupdate0.total ? stateupdate0.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                  <div class="fl" style="width: 59%;font-size: 18px;">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                    <div style="padding: 12px 0">{{stateupdate0.price ? stateupdate0.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                  </div>
                 </div>
               </el-col>
             </el-col>
             <el-col :span="6" class="x-Center">
               <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
-                <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">{{stateupdate2.total ? stateupdate2.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                <div class="fl" style="width: 59%;font-size: 18px;">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate2.input_capacity ? stateupdate2.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                  <div style="padding: 12px 0">{{stateupdate2.price ? stateupdate2.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                <div @click="htqdClick">
+                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
+                  <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">{{stateupdate2.total ? stateupdate2.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                  <div class="fl" style="width: 59%;font-size: 18px;">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate2.input_capacity ? stateupdate2.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                    <div style="padding: 12px 0">{{stateupdate2.price ? stateupdate2.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                  </div>
                 </div>
+
               </el-col>
             </el-col>
             <el-col :span="6" class="x-Center">
@@ -417,6 +422,25 @@ export default {
           }
         })
       }, 500)
+    },
+    Jumpparameter (scdStatus) {
+      let parameter = {
+        beginDate: this.datevalue[0],
+        endDate: this.datevalue[1],
+        teamLevel: String(this.teamLevel),
+        teamId: String(this.teamId),
+        planOwner: this.planOwner,
+        scdStatus: scdStatus,
+        tjzqvalue: this.tjzqvalue
+      }
+      this.$router.push({path: '/SettingDetails', query: parameter})
+    },
+    addprojectClick (scdStatus) {
+      console.log('点击数了 ')
+      this.Jumpparameter(scdStatus)
+    },
+    htqdClick () {
+
     }
   },
   mounted () {

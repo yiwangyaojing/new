@@ -213,7 +213,6 @@ export default {
           label: '逾期'
         }
       ],
-
       contractvalue: '全部(可见范围)',
       overduevalue: '全部(可见范围)',
       searchvalue: '',
@@ -331,11 +330,14 @@ export default {
       }
       this.formlistdata()
     },
-    requestdata () {
+    requestdata (fn) {
       axios.get('/api/pc/select/date/' + 'today').then(res => {
         this.datevalue.push(res.beginDate, res.endDate)
         console.log('统计周期', this.datevalue)
+        this.getTeam(fn)
       })
+    },
+    getTeam (fn) {
       axios.get('/api/pc/select/team').then(res => {
         console.log('团队范围', res)
         res.teams.forEach(item => {
@@ -348,6 +350,9 @@ export default {
         })
         console.log('团队名称', this.teamoptions)
         console.log('负责人', this.fuzerenoptions)
+        if (fn) {
+          fn()
+        }
       })
     },
     fuzerenChange (e) {
@@ -427,10 +432,46 @@ export default {
     }
   },
   mounted () {
-    this.requestdata()
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
     console.log('user表', sessionUser)
-    this.formlistdata()
+    console.log('传来的参数', this.$route.query)
+    let parameter = this.$route.query
+    if (Object.keys(parameter).length !== 0) {
+      this.datevalue.push(parameter.beginDate, parameter.endDate)
+      this.planOwner = parameter.planOwner
+      this.teamId = parameter.teamId
+      this.teamLevel = parameter.teamLevel
+      this.scdStatus = String(parameter.scdStatus)
+      if (parameter.tjzqvalue === 'yesterday') {
+        parameter.tjzqvalue = '昨天'
+      }
+      if (parameter.tjzqvalue === 'thisWeek') {
+        parameter.tjzqvalue = '本周'
+      }
+      if (parameter.tjzqvalue === 'lastWeek') {
+        parameter.tjzqvalue = '上周'
+      }
+      if (parameter.tjzqvalue === 'thisMonth') {
+        parameter.tjzqvalue = '本月'
+      }
+      if (parameter.tjzqvalue === 'lastMonth') {
+        parameter.tjzqvalue = '上月'
+      }
+      if (parameter.tjzqvalue === 'thisYear') {
+        parameter.tjzqvalue = '本年'
+      }
+      if (parameter.tjzqvalue === 'total') {
+        parameter.tjzqvalue = '累计'
+      }
+      if (parameter.tjzqvalue === '自定义') {
+        parameter.tjzqvalue = '自定义'
+      }
+      this.tjzqvalue = parameter.tjzqvalue
+      this.formlistdata()
+    } else {
+      this.requestdata(this.formlistdata)
+      console.log('没有参数', this.datevalue)
+    }
   }
 }
 </script>

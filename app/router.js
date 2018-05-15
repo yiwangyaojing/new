@@ -7,9 +7,9 @@ module.exports = app => {
     const {router, controller} = app;
     router.get('/', controller.home.index);
     // 用户相关rest服务
-    router.post('/api/user', controller.user.create);           //已写入测试-        将获取到的微信用户信息保存到数据库
+    router.post('/api/user', controller.user.create);           //已写入测试-运行正常        将获取到的微信用户信息保存到数据库
     router.get('/api/user/:id', controller.user.show);          //已写入测试-运行正常     通过用户 id 获取用户的信息
-    router.put('/api/user', controller.user.update);            //通过用户 id, 修改用户信息
+    router.put('/api/user', controller.user.update);            //已写入测试-运行正常     通过用户 id, 修改用户信息
 
     router.post('/api/user/getTeam', controller.user.getTeam); // 已写入测试-正常运行     用户获取当前的公司团队(最高层级)
     router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 已写入测试-正常运行   获取业务员的项目信息
@@ -33,17 +33,17 @@ module.exports = app => {
     router.get('/api/plans/:openId', controller.plans.findAllByUser); //已写入测试-正常运行      获取用户的所有客户信息
     router.get('/api/plans/detail/:id', controller.plans.detail);   //已写入测试-正常运行     通过项目 id查看项目详情
     router.post('/api/plans/:openId/:pageNumber', controller.plans.findByPage);  //已写入测试-正常         通过用户 id 和当前页面数量查询客户项目信息
-    router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);//通过用户 id +页面数量+搜索条件查询用户项目信息
-    router.put('/api/plans', controller.plans.update);  //更新方案,项目信息(创建方案,项目详细信息)
-    router.del('/api/plans/:id', controller.plans.destroy); //通过方案(项目)id 删除当前方案(项目)
-    router.put('/api/plans/sampleClient/:id', controller.plans.updateSampleClient); //删除示例客户(修改用户)
+    router.post('/api/plans/:openId/:pageNumber/:search', controller.plans.findByPageAndSearch);//已写入测试-正常运行   通过用户 id +页面数量+搜索条件查询用户项目信息
+    router.put('/api/plans', controller.plans.update);  //已写入测试-运行正常    更新方案,项目信息(创建方案,项目详细信息)
+    router.del('/api/plans/:id', controller.plans.destroy); //已写入测试-运行正常     通过方案(项目)id 删除当前方案(项目)
+    router.put('/api/plans/sampleClient/:id', controller.plans.updateSampleClient); //已写入测试-运行正常    删除示例客户(修改用户)
 
-    // 方案进度
-    router.post('/api/planSchedule', controller.planSchedule.create);
-    router.get('/api/planSchedule/:open_id/:plan_id', controller.planSchedule.index);
-    // 方案回款
-    router.post('/api/planPay', controller.planPay.create);
-    router.get('/api/planPay/:open_id/:plan_id', controller.planPay.index);
+    // 方案进度 --  逾期
+    router.post('/api/planSchedule', controller.planSchedule.create);       //已写入测试-运行正常    新增方案
+    router.get('/api/planSchedule/:open_id/:plan_id', controller.planSchedule.index); //已写入测试-运行正常 通过 openid 和方案 id 获取方案信息
+    // 方案回款 --  回款
+    router.post('/api/planPay', controller.planPay.create);  //已写入测试-运行正常   新建回款信息,或者是修改信息
+    router.get('/api/planPay/:open_id/:plan_id', controller.planPay.index); //已写入测试-运行正常   通过 openid和方案 id获取该方案信息
 
     // 计算器相关rest服务
     router.get('/api/calculator/:openId', controller.calculator.index);
@@ -64,20 +64,20 @@ module.exports = app => {
     router.post('/api/feedback', controller.feedback.create);
 
     // 团队
-    router.post('/api/team/sms', controller.team.sms);
-    router.get('/api/team/user/:open_id', controller.team.getUserTeam);
-    router.get('/api/team/:id/:open_id', controller.team.index);
-    router.post('/api/team/company', controller.team.companyCreate);
-    router.put('/api/team/company', controller.team.companyUpdate);
-    router.post('/api/team', controller.team.create);
-    router.put('/api/team', controller.team.update);
-    router.del('/api/team/:id/:open_id', controller.team.destroy);
+    router.post('/api/team/sms', controller.team.sms);  //已写入测试-运行正常  短信接口
+    router.get('/api/team/user/:open_id', controller.team.getUserTeam); //已写入测试-运行正常  通过用户 id 获取用户所在的所有团队
+    router.get('/api/team/:id/:open_id', controller.team.index);    //已写入测试-运行正常    通过用户 id 和公司 id, 获取公司详情
+    router.post('/api/team/company', controller.team.companyCreate);    //已写入测试-运行正常    创建公司团队
+    router.put('/api/team/company', controller.team.companyUpdate); //已写入测试-运行正常  修改公司信息
+    router.post('/api/team', controller.team.create);   //已写入测试  团队创建
+    router.put('/api/team', controller.team.update);    //已写入测试-运行正常  修改团队
+    router.del('/api/team/:id/:open_id', controller.team.destroy);  //已写入测试-运行正常 通过团队 id 和操作人 id解散团队
     // 团队成员
-    router.get('/api/teamUser/:teamId', controller.teamUser.index);
-    router.put('/api/teamUser', controller.teamUser.updateRule);
-    router.del('/api/teamUser', controller.teamUser.destroy);
-    router.del('/api/teamUser/delete', controller.teamUser.deleteFromCompany);
-    router.post('/api/teamUser', controller.teamUser.create);
+    router.get('/api/teamUser/:teamId', controller.teamUser.index); //已写入测试-运行正常  查询当前团队所有用户
+    router.put('/api/teamUser', controller.teamUser.updateRule);    //已写入测试-运行正常  修改用户权限
+    router.del('/api/teamUser', controller.teamUser.destroy);   //已写入测试-运行正常 彻底删除团队
+    router.del('/api/teamUser/delete', controller.teamUser.deleteFromCompany);  //已写入测试-运行正常  把用户从公司删除
+    router.post('/api/teamUser', controller.teamUser.create);   //将用户拉入公司
     router.post('/api/teamUser/manager', controller.teamUser.teamManagerInit);
     router.post('/api/teamUser/join', controller.teamUser.join);
     router.post('/api/teamUser/teamUsers', controller.teamUser.findTeamUsers);   //通过 openid 和团队等级获取所有的用户 id;
@@ -89,7 +89,8 @@ module.exports = app => {
     router.get('/api/teamUser/friend/:company_id', controller.teamUser.friendList);
     router.get('/api/teamUser/company/:company_id', controller.teamUser.companyUsers);
     router.post('/api/teamUser/getSign',controller.teamUser.teamGetSign); // 获取团队内的所有人的签到信息
-
+    router.post('/api/teamUser/manageTeam',controller.teamUser.manageTeam);  // 获取当前用户能够管理的所有团队
+    router.post('/api/teamUser/userChoose',controller.teamUser.userChoose);  // 用户选择某个团队,获取该团队及其以下所有的团队
     // 概况
     router.get('/api/teamUser/admin/:open_id/:company_id', controller.teamUser.getAdminTeams);
     // 逾期

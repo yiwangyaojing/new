@@ -15,7 +15,6 @@ class TeamController extends Controller {
             open_id: {type: 'string', required: true},
             template_code: {type: 'string', required: true},
         };
-
         const req = ctx.request.body
         ctx.validate(rule, req);
         ctx.body = await service.sms.sendValidateCode(req.open_id, req.register_phone, req.template_code);
@@ -124,9 +123,7 @@ class TeamController extends Controller {
             company_id: {type: 'int', required: true}, // 公司团队ID
             company_name: {type: 'string', required: true}, // 公司团队ID
         };
-
         ctx.validate(rule, req)
-
         // const agents = {
         //   open_id:{type:'string' ,required:true}, // 成员openId
         //   user_rank:{type:'string' ,required:true}, // 成员角色 1，管理员 2，业务员

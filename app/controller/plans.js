@@ -15,13 +15,14 @@ class Plans extends Controller {
             pageNumber: {type: 'string', required: true},
         };
         const ruleReq = {
-          company_id: { type: 'int', required: false }
+            company_id: { type: 'int', required: false },
+            team_id: {type: 'array', required: false}
         };
         this.ctx.validate(rule, params);
         this.ctx.validate(ruleReq, req);
 
         params.company_id = req.company_id
-
+        params.team_id = req.team_id
 
         this.ctx.body = await service.plans.findByPage(params);
     }
@@ -38,12 +39,14 @@ class Plans extends Controller {
         };
 
         const ruleReq = {
-            company_id: { type: 'int', required: false }
+            company_id: { type: 'int', required: false },
+            team_id: {type: 'array', required: false}
         };
 
         this.ctx.validate(rule, params);
         this.ctx.validate(ruleReq, req);
         params.company_id = req.company_id
+        params.team_id = req.team_id
 
         this.ctx.body = await service.plans.findByPage(params);
     }

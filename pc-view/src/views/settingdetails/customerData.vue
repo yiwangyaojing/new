@@ -99,278 +99,278 @@
   </el-card>
 </template>
 <script>
-  import axios from 'axios'
-  import values from '../../utils/values'
-  export default {
-    data () {
-      return {
-        showOverflowTooltip: true,
-        teamLevel: 'all',
-        teamId: 'all',
-        planOwner: 'all',
-        tjzqvalue: '今天',
-        tdfwvalue: '全部(可见范围)',
-        fuzerenvalue: '全部(可见范围)',
-        teamname: '全部(可见范围)',
-        teannameshow: true,
-        fuzerenshow: true,
-        teamoptions: [],
-        teamoptionsAll: [],
-        fuzerenoptions: [],
-        fuzerenoptionsAll: [],
-        options: [{
-          value: 'today',
-          label: '今天'
-        }, {
-          value: 'yesterday',
-          label: '昨天'
-        }, {
-          value: 'thisWeek',
-          label: '本周'
-        }, {
-          value: 'lastWeek',
-          label: '上周'
-        }, {
-          value: 'thisMonth',
-          label: '本月'
-        }, {
-          value: 'lastMonth',
-          label: '上月'
-        }, {
-          value: 'thisYear',
-          label: '本年'
-        }, {
-          value: 'total',
-          label: '累计'
-        }, {
-          value: '自定义',
-          label: '自定义'
-        }],
-        tdfwoptions: [
-          {
-            value: 'all',
-            label: '全部(可见范围)'
-          },
-          {
-            value: 1,
-            label: '一级团队'
-          },
-          {
-            value: 2,
-            label: '二级团队'
-          },
-          {
-            value: 3,
-            label: '三级团队'
-          },
-          {
-            value: 'one',
-            label: '个人'
-          }
-        ],
-        tableData: [],
-        datevalue: [],
-        contractoptions: [
-          {
-            value: 'all',
-            label: '全部(可见范围)'
-          },
-          {
-            value: '0',
-            label: '新增项目'
-          },
-          {
-            value: '2',
-            label: '合同签订'
-          },
-          {
-            value: '3',
-            label: '施工完成'
-          },
-          {
-            value: '4',
-            label: '并网完成'
-          },
-          {
-            value: '6',
-            label: '回款完成'
-          }
-        ],
-        overdueoptions: [
-          {
-            value: 'all',
-            label: '全部(可见范围)'
-          },
-          {
-            value: '1',
-            label: '正常'
-          },
-          {
-            value: '0',
-            label: '逾期'
-          }
-        ],
+import axios from 'axios'
+import values from '../../utils/values'
+export default {
+  data () {
+    return {
+      showOverflowTooltip: true,
+      teamLevel: 'all',
+      teamId: 'all',
+      planOwner: 'all',
+      tjzqvalue: '今天',
+      tdfwvalue: '全部(可见范围)',
+      fuzerenvalue: '全部(可见范围)',
+      teamname: '全部(可见范围)',
+      teannameshow: true,
+      fuzerenshow: true,
+      teamoptions: [],
+      teamoptionsAll: [],
+      fuzerenoptions: [],
+      fuzerenoptionsAll: [],
+      options: [{
+        value: 'today',
+        label: '今天'
+      }, {
+        value: 'yesterday',
+        label: '昨天'
+      }, {
+        value: 'thisWeek',
+        label: '本周'
+      }, {
+        value: 'lastWeek',
+        label: '上周'
+      }, {
+        value: 'thisMonth',
+        label: '本月'
+      }, {
+        value: 'lastMonth',
+        label: '上月'
+      }, {
+        value: 'thisYear',
+        label: '本年'
+      }, {
+        value: 'total',
+        label: '累计'
+      }, {
+        value: '自定义',
+        label: '自定义'
+      }],
+      tdfwoptions: [
+        {
+          value: 'all',
+          label: '全部(可见范围)'
+        },
+        {
+          value: 1,
+          label: '一级团队'
+        },
+        {
+          value: 2,
+          label: '二级团队'
+        },
+        {
+          value: 3,
+          label: '三级团队'
+        },
+        {
+          value: 'one',
+          label: '个人'
+        }
+      ],
+      tableData: [],
+      datevalue: [],
+      contractoptions: [
+        {
+          value: 'all',
+          label: '全部(可见范围)'
+        },
+        {
+          value: '0',
+          label: '新增项目'
+        },
+        {
+          value: '2',
+          label: '合同签订'
+        },
+        {
+          value: '3',
+          label: '施工完成'
+        },
+        {
+          value: '4',
+          label: '并网完成'
+        },
+        {
+          value: '6',
+          label: '回款完成'
+        }
+      ],
+      overdueoptions: [
+        {
+          value: 'all',
+          label: '全部(可见范围)'
+        },
+        {
+          value: '1',
+          label: '正常'
+        },
+        {
+          value: '0',
+          label: '逾期'
+        }
+      ],
 
-        contractvalue: '全部(可见范围)',
-        overduevalue: '全部(可见范围)',
-        searchvalue: '',
-        currentPage4: 1,
-        totalNum: 0,
-        scdStatus: 'all',
-        overDueStatus: 'all',
-        pagesizeNum: 10,
-        pageNum: 1
-      }
+      contractvalue: '全部(可见范围)',
+      overduevalue: '全部(可见范围)',
+      searchvalue: '',
+      currentPage4: 1,
+      totalNum: 0,
+      scdStatus: 'all',
+      overDueStatus: 'all',
+      pagesizeNum: 10,
+      pageNum: 1
+    }
+  },
+  methods: {
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+      this.pagesizeNum = val
+      this.formlistdata()
     },
-    methods: {
-      handleSizeChange (val) {
-        console.log(`每页 ${val} 条`)
-        this.pagesizeNum = val
-        this.formlistdata()
-      },
-      handleCurrentChange (val) {
-        console.log(`当前页: ${val}`)
-        this.pageNum = val
-        this.formlistdata()
-      },
-      tjzqChange (e) {
-        this.datevalue = []
-        this.pageNum = 1
-        if (this.tjzqvalue !== '自定义') {
-          axios.get('/api/select/date/' + e).then(res => {
-            console.log(res)
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+      this.pageNum = val
+      this.formlistdata()
+    },
+    tjzqChange (e) {
+      this.datevalue = []
+      this.pageNum = 1
+      if (this.tjzqvalue !== '自定义') {
+        axios.get('/api/pc/select/date/' + e).then(res => {
+          console.log(res)
           for (let i in res) {
             this.datevalue.push(res[i])
           }
         })
+      }
+      this.formlistdata()
+    },
+    selectdateChange (e) {
+      this.pageNum = 1
+      this.tjzqvalue = '自定义'
+      this.datevalue = e
+      console.log('时间统计', this.datevalue)
+      this.formlistdata()
+    },
+    tdfwChange (e) {
+      this.pageNum = 1
+      console.log(e)
+      this.teamLevel = e
+      this.teamId = 'all'
+      this.teamoptions = [
+        {
+          name: '全部(可见范围)'
         }
-        this.formlistdata()
-      },
-      selectdateChange (e) {
-        this.pageNum = 1
-        this.tjzqvalue = '自定义'
-        this.datevalue = e
-        console.log('时间统计', this.datevalue)
-        this.formlistdata()
-      },
-      tdfwChange (e) {
-        this.pageNum = 1
-        console.log(e)
-        this.teamLevel = e
-        this.teamId = 'all'
+      ]
+      for (let i = 0; i < this.teamoptionsAll.length; i++) {
+        if (e === 'all') {
+          this.planOwner = 'all'
+          this.fuzerenvalue = '全部(可见范围)'
+          this.teamoptions.push(this.teamoptionsAll[i])
+          this.teannameshow = true
+          this.fuzerenshow = true
+        }
+        if (e === Number(this.teamoptionsAll[i].level)) {
+          this.fuzerenvalue = '全部(可见范围)'
+          this.planOwner = 'all'
+          this.teannameshow = false
+          this.fuzerenshow = true
+          this.teamoptions.push(this.teamoptionsAll[i])
+          console.log('这里是团队范围变化=====', this.teamoptionsAll[i])
+        }
+        this.teamname = this.teamoptions[0].name
+      }
+      if (e === 'one') {
+        this.planOwner = this.fuzerenID
+        this.teannameshow = true
         this.teamoptions = [
           {
-            name: '全部(可见范围)'
+            name: '个人',
+            id: 'one'
           }
         ]
-        for (let i = 0; i < this.teamoptionsAll.length; i++) {
-          if (e === 'all') {
-            this.planOwner = 'all'
-            this.fuzerenvalue = '全部(可见范围)'
-            this.teamoptions.push(this.teamoptionsAll[i])
-            this.teannameshow = true
-            this.fuzerenshow = true
-          }
-          if (e === Number(this.teamoptionsAll[i].level)) {
-            this.fuzerenvalue = '全部(可见范围)'
-            this.planOwner = 'all'
-            this.teannameshow = false
-            this.fuzerenshow = true
-            this.teamoptions.push(this.teamoptionsAll[i])
-            console.log('这里是团队范围变化=====', this.teamoptionsAll[i])
-          }
-          this.teamname = this.teamoptions[0].name
-        }
-        if (e === 'one') {
-          this.planOwner = this.fuzerenID
-          this.teannameshow = true
-          this.teamoptions = [
-            {
-              name: '个人',
-              id: 'one'
-            }
-          ]
-          this.fuzerenoptions = []
-          this.teamname = this.teamoptions[0].name
-          for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
-            if (String(e) === String(this.fuzerenoptionsAll[i].team_id)) {
-              this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
-              this.fuzerenshow = false
-              console.log('进来了', this.fuzerenshow)
-            }
-          }
-          this.fuzerenvalue = this.fuzerenoptions[0].name
-          this.planOwner = this.fuzerenoptions[0].openid
-        }
-        this.formlistdata()
-      },
-      teannameChange (e) {
-        this.pageNum = 1
-        console.log('团队名称ID', e)
-        this.teamId = e
-        this.fuzerenoptions = [
-          {
-            name: '全部(可见范围)'
-          }
-        ]
-        if (!e) {
-          this.fuzerenshow = true
-          this.teamId = 'all'
-        }
-        this.fuzerenvalue = this.fuzerenoptions[0].name
-        this.planOwner = 'all'
+        this.fuzerenoptions = []
+        this.teamname = this.teamoptions[0].name
         for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
-          if (e === Number(this.fuzerenoptionsAll[i].team_id)) {
+          if (String(e) === String(this.fuzerenoptionsAll[i].team_id)) {
             this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
             this.fuzerenshow = false
             console.log('进来了', this.fuzerenshow)
           }
         }
-        this.formlistdata()
-      },
-      requestdata () {
-        axios.get('/api/select/date/' + 'today').then(res => {
-          this.datevalue.push(res.beginDate, res.endDate)
+        this.fuzerenvalue = this.fuzerenoptions[0].name
+        this.planOwner = this.fuzerenoptions[0].openid
+      }
+      this.formlistdata()
+    },
+    teannameChange (e) {
+      this.pageNum = 1
+      console.log('团队名称ID', e)
+      this.teamId = e
+      this.fuzerenoptions = [
+        {
+          name: '全部(可见范围)'
+        }
+      ]
+      if (!e) {
+        this.fuzerenshow = true
+        this.teamId = 'all'
+      }
+      this.fuzerenvalue = this.fuzerenoptions[0].name
+      this.planOwner = 'all'
+      for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
+        if (e === Number(this.fuzerenoptionsAll[i].team_id)) {
+          this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
+          this.fuzerenshow = false
+          console.log('进来了', this.fuzerenshow)
+        }
+      }
+      this.formlistdata()
+    },
+    requestdata () {
+      axios.get('/api/pc/select/date/' + 'today').then(res => {
+        this.datevalue.push(res.beginDate, res.endDate)
         console.log('统计周期', this.datevalue)
       })
-        axios.get('/api/select/team').then(res => {
-          console.log('团队范围', res)
+      axios.get('/api/pc/select/team').then(res => {
+        console.log('团队范围', res)
         res.teams.forEach(item => {
           this.teamoptionsAll.push(item)
-        this.teamoptions.push(item)
-      })
+          this.teamoptions.push(item)
+        })
         res.agents.forEach(item => {
           this.fuzerenoptions.push(item)
-        this.fuzerenoptionsAll.push(item)
-      })
+          this.fuzerenoptionsAll.push(item)
+        })
         console.log('团队名称', this.teamoptions)
         console.log('负责人', this.fuzerenoptions)
       })
-      },
-      fuzerenChange (e) {
-        this.pageNum = 1
-        this.fuzerenID = e
-        console.log('sdjkfdsjfjdsjfdjs', e)
-        this.planOwner = e
-        if (!e) {
-          this.planOwner = 'all'
-        }
-        this.formlistdata()
-      },
-      contractChange (e) {
-        this.pageNum = 1
-        this.scdStatus = e
-        console.log(this.scdStatus)
-        this.formlistdata()
-      },
-      overdueChange (e) {
-        this.pageNum = 1
-        this.overDueStatus = e
-        this.formlistdata()
-      },
-      formlistdata () {
-        setTimeout(() => {
-          console.log('撒打算大所大所多', this.datevalue[0])
+    },
+    fuzerenChange (e) {
+      this.pageNum = 1
+      this.fuzerenID = e
+      console.log('sdjkfdsjfjdsjfdjs', e)
+      this.planOwner = e
+      if (!e) {
+        this.planOwner = 'all'
+      }
+      this.formlistdata()
+    },
+    contractChange (e) {
+      this.pageNum = 1
+      this.scdStatus = e
+      console.log(this.scdStatus)
+      this.formlistdata()
+    },
+    overdueChange (e) {
+      this.pageNum = 1
+      this.overDueStatus = e
+      this.formlistdata()
+    },
+    formlistdata () {
+      setTimeout(() => {
+        console.log('撒打算大所大所多', this.datevalue[0])
         let parameter = {
           beginDate: this.datevalue[0],
           endDate: this.datevalue[1],
@@ -383,47 +383,47 @@
           pageSize: this.pagesizeNum,
           search: this.searchvalue
         }
-        axios.post('/api/planSchedulePc', parameter).then(res => {
+        axios.post('/api/pc/planSchedulePc', parameter).then(res => {
           this.tableData = res.content
-        this.totalNum = res.totalCount
-        for (let i = 0; i < this.tableData.length; i++) {
-          this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
-          if (this.tableData[i].h_is_finish === 0) {
-            this.tableData[i].h_is_finish = '否'
-          } else {
-            this.tableData[i].h_is_finish = '是'
+          this.totalNum = res.totalCount
+          for (let i = 0; i < this.tableData.length; i++) {
+            this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
+            if (this.tableData[i].h_is_finish === 0) {
+              this.tableData[i].h_is_finish = '否'
+            } else {
+              this.tableData[i].h_is_finish = '是'
+            }
+            if (this.tableData[i].d_is_finish === 0) {
+              this.tableData[i].d_is_finish = '否'
+            } else {
+              this.tableData[i].d_is_finish = '是'
+            }
+            if (this.tableData[i].rf_is_finish === 0) {
+              this.tableData[i].rf_is_finish = '否'
+            } else {
+              this.tableData[i].rf_is_finish = '是'
+            }
           }
-          if (this.tableData[i].d_is_finish === 0) {
-            this.tableData[i].d_is_finish = '否'
-          } else {
-            this.tableData[i].d_is_finish = '是'
-          }
-          if (this.tableData[i].rf_is_finish === 0) {
-            this.tableData[i].rf_is_finish = '否'
-          } else {
-            this.tableData[i].rf_is_finish = '是'
-          }
-        }
-        console.log('表格数据', this.tableData, res)
-      })
+          console.log('表格数据', this.tableData, res)
+        })
       }, 500)
-      },
-      searchChange () {
-        this.formlistdata()
-      },
-      handleClick (id) {
-        console.log('id:')
-        console.log(id)
-        this.$router.push({path: '/CustomerDetails', query: {planId: id}})
-      }
     },
-    mounted () {
-      this.requestdata()
-      let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
-      console.log('user表', sessionUser)
+    searchChange () {
       this.formlistdata()
+    },
+    handleClick (id) {
+      console.log('id:')
+      console.log(id)
+      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
     }
+  },
+  mounted () {
+    this.requestdata()
+    let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+    console.log('user表', sessionUser)
+    this.formlistdata()
   }
+}
 </script>
 <style>
   .fl{

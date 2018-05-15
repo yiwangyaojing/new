@@ -277,7 +277,7 @@ export default {
     tjzqChange (e) {
       this.datevalue = []
       if (this.tjzqvalue !== '自定义') {
-        axios.get('/api/select/date/' + e).then(res => {
+        axios.get('/api/pc/select/date/' + e).then(res => {
           console.log(res)
           for (let i in res) {
             this.datevalue.push(res[i])
@@ -293,11 +293,11 @@ export default {
       this.statisticaldata()
     },
     requestdata () {
-      axios.get('/api/select/date/' + 'today').then(res => {
+      axios.get('/api/pc/select/date/' + 'today').then(res => {
         this.datevalue.push(res.beginDate, res.endDate)
         console.log('统计周期', this.datevalue)
       })
-      axios.get('/api/select/team').then(res => {
+      axios.get('/api/pc/select/team').then(res => {
         console.log('团队范围', res)
         res.teams.forEach(item => {
           this.teamoptionsAll.push(item)
@@ -421,7 +421,7 @@ export default {
           teamId: String(this.teamId),
           planOwner: this.planOwner
         }
-        axios.post('/api/home', objdata).then(res => {
+        axios.post('/api/pc/home', objdata).then(res => {
           console.log('项目更新数据', res)
           for (let i = 0; i < res.overDue.reverse().length; i++) {
             if (res.overDue[i].scd_status === 3) {

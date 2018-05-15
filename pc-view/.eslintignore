@@ -4,3 +4,4 @@
 /*.js
 /test/unit/coverage/
 /src/asserts/fonts/iconfont.js
+/src/views/settingdetails/importCustomer.vue

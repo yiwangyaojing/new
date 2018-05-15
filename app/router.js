@@ -149,4 +149,14 @@ module.exports = app => {
     // PC 查询团队用户信息
     router.get('/api/teamUserPc/:teamid/:openid', controller.teamUserPc.findTeamUserDetail)
 
+  /**
+   * 客户信息导入导出功能相关
+   */
+  // 用户上传CSV文件
+  // outer.post('/backend/uploadExcel', controller.file.uploadCSV);
+  // 页面获取用户的团队和人员信息
+  router.get('/api/pc/customerDataPc/getTeamAndUser/:id', controller.customerDataPc.teamAndUser);
+  // 页面传值到后台，保存到数据库
+  router.post('/api/pc/customerDataPc/importExcelData/:id', controller.customerDataPc.importExcelData);
+
 };

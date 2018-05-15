@@ -187,7 +187,7 @@ export default {
       this.$confirm('确定要退出当前系统吗', {
         callback: (action) => {
           if (action === 'confirm') {
-            axios.post('/security/logout').then(() => {
+            axios.post('/api/logout').then(() => {
               this.$message.success('退出成功!')
               this.$router.push({name: 'Login'})
             }, (response) => {

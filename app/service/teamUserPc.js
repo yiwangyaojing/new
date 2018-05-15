@@ -60,7 +60,7 @@ class TeamUserPcService extends Service {
                 console.log('管理员：', result.userRank)
             }
 
-            result.agentTeams = await  this.service.teamUser.findAgentTeams(company_id, open_id)
+            result.agentTeams = await  this.service.teamUser.findTeams(company_id, open_id)
 
             if (result.managerTeams.length === 0 && result.agentTeams.length !== 0) {
                 result.userRank = FileType.UserRank.agent

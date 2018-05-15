@@ -103,37 +103,13 @@ class TeamUserPcService extends Service {
         cfg.logging = false;
         const sequelize = new Sequelize(cfg);
 
-        let teamUsers =[]
+        let teamUsers  = await sequelize.query(
+            "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
+            "and user_rank =:user_rank " +
+            "and tu.team_company_id =:company_id " +
+            "order by tu.team_level asc ",
+            {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
 
-
-        if(team_id === 'all'){
-
-            if(team_level ==='all'){
-                 teamUsers = await sequelize.query(
-                    "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
-                    "and user_rank =:user_rank " +
-                    "and tu.team_company_id =:company_id " +
-                    "order by tu.team_level asc ",
-                    {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
-            }else {
-                 teamUsers = await sequelize.query(
-                    "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
-                    "and user_rank =:user_rank " +
-                    "and tu.team_company_id =:company_id " +
-                    "and tu.team_level >=:team_level " +
-                    "order by tu.team_level asc ",
-                    {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,team_level:team_level,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
-            }
-
-        }else {
-              teamUsers = await sequelize.query(
-                "select tu.*  from  x_team_user tu where tu.open_id =:open_id " +
-                "and user_rank =:user_rank " +
-                "and tu.team_company_id =:company_id " +
-                "and tu.team_id =:team_id " +
-                "order by tu.team_level asc ",
-                {replacements: {open_id: open_id ,user_rank:FileType.UserRank.admin,team_id:team_id,company_id:company_id}, type: Sequelize.QueryTypes.SELECT})
-        }
 
         // 获取公司所有团队
         const company = await  ctx.model.XTeam.findAll({where:{company_id:company_id}})
@@ -162,8 +138,22 @@ class TeamUserPcService extends Service {
         if(managerTeamIds.length>0){
             managerTeamIds = [...new Set(managerTeamIds)]
         }
-
-        result.managerTeamIds = managerTeamIds
+        let resultIds = []
+        console.log(managerTeamIds)
+        if(team_level!=='all' && team_id === 'all'){
+            for(let id of managerTeamIds){
+                for(let team of company){
+                    if( team.id === id){
+                        if(team.level >= team_level){
+                            resultIds.push(team.id)
+                        }
+                    }
+                }
+            }
+            result.managerTeamIds = resultIds
+        }else {
+            result.managerTeamIds = managerTeamIds
+        }
 
         console.log('-----------------------------》managerTeamIds',result)
 

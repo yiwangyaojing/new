@@ -47,7 +47,7 @@ class TeamPcService extends Service {
     })
     logger.info('这里是查询出的创建人===>>', teamCreateUser)
     // 人员
-    const teamUsers = await this.findTeamUsersByPage(topTeamId)
+    const teamUsers = await this.findTeamUsersByPage(topTeamId, openid)
     logger.info('这里是查询出人员信息===>>', teamUsers)
     return {
       teams: teamTree,
@@ -185,7 +185,7 @@ class TeamPcService extends Service {
   }
 
   // 分页查询team users
-  async findTeamUsersByPage(teamId) {
+  async findTeamUsersByPage(teamId, openid) {
     const { ctx } = this
     const logger = ctx.logger
     const cfg = this.config.sequelize;
@@ -204,6 +204,37 @@ class TeamPcService extends Service {
     // 查询团队创建者
     const user = await ctx.model.XUsers.findOne({ where: {
         openid: team.open_id
+      }
+    })
+    let teamUsersList = await ctx.model.XTeamUser.findAll({
+      where: {
+        open_id: openid,
+        user_rank: 1
+      }
+    })
+    let teamsAll = await ctx.model.XTeam.findAll({
+      where: {
+        company_id: team.company_id
+      }
+    })
+    let teamIds = []
+    let parentIds = []
+    teamUsersList.forEach(item => {
+      parentIds.push(item.team_id)
+    })
+    teamsAll.forEach(item => {
+      if ((parentIds.indexOf(item.parent_id) > -1) && teamIds.indexOf(item.id) === -1) {
+        teamIds.push(item.id)
+      }
+    })
+    teamsAll.forEach(item => {
+      if ((teamIds.indexOf(item.parent_id) > -1) && teamIds.indexOf(item.id) === -1) {
+        teamIds.push(item.id)
+      }
+    })
+    teamsAll.forEach(item => {
+      if ((teamIds.indexOf(item.parent_id) > -1) && teamIds.indexOf(item.id) === -1) {
+        teamIds.push(item.id)
       }
     })
     console.log('这里是创建者===>>', user)
@@ -226,12 +257,40 @@ class TeamPcService extends Service {
       'b.open_id ' +
       ') AS tab2 ON tab2.open_id = tab1.open_id ' +
       'LEFT JOIN x_users c ON c.openid = tab1.open_id', {
-      replacements: {teamId: teamId}, type: Sequelize.QueryTypes.SELECT
+      replacements: {teamId: teamId, open_id: openid}, type: Sequelize.QueryTypes.SELECT
     })
     logger.info('这里是人员信息查询结果===>>', teamUsers)
+    if (teamIds.indexOf(Number(teamId)) > -1) {
+      user.dataValues.isSaveShow = true
+    } else {
+      user.dataValues.isSaveShow = false
+    }
+    // 判断是否是公司管理员
+    let companyManage = await ctx.model.XTeamUser.findAll({
+      where: {
+        open_id: openid,
+        team_level: 0
+      }
+    })
+    if (companyManage && companyManage.user_rank === 1) {
+      user.dataValues.isCompanyManage = true
+    } else {
+      user.dataValues.isCompanyManage = false
+    }
+    // 查询公司信息
+    const company = await ctx.model.XTeam.findOne({
+      where: {
+        id: team.company_id
+      }
+    })
+    if (company.open_id === openid) {
+      user.dataValues.isSaveShow = true
+      user.dataValues.isCompanyManage = true
+    }
     return {
       users: teamUsers,
-      founder: user
+      founder: user,
+      company: company
     }
   }
 

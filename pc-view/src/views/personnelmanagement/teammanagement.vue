@@ -29,21 +29,21 @@
           <el-col :span="24">
             <div style="font-size: 14px;">
               <div class="fl">创建者: &nbsp;&nbsp;{{founder.name}}</div>
-              <el-button class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
+              <el-button v-if="founder.isCompanyManage" class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
             </div>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">
             <el-col :span="15">
               <div class="y-Center">
                 <div class="fl" style="font-size: 14px;">管理员: &nbsp;&nbsp;</div>
-                <el-select style="width: 500px;" size="small" class="fl" v-model="selectedItems" filterable multiple placeholder="请选择" @change="selectChange">
+                <el-select style="width: 500px;" size="small" class="fl" v-model="selectedItems" :disabled="!founder.isSaveShow" filterable multiple placeholder="请选择" @change="selectChange">
                   <el-option v-for="item in users" :key="item.openid" :label="item.name" :value="item.openid">
                   </el-option>
                 </el-select>
               </div>
             </el-col>
             <el-col :span="5">
-              <el-button type="success" size="small" @click="saveDialogVisible = true">保存</el-button>
+              <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存</el-button>
             </el-col>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">
@@ -85,7 +85,7 @@ export default {
         children: 'children',
         label: 'name'
       },
-      founder: '',
+      founder: {},
       users: [],
       selectedItems: [],
       changeItems: []

@@ -1,5 +1,25 @@
 <template>
   <el-card class="box-card">
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <span style="color: #FF0000;">确定解散团队？解散后将会删除所有团队信息，且不可恢复！</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dissolveTeam">确 定</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog
+      title="提示"
+      :visible.sync="saveDialogVisible"
+      width="20%">
+      <span>确定保存修改?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="saveDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRoleChange">确 定</el-button>
+      </span>
+    </el-dialog>
     <el-row>
       <el-col :span="24">
         <el-col :span="5">
@@ -9,7 +29,7 @@
           <el-col :span="24">
             <div style="font-size: 14px;">
               <div class="fl">创建者: &nbsp;&nbsp;{{founder.name}}</div>
-              <el-button class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dissolveTeam">解散团队</el-button>
+              <el-button class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
             </div>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">
@@ -23,7 +43,7 @@
               </div>
             </el-col>
             <el-col :span="5">
-              <el-button type="success" size="small" @click="saveRoleChange">保存</el-button>
+              <el-button type="success" size="small" @click="saveDialogVisible = true">保存</el-button>
             </el-col>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">
@@ -54,6 +74,8 @@ export default {
   components: {UTree},
   data () {
     return {
+      saveDialogVisible: false,
+      dialogVisible: false,
       hightlight: true,
       defaultKey: [],
       data: [],
@@ -99,6 +121,7 @@ export default {
     },
     saveRoleChange () {
       if (!this.changeItems || this.changeItems.length === 0) {
+        this.saveDialogVisible = false
         return
       }
       let userInfo = getUserInfo()
@@ -112,6 +135,7 @@ export default {
       })
       let _this = this
       axios.put('/api/pc/teamPc/changeTeamUsersRole', {open_id: openid, team_id: this.selectedTeam.id, users: this.changeItems}).then(res => {
+        this.saveDialogVisible = false
         console.log('保存成功===>>', res)
         _this.$notify({
           title: '提示',
@@ -123,8 +147,10 @@ export default {
         console.log('这个是请求结果===>>', res)
       }, () => {
         console.log('保存失败')
+        this.saveDialogVisible = false
         loading.close()
       }).catch(() => {
+        this.saveDialogVisible = false
         loading.close()
       })
     },
@@ -141,6 +167,7 @@ export default {
       })
       axios.delete('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then(res => {
         loading.close()
+        this.dialogVisible = false
         this.$notify({
           title: '提示',
           message: '操作成功!',
@@ -148,8 +175,10 @@ export default {
         })
         console.log('这里是删除结果===>>', res)
       }, () => {
+        this.dialogVisible = false
         loading.close()
       }).catch(() => {
+        this.dialogVisible = false
         loading.close()
       })
     },

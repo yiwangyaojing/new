@@ -3,23 +3,91 @@
     <el-row>
       <el-col :span="24" class="y-Center">
         <el-col :span="2" style="font-size: 14px;">姓名</el-col>
-        <el-col :span="4"><el-input v-model="input" size="small" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="4"><el-input v-model="name" size="small" placeholder="请输入内容"></el-input></el-col>
       </el-col>
       <el-col :span="24" class="y-Center" style="margin-top: 20px;">
         <el-col :span="2" style="font-size: 14px;">认证手机</el-col>
-        <el-col :span="4"><el-input disabled value="175555555555" size="small" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="4"><el-input disabled :value="phone" size="small" placeholder="请输入内容"></el-input></el-col>
       </el-col>
       <el-col :span="24" class="y-Center" style="margin-top: 20px;">
         <el-col :span="2" style="font-size: 14px;">验证码</el-col>
-        <el-col :span="3"><el-input v-model="input" size="small" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="3"><div class="xy-Center" style="border: 1px solid #dcdfe6;width: 90px;height: 32px;border-radius: 5px;margin-left: 30px;">获取验证码</div></el-col>
+        <el-col :span="3"><el-input v-model="yzmvalue" size="small" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="3">
+          <div v-if="showcode" class="xy-Center" style="border: 1px solid #dcdfe6;width: 90px;height: 32px;border-radius: 5px;margin-left: 30px;" @click="yzmcode">获取验证码</div>
+          <button v-if="!showcode" disabled class="xy-Center" style="border: 1px solid #dcdfe6;width: 60px;height: 32px;border-radius: 5px;margin-left: 30px;" @click="yzmcode">{{numcode}}秒</button>
+        </el-col>
       </el-col>
-      <el-button size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">保存修改</el-button>
+      <el-button @click="submitClick" size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">保存修改</el-button>
     </el-row>
   </el-card>
 </template>
 <script>
-
+import axios from 'axios'
+import values from '../../utils/values'
+export default {
+  data () {
+    return {
+      open_id: '',
+      phone: '',
+      name: '',
+      company_id: '',
+      showcode: true,
+      numcode: 120,
+      yzmvalue: '',
+      sessionUser: ''
+    }
+  },
+  methods: {
+    requestdata () {
+      axios.get('/api/pc/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
+        console.log('查询团队', res)
+      })
+    },
+    yzmcode () {
+      this.showcode = false
+      let _this = this
+      let timer
+      clearInterval(timer)
+      timer = setInterval(function () {
+        if (_this.numcode > 0) {
+          console.log('开始倒计时')
+          _this.numcode--
+        } else {
+          _this.numcode = 120
+          _this.showcode = true
+          clearInterval(timer)
+        }
+      }, 1000)
+      axios.post('api/team/sms', {open_id: this.open_id, register_phone: this.phone, template_code: 'SMS_134260282'}).then(res => {
+        console.log('验证码成功', res)
+      })
+    },
+    submitClick () {
+      let parameter = {
+        name: this.name,
+        open_id: this.open_id,
+        phone: this.phone,
+        validateCode: this.yzmvalue
+      }
+      axios.put('api/pc/user', parameter).then(res => {
+        console.log('修改成功', res)
+        this.sessionUser.name = this.name
+        window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
+        console.log(this.sessionUser)
+        window.location.reload()
+      })
+    }
+  },
+  mounted () {
+    this.sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+    this.open_id = this.sessionUser.openid
+    this.name = this.sessionUser.name
+    this.phone = this.sessionUser.phone
+    this.company_id = this.sessionUser.company_id
+    console.log(this.sessionUser)
+    this.requestdata()
+  }
+}
 </script>
 <style>
   .fl{

@@ -43,13 +43,20 @@ class LoginController extends Controller {
         //     throw e;
         // }
         const userInfo = await service.user.findByPhone(phone);
-        console.log(userInfo,phone)
 
         if (!userInfo) {
             throw new Error('当前用户不存在!')
         } else {
             ctx.body = userInfo;
+            console.log(ctx.session.maxAge)
+            ctx.session.user = userInfo
         }
+    }
+
+    async logout(){
+        // 销毁登录
+        this.ctx.session.user = null;
+        this.ctx.body = { message: '退出成功' };
     }
 }
 

@@ -6,8 +6,7 @@
   <el-container>
     <el-aside width="auto">
       <el-row type="flex" align="middle" class="logo">
-        <!--<img src="../asserts/images/logo.png"/>-->
-        <span>光伏好销售</span>
+        <img src="/static/img/Logo.gif"/>
       </el-row>
       <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF"
                background-color="#fff" :collapse="collapsed">
@@ -24,26 +23,24 @@
             <i class="el-icon-setting" style="color: #303133"></i>
             <span slot="title">客户资料</span>
           </el-menu-item>
-          <el-menu-item index="3" :route="{name: 'Signin'}">
+          <el-menu-item index="3" :route="{name: 'ImportCustomer'}">
+            <i class="el-icon-setting" style="color: #303133"></i>
+            <span slot="title">客户导入</span>
+          </el-menu-item>
+          <el-menu-item index="4" :route="{name: 'Signin'}">
             <i class="el-icon-location" style="color: #303133;"></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
-          <el-submenu index="4">
-            <div slot="title" style="margin-left: 20px">
-              <i class="el-icon-setting" style="color: #303133"></i>
-              <span slot="title">人员管理</span>
-            </div>
-            <el-menu-item index="4-1" :route="{name: 'PersonnelManagement'}">
-              <i></i>
-              <span slot="title" style="margin-left: 32px;">团队结构</span>
-            </el-menu-item>
-          </el-submenu>
+          <el-menu-item index="5" :route="{name: 'PersonnelManagement'}">
+            <i class="el-icon-setting" style="color: #303133"></i>
+            <span slot="title">团队结构</span>
+          </el-menu-item>
         </el-menu-item-group>
-        <el-menu-item index="5" :route="{name: 'TeamInformation'}">
+        <el-menu-item index="6" :route="{name: 'TeamInformation'}">
           <i class="el-icon-setting" style="color: #303133"></i>
           <span slot="title">团队信息</span>
         </el-menu-item>
-        <el-menu-item index="6" :route="{name: 'AccountSetting'}">
+        <el-menu-item index="7" :route="{name: 'AccountSetting'}">
           <i class="el-icon-setting" style="color: #303133"></i>
           <span slot="title">账户设置</span>
         </el-menu-item>
@@ -57,15 +54,15 @@
           </el-col>-->
           <el-col  class="y-Center">
             <div class="clearfix">
-              <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" src="/static/img/00_logo_xiaosolar.png"/></div>
-              <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">董忽悠团队</div>
+              <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" :src="company_logo"/></div>
+              <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">{{company_name}}</div>
             </div>
           </el-col>
 
           <el-col :span="5" :xs="5" :sm="5" :lg="3" :xl="2">
             <el-row justify="right" align="middle" type="flex">
               <el-col :span="10">
-                <img class="header" height="36" src="../asserts/images/header.png"/>
+                <img class="header" height="36" :src="avatarUrl"/>
               </el-col>
               <el-col :span="14">
                 <el-dropdown @command="handleCommand">
@@ -152,6 +149,9 @@ export default {
     }
     return {
       collapsed: false,
+      company_logo: '',
+      company_name: '',
+      avatarUrl: '',
       loginName: '', // 登录账号名称
       menus: [],
       passwordModel: false, // 弹出修改密码弹出层
@@ -187,7 +187,7 @@ export default {
       this.$confirm('确定要退出当前系统吗', {
         callback: (action) => {
           if (action === 'confirm') {
-            axios.post('/security/logout').then(() => {
+            axios.post('/api/logout').then(() => {
               this.$message.success('退出成功!')
               this.$router.push({name: 'Login'})
             }, (response) => {
@@ -221,7 +221,10 @@ export default {
   },
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
-    this.loginName = sessionUser.nickName// 登录账号名称
+    this.loginName = sessionUser.name// 登录账号名称
+    this.company_name = sessionUser.company_name
+    this.company_logo = sessionUser.company_logo
+    this.avatarUrl = sessionUser.avatarUrl
   }
 }
 </script>

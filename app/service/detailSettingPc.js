@@ -32,62 +32,60 @@ class DetailSettingPCService extends Service {
         }
         searchvalue = '%' + searchvalue + '%';
 
-
-        let date = new Date();
-        let tjzqStartDate = '';
-        let tjzqEndDateDate = '';
-        if(tjzqvalue==='当日'){
-            tjzqStartDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+'00:00:00';
-            tjzqEndDateDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+'23:59:59';
-        }
-        if(tjzqvalue==='昨日'){
-            let yesterday = new Date(date.getTime()-1000*60*60*24);
-            tjzqStartDate = yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+(yesterday.getDate()-1)+' '+'00:00:00';
-            tjzqEndDateDate = yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+(yesterday.getDate()-1)+' '+'23:59:59';
-        }
-        if(tjzqvalue==='本周'){
-            let monday;
-            if(date.getDay()>1){
-                monday = new Date(date.getTime()-1000*60*60*24*(date.getDay()-1));
-            }else {
-                monday = new Date(date.getTime()-1000*60*60*24*6);
-            }
-            tjzqStartDate = monday.getFullYear()+'-'+(monday.getMonth()+1)+'-'+(monday.getDate()-1)+' '+'00:00:00';
-        }
-        if(tjzqvalue==='上周'){
-            let lastMonday;
-            let lastSunday;
-            let monday;
-            if(date.getDay()>1){
-                monday = new Date(date.getTime()-1000*60*60*24*(date.getDay()-1));
-            }else {
-                monday = new Date(date.getTime()-1000*60*60*24*6);
-            }
-            lastMonday = new Date(monday.getTime()-1000*60*60*24*7)
-            lastSunday = new Date(monday.getTime()-1000*60*60*24)
-            tjzqStartDate = lastMonday.getFullYear()+'-'+(lastMonday.getMonth()+1)+'-'+(lastMonday.getDate()-1)+' '+'00:00:00';
-            tjzqEndDateDate = lastSunday.getFullYear()+'-'+(lastSunday.getMonth()+1)+'-'+(lastSunday.getDate()-1)+' '+'23:59:59';
-        }
-        if(tjzqvalue==='本月'){
-            tjzqStartDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+'01'+' '+'00:00:00';
-            let newDate = new Date(date.getFullYear(),date.getMonth()+1,1);
-            let lastOneDate = new Date(newDate.getTime()-1000*60*60*24);
-            tjzqStartDate = lastOneDate.getFullYear()+'-'+(lastOneDate.getMonth()+1)+'-'+lastOneDate.getDate()+' '+'23:59:59';
-        }
-        if(tjzqvalue==='上月'){
-            tjzqStartDate = date.getFullYear()+'-'+date.getMonth()+'-'+'01'+' '+'00:00:00';
-            let newDate = new Date(date.getFullYear(),date.getMonth(),1);
-            let lastOneDate = new Date(newDate.getTime()-1000*60*60*24);
-            tjzqEndDateDate = lastOneDate.getFullYear()+'-'+(lastOneDate.getMonth()+1)+'-'+lastOneDate.getDate()+' '+'23:59:59';
-        }
-        if(tjzqvalue==='本年'){
-            tjzqStartDate = date.getFullYear()+'-'+'01-01'+' '+'00:00:00';
-            tjzqEndDateDate = (date.getFullYear()+1)+'-'+'12-31'+' '+'23:59:59';
-        }
-        if(datevalue){
-            tjzqStartDate = datevalue[0]+' '+'00:00:00';
-            tjzqEndDateDate = datevalue[1]+' '+'23:59:59';
-        }
+        let tjzqStartDate = datevalue[0]+' '+'00:00:00';
+        let tjzqEndDateDate = datevalue[1]+' '+'23:59:59';
+        // if(tjzqvalue==='当日'){
+        //     tjzqStartDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+'00:00:00';
+        //     tjzqEndDateDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+'23:59:59';
+        // }
+        // if(tjzqvalue==='昨日'){
+        //     let yesterday = new Date(date.getTime()-1000*60*60*24);
+        //     tjzqStartDate = yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+(yesterday.getDate()-1)+' '+'00:00:00';
+        //     tjzqEndDateDate = yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+(yesterday.getDate()-1)+' '+'23:59:59';
+        // }
+        // if(tjzqvalue==='本周'){
+        //     let monday;
+        //     if(date.getDay()>1){
+        //         monday = new Date(date.getTime()-1000*60*60*24*(date.getDay()-1));
+        //     }else {
+        //         monday = new Date(date.getTime()-1000*60*60*24*6);
+        //     }
+        //     tjzqStartDate = monday.getFullYear()+'-'+(monday.getMonth()+1)+'-'+(monday.getDate()-1)+' '+'00:00:00';
+        // }
+        // if(tjzqvalue==='上周'){
+        //     let lastMonday;
+        //     let lastSunday;
+        //     let monday;
+        //     if(date.getDay()>1){
+        //         monday = new Date(date.getTime()-1000*60*60*24*(date.getDay()-1));
+        //     }else {
+        //         monday = new Date(date.getTime()-1000*60*60*24*6);
+        //     }
+        //     lastMonday = new Date(monday.getTime()-1000*60*60*24*7)
+        //     lastSunday = new Date(monday.getTime()-1000*60*60*24)
+        //     tjzqStartDate = lastMonday.getFullYear()+'-'+(lastMonday.getMonth()+1)+'-'+(lastMonday.getDate()-1)+' '+'00:00:00';
+        //     tjzqEndDateDate = lastSunday.getFullYear()+'-'+(lastSunday.getMonth()+1)+'-'+(lastSunday.getDate()-1)+' '+'23:59:59';
+        // }
+        // if(tjzqvalue==='本月'){
+        //     tjzqStartDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+'01'+' '+'00:00:00';
+        //     let newDate = new Date(date.getFullYear(),date.getMonth()+1,1);
+        //     let lastOneDate = new Date(newDate.getTime()-1000*60*60*24);
+        //     tjzqStartDate = lastOneDate.getFullYear()+'-'+(lastOneDate.getMonth()+1)+'-'+lastOneDate.getDate()+' '+'23:59:59';
+        // }
+        // if(tjzqvalue==='上月'){
+        //     tjzqStartDate = date.getFullYear()+'-'+date.getMonth()+'-'+'01'+' '+'00:00:00';
+        //     let newDate = new Date(date.getFullYear(),date.getMonth(),1);
+        //     let lastOneDate = new Date(newDate.getTime()-1000*60*60*24);
+        //     tjzqEndDateDate = lastOneDate.getFullYear()+'-'+(lastOneDate.getMonth()+1)+'-'+lastOneDate.getDate()+' '+'23:59:59';
+        // }
+        // if(tjzqvalue==='本年'){
+        //     tjzqStartDate = date.getFullYear()+'-'+'01-01'+' '+'00:00:00';
+        //     tjzqEndDateDate = (date.getFullYear()+1)+'-'+'12-31'+' '+'23:59:59';
+        // }
+        // if(datevalue){
+        //     tjzqStartDate = datevalue[0]+' '+'00:00:00';
+        //     tjzqEndDateDate = datevalue[1]+' '+'23:59:59';
+        // }
 
         // 计算当前条数
         const start = (page.pageNumber - 1) * page.pageSize;

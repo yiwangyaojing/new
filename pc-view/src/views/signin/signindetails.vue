@@ -14,7 +14,7 @@
         <el-col :span="16" class="y-Center">
           <div class="grid-content bg-purple" style="font-size: 14px;width: 100px;">自定义时间段</div>
           <div class="block">
-            <el-date-picker size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+            <el-date-picker size="small" @change="dateChange" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
             </el-date-picker>
           </div>
         </el-col>
@@ -48,7 +48,7 @@
         </el-col>
         <el-col :span="9">
           <div class="amap-wrapper">
-            <el-amap class="amap-box" :vid="'amap-vue'" :zoom="zoom">
+            <el-amap class="amap-box" :vid="'amap-vue'" :zoom="zoom" :center="center">
               <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker.position" :visible="marker.visible" :draggable="marker.draggable" :vid="index"></el-amap-marker>
             </el-amap>
           </div>
@@ -102,11 +102,13 @@ export default {
       pageNum: 1,
       tableData: [],
       zoom: 16,
-      markers: []
+      markers: [],
+      center: [116.38, 39.9]
     }
   },
   methods: {
     tjzqChange (e) {
+      console.log('=====>>', e)
       this.datevalue = []
       if (this.tjzqvalue !== '自定义') {
         axios.get('/api/pc/select/date/' + e).then(res => {
@@ -116,7 +118,18 @@ export default {
           }
           this.loadData()
         })
+      } else {
+        axios.get('/api/pc/select/date/today').then(res => {
+          console.log(res)
+          for (let i in res) {
+            this.datevalue.push(res[i])
+          }
+          this.loadData()
+        })
       }
+    },
+    dateChange () {
+      this.loadData()
     },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
@@ -163,6 +176,7 @@ export default {
             visible: true,
             draggable: false
           })
+          this.center = [item.longitude, item.latitude]
         })
       }, () => {
         loading.close()

@@ -148,7 +148,7 @@ module.exports = app => {
     router.get('/api/pc/customerDataPc/payStatus/:id', controller.customerDataPc.findPayStatusById);
     // PC 团队管理
     router.get('/api/pc/teamPc/:openid', controller.teamPc.index)
-    router.get('/api/pc/teamPc/:openid/:id', controller.teamPc.findTeamUsersByPage)
+    router.get('/api/pc/teamPc/:openid/:pageNum/:pageSize/:id', controller.teamPc.findTeamUsersByPage)
     router.del('/api/pc/teamPc/:openid/:teamid', controller.teamPc.dissolveTeam)
     router.put('/api/pc/teamPc/changeTeamUsersRole', controller.teamPc.changeTeamUsersRole)
 

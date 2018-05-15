@@ -121,10 +121,11 @@ module.exports = app => {
     // PC端进度详情
     router.post('/api/planSchedulePc', controller.planSchedulePc.query);
 
+    // PC签到统计
+    router.post('/api/signPc', controller.signPc.index);
+
     router.get('/api/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
     router.get('/api/select/team', controller.select.teamSelect); //获取团队范围
-
-
     router.post('/api/detailSettingPc/settingDetails',controller.detailSettingPc.findParamsByPage);
     router.get('/api/detailSettingPc/planDetail/:id', controller.detailSettingPc.findPlanById);
     router.get('/api/detailSettingPc/contractStatus/:id', controller.detailSettingPc.findContractStatusById);

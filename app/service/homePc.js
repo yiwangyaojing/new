@@ -59,8 +59,8 @@ class HomePcService extends Service {
 
         }else {
             if(teamId === 'all' || planOwner ==='all'){
-                sql = "and p.team_id =(:teamId) "
-                sqlParams.teamId = managerTeams
+                sql = "and p.team_id in (:agentTeams) "
+                sqlParams.agentTeams = managerTeams
                 params.push(
                     { team_id:managerTeams},
                 )

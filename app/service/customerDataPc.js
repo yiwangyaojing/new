@@ -161,6 +161,128 @@ class CustomerDataPcService extends Service {
             {replacements: {open_id: params.openId,plan_id: params.id}, type: Sequelize.QueryTypes.SELECT})
         return payUser
     }
+
+    /**
+     * 客户信息导入导出功能相关
+     */
+    async findByOpenId(open_id){
+        const result = await this.ctx.model.XUsers.findOne({where:{openid:open_id}})
+        let team
+        if(result){
+           team = await this.service.teamUser.findMaxLevel(result.openid,result.company_id)
+          if(team){
+            result.dataValues.maxTeamLevel = team.team_level
+            result.dataValues.maxTeamId = team.team_id
+            result.dataValues.maxTeamRank =team.user_rank
+          }
+    
+          // 获取所有可管理的团队Id
+          let managerTeams = []
+          const teamUser  = await this.ctx.model.XTeamUser.findOne({where:{open_id:open_id,team_company_id:result.company_id,user_rank:FileType.UserRank.admin},order:[['team_level','asc']]})
+          if(teamUser){
+            // 获取所有团队
+            const Op = Sequelize.Op;
+            managerTeams.push(teamUser.team_id)
+            result.dataValues.managerTeam = teamUser.team_id
+            result.dataValues.managerTeamLevel = teamUser.team_level
+            const teams = await  this.ctx.model.XTeam.findAll(
+              {
+                where:
+                  {
+                    company_id:result.company_id,
+                    level:{
+                      [Op.gt]:teamUser.team_level
+                    }
+                  }
+              })
+            for(let team of teams){
+              if(managerTeams.indexOf(team.id) === -1 ){
+                managerTeams.push(team.id)
+              }
+            }
+          }
+          result.dataValues.managerTeams = managerTeams
+        }
+    
+    
+        return result
+      }
+
+      async getFriendList(company_id){
+
+
+        let result = {}
+    
+        const cfg = this.config.sequelize;
+        cfg.logging = false;
+        const sequelize = new Sequelize(cfg);
+    
+    
+        if(!company_id) return result
+    
+        // 获取公司所有用户团队信息
+        const teamUsers = await sequelize.query(
+          "select u.name, u.avatarUrl ,u.openid as open_id , tu.team_id , t.name as team_name ,t.level " +
+          "from x_users u " +
+          "left join x_team_user tu on tu.open_id = u.openid  " +
+          "left join  x_team t on  t.id = tu.team_id " +
+          "where u.company_id = :company_id ",
+          { replacements: {company_id:company_id}, type: Sequelize.QueryTypes.SELECT })
+    
+    
+        // const teamUsers = await sequelize.query(
+        //   "select u.name, u.avatarUrl ,u.openid as open_id , tu.user_rank ,tu.team_id , t.name as team_name ,t.level  " +
+        //   "from x_team_user tu, x_team  t, x_users u " +
+        //   "where tu.open_id =  u.openid " +
+        //   "and tu.team_id =  t.id " +
+        //   "and tu.team_company_id = :company_id " +
+        //   "order by tu.team_level asc" ,
+        //   { replacements: {company_id:company_id}, type: Sequelize.QueryTypes.SELECT })
+    
+        // 封装团队信息
+        let agents = []
+    
+        let teams = []
+    
+        for(let teamUser of teamUsers){
+           let team ={}
+            team.level = teamUser.level
+            team.team_id = teamUser.team_id
+            team.teamName = teamUser.team_name
+            team.userRank = teamUser.user_rank
+           let agent
+           for(let tempAgent of agents ){
+             if(tempAgent.open_id === teamUser.open_id){
+               agent = tempAgent
+             }
+           }
+    
+           let flag =true
+          for(let t of teams ){
+            if(t.team_id === team.team_id){
+              flag =false
+            }
+          }
+    
+          if(flag&&team.team_id)teams.push(team)
+    
+           if(!agent){
+             teamUser.teams = []
+             if(team.team_id){
+               teamUser.teams.push(team)
+             }
+             agents.push(teamUser)
+           }else {
+             if(team.team_id) agent.teams.push(team)
+           }
+        }
+        result.agents = agents
+        result.teams =teams
+    
+        return result
+    
+    
+      }
 }
 
 module.exports = CustomerDataPcService;

@@ -69,8 +69,7 @@ class HomePcService extends Service {
                 sqlParams.teamId = teamId
                 sqlParams.open_id = planOwner
                 params.push(
-                    { team_id:teamId},
-                    { open_id:planOwner},
+                    { team_id:teamId ,open_id:planOwner},
                 )
             }
 

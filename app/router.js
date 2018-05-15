@@ -110,8 +110,8 @@ module.exports = app => {
      */
 
     // PC端登录
-    router.post('/api/pc/login/sms', controller.login.sms);
-    router.post('/api/pc/login', controller.login.userLogin);
+    router.post('/api/login/sms', controller.login.sms);
+    router.post('/api/login', controller.login.userLogin);
 
     // 首页
     router.post('/api/pc/home',controller.homePc.query); //首页统计列表

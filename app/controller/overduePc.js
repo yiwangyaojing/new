@@ -15,7 +15,7 @@ class OverDuePcController extends Controller {
 
       // 判断是否有权限修改
       const params ={
-          company_id:req.company_id,
+          team_company_id:req.company_id,
           open_id:req.open_id,
           user_rank:1,
           team_level:0,
@@ -23,11 +23,12 @@ class OverDuePcController extends Controller {
       let  result = {
           rule:false
       }
-      const userInfo = await service.teamUserPc.findByParams(params)
+      const teamUser = await service.teamUserPc.findByParams(params)
+      const overDue = await service.overdue.index(req);
 
-      if(userInfo){
+      if(teamUser){
           result.rule = true
-          result.content = userInfo
+          result.content = overDue
       }
 
     ctx.body = result

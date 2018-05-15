@@ -383,9 +383,6 @@ export default {
         if (this.teamname !== '全部(可见范围)') {
           this.teamname = this.teamoptions[0].name
         }
-        if (this.planOwner !== 'all' && this.planOwner !== '个人') {
-          this.fuzerenvalue = this.fuzerenoptions[0].name
-        }
         console.log('团队名称', this.teamoptions, this.teamLevel, this.teamId)
         console.log('负责人', this.fuzerenoptions)
       })

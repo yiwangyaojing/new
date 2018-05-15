@@ -100,7 +100,7 @@ class planSchedulePcService extends Service {
         }).then(result => {
             page.totalCount = result.count
             page.content = result.rows
-            console.log(page.content)
+            // console.log(page.content)
         })
 
         return page

@@ -416,6 +416,12 @@ export default {
       this.formlistdata()
     },
     formlistdata () {
+      const loading = this.$loading({
+        lock: true,
+        text: '加载中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.5)'
+      })
       setTimeout(() => {
         console.log('客户资料列表', this.datevalue[0])
         let parameter = {
@@ -431,6 +437,7 @@ export default {
           search: this.searchvalue
         }
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
+          loading.close()
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
@@ -452,8 +459,12 @@ export default {
             }
           }
           console.log('表格数据', this.tableData, res)
+        }, () => {
+          loading.close()
+        }).catch(() => {
+          loading.close()
         })
-      }, 500)
+      }, 300)
     },
     searchChange () {
       this.formlistdata()

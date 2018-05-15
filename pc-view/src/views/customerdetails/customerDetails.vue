@@ -2,7 +2,7 @@
   <el-card class="box-card">
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
-        <div class="fl">董志永</div>
+        <div class="fl">{{this.details.cst_name}}</div>
         <div class="fr" style="border: 1px solid #999;padding: 5px;border-radius: 5px;">打包下载</div>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">
@@ -109,7 +109,7 @@
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">房屋朝向</div>
-                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.cst_latitude}}  {{this.details.cst_longitude}}  {{this.details.h_face}}</div>
+                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
@@ -219,6 +219,33 @@
         </el-tabs>
       </el-col>
     </el-row>
+<!--    <el-dialog
+      title="提示"
+      :visible.sync="downloadDialog"
+      width="30%">
+      <span>{{dialogMessage}}</span>
+      <span slot="footer" class="dialog-footer">
+         <el-button @click="downloadDialog = false">取 消</el-button>
+        <el-button type="primary" @click="downLoadData">确 定</el-button>
+        </span>
+    </el-dialog>-->
+
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <span>{{dialogMessage}}</span>
+      <span slot="footer" class="dialog-footer">
+    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+    </el-dialog>
+
+    <el-dialog
+      :visible.sync="imgVisible"
+      width="50%">
+      <img :src="imgUrl" style="width: 100%;"/>
+    </el-dialog>
   </el-card>
 </template>
 <script>
@@ -227,6 +254,13 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
+      collapsed: false,
+      dialogVisible: false,
+      downloadDialog: false,
+      dialogMessage: '',
+      imgVisible: false,
+      imgUrl: '',
+      showIndex: 1,
       activeName: '0',
       contractProgressList: [],
       payList: [],
@@ -257,8 +291,26 @@ export default {
   methods: {
     handleClick (tab, event) {
       console.log('tab切换', tab.name)
-      if (tab.name === '0' || tab.name === '3' || tab.name === '4' || tab.name === '5') {
+      if (tab.name === '0') {
         this.initData()
+      } else if (tab.name === '3') {
+        this.initData()
+        if (this.details.h_is_finish === 0) {
+          this.dialogVisible = true
+          this.dialogMessage = '房屋信息未采集'
+        }
+      } else if (tab.name === '4') {
+        this.initData()
+        if (this.details.d_is_finish === 0) {
+          this.dialogVisible = true
+          this.dialogMessage = '客户资料未采集'
+        }
+      } else if (tab.name === '5') {
+        this.initData()
+        if (this.details.rf_is_finish === 0) {
+          this.dialogVisible = true
+          this.dialogMessage = '排版子未采集'
+        }
       } else if (tab.name === '1') {
         let planId = this.$route.query.planId
         console.log('id', planId)
@@ -285,6 +337,10 @@ export default {
           axios.get('/api/customerDataPc/payStatus/' + planId).then(resp => {
             console.log('客户回款：')
             console.log(resp)
+            if (resp.length === 0) {
+              this.dialogVisible = true
+              this.dialogMessage = '暂无回款记录'
+            }
             this.payList = []
             for (let i = 0; i < resp.length; i++) {
               let payProgress = {

@@ -271,19 +271,18 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
-      maxImgUrl: '',
-      centerDialogVisible: false,
+      maxImgUrl: '', // 图片放大url地址
+      centerDialogVisible: false, // 图片放大Dialog框 默认值
       collapsed: false,
-      dialogVisible: false,
-      downloadDialog: false,
-      dialogMessage: '',
+      dialogVisible: false, // 提示信息
+      downloadDialog: false, // 下载模态框默认值
+      dialogMessage: '', // 提示信息
       imgVisible: false,
-      imgUrl: '',
       activeName: '0',
-      contractProgressList: [],
-      payList: [],
-      updated_at1: '',
-      details: {
+      contractProgressList: [], // 合同状态列表
+      payList: [], // 回款状态列表
+      updated_at1: '', // 格式化后的更新时间
+      details: { // 客户详细信息
         user_name: '', // 负责人
         cst_name: '', //  客户名称
         cst_phone: '', //  客户电话
@@ -303,11 +302,11 @@ export default {
         cst_latitude: '', // 纬度
         cst_longitude: '', // 经度
         h_face: '' // 房屋朝向
-
       }
     }
   },
   methods: {
+    // 切换 tab 显示不同内容
     handleClick (tab, event) {
       console.log('tab切换', tab.name)
       if (tab.name === '0') {
@@ -334,9 +333,8 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
+          // 返回客户合同状态列表
           axios.get('/api/pc/customerDataPc/contractStatus/' + planId).then(resp => {
-            console.log('客户合同状态：')
-            console.log('resp:', resp)
             this.contractProgressList = []
             for (let i = 0; i < resp.length; i++) {
               let contractProgress = {
@@ -354,9 +352,8 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
+          // 返回客户回款列表
           axios.get('/api/pc/customerDataPc/payStatus/' + planId).then(resp => {
-            console.log('客户回款：')
-            console.log(resp)
             if (resp.length === 0) {
               this.dialogVisible = true
               this.dialogMessage = '暂无回款记录'
@@ -375,17 +372,17 @@ export default {
         }
       }
     },
+    // 初始化数据 默认进入客户详情的概览页
     initData () {
       let planId = this.$route.query.planId
-      console.log('id', planId)
       if (planId) {
         axios.get('/api/pc/customerDataPc/planDetail/' + planId).then(resp => {
           this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
           this.details = resp
-          console.log('返回某个客户详细数据：', this.details)
         })
       }
     },
+    // 图片放大方法
     showMax (url) {
       console.log('url===>>', url)
       this.centerDialogVisible = true

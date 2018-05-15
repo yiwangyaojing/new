@@ -144,4 +144,7 @@ module.exports = app => {
     router.del('/api/teamPc/:openid/:teamid', controller.teamPc.dissolveTeam)
     router.put('/api/teamPc/changeTeamUsersRole', controller.teamPc.changeTeamUsersRole)
 
+    // PC 查询团队用户信息
+    router.get('/api/teamUserPc/:teamid/:openid', controller.teamUserPc.findTeamUserDetail)
+
 };

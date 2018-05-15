@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="24">
         <el-col :span="5">
-          <el-tree :data="data" :props="defaultProps" node-key="id" :highlight-current='hightlight' :default-checked-keys="defaultKey" @node-click="handleNodeClick"></el-tree>
+          <el-tree :data="data" :props="defaultProps" node-key="id" :default-checked-keys="defaultKey" :highlight-current='hightlight' :auto-expand-parent="hightlight" :default-expanded-keys="defaultKey" @node-click="handleNodeClick"></el-tree>
         </el-col>
         <el-col :span="19">
           <el-col :span="24">
@@ -36,7 +36,7 @@
               </el-table-column>
               <el-table-column label="操作" width="100">
                 <template slot-scope="scope">
-                  <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>
+                  <el-button @click="gotoDetail(scope.row)" type="text" size="small">详情</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -74,6 +74,9 @@ export default {
     },
     formatterNum (row, column, cellValue, index) {
       return row.num ? row.num : '0'
+    },
+    gotoDetail (row) {
+      this.$router.push({path: '/TeamUserDetail', query: {openid: row.openid, team_id: row.team_id}})
     },
     selectChange (data) {
       console.log('这里是已经选择的===>>', data)
@@ -156,7 +159,7 @@ export default {
     },
     loadData () {
       let userInfo = getUserInfo()
-      console.log('this is userInfo ===>>', userInfo)
+      console.log('this is userInfo ===>>', userInfo, this.selectedTeam)
       let openid = userInfo.openid
       const loading = this.$loading({
         lock: true,
@@ -166,7 +169,9 @@ export default {
       })
       axios.get('/api/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then((res) => {
         console.log('这里是请求结果handleNodeClick===>>', res)
-        loading.close()
+        setTimeout(() => {
+          loading.close()
+        }, 100)
         this.selectedItems = []
         this.tableData = res.users
         this.users = res.users
@@ -177,16 +182,33 @@ export default {
           }
         })
       }, () => {
-        loading.close()
+        setTimeout(() => {
+          loading.close()
+        }, 100)
       }).catch(() => {
-        loading.close()
+        setTimeout(() => {
+          loading.close()
+        }, 100)
       })
     },
-    init () {
+    getSelectedItem (teams, value) {
+      teams.forEach(item => {
+        console.log('这里是递归第一层===>>', item, value)
+        if (Number(item.id) === Number(value)) {
+          console.log('=========', item, value)
+          this.selectedTeam = item
+          this.defaultKey = [value]
+        }
+        if (item.children) {
+          this.getSelectedItem(item.children, value)
+        }
+      })
+    },
+    init (value) {
       let userInfo = getUserInfo()
-      console.log('this is userInfo ===>>', userInfo)
+      console.log('this is userInfo ===>>', userInfo, value)
       let openid = userInfo.openid
-      console.log('this is axios ===>>', this, axios)
+      // console.log('this is axios ===>>', this, axios)
       const loading = this.$loading({
         lock: true,
         text: '加载中...',
@@ -194,12 +216,21 @@ export default {
         background: 'rgba(0, 0, 0, 0.5)'
       })
       axios.get('/api/teamPc/' + openid, {}).then((res) => {
-        loading.close()
-        console.log('这里是请求结果init===>>', res)
+        setTimeout(() => {
+          loading.close()
+        }, 100)
+        console.log('这里是请求结果init===>>', res, value, res.teams)
         this.selectedItems = []
         this.data = res.teams
-        this.selectedTeam = res.teams[0]
-        this.defaultKey = [res.teams[0].id]
+        if (!value) {
+          this.selectedTeam = res.teams[0]
+          this.defaultKey = [res.teams[0].id]
+        } else {
+          this.getSelectedItem(res.teams, value)
+          setTimeout(() => {
+            this.loadData()
+          }, 100)
+        }
         this.tableData = res.data.users
         this.users = res.data.users
         this.founder = res.data.founder
@@ -209,14 +240,24 @@ export default {
           }
         })
       }, () => {
-        loading.close()
+        setTimeout(() => {
+          loading.close()
+        }, 100)
       }).catch(() => {
-        loading.close()
+        setTimeout(() => {
+          loading.close()
+        }, 100)
       })
     }
   },
   mounted () {
-    this.init()
+    let params = this.$route.query
+    console.log('这里是跳转过来的参数===>>', params)
+    if (params.id) {
+      this.init(params.id)
+    } else {
+      this.init()
+    }
   }
 }
 </script>

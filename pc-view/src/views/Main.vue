@@ -27,16 +27,10 @@
             <i class="el-icon-location" style="color: #303133;"></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
-          <el-submenu index="4">
-            <div slot="title" style="margin-left: 20px">
-              <i class="el-icon-setting" style="color: #303133"></i>
-              <span slot="title">人员管理</span>
-            </div>
-            <el-menu-item index="4-1" :route="{name: 'PersonnelManagement'}">
-              <i></i>
-              <span slot="title" style="margin-left: 32px;">团队结构</span>
-            </el-menu-item>
-          </el-submenu>
+          <el-menu-item index="4" :route="{name: 'PersonnelManagement'}">
+            <i class="el-icon-setting" style="color: #303133"></i>
+            <span slot="title">团队结构</span>
+          </el-menu-item>
         </el-menu-item-group>
         <el-menu-item index="5" :route="{name: 'TeamInformation'}">
           <i class="el-icon-setting" style="color: #303133"></i>

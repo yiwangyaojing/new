@@ -13,6 +13,7 @@ import SigninDetails from '../views/signin/signindetails'
 import PersonnelManagement from '../views/personnelmanagement/teammanagement'
 import TeamInformation from '../views/teaminformation/teaminformation'
 import AccountSetting from '../views/accountsetting/accountsetting'
+import TeamUserDetail from '../views/personnelmanagement/teamuserdetail'
 Vue.use(Router)
 
 export default new Router({
@@ -34,8 +35,8 @@ export default new Router({
         {path: '/SigninDetails', name: 'SigninDetails', component: SigninDetails},
         {path: '/PersonnelManagement', name: 'PersonnelManagement', component: PersonnelManagement},
         {path: '/TeamInformation', name: 'TeamInformation', component: TeamInformation},
-        {path: '/AccountSetting', name: 'AccountSetting', component: AccountSetting}
-
+        {path: '/AccountSetting', name: 'AccountSetting', component: AccountSetting},
+        {path: '/TeamUserDetail', name: 'TeamUserDetail', component: TeamUserDetail}
         // {path: '/Index', name: 'Index', component: Index},
         // {path: '/IndexAd', name: 'IndexAd', component: IndexAd},
         // {path: '/IndexSliderAd', name: 'IndexSliderAd', component: IndexSliderAd},

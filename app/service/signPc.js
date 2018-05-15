@@ -9,8 +9,6 @@ class SignPcService extends Service {
 
     async index(req) {
 
-        const ctx  = this.ctx
-
         const teamInfo  = await this.service.teamUserPc.getTeams(req.open_id,req.company_id,req.teamId,req.teamLevel)
 
         const managerTeams =  teamInfo.managerTeams
@@ -70,6 +68,37 @@ class SignPcService extends Service {
 
         // 获取团队用户
         //const teamUser = await ctx.model.XTeamUser.findAll()
+    }
+
+    async detail(req){
+
+        const ctx = this.ctx
+
+
+        const Op = Sequelize.Op;
+
+        // 手动分页
+        let page = {
+            pageIndex: req.pageIndex,
+            pageNumber:req.pageNumber,
+            pageSize: req.pageSize,
+            content: [],
+            totalCount: ''
+        }
+        await ctx.model.XSign.findAndCountAll({
+            attributes: { include: [[Sequelize.fn('date_format',Sequelize.col('created_at'),'%Y-%m-%d %H:%i:%S'),'date_format' ]] },
+            where:{
+                [Op.and]:[
+                    {open_id:req.owner},
+                    Sequelize.where(Sequelize.fn('date_format', Sequelize.col('create_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
+                    Sequelize.where(Sequelize.fn('date_format', Sequelize.col('create_time'), '%Y-%m-%d'),'<=' ,req.endDate)
+                ]}
+        }).then(result => {
+            page.totalCount = result.count
+            page.content = result.rows
+        })
+
+        return page
     }
 
 }

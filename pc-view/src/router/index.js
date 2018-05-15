@@ -8,6 +8,7 @@ import Home from '../views/home/home'
 import Overdue from '../views/home/overdue'
 import SettingDetails from '../views/settingdetails/settingdetails'
 import CustomerData from '../views/settingdetails/customerdata'
+import ImportCustomer from '../views/settingdetails/importCustomer'
 import CustomerDetails from '../views/customerdetails/customerDetails'
 import Signin from '../views/signin/signin'
 import SigninDetails from '../views/signin/signindetails'
@@ -32,6 +33,7 @@ export default new Router({
         {path: '/Overdue', name: 'Overdue', component: Overdue},
         {path: '/SettingDetails', name: 'SettingDetails', component: SettingDetails},
         {path: '/CustomerData', name: 'CustomerData', component: CustomerData},
+        {path: '/ImportCustomer', name: 'ImportCustomer', component: ImportCustomer},
         {path: '/CustomerDetails', name: 'CustomerDetails', component: CustomerDetails},
         {path: '/Signin', name: 'Signin', component: Signin},
         {path: '/SigninDetails', name: 'SigninDetails', component: SigninDetails},

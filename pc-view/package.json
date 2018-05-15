@@ -15,9 +15,11 @@
     "buildUat": "node build/buildUat.js"
   },
   "dependencies": {
+    "@handsontable/vue": "^2.0.0-beta1",
     "axios": "^0.17.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "dateformat": "^3.0.3",
+    "handsontable": "^2.0.0",
     "md5": "^2.2.1",
     "moment": "^2.22.0",
     "node-notifier": "^5.2.1",

@@ -354,7 +354,37 @@ export default {
           this.fuzerenoptions.push(item)
           this.fuzerenoptionsAll.push(item)
         })
-        console.log('团队名称', this.teamoptions)
+        let teamoptionsarr = []
+        let fuzerenoptionsarr = []
+        for (let i = 0; i < this.teamoptionsAll.length; i++) {
+          if (this.teamLevel === 'all') {
+            this.planOwner = 'all'
+            this.fuzerenvalue = '全部(可见范围)'
+            this.teamoptions.push(this.teamoptionsAll[i])
+            this.teannameshow = true
+            this.fuzerenshow = true
+          }
+          if (Number(this.teamLevel) === Number(this.teamoptionsAll[i].level)) {
+            this.fuzerenvalue = '全部(可见范围)'
+            this.planOwner = 'all'
+            this.teannameshow = false
+            this.fuzerenshow = true
+            teamoptionsarr.push(this.teamoptionsAll[i])
+            console.log('这里是团队范围变化', this.teamoptionsAll[i], this.teamLevel)
+          }
+          if (Number(this.teamId) === Number(this.fuzerenoptionsAll[i].team_id)) {
+            fuzerenoptionsarr.push(this.fuzerenoptionsAll[i])
+            this.fuzerenshow = false
+            console.log('进来了', this.fuzerenshow)
+          }
+        }
+        this.teamoptions = teamoptionsarr
+        this.fuzerenoptions = fuzerenoptionsarr
+        this.teamname = this.teamoptions[0].name
+        if (this.planOwner !== 'all') {
+          this.fuzerenvalue = this.fuzerenoptions[0].name
+        }
+        console.log('团队名称', this.teamoptions, this.teamLevel, this.teamId)
         console.log('负责人', this.fuzerenoptions)
       })
     },
@@ -457,9 +487,11 @@ export default {
         this.overDueStatus = overdueparameter.overDueStatus
         this.tjzqvalue = '累计'
         this.overduevalue = '逾期'
+        this.planOwner = overdueparameter.planOwner
+        this.teamId = overdueparameter.teamId
+        this.teamLevel = overdueparameter.teamLevel
         this.fuzerenvalue = overdueparameter.fuzerenvalue
         this.tdfwvalue = overdueparameter.tdfwvalue
-        this.teamname = overdueparameter.teamname
         this.scdStatus = 'all'
         if (overdueparameter.teamLevel === '1') {
           overdueparameter.tdfwvalue = '一级团队'
@@ -500,7 +532,6 @@ export default {
           parameter.tdfwvalue = '个人'
         }
         this.tjzqvalue = parameter.tjzqvalue
-        this.fuzerenvalue = parameter.fuzerenvalue
         this.tdfwvalue = parameter.tdfwvalue
         this.datevalue.push(parameter.beginDate, parameter.endDate)
         this.planOwner = parameter.planOwner

@@ -3,37 +3,126 @@
       <el-row style="margin-top: 20px;">
         <div style="font-size: 20px;">逾期规则设置</div>
         <el-col :span="24">
-          <el-col :span="6" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
+          <el-col :span="7" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
             <div class="fl" style="margin-top: 20px;">合同签订</div>
-            <div class="fl" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 110px;position: relative;">
-              <input style="width: 50px;font-size: 28px;text-align: center;border: none;margin-left: 15px;color: #01cd33;" value="15" type="text">天
-              <div style="position: absolute;right: 4px;bottom: -1px;border-left: 1px solid #666;width: 1px;height: 10px;transform: rotate(-45deg)"></div>
+            <div class="fl xy-Center" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 150px;position: relative;">
+              <input :disabled="editshow"  style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" :value="datas.htqd" type="text">
+              <span>天</span>
+              <div class="arrowposition"></div>
             </div>
             <div class="fl" style="margin-top: 20px;">施工完成</div>
           </el-col>
         </el-col>
         <el-col :span="24">
-          <el-col :span="6" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
+          <el-col :span="7" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
             <div class="fl" style="margin-top: 20px;">施工完成</div>
-            <div class="fl" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 110px;position: relative;">
-              <input style="width: 50px;font-size: 28px;text-align: center;border: none;margin-left: 15px;color: #01cd33;" value="15" type="text">天
-              <div style="position: absolute;right: 4px;bottom: -1px;border-left: 1px solid #666;width: 1px;height: 10px;transform: rotate(-45deg)"></div>
+            <div class="fl xy-Center" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 150px;position: relative;">
+              <input :disabled="editshow" style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" :value="datas.sgwc" type="text">
+              <span>天</span>
+              <div class="arrowposition"></div>
             </div>
             <div class="fl" style="margin-top: 20px;">并网完成</div>
           </el-col>
         </el-col>
         <el-col :span="24">
-          <el-col :span="6" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
+          <el-col :span="7" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
             <div class="fl" style="margin-top: 20px;">并网完成</div>
-            <div class="fl" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 110px;position: relative;">
-              <input style="width: 50px;font-size: 28px;text-align: center;border: none;margin-left: 15px;color: #01cd33;" value="15" type="text">天
-              <div style="position: absolute;right: 4px;bottom: -2px;border-left: 1px solid #666;width: 1px;height: 10px;transform: rotate(-45deg)"></div>
+            <div class="fl xy-Center" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 150px;position: relative;">
+              <input :disabled="editshow" style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" :value="datas.bwwc" type="text">
+              <span>天</span>
+              <div class="arrowposition"></div>
             </div>
             <div class="fl" style="margin-top: 20px;">回款完成</div>
-
           </el-col>
         </el-col>
       </el-row>
-      <el-button @click="sunmitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
+      <el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
   </el-card>
 </template>
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      htqd: 7,
+      sgwc: 7,
+      bwwc: 7,
+      editshow: false,
+      company_id: '',
+      id: '',
+      datas: {}
+    }
+  },
+  methods: {
+    requestdata () {
+      axios.get('/api/pc/overduePc').then(res => {
+        console.log(res)
+        this.datas = res.content
+        if (!res.rule) {
+          this.editshow = true
+        } else {
+          this.editshow = false
+        }
+      })
+    },
+    submitClick () {
+      axios.post('/api/pc/overduePc', this.datas).then(res => {
+        console.log(res)
+      })
+    }
+  },
+  mounted () {
+    this.requestdata()
+  }
+}
+</script>
+<style>
+  .fl{
+    float: left;
+  }
+  .fr{
+    float: right;
+  }
+  .clearfix:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+  }
+  .clearfix {
+    zoom: 1;
+  }
+  .x-Center{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+  .xy-Center{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+  .y-Center{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .el-date-editor .el-range-separator {
+    width: 10%;
+  }
+  .arrowposition {
+    position: absolute;
+    right: 3px;
+    bottom: -3px;
+    border-left: 1px solid rgb(102, 102, 102);
+    width: 1px;
+    height: 13px;
+    transform: rotate(-50deg);
+  }
+</style>

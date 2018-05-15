@@ -374,11 +374,11 @@ export default {
       }
     },
     showMax (index) {
-      console.log('index',index)
-      for (let i =0; i < this.details.houseImgs.length; i++) {
+      console.log('index', index)
+      for (let i = 0; i < this.details.houseImgs.length; i++) {
         if (index === i) {
           this.exhibition = true
-        } else{
+        } else {
           this.exhibition = !this.exhibition
         }
       }

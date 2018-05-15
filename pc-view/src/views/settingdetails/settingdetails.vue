@@ -380,7 +380,9 @@ export default {
         }
         this.teamoptions = teamoptionsarr
         this.fuzerenoptions = fuzerenoptionsarr
-        this.teamname = this.teamoptions[0].name
+        if (this.teamname !== '全部(可见范围)') {
+          this.teamname = this.teamoptions[0].name
+        }
         if (this.planOwner !== 'all') {
           this.fuzerenvalue = this.fuzerenoptions[0].name
         }

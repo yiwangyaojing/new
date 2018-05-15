@@ -51,6 +51,12 @@ class LoginController extends Controller {
             ctx.session.user = userInfo
         }
     }
+
+    async logout(){
+        // 销毁登录
+        this.ctx.session.user = null;
+        this.ctx.body = { message: '退出成功' };
+    }
 }
 
 module.exports = LoginController;

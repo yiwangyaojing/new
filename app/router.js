@@ -112,6 +112,7 @@ module.exports = app => {
     // PC端登录
     router.post('/api/login/sms', controller.login.sms);
     router.post('/api/login', controller.login.userLogin);
+    router.post('/api/logout', controller.login.logout);
 
     // 首页
     router.post('/api/pc/home',controller.homePc.query); //首页统计列表

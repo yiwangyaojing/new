@@ -172,7 +172,7 @@ export default {
     tjzqChange (e) {
       this.datevalue = []
       if (this.tjzqvalue !== '自定义') {
-        axios.get('/api/select/date/' + e).then(res => {
+        axios.get('/api/pc/select/date/' + e).then(res => {
           console.log(res)
           for (let i in res) {
             this.datevalue.push(res[i])
@@ -279,16 +279,16 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
-      axios.post('/api/signPc', req).then(res => {
+      axios.post('/api/pc/signPc', req).then(res => {
         console.log('这里是查询签到结果===>>', res)
         this.tableData = res.content
       })
     },
     requestdata (fn) {
-      axios.get('/api/select/date/' + 'today').then(res => {
+      axios.get('/api/pc/select/date/' + 'today').then(res => {
         this.datevalue.push(res.beginDate, res.endDate)
         console.log('统计周期', this.datevalue)
-        axios.get('/api/select/team').then(res => {
+        axios.get('/api/pc/select/team').then(res => {
           console.log('团队范围', res)
           res.teams.forEach(item => {
             this.teamoptionsAll.push(item)

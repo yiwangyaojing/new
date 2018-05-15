@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     requestdata () {
-      axios.get('/api/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
+      axios.get('/api/pc/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
         console.log('查询团队', res)
       })
     },

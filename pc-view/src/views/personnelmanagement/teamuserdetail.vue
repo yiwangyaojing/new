@@ -86,7 +86,7 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.5)'
       })
-      axios.get('/api/teamUserPc/' + this.team_id + '/' + this.open_id, {}).then(res => {
+      axios.get('/api/pc/teamUserPc/' + this.team_id + '/' + this.open_id, {}).then(res => {
         loading.close()
         console.log('这里是查询结果===>>', res)
         this.data = res.data

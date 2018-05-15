@@ -462,9 +462,7 @@ export default {
       console.log('id:')
       console.log(id)
       this.$router.push({path: '/CustomerDetails', query: {planId: id}})
-    },
-    // 团队结构跳转过来的
-
+    }
   },
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}

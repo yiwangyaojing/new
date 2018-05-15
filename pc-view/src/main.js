@@ -10,12 +10,13 @@ import App from './App'
 import './resources/css/element-variables.scss'
 import router from './router'
 import Axios from './utils/Axios'
+import UTree from './component/tree/index'
 
 const moment = require('moment')
 
 Vue.use(element)
 Vue.use(moment)
-
+Vue.use(UTree)
 Axios.init({baseURL: process.env.CONTEXT, unauthorizedUrl: process.env.CONTEXT_HTML + '/#/login'})
 
 Vue.config.productionTip = false

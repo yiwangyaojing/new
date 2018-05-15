@@ -1,12 +1,12 @@
 <template>
   <el-card class="box-card">
-    <div style="font-size: 14px;">冬至用</div>
-    <div style="margin-top: 20px;font-size: 14px;">所属团队: 邓康团队</div>
+    <div style="font-size: 14px;">{{name}}</div>
+    <div style="margin-top: 20px;font-size: 14px;">{{team}}</div>
     <el-row>
       <div :span="24" style="margin-top: 20px;" class="clearfix">
         <el-col :span="8" class="y-Center">
           <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
-          <el-select size="small" class="fl" v-model="tjzqvalue" placeholder="请选择">
+          <el-select size="small" class="fl" v-model="tjzqvalue" @change="tjzqChange" placeholder="请选择">
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
@@ -35,8 +35,16 @@
               <el-table-column prop="address" label="备注">
               </el-table-column>
             </el-table>
+            <el-pagination style="margin-top: 20px;"
+                           @size-change="handleSizeChange"
+                           @current-change="handleCurrentChange"
+                           :current-page="currentPage4"
+                           :page-sizes="[10, 20, 30, 40,50]"
+                           :page-size="100"
+                           layout="total, sizes, prev, pager, next, jumper"
+                           :total="totalNum">
+            </el-pagination>
           </el-col>
-
         </el-col>
         <el-col :span="9">
           <img style="width: 480px;" src="/static/img/sky.871d198.jpg" alt="">
@@ -46,7 +54,105 @@
   </el-card>
 </template>
 <script>
-
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      name: '',
+      team: '',
+      openid: '',
+      tjzqvalue: '今天',
+      datevalue: [],
+      options: [{
+        value: 'today',
+        label: '今天'
+      }, {
+        value: 'yesterday',
+        label: '昨天'
+      }, {
+        value: 'thisWeek',
+        label: '本周'
+      }, {
+        value: 'lastWeek',
+        label: '上周'
+      }, {
+        value: 'thisMonth',
+        label: '本月'
+      }, {
+        value: 'lastMonth',
+        label: '上月'
+      }, {
+        value: 'thisYear',
+        label: '本年'
+      }, {
+        value: 'total',
+        label: '累计'
+      }, {
+        value: '自定义',
+        label: '自定义'
+      }],
+      totalNum: 0,
+      pagesizeNum: 10,
+      currentPage4: 0,
+      pageNum: 1
+    }
+  },
+  methods: {
+    tjzqChange (e) {
+      this.datevalue = []
+      if (this.tjzqvalue !== '自定义') {
+        axios.get('/api/pc/select/date/' + e).then(res => {
+          console.log(res)
+          for (let i in res) {
+            this.datevalue.push(res[i])
+          }
+          this.loadData()
+        })
+      }
+    },
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+      this.pagesizeNum = val
+      this.loadData()
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+      this.pageNum = val
+      this.loadData()
+    },
+    requestdata (fn) {
+      axios.get('/api/pc/select/date/' + 'today').then(res => {
+        this.datevalue.push(res.beginDate, res.endDate)
+        console.log('统计周期', this.datevalue)
+        if (fn) {
+          fn()
+        }
+      })
+    },
+    loadData () {
+      let req = {
+        // 开始时间 - 结束时间
+        beginDate: this.datevalue[0],
+        endDate: this.datevalue[1],
+        owner: this.openid,
+        pageNumber: this.pageNum,
+        pageSize: this.pagesizeNum
+      }
+      axios.post('/api/pc/signPc/detail', req).then(res => {
+        console.log('这里是查询结果===>>', res)
+        this.tableData = res.content
+        this.totalNum = res.totalCount
+      })
+    }
+  },
+  mounted () {
+    let params = this.$route.query
+    this.openid = params.openid
+    this.team = params.teamname
+    this.name = params.name
+    this.requestdata(this.loadData)
+  }
+}
 </script>
 <style>
   .fl{

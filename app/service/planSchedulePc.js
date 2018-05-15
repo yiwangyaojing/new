@@ -58,7 +58,12 @@ class planSchedulePcService extends Service {
         // 计算当前条数
        // sequelize.col('dailyview.stateDate')),'>=',sequelize.fn('TO_DAYS',lastDate))
         await this.ctx.model.XPlans.findAndCountAll({
-            attributes: { include: [[Sequelize.fn('STRCMP',Sequelize.col('overdue_date'),dateNow),'overdue' ]] },
+            attributes: {
+                include: [
+                    [Sequelize.fn('STRCMP',Sequelize.col('overdue_date'),dateNow),'overdue' ],
+                    [Sequelize.fn('DATE_ADD',Sequelize.col('scd_time'),Sequelize.literal('INTERVAL 8 hour')),'scdTime' ],
+                    [Sequelize.fn('DATE_ADD',Sequelize.col('created_at'),Sequelize.literal('INTERVAL 8 hour')),'createTime' ]
+                ] },
             where: {
                 [Op.or]: params,
                 [Op.and]: {

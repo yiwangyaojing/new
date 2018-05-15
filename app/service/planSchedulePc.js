@@ -25,7 +25,7 @@ class planSchedulePcService extends Service {
         // 获取权限查询条件
         const query = await this.service.homePc.getTeamQueryParams(req)
         const params = query.params
-        const status  = [2,3,4]
+        const status  = [0,2,3,4]
         let search = req.search
         if(!search){
             search= ''
@@ -56,7 +56,7 @@ class planSchedulePcService extends Service {
         // 计算当前条数
        // sequelize.col('dailyview.stateDate')),'>=',sequelize.fn('TO_DAYS',lastDate))
         await this.ctx.model.XPlans.findAndCountAll({
-            attributes: { include: [[Sequelize.fn('INTERVAL',Sequelize.col('overdue_date'),dateNow),'overdue' ]] },
+            attributes: { include: [[Sequelize.fn('STRCMP',Sequelize.col('overdue_date'),dateNow),'overdue' ]] },
             where: {
                 [Op.or]: params,
                 [Op.and]: {

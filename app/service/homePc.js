@@ -58,20 +58,28 @@ class HomePcService extends Service {
             )
 
         }else {
-            if(teamId === 'all' || planOwner ==='all'){
-                sql = "and p.team_id in (:agentTeams) "
-                sqlParams.agentTeams = managerTeams
-                params.push(
-                    { team_id:managerTeams},
-                )
-            }else{
-                sql = "and p.team_id =:teamId and open_id = :open_id "
-                sqlParams.teamId = teamId
-                sqlParams.open_id = planOwner
-                params.push(
-                    { team_id:teamId ,open_id:planOwner},
-                )
-            }
+             if(teamId === 'all' ){
+                 sql = "and p.team_id in (:agentTeams) "
+                 sqlParams.agentTeams = managerTeams
+                 params.push(
+                     { team_id:managerTeams},
+                 )
+             }else{
+                 if(planOwner  ==='all'){
+                     sql = "and p.team_id =:teamId "
+                     sqlParams.teamId = teamId
+                     params.push(
+                         { team_id:teamId},
+                     )
+                 }else{
+                     sql = "and p.team_id =:teamId and open_id = :open_id "
+                     sqlParams.teamId = teamId
+                     sqlParams.open_id = planOwner
+                     params.push(
+                         { team_id:teamId ,open_id:planOwner},
+                     )
+                 }
+             }
 
         }
 

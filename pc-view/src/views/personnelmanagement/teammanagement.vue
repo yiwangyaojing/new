@@ -60,6 +60,15 @@
                 </template>
               </el-table-column>
             </el-table>
+            <el-pagination style="margin-top: 20px;"
+                           @size-change="handleSizeChange"
+                           @current-change="handleCurrentChange"
+                           :current-page="currentPage4"
+                           :page-sizes="[10, 20, 30, 40,50]"
+                           :page-size="100"
+                           layout="total, sizes, prev, pager, next, jumper"
+                           :total="totalNum">
+            </el-pagination>
           </el-col>
         </el-col>
       </el-col>
@@ -88,10 +97,24 @@ export default {
       founder: {},
       users: [],
       selectedItems: [],
-      changeItems: []
+      changeItems: [],
+      currentPage4: 1,
+      totalNum: 0,
+      pagesizeNum: 10,
+      pageNum: 1
     }
   },
   methods: {
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+      this.pagesizeNum = val
+      this.loadData()
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+      this.pageNum = val
+      this.loadData()
+    },
     formatterUserRank (row, column, cellValue, index) {
       console.log('this is table ===>>>', row, column, cellValue, index)
       return row.user_rank === 1 ? '管理员' : '业务员'
@@ -127,6 +150,19 @@ export default {
       let userInfo = getUserInfo()
       console.log('this is userInfo ===>>', userInfo)
       let openid = userInfo.openid
+      let isSelf = false
+      if (this.founder.company_founder === openid) {
+        this.changeItems.forEach(item => {
+          if (item.open_id === openid) {
+            isSelf = true
+          }
+        })
+      }
+      if (isSelf) {
+        this.saveDialogVisible = false
+        this.$message.error('公司创建者不可将自己变为业务员')
+        return
+      }
       const loading = this.$loading({
         lock: true,
         text: '处理中...',
@@ -198,14 +234,15 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.5)'
       })
-      axios.get('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then((res) => {
+      axios.get('/api/pc/teamPc/' + openid + '/' + this.pageNum + '/' + this.pagesizeNum + '/' + this.selectedTeam.id, {}).then((res) => {
         console.log('这里是请求结果handleNodeClick===>>', res)
         setTimeout(() => {
           loading.close()
         }, 100)
         this.selectedItems = []
-        this.tableData = res.users
-        this.users = res.users
+        this.tableData = res.users.data
+        this.totalNum = res.users.total
+        this.users = res.users.data
         this.founder = res.founder
         this.users.forEach((item) => {
           if (item.user_rank === 1) {
@@ -262,8 +299,9 @@ export default {
             this.loadData()
           }, 100)
         }
-        this.tableData = res.data.users
-        this.users = res.data.users
+        this.tableData = res.data.users.data
+        this.users = res.data.users.data
+        this.totalNum = res.data.users.total
         this.founder = res.data.founder
         this.users.forEach((item) => {
           if (item.user_rank === 1) {

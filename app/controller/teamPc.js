@@ -34,7 +34,9 @@ class TeamPcController extends Controller {
       if (!req.id) {
         throw new Error('团队id不能为空!')
       }
-      ctx.body = await service.teamPc.findTeamUsersByPage(req.id, req.openid)
+      let pageIndex = (Number(req.pageNum) - 1) * Number(req.pageSize)
+      let limit = Number(req.pageSize)
+      ctx.body = await service.teamPc.findTeamUsersByPage(req.id, req.openid, pageIndex, limit)
     }
 
     // 解散团队

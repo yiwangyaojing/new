@@ -47,7 +47,7 @@ class TeamPcService extends Service {
     })
     logger.info('这里是查询出的创建人===>>', teamCreateUser)
     // 人员
-    const teamUsers = await this.findTeamUsersByPage(topTeamId, openid)
+    const teamUsers = await this.findTeamUsersByPage(topTeamId, openid, 0, 10)
     logger.info('这里是查询出人员信息===>>', teamUsers)
     return {
       teams: teamTree,
@@ -185,7 +185,7 @@ class TeamPcService extends Service {
   }
 
   // 分页查询team users
-  async findTeamUsersByPage(teamId, openid) {
+  async findTeamUsersByPage(teamId, openid, pageIndex, limit) {
     const { ctx } = this
     const logger = ctx.logger
     const cfg = this.config.sequelize;
@@ -256,10 +256,31 @@ class TeamPcService extends Service {
       'GROUP BY ' +
       'b.open_id ' +
       ') AS tab2 ON tab2.open_id = tab1.open_id ' +
-      'LEFT JOIN x_users c ON c.openid = tab1.open_id', {
-      replacements: {teamId: teamId, open_id: openid}, type: Sequelize.QueryTypes.SELECT
+      'LEFT JOIN x_users c ON c.openid = tab1.open_id limit :pageIndex, :pageSize', {
+      replacements: {teamId: teamId, open_id: openid, pageIndex: pageIndex, pageSize: limit}, type: Sequelize.QueryTypes.SELECT
     })
-    logger.info('这里是人员信息查询结果===>>', teamUsers)
+    const total = await  sequelize.query('select count(1) as total from (' +
+      'SELECT ' +
+      'a.* ' +
+      'FROM ' +
+      'x_team_user a ' +
+      'WHERE ' +
+      'team_id = :teamId ' +
+      ') as tab1 ' +
+      'LEFT JOIN (' +
+      'SELECT ' +
+      'b.open_id,' +
+      'count( 1 ) AS num ' +
+      'FROM ' +
+      'x_plans b ' +
+      'WHERE team_id = :teamId ' +
+      'GROUP BY ' +
+      'b.open_id ' +
+      ') AS tab2 ON tab2.open_id = tab1.open_id ' +
+      'LEFT JOIN x_users c ON c.openid = tab1.open_id limit :pageIndex, :pageSize', {
+      replacements: {teamId: teamId, open_id: openid, pageIndex: pageIndex, pageSize: limit}, type: Sequelize.QueryTypes.SELECT
+    })
+    logger.info('这里是人员信息查询结果===>>', teamUsers, total)
     if (teamIds.indexOf(Number(teamId)) > -1) {
       user.dataValues.isSaveShow = true
     } else {
@@ -288,7 +309,10 @@ class TeamPcService extends Service {
       user.dataValues.isCompanyManage = true
     }
     return {
-      users: teamUsers,
+      users: {
+        data: teamUsers,
+        total: total[0].total
+      },
       founder: user,
       company: company
     }

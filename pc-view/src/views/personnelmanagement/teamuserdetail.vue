@@ -36,7 +36,7 @@
     <el-row class="row-top-margin font-xl">
       <el-row>
         <div class="fl label-name">客户数量：</div><div class="fl label-view">{{data.c_num || 0}}</div>
-        <el-button class="m-l-40 label-view-btn" type="success" size="mini">他的客户</el-button>
+        <el-button class="m-l-40 label-view-btn" @click="gotoCustomer" type="success" size="mini">他的客户</el-button>
       </el-row>
       <el-row class="row-top-margin">
         <el-col class="fl">
@@ -103,6 +103,9 @@ export default {
     rowClick (row) {
       console.log('这里是点击一行===>>', row)
       this.$router.push({path: '/PersonnelManagement', query: {teamid: row.team_id, id: row.id}})
+    },
+    gotoCustomer() {
+      this.$router.push({path: '/CustomerData', query: {openid: this.open_id}})
     }
   },
   mounted () {

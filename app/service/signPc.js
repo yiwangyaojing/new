@@ -87,7 +87,7 @@ class SignPcService extends Service {
         }
         await ctx.model.XSign.findAndCountAll({
             // attributes: { include: [[Sequelize.fn('date_format',Sequelize.col('created_at'),'%Y-%m-%d %H:%i:%S'),'date_format' ]] },
-            attributes: { include: [[Sequelize.fn('DATE_ADD',Sequelize.col('create_time'),Sequelize.literal('INTERVAL 8 hour')),'createTimeFormat' ]] },
+            attributes: { include: [[Sequelize.fn('DATE_ADD',Sequelize.col('create_time'),Sequelize.literal('INTERVAL 8 hour')),'createTime' ]] },
             where:{
                 [Op.and]:[
                     {open_id:req.owner},

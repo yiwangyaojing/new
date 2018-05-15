@@ -150,6 +150,19 @@ export default {
       let userInfo = getUserInfo()
       console.log('this is userInfo ===>>', userInfo)
       let openid = userInfo.openid
+      let isSelf = false
+      if (this.founder.company_founder === openid) {
+        this.changeItems.forEach(item => {
+          if (item.open_id === openid) {
+            isSelf = true
+          }
+        })
+      }
+      if (isSelf) {
+        this.saveDialogVisible = false
+        this.$message.error('公司创建者不可以修改自己的角色')
+        return
+      }
       const loading = this.$loading({
         lock: true,
         text: '处理中...',

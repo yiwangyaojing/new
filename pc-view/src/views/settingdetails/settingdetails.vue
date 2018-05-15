@@ -35,7 +35,7 @@
             </el-col>
             <el-col :span="8" class="y-Center">
               <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
-              <el-select size="small" class="fl" v-model="fuzerenvalue" :disabled="fuzerenshow">
+              <el-select size="small" class="fl" v-model="fuzerenvalue" @change="fuzerenChange" :disabled="fuzerenshow">
                 <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
                 </el-option>
               </el-select>
@@ -44,14 +44,14 @@
           <div style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;margin-right: 20px;">合同状态</div>
-              <el-select size="small" class="fl" v-model="contractvalue" placeholder="请选择">
+              <el-select size="small" class="fl" @change="contractChange" v-model="contractvalue" placeholder="请选择">
                 <el-option v-for="item in contractoptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
             </el-col>
             <el-col :span="8" class="y-Center">
               <div class="fl" style="font-size: 14px;;width: 100px;">逾期状态</div>
-              <el-select size="small" class="fl" v-model="overduevalue" placeholder="请选择">
+              <el-select size="small" class="fl" @change="overdueChange" v-model="overduevalue" placeholder="请选择">
                 <el-option v-for="item in overdueoptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
@@ -68,18 +68,18 @@
       </el-row>
       <el-row>
         <el-col :span="24">
-          <el-table :data="tableData" size="mini" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
-              <el-table-column fixed prop="date" label="客户" ></el-table-column>
-              <el-table-column prop="name" label="负责人" ></el-table-column>
-              <el-table-column prop="address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
-              <el-table-column prop="city" label="装机容量" ></el-table-column>
-              <el-table-column prop="zip" label="合同金额" ></el-table-column>
-              <el-table-column prop="zip" label="回款金额" ></el-table-column>
-              <el-table-column prop="date" label="开始时间"></el-table-column>
-              <el-table-column prop="zip" label="合同状态"></el-table-column>
-              <el-table-column prop="tag" label="逾期状态" width="100" filter-placement="bottom-end">
+          <el-table :data="tableData" size="small" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
+              <el-table-column prop="cst_name" label="客户" ></el-table-column>
+              <el-table-column prop="user_name" label="负责人" ></el-table-column>
+              <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
+              <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
+              <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
+              <el-table-column prop="pay_sum" label="回款金额" ></el-table-column>
+              <el-table-column prop="scd_time" label="开始时间"></el-table-column>
+              <el-table-column prop="scd_status" label="合同状态"></el-table-column>
+              <el-table-column prop="overdue" label="逾期状态" width="100" filter-placement="bottom-end">
                 <template slot-scope="scope">
-                  <el-tag size="mini" :type="scope.row.tag === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.tag}}</el-tag>
+                  <el-tag size="mini" :type="scope.row.overdue === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.overdue}}</el-tag>
                 </template>
               </el-table-column>
               <el-table-column fixed="right" label="操作">
@@ -97,7 +97,7 @@
         :page-sizes="[10, 20, 30, 40,50]"
         :page-size="100"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="tableData.length">
+        :total="totalNum">
       </el-pagination>
     </el-card>
 </template>
@@ -108,6 +108,9 @@ export default {
   data () {
     return {
       showOverflowTooltip: true,
+      teamLevel: 'all',
+      teamId: 'all',
+      planOwner: 'all',
       tjzqvalue: '今天',
       tdfwvalue: '全部(可见范围)',
       fuzerenvalue: '全部(可见范围)',
@@ -168,92 +171,74 @@ export default {
           label: '个人'
         }
       ],
-
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄asdfasdfasdfasdfasdfasdfsaf',
-        zip: 200333,
-        tag: '正常'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄asdfasdfasdfasdfasdfasdfsaf',
-        zip: 200333,
-        tag: '逾期'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333,
-        tag: '正常'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333,
-        tag: '逾期'
-      }],
-      datevalue: [
-
-      ],
-
+      tableData: [],
+      datevalue: [],
       contractoptions: [
         {
-          value: '选项1',
+          value: 'all',
+          label: '全部(可见范围)'
+        },
+        {
+          value: '0',
+          label: '新增项目'
+        },
+        {
+          value: '2',
           label: '合同签订'
         },
         {
-          value: '选项2',
+          value: '3',
           label: '施工完成'
         },
         {
-          value: '选项3',
+          value: '4',
           label: '并网完成'
         },
         {
-          value: '选项4',
+          value: '6',
           label: '回款完成'
         }
       ],
       overdueoptions: [
         {
-          value: '选项1',
-          label: '全部'
+          value: 'all',
+          label: '全部(可见范围)'
         },
         {
-          value: '选项2',
+          value: '1',
           label: '正常'
         },
         {
-          value: '选项3',
+          value: '0',
           label: '逾期'
         }
       ],
 
-      contractvalue: '',
-      overduevalue: '',
+      contractvalue: '全部(可见范围)',
+      overduevalue: '全部(可见范围)',
       searchvalue: '',
-      currentPage4: 1
+      currentPage4: 1,
+      totalNum: 0,
+      scdStatus: 'all',
+      overDueStatus: 'all',
+      pagesizeNum: 10,
+      pageNum: 1
     }
   },
   methods: {
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
+      this.pagesizeNum = val
+      this.formlistdata()
     },
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
+      this.pageNum = val
+      this.formlistdata()
     },
     tjzqChange (e) {
       this.datevalue = []
+      this.pageNum = 1
       if (this.tjzqvalue !== '自定义') {
         axios.get('/api/select/date/' + e).then(res => {
           console.log(res)
@@ -262,13 +247,17 @@ export default {
           }
         })
       }
+      this.formlistdata()
     },
     selectdateChange (e) {
+      this.pageNum = 1
       this.tjzqvalue = '自定义'
       this.datevalue = e
       console.log('时间统计', this.datevalue)
+      this.formlistdata()
     },
     tdfwChange (e) {
+      this.pageNum = 1
       console.log(e)
       this.teamLevel = e
       this.teamId = 'all'
@@ -279,11 +268,15 @@ export default {
       ]
       for (let i = 0; i < this.teamoptionsAll.length; i++) {
         if (e === 'all') {
+          this.planOwner = 'all'
+          this.fuzerenvalue = '全部(可见范围)'
           this.teamoptions.push(this.teamoptionsAll[i])
           this.teannameshow = true
           this.fuzerenshow = true
         }
         if (e === Number(this.teamoptionsAll[i].level)) {
+          this.fuzerenvalue = '全部(可见范围)'
+          this.planOwner = 'all'
           this.teannameshow = false
           this.fuzerenshow = true
           this.teamoptions.push(this.teamoptionsAll[i])
@@ -292,19 +285,15 @@ export default {
         this.teamname = this.teamoptions[0].name
       }
       if (e === 'one') {
+        this.planOwner = this.fuzerenID
         this.teannameshow = true
-        this.planOwner = 'one'
         this.teamoptions = [
           {
             name: '个人',
             id: 'one'
           }
         ]
-        this.fuzerenoptions = [
-          {
-            name: '全部(可见范围)'
-          }
-        ]
+        this.fuzerenoptions = []
         this.teamname = this.teamoptions[0].name
         for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
           if (String(e) === String(this.fuzerenoptionsAll[i].team_id)) {
@@ -313,9 +302,13 @@ export default {
             console.log('进来了', this.fuzerenshow)
           }
         }
+        this.fuzerenvalue = this.fuzerenoptions[0].name
+        this.planOwner = this.fuzerenoptions[0].openid
       }
+      this.formlistdata()
     },
     teannameChange (e) {
+      this.pageNum = 1
       console.log('团队名称ID', e)
       this.teamId = e
       this.fuzerenoptions = [
@@ -335,6 +328,7 @@ export default {
           console.log('进来了', this.fuzerenshow)
         }
       }
+      this.formlistdata()
     },
     requestdata () {
       axios.get('/api/select/date/' + 'today').then(res => {
@@ -354,12 +348,79 @@ export default {
         console.log('团队名称', this.teamoptions)
         console.log('负责人', this.fuzerenoptions)
       })
+    },
+    fuzerenChange (e) {
+      this.pageNum = 1
+      this.fuzerenID = e
+      console.log('sdjkfdsjfjdsjfdjs', e)
+      this.planOwner = e
+      if (!e) {
+        this.planOwner = 'all'
+      }
+      this.formlistdata()
+    },
+    contractChange (e) {
+      this.pageNum = 1
+      this.scdStatus = e
+      console.log(this.scdStatus)
+      this.formlistdata()
+    },
+    overdueChange (e) {
+      this.pageNum = 1
+      this.overDueStatus = e
+      this.formlistdata()
+    },
+    formlistdata () {
+      setTimeout(() => {
+        console.log('撒打算大所大所多', this.datevalue[0])
+        let parameter = {
+          beginDate: this.datevalue[0],
+          endDate: this.datevalue[1],
+          teamLevel: String(this.teamLevel),
+          teamId: String(this.teamId),
+          planOwner: this.planOwner,
+          scdStatus: this.scdStatus,
+          overDueStatus: this.overDueStatus,
+          pageNumber: this.pageNum,
+          pageSize: this.pagesizeNum
+        }
+        axios.post('/api/planSchedulePc', parameter).then(res => {
+          this.tableData = res.content
+          this.totalNum = res.totalCount
+          for (let i = 0; i < this.tableData.length; i++) {
+            this.tableData[i].scd_time = this.tableData[i].scd_time.slice(0, 10)
+            if (this.tableData[i].scd_status === 0) {
+              this.tableData[i].scd_status = '新增项目'
+            }
+            if (this.tableData[i].scd_status === 2) {
+              this.tableData[i].scd_status = '合同签定'
+            }
+            if (this.tableData[i].scd_status === 3) {
+              this.tableData[i].scd_status = '施工完成'
+            }
+            if (this.tableData[i].scd_status === 4) {
+              this.tableData[i].scd_status = '并网完成'
+            }
+            if (this.tableData[i].scd_status === 6) {
+              this.tableData[i].scd_status = '回款完成'
+            }
+            if (this.tableData[i].overdue === -1) {
+              this.tableData[i].overdue = '逾期'
+            } else {
+              this.tableData[i].overdue = '正常'
+            }
+            console.log('', this.tableData[i].overdue)
+          }
+          console.log('表格数据', this.tableData, res)
+        })
+      }, 500)
     }
   },
   mounted () {
     this.requestdata()
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
     console.log('user表', sessionUser)
+    this.formlistdata()
   }
 }
 </script>

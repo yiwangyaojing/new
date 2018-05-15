@@ -68,7 +68,7 @@ class HomePcService extends Service {
                  if(planOwner  ==='all'){
                      sql = "and p.team_id in (:managerTeams)  "
                      sqlParams.teamId = teamId
-                     sqlParams.teamId = managerTeams
+                     sqlParams.managerTeams = managerTeams
                      params.push(
                          { team_id:managerTeams},
                      )

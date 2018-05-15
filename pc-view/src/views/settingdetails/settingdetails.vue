@@ -61,7 +61,7 @@
         <el-col :span="12" class="y-Center" style="margin-top: 20px;">
           <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
           <el-col :span="20">
-            <el-input size="small" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
+            <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
             </el-input>
           </el-col>
         </el-col>
@@ -84,7 +84,7 @@
               </el-table-column>
               <el-table-column fixed="right" label="操作">
                 <template slot-scope="scope">
-                  <router-link to="/customerdetails" type="text">详情</router-link>
+                  <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                 </template>
               </el-table-column>
           </el-table>
@@ -318,9 +318,10 @@ export default {
       ]
       if (!e) {
         this.fuzerenshow = true
-        this.fuzerenvalue = this.fuzerenoptions[0].name
         this.teamId = 'all'
       }
+      this.fuzerenvalue = this.fuzerenoptions[0].name
+      this.planOwner = 'all'
       for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
         if (e === Number(this.fuzerenoptionsAll[i].team_id)) {
           this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
@@ -382,7 +383,8 @@ export default {
           scdStatus: this.scdStatus,
           overDueStatus: this.overDueStatus,
           pageNumber: this.pageNum,
-          pageSize: this.pagesizeNum
+          pageSize: this.pagesizeNum,
+          search: this.searchvalue
         }
         axios.post('/api/planSchedulePc', parameter).then(res => {
           this.tableData = res.content
@@ -414,6 +416,14 @@ export default {
           console.log('表格数据', this.tableData, res)
         })
       }, 500)
+    },
+    searchChange () {
+      this.formlistdata()
+    },
+    handleClick (id) {
+      console.log('id:')
+      console.log(id)
+      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
     }
   },
   mounted () {

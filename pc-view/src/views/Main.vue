@@ -23,20 +23,24 @@
             <i class="el-icon-setting" style="color: #303133"></i>
             <span slot="title">客户资料</span>
           </el-menu-item>
-          <el-menu-item index="3" :route="{name: 'Signin'}">
+          <el-menu-item index="3" :route="{name: 'ImportCustomer'}">
+            <i class="el-icon-setting" style="color: #303133"></i>
+            <span slot="title">客户导入</span>
+          </el-menu-item>
+          <el-menu-item index="4" :route="{name: 'Signin'}">
             <i class="el-icon-location" style="color: #303133;"></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
-          <el-menu-item index="4" :route="{name: 'PersonnelManagement'}">
+          <el-menu-item index="5" :route="{name: 'PersonnelManagement'}">
             <i class="el-icon-setting" style="color: #303133"></i>
             <span slot="title">团队结构</span>
           </el-menu-item>
         </el-menu-item-group>
-        <el-menu-item index="5" :route="{name: 'TeamInformation'}">
+        <el-menu-item index="6" :route="{name: 'TeamInformation'}">
           <i class="el-icon-setting" style="color: #303133"></i>
           <span slot="title">团队信息</span>
         </el-menu-item>
-        <el-menu-item index="6" :route="{name: 'AccountSetting'}">
+        <el-menu-item index="7" :route="{name: 'AccountSetting'}">
           <i class="el-icon-setting" style="color: #303133"></i>
           <span slot="title">账户设置</span>
         </el-menu-item>
@@ -183,7 +187,7 @@ export default {
       this.$confirm('确定要退出当前系统吗', {
         callback: (action) => {
           if (action === 'confirm') {
-            axios.post('/security/logout').then(() => {
+            axios.post('/api/logout').then(() => {
               this.$message.success('退出成功!')
               this.$router.push({name: 'Login'})
             }, (response) => {

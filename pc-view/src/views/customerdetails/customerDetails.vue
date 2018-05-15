@@ -113,43 +113,36 @@
                 <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
               </div>
             </div>
-            <div v-if="exhibition" class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">房屋照片</div>
-              <!--放大后的图片start-->
-              <div v-if="exhibition && item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(index)" alt="暂无图片">
-              </div>
-              <!--放大后的图片end-->
-              <div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
-              </div>
-            </div>
-            <div v-if="!exhibition" class=" imgs">
-              <img style="width: 550px; "  :src="maxImgUrl" @click="showMax1(index)" alt="暂无图片">
-            </div>
             <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">电表箱</div>
-              <div v-if="exhibition && item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+              <div class="fl" style="width: 80px;">房屋照片</div>
+              <div v-if=" item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
+                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
+              </div>-->
+            </div>
+
+            <div class="clearfix" style="margin-top: 20px;">
+              <div class="fl" style="width: 80px;">电表箱</div>
+              <div v-if=" item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
+              </div>
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄用户的电表</div>
-              </div>
-              <!--<div v-if="!exhibition && item.data_type === 1" class=" imgs" v-for="(item,index) in details.houseImgs" :key="index"  >-->
-                <!--<img style="width: 550px; "  :src="item.mini_url" @click="showMax1()" alt="暂无图片">-->
-              <!--</div>-->
+              </div>-->
             </div>
-            <div class="clearfix" style="margin-top: 20px;">
+            <div  class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">其他</div>
-              <div class="fl imgs" v-if="exhibition && item.data_type === 2" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+              <div class="fl imgs" v-if=" item.data_type === 2" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">可以拍摄用户房屋周边环境</div>
-              </div>
+              </div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
@@ -162,30 +155,30 @@
               <div class="fl imgs"  v-if="item.data_type === 0" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;" :src="item.mini_url" @click="showMax(item.url)" alt="">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>
+              </div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">产权证明/电费单/银行卡</div>
               <div class="fl imgs" v-if="item.data_type === 1" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
-              <div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>
+              <!--<div class="fl imgs">-->
+                <!--<div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>-->
+                <!--<div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>-->
+              <!--</div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">并网申请/合同/其他</div>
               <div class="fl imgs" v-if="item.data_type === 2" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>
+              </div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
@@ -228,6 +221,21 @@
         </el-tabs>
       </el-col>
     </el-row>
+
+    <el-dialog
+      title="查看大图"
+      :visible.sync="centerDialogVisible"
+      width="50%"
+      height="40%"
+      center>
+      <!--放大后的图片start-->
+      <el-button type="text" @click="showMax1()" style="margin-top: -40px;">
+        <div class="fl imgs">
+          <img style="width: 100%; height: 100%" :src="maxImgUrl"  alt="暂无图片">
+        </div>
+      </el-button>
+      <!--放大后的图片end-->
+    </el-dialog>
 <!--    <el-dialog
       title="提示"
       :visible.sync="downloadDialog"
@@ -264,13 +272,13 @@ export default {
   data () {
     return {
       maxImgUrl: '',
+      centerDialogVisible: false,
       collapsed: false,
       dialogVisible: false,
       downloadDialog: false,
       dialogMessage: '',
       imgVisible: false,
       imgUrl: '',
-      exhibition: 'true', // 是否展示大图
       activeName: '0',
       contractProgressList: [],
       payList: [],
@@ -378,19 +386,13 @@ export default {
         })
       }
     },
-    showMax (index) {
-      console.log('index', index)
-      for (let i = 0; i < this.details.houseImgs.length; i++) {
-        if (index === i) {
-          this.maxImgUrl = this.details.houseImgs[i].url
-          this.exhibition = true
-        } else {
-          this.exhibition = !this.exhibition
-        }
-      }
+    showMax (url) {
+      console.log('url===>>', url)
+      this.centerDialogVisible = true
+      this.maxImgUrl = url
     },
     showMax1 () {
-      this.exhibition = true
+      this.centerDialogVisible = false
     }
   },
   mounted () {

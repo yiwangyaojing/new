@@ -114,7 +114,7 @@ export default {
       } else {
         this.$message.error('手机号不能为空')
       }
-      axios.post('/api/pc/login/sms', this.loginForm).then(response => {
+      axios.post('/api/login/sms', this.loginForm).then(response => {
         let message = response.message
         if (message.indexOf('失败') > -1) {
           this.$message.error(message)
@@ -156,7 +156,7 @@ export default {
         validateCode: this.loginForm.validateCode,
         captcha: this.loginForm.captcha
       }
-      axios.post('/api/pc/login', form).then(response => {
+      axios.post('/api/login', form).then(response => {
         console.log('this is the response=====>>>', response)
         let userInfo = response
         this.$message.success('登录成功')

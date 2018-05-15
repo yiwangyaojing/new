@@ -99,7 +99,7 @@
           </el-row>
         </div>
         <div style="margin-top: 20px;">
-          <div style="font-size: 16px;"><span>逾期项目</span> <router-link to="/Overdue" style="font-size: 10px;color: #409EFF;" @click="gzshow">规则设置</router-link></div>
+          <div style="font-size: 16px;"><span>逾期项目</span> <router-link to="/Overdue" style="font-size: 10px;color: #409EFF;">规则设置</router-link></div>
           <el-row style="margin-top: 20px;">
             <el-col :span="6" class="x-Center">
               <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">

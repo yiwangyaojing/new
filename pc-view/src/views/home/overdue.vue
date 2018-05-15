@@ -6,7 +6,7 @@
           <el-col :span="7" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
             <div class="fl" style="margin-top: 20px;">合同签订</div>
             <div class="fl xy-Center" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 150px;position: relative;">
-              <input :disabled="editshow"  style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" :value="datas.htqd" type="text">
+              <input :disabled="editshow" v-model="datas.htqd" style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" type="text">
               <span>天</span>
               <div class="arrowposition"></div>
             </div>
@@ -17,7 +17,7 @@
           <el-col :span="7" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
             <div class="fl" style="margin-top: 20px;">施工完成</div>
             <div class="fl xy-Center" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 150px;position: relative;">
-              <input :disabled="editshow" style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" :value="datas.sgwc" type="text">
+              <input :disabled="editshow" style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" v-model="datas.sgwc" type="text">
               <span>天</span>
               <div class="arrowposition"></div>
             </div>
@@ -28,7 +28,7 @@
           <el-col :span="7" class="clearfix" style="margin-top: 20px;padding: 20px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;">
             <div class="fl" style="margin-top: 20px;">并网完成</div>
             <div class="fl xy-Center" style="margin:0 10px 10px;;border-bottom: 1px solid #666;width: 150px;position: relative;">
-              <input :disabled="editshow" style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" :value="datas.bwwc" type="text">
+              <input :disabled="editshow" style="width: 50px;font-size: 28px;text-align: center;border: none;color: #01cd33;" v-model="datas.bwwc" type="text">
               <span>天</span>
               <div class="arrowposition"></div>
             </div>
@@ -44,13 +44,14 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      htqd: 7,
-      sgwc: 7,
-      bwwc: 7,
       editshow: false,
-      company_id: '',
-      id: '',
-      datas: {}
+      datas: {
+        htqd: 0,
+        sgwc: 0,
+        bwwc: 0,
+        company_id: '',
+        id: ''
+      }
     }
   },
   methods: {
@@ -66,7 +67,14 @@ export default {
       })
     },
     submitClick () {
-      axios.post('/api/pc/overduePc', this.datas).then(res => {
+      let fromData = {
+        htqd: Number(this.datas.htqd),
+        sgwc: Number(this.datas.sgwc),
+        bwwc: Number(this.datas.bwwc),
+        company_id: Number(this.datas.company_id),
+        id: Number(this.datas.id)
+      }
+      axios.post('/api/pc/overduePc', fromData).then(res => {
         console.log(res)
       })
     }

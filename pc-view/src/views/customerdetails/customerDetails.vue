@@ -88,7 +88,7 @@
               <el-col :span="10" style="margin-top: 20px;padding: 0 10px;line-height: 30px;border-radius: 5px;">
                 <el-card class="box-card">
                   <div> {{items.updated_at}}</div>
-                  <div> <div v-if="items.scd_remark !== null && items.from_name !== null">{{items.scd_remark}} 将合同状态由 <span style="color: #01cb32">{{items.from_name}}</span> 改为 <span style="color: #01cb32">{{items.scd_name}}</span></div></div>
+                  <div> <div v-if="items.scd_remark !== null && items.from_name !== null"><span style="color: #01cb32">{{items.scd_remark}}</span> 将合同状态由 <span style="color: #01cb32">{{items.from_name}}</span> 改为 <span style="color: #01cb32">{{items.scd_name}}</span></div></div>
                   <div> <div v-if="items.scd_remark === null || items.from_name === null ">合同状态 :<span style="color: #01cb32">{{items.scd_name}}</span></div></div>
                   <div style="color: #999;">备注：{{items.scd_r_remark}}</div>
                 </el-card>

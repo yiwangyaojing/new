@@ -113,24 +113,20 @@
                 <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
               </div>
             </div>
-            <div v-if="exhibition" class="clearfix" style="margin-top: 20px;">
+            <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">房屋照片</div>
-              <div v-if="exhibition && item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(index)" alt="暂无图片">
+              <div v-if=" item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
               </div>
               <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
               </div>-->
             </div>
-            <!--房屋放大后的图片start-->
-            <div v-if="!exhibition" class=" imgs">
-              <img style="width: 550px; "  :src="maxImgUrl" @click="showMax1()" alt="暂无图片">
-            </div>
-            <!--房屋放大后的图片end-->
+
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">电表箱</div>
-              <div v-if="exhibition && item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+              <div v-if=" item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
               </div>
               <!--<div class="fl imgs">
@@ -138,9 +134,9 @@
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄用户的电表</div>
               </div>-->
             </div>
-            <div class="clearfix" style="margin-top: 20px;">
+            <div  class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">其他</div>
-              <div class="fl imgs" v-if="exhibition && item.data_type === 2" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+              <div class="fl imgs" v-if=" item.data_type === 2" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
               <!--<div class="fl imgs">
@@ -225,6 +221,21 @@
         </el-tabs>
       </el-col>
     </el-row>
+
+    <el-dialog
+      title="查看大图"
+      :visible.sync="centerDialogVisible"
+      width="50%"
+      height="40%"
+      center>
+      <!--放大后的图片start-->
+      <el-button type="text" @click="showMax1()" style="margin-top: -40px;">
+        <div class="fl imgs">
+          <img style="width: 100%; height: 100%" :src="maxImgUrl"  alt="暂无图片">
+        </div>
+      </el-button>
+      <!--放大后的图片end-->
+    </el-dialog>
 <!--    <el-dialog
       title="提示"
       :visible.sync="downloadDialog"
@@ -260,19 +271,18 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
-      maxImgUrl: '',
+      maxImgUrl: '', // 图片放大url地址
+      centerDialogVisible: false, // 图片放大Dialog框 默认值
       collapsed: false,
-      dialogVisible: false,
-      downloadDialog: false,
-      dialogMessage: '',
+      dialogVisible: false, // 提示信息
+      downloadDialog: false, // 下载模态框默认值
+      dialogMessage: '', // 提示信息
       imgVisible: false,
-      imgUrl: '',
-      exhibition: 'true', // 是否展示大图
       activeName: '0',
-      contractProgressList: [],
-      payList: [],
-      updated_at1: '',
-      details: {
+      contractProgressList: [], // 合同状态列表
+      payList: [], // 回款状态列表
+      updated_at1: '', // 格式化后的更新时间
+      details: { // 客户详细信息
         user_name: '', // 负责人
         cst_name: '', //  客户名称
         cst_phone: '', //  客户电话
@@ -292,11 +302,11 @@ export default {
         cst_latitude: '', // 纬度
         cst_longitude: '', // 经度
         h_face: '' // 房屋朝向
-
       }
     }
   },
   methods: {
+    // 切换 tab 显示不同内容
     handleClick (tab, event) {
       console.log('tab切换', tab.name)
       if (tab.name === '0') {
@@ -323,9 +333,8 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
+          // 返回客户合同状态列表
           axios.get('/api/pc/customerDataPc/contractStatus/' + planId).then(resp => {
-            console.log('客户合同状态：')
-            console.log('resp:', resp)
             this.contractProgressList = []
             for (let i = 0; i < resp.length; i++) {
               let contractProgress = {
@@ -343,9 +352,8 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
+          // 返回客户回款列表
           axios.get('/api/pc/customerDataPc/payStatus/' + planId).then(resp => {
-            console.log('客户回款：')
-            console.log(resp)
             if (resp.length === 0) {
               this.dialogVisible = true
               this.dialogMessage = '暂无回款记录'
@@ -364,30 +372,24 @@ export default {
         }
       }
     },
+    // 初始化数据 默认进入客户详情的概览页
     initData () {
       let planId = this.$route.query.planId
-      console.log('id', planId)
       if (planId) {
         axios.get('/api/pc/customerDataPc/planDetail/' + planId).then(resp => {
           this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
           this.details = resp
-          console.log('返回某个客户详细数据：', this.details)
         })
       }
     },
-    showMax (index) {
-      console.log('index', index)
-      for (let i = 0; i < this.details.houseImgs.length; i++) {
-        if (index === i) {
-          this.maxImgUrl = this.details.houseImgs[i].url
-          this.exhibition = true
-        } else {
-          this.exhibition = !this.exhibition
-        }
-      }
+    // 图片放大方法
+    showMax (url) {
+      console.log('url===>>', url)
+      this.centerDialogVisible = true
+      this.maxImgUrl = url
     },
     showMax1 () {
-      this.exhibition = true
+      this.centerDialogVisible = false
     }
   },
   mounted () {

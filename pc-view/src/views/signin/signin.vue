@@ -52,7 +52,7 @@
           </el-table-column>
           <el-table-column label="操作" width="100">
             <template slot-scope="scope">
-              <router-link to="/signindetails" @click="handleClick(scope.row)" type="text" size="small">详情</router-link>
+              <a href="javascript:void(0)" @click="gotoDetail(scope.row)" type="text" size="small">详情</a>
             </template>
           </el-table-column>
         </el-table>
@@ -155,6 +155,7 @@ export default {
       tableData: [],
       totalNum: 0,
       pagesizeNum: 10,
+      currentPage4: 0,
       pageNum: 1
     }
   },
@@ -279,9 +280,21 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
+      const loading = this.$loading({
+        lock: true,
+        text: '加载中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.5)'
+      })
       axios.post('/api/pc/signPc', req).then(res => {
         console.log('这里是查询签到结果===>>', res)
+        loading.close()
         this.tableData = res.content
+        this.totalNum = res.totalCount
+      }, () => {
+        loading.close()
+      }).catch(() => {
+        loading.close()
       })
     },
     requestdata (fn) {
@@ -305,6 +318,10 @@ export default {
           }
         })
       })
+    },
+    gotoDetail (row) {
+      console.log('这里是跳转到详情===>>', row)
+      this.$router.push({path: '/SigninDetails', query: {teamname: row.team, openid: row.openid, name: row.name}})
     }
   },
   mounted () {

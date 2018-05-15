@@ -10,14 +10,22 @@ import App from './App'
 import './resources/css/element-variables.scss'
 import router from './router'
 import Axios from './utils/Axios'
+import UTree from './component/tree/index'
+import VueAMap from 'vue-amap'
 
 const moment = require('moment')
 
 Vue.use(element)
 Vue.use(moment)
-
+Vue.use(UTree)
+Vue.use(VueAMap)
 Axios.init({baseURL: process.env.CONTEXT, unauthorizedUrl: process.env.CONTEXT_HTML + '/#/login'})
-
+VueAMap.initAMapApiLoader({
+  key: 'c1280b1ee49f4ecf90a6c8f0213bc1c2',
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+  // 默认高德 sdk 版本为 1.4.4
+  v: '1.4.4'
+})
 Vue.config.productionTip = false
 Vue.config.devtools = false
 

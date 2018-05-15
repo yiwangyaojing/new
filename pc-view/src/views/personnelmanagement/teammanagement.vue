@@ -109,7 +109,7 @@ export default {
         background: 'rgba(0, 0, 0, 0.5)'
       })
       let _this = this
-      axios.put('/api/teamPc/changeTeamUsersRole', {open_id: openid, team_id: this.selectedTeam.id, users: this.changeItems}).then(res => {
+      axios.put('/api/pc/teamPc/changeTeamUsersRole', {open_id: openid, team_id: this.selectedTeam.id, users: this.changeItems}).then(res => {
         console.log('保存成功===>>', res)
         _this.$notify({
           title: '提示',
@@ -137,7 +137,7 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.5)'
       })
-      axios.delete('/api/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then(res => {
+      axios.delete('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then(res => {
         loading.close()
         this.$notify({
           title: '提示',
@@ -167,7 +167,7 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.5)'
       })
-      axios.get('/api/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then((res) => {
+      axios.get('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then((res) => {
         console.log('这里是请求结果handleNodeClick===>>', res)
         setTimeout(() => {
           loading.close()
@@ -215,7 +215,7 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.5)'
       })
-      axios.get('/api/teamPc/' + openid, {}).then((res) => {
+      axios.get('/api/pc/teamPc/' + openid, {}).then((res) => {
         setTimeout(() => {
           loading.close()
         }, 100)

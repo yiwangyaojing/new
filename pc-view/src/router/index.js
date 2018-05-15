@@ -5,6 +5,7 @@ import Router from 'vue-router'
 
 import Download from '@/views/download/Download'
 import Home from '../views/home/home'
+import Overdue from '../views/home/overdue'
 import SettingDetails from '../views/settingdetails/settingdetails'
 import CustomerData from '../views/settingdetails/customerdata'
 import ImportCustomer from '../views/settingdetails/importCustomer'
@@ -29,6 +30,7 @@ export default new Router({
       redirect: 'resources',
       children: [
         {path: '/Home', name: 'Home', component: Home},
+        {path: '/Overdue', name: 'Overdue', component: Overdue},
         {path: '/SettingDetails', name: 'SettingDetails', component: SettingDetails},
         {path: '/CustomerData', name: 'CustomerData', component: CustomerData},
         {path: '/ImportCustomer', name: 'ImportCustomer', component: ImportCustomer},

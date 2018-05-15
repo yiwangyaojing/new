@@ -3,7 +3,7 @@
 const Service = require('egg').Service;
 
 const Sequelize = require('sequelize');
-
+let moment = require('moment');
 
 class SignPcService extends Service {
 
@@ -86,7 +86,8 @@ class SignPcService extends Service {
             totalCount: ''
         }
         await ctx.model.XSign.findAndCountAll({
-            attributes: { include: [[Sequelize.fn('date_format',Sequelize.col('created_at'),'%Y-%m-%d %H:%i:%S'),'date_format' ]] },
+            // attributes: { include: [[Sequelize.fn('date_format',Sequelize.col('created_at'),'%Y-%m-%d %H:%i:%S'),'date_format' ]] },
+            attributes: { include: [[Sequelize.fn('DATE_ADD',Sequelize.col('create_time'),Sequelize.literal('INTERVAL 8 hour')),'createTime' ]] },
             where:{
                 [Op.and]:[
                     {open_id:req.owner},
@@ -97,6 +98,11 @@ class SignPcService extends Service {
             page.totalCount = result.count
             page.content = result.rows
         })
+
+        for(let sign of page.content){
+            sign.date_format = moment(sign.date_format).subtract(8, "hours").format("YYYY-MM-DD HH:mm:ss")
+            console.log(sign.date_format)
+        }
 
         return page
     }

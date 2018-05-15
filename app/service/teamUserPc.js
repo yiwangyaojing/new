@@ -60,7 +60,7 @@ class TeamUserPcService extends Service {
                 console.log('管理员：', result.userRank)
             }
 
-            result.agentTeams = await  this.service.teamUser.findAgentTeams(company_id, open_id)
+            result.agentTeams = await  this.service.teamUser.findTeams(company_id, open_id)
 
             if (result.managerTeams.length === 0 && result.agentTeams.length !== 0) {
                 result.userRank = FileType.UserRank.agent
@@ -199,6 +199,11 @@ class TeamUserPcService extends Service {
         data: result ? result.length ? result[0] : null : null,
         teams: role
       };
+    }
+
+    // 根据条件查询
+    async findByParams(params){
+        return this.ctx.model.XTeamUser.findAll({where:params})
     }
 
 }

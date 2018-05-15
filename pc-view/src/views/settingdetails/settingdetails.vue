@@ -61,7 +61,7 @@
         <el-col :span="12" class="y-Center" style="margin-top: 20px;">
           <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
           <el-col :span="20">
-            <el-input size="small" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
+            <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
             </el-input>
           </el-col>
         </el-col>
@@ -75,7 +75,7 @@
               <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
               <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
               <el-table-column prop="pay_sum" label="回款金额" ></el-table-column>
-              <el-table-column prop="scd_time" label="开始时间"></el-table-column>
+              <el-table-column prop="scdTime" label="开始时间"></el-table-column>
               <el-table-column prop="scd_status" label="合同状态"></el-table-column>
               <el-table-column prop="overdue" label="逾期状态" width="100" filter-placement="bottom-end">
                 <template slot-scope="scope">
@@ -84,7 +84,7 @@
               </el-table-column>
               <el-table-column fixed="right" label="操作">
                 <template slot-scope="scope">
-                  <router-link to="/customerdetails" type="text">详情</router-link>
+                  <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                 </template>
               </el-table-column>
           </el-table>
@@ -240,7 +240,7 @@ export default {
       this.datevalue = []
       this.pageNum = 1
       if (this.tjzqvalue !== '自定义') {
-        axios.get('/api/select/date/' + e).then(res => {
+        axios.get('/api/pc/select/date/' + e).then(res => {
           console.log(res)
           for (let i in res) {
             this.datevalue.push(res[i])
@@ -318,9 +318,10 @@ export default {
       ]
       if (!e) {
         this.fuzerenshow = true
-        this.fuzerenvalue = this.fuzerenoptions[0].name
         this.teamId = 'all'
       }
+      this.fuzerenvalue = this.fuzerenoptions[0].name
+      this.planOwner = 'all'
       for (let i = 0; i < this.fuzerenoptionsAll.length; i++) {
         if (e === Number(this.fuzerenoptionsAll[i].team_id)) {
           this.fuzerenoptions.push(this.fuzerenoptionsAll[i])
@@ -331,11 +332,11 @@ export default {
       this.formlistdata()
     },
     requestdata () {
-      axios.get('/api/select/date/' + 'today').then(res => {
+      axios.get('/api/pc/select/date/' + 'today').then(res => {
         this.datevalue.push(res.beginDate, res.endDate)
         console.log('统计周期', this.datevalue)
       })
-      axios.get('/api/select/team').then(res => {
+      axios.get('/api/pc/select/team').then(res => {
         console.log('团队范围', res)
         res.teams.forEach(item => {
           this.teamoptionsAll.push(item)
@@ -382,13 +383,14 @@ export default {
           scdStatus: this.scdStatus,
           overDueStatus: this.overDueStatus,
           pageNumber: this.pageNum,
-          pageSize: this.pagesizeNum
+          pageSize: this.pagesizeNum,
+          search: this.searchvalue
         }
-        axios.post('/api/planSchedulePc', parameter).then(res => {
+        axios.post('/api/pc/planSchedulePc', parameter).then(res => {
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
-            this.tableData[i].scd_time = this.tableData[i].scd_time.slice(0, 10)
+            this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
             if (this.tableData[i].scd_status === 0) {
               this.tableData[i].scd_status = '新增项目'
             }
@@ -414,6 +416,14 @@ export default {
           console.log('表格数据', this.tableData, res)
         })
       }, 500)
+    },
+    searchChange () {
+      this.formlistdata()
+    },
+    handleClick (id) {
+      console.log('id:')
+      console.log(id)
+      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
     }
   },
   mounted () {

@@ -88,7 +88,8 @@
               <el-col :span="10" style="margin-top: 20px;padding: 0 10px;line-height: 30px;border-radius: 5px;">
                 <el-card class="box-card">
                   <div> {{items.updated_at}}</div>
-                  <div> {{items.scd_remark}} 将合同状态由 <span style="color: #01cb32">{{items.from_name}}</span> 改为 <span style="color: #01cb32">{{items.scd_name}}</span></div>
+                  <div> <div v-if="items.scd_remark !== null && items.from_name !== null"><span style="color: #01cb32">{{items.scd_remark}}</span> 将合同状态由 <span style="color: #01cb32">{{items.from_name}}</span> 改为 <span style="color: #01cb32">{{items.scd_name}}</span></div></div>
+                  <div> <div v-if="items.scd_remark === null || items.from_name === null ">合同状态 :<span style="color: #01cb32">{{items.scd_name}}</span></div></div>
                   <div style="color: #999;">备注：{{items.scd_r_remark}}</div>
                 </el-card>
               </el-col>
@@ -117,36 +118,35 @@
               <div v-if="exhibition && item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(index)" alt="暂无图片">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
-              </div>
+              </div>-->
             </div>
-            <div v-if="!exhibition && item.data_type === 0" class=" imgs" v-for="(item,index) in details.houseImgs" :key="index"  >
-              <img style="width: 550px; "  :src="item.mini_url" @click="showMax1(index)" alt="暂无图片">
+            <!--房屋放大后的图片start-->
+            <div v-if="!exhibition" class=" imgs">
+              <img style="width: 550px; "  :src="maxImgUrl" @click="showMax1()" alt="暂无图片">
             </div>
+            <!--房屋放大后的图片end-->
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">电表箱</div>
               <div v-if="exhibition && item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄用户的电表</div>
-              </div>
-              <div v-if="!exhibition && item.data_type === 1" class=" imgs" v-for="(item,index) in details.houseImgs" :key="index"  >
-                <img style="width: 550px; "  :src="item.mini_url" @click="showMax1()" alt="暂无图片">
-              </div>
+              </div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">其他</div>
-              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+              <div class="fl imgs" v-if="exhibition && item.data_type === 2" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">可以拍摄用户房屋周边环境</div>
-              </div>
+              </div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
@@ -156,33 +156,33 @@
           <el-tab-pane label="收资料" name="4">
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
-              <div class="fl imgs" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" v-if="item.data_type === 0" :src="item.mini_url" @click="showMax(item.url)" alt="">
+              <div class="fl imgs"  v-if="item.data_type === 0" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" :src="item.mini_url" @click="showMax(item.url)" alt="">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>
+              </div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">产权证明/电费单/银行卡</div>
-              <div class="fl imgs" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" v-if="item.data_type === 1" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
+              <div class="fl imgs" v-if="item.data_type === 1" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
-              <div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>
+              <!--<div class="fl imgs">-->
+                <!--<div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>-->
+                <!--<div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>-->
+              <!--</div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">并网申请/合同/其他</div>
-              <div class="fl imgs" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
+              <div class="fl imgs" v-if="item.data_type === 2" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
-              <div class="fl imgs">
+              <!--<div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
                 <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>
+              </div>-->
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
@@ -260,6 +260,7 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
+      maxImgUrl: '',
       collapsed: false,
       dialogVisible: false,
       downloadDialog: false,
@@ -322,8 +323,9 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
-          axios.get('/api/customerDataPc/contractStatus/' + planId).then(resp => {
+          axios.get('/api/pc/customerDataPc/contractStatus/' + planId).then(resp => {
             console.log('客户合同状态：')
+            console.log('resp:', resp)
             this.contractProgressList = []
             for (let i = 0; i < resp.length; i++) {
               let contractProgress = {
@@ -341,7 +343,7 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
-          axios.get('/api/customerDataPc/payStatus/' + planId).then(resp => {
+          axios.get('/api/pc/customerDataPc/payStatus/' + planId).then(resp => {
             console.log('客户回款：')
             console.log(resp)
             if (resp.length === 0) {
@@ -366,7 +368,7 @@ export default {
       let planId = this.$route.query.planId
       console.log('id', planId)
       if (planId) {
-        axios.get('/api/customerDataPc/planDetail/' + planId).then(resp => {
+        axios.get('/api/pc/customerDataPc/planDetail/' + planId).then(resp => {
           this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
           this.details = resp
           console.log('返回某个客户详细数据：', this.details)
@@ -377,6 +379,7 @@ export default {
       console.log('index', index)
       for (let i = 0; i < this.details.houseImgs.length; i++) {
         if (index === i) {
+          this.maxImgUrl = this.details.houseImgs[i].url
           this.exhibition = true
         } else {
           this.exhibition = !this.exhibition

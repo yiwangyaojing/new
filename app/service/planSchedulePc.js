@@ -24,8 +24,8 @@ class planSchedulePcService extends Service {
 
         // 获取权限查询条件
         const query = await this.service.homePc.getTeamQueryParams(req)
-        const params = query.params
-        const status  = [2,3,4]
+        const params = query.params  //权限查询条件
+        const status  = [0,2,3,4]
         let search = req.search
         if(!search){
             search= ''
@@ -33,6 +33,10 @@ class planSchedulePcService extends Service {
         search = '%'+search+'%'
 
         let  andParams = {}
+        let  statusParams = [  // 状态筛选条件
+            Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
+            Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.endDate),
+        ]
         // 遍历条件查询条件
         if(req.scdStatus ==='all'){
             andParams = {
@@ -44,19 +48,23 @@ class planSchedulePcService extends Service {
         }else {
             if(req.scdStatus === '6'){
                 andParams.pay_gap = 0
+            }else{
+                andParams.scd_status = req.scdStatus
             }
         }
 
         if(req.overDueStatus === '0'){
-            andParams.overdue_date = {[Op.lt]:dateNow}
+            andParams.overdue_date = {[Op.lte]:dateNow}
         }else if(req.overDueStatus === '1'){
-            andParams.overdue_date = {[Op.gte]:dateNow}
+            andParams.overdue_date = {[Op.or]:[{[Op.gte]:dateNow},{[Op.eq]:null},{[Op.eq]:''}]}
         }
+        statusParams.push(andParams)
+
 
         // 计算当前条数
        // sequelize.col('dailyview.stateDate')),'>=',sequelize.fn('TO_DAYS',lastDate))
         await this.ctx.model.XPlans.findAndCountAll({
-            attributes: { include: [[Sequelize.fn('INTERVAL',Sequelize.col('overdue_date'),dateNow),'overdue' ]] },
+            attributes: { include: [[Sequelize.fn('STRCMP',Sequelize.col('overdue_date'),dateNow),'overdue' ]] },
             where: {
                 [Op.or]: params,
                 [Op.and]: {
@@ -82,9 +90,7 @@ class planSchedulePcService extends Service {
                         },
                     }
                     ],
-                    [Op.and]:[
-                        andParams
-                    ]
+                    statusParams
 
                 }
             },
@@ -95,6 +101,7 @@ class planSchedulePcService extends Service {
         }).then(result => {
             page.totalCount = result.count
             page.content = result.rows
+            console.log(page.content)
         })
 
         return page

@@ -29,11 +29,13 @@ class planSchedulePcController extends Controller {
             overDueStatus:{type:'string',require:true}, //逾期状态 all,0,1
             // search:{type:'string',require:true}, //模糊搜索条件
 
-            pageIndex:{type:'int',require:true}, // 分页条件
+            pageNumber:{type:'int',require:true}, // 分页条件
             pageSize:{type:'int',require:true}
         }
 
         ctx.validate(rule,req)
+
+        req.pageIndex = (req.pageNumber -1) * req.pageSize
 
         const result = await service.planSchedulePc.query(req)
 

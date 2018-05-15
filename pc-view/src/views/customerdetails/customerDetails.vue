@@ -2,7 +2,7 @@
   <el-card class="box-card">
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
-        <div class="fl">董志永</div>
+        <div class="fl">{{this.details.cst_name}}</div>
         <div class="fr" style="border: 1px solid #999;padding: 5px;border-radius: 5px;">打包下载</div>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">
@@ -11,11 +11,11 @@
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">电话</div>
-                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;">{{this.details.cst_phone}}</div>
+                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 200px;border-radius: 5px;height: 30px;line-height: 30px;">{{this.details.cst_phone}}</div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">地址</div>
-                <div class="fl one-txt-cut" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >{{this.details.cst_address}}</div>
+                <div class="fl one-txt-cut" style="border: 1px solid #e4e7ed;padding:0 10px;min-width: 200px;border-radius: 5px;height: 30px;line-height: 30px;" >{{this.details.cst_address}}</div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
@@ -109,13 +109,13 @@
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">房屋朝向</div>
-                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">165°正南</div>
+                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">房屋照片</div>
-              <div class="fl imgs" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" v-if="item.data_type === 0" :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
@@ -124,8 +124,8 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">电表箱</div>
-              <div class="fl imgs" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" v-if="item.data_type === 1" :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
@@ -134,8 +134,8 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">其他</div>
-              <div class="fl imgs" style="margin-right: 5px;width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
@@ -144,14 +144,14 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
-              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
+              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.h_remark}}</div>
             </div>
           </el-tab-pane>
           <el-tab-pane label="收资料" name="4">
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
-              <div class="fl imgs" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" v-if="item.data_type === 0" :src="item.mini_url" @click="showMax(item.url)" alt="">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
@@ -160,8 +160,8 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">产权证明/电费单/银行卡</div>
-              <div class="fl imgs" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" v-if="item.data_type === 1" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
@@ -170,8 +170,8 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">并网申请/合同/其他</div>
-              <div class="fl imgs" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" src="/static/img/sky.871d198.jpg" alt="">
+              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
               <div class="fl imgs">
                 <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
@@ -180,7 +180,7 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
-              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
+              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.d_remark}}</div>
             </div>
           </el-tab-pane>
           <el-tab-pane label="排版子" name="5">
@@ -195,7 +195,7 @@
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">组件数量</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">32</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
                 </div>
               </div>
@@ -204,21 +204,48 @@
               <div :span="10" class="clearfix y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">装机容量</div>
                 <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">168</div>
+                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
                   <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
                 </div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
-              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; "></div>
+              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.rf_remark}}</div>
             </div>
             <div style="margin-top: 20px;font-size: 16px;">排布示意图</div>
-            <div style="margin-top: 20px;"><img width="400" src="/static/img/sky.871d198.jpg" alt=""></div>
+            <div style="margin-top: 20px;"><img width="400" :src="details.rf_image" alt=""></div>
           </el-tab-pane>
         </el-tabs>
       </el-col>
     </el-row>
+<!--    <el-dialog
+      title="提示"
+      :visible.sync="downloadDialog"
+      width="30%">
+      <span>{{dialogMessage}}</span>
+      <span slot="footer" class="dialog-footer">
+         <el-button @click="downloadDialog = false">取 消</el-button>
+        <el-button type="primary" @click="downLoadData">确 定</el-button>
+        </span>
+    </el-dialog>-->
+
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <span>{{dialogMessage}}</span>
+      <span slot="footer" class="dialog-footer">
+    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+    </el-dialog>
+
+    <el-dialog
+      :visible.sync="imgVisible"
+      width="50%">
+      <img :src="imgUrl" style="width: 100%;"/>
+    </el-dialog>
   </el-card>
 </template>
 <script>
@@ -227,6 +254,13 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
+      collapsed: false,
+      dialogVisible: false,
+      downloadDialog: false,
+      dialogMessage: '',
+      imgVisible: false,
+      imgUrl: '',
+      showIndex: 1,
       activeName: '0',
       contractProgressList: [],
       payList: [],
@@ -236,7 +270,7 @@ export default {
         cst_name: '', //  客户名称
         cst_phone: '', //  客户电话
         cst_address: '', //  客户地址
-        cst_remark: '', //  备注
+        cst_remark: '', //  客户备注
         zj_input_format: '', //  组件规格
         zj_input_capacity: '', // 装机容量
         zj_input_num: '', //  组件数量
@@ -244,15 +278,39 @@ export default {
         zj_price: '', //  总价
         pay_sum: '', //  回款金额
         updated_at: '', //  更新时间
-        scd_name: '' //  进度名称
+        scd_name: '', //  进度名称
+        rf_remark: '', // 排版子备注
+        h_remark: '', // 拍房子备注
+        d_remark: '', // 收资料备注
+        cst_latitude: '', // 纬度
+        cst_longitude: '', // 经度
+        h_face: '' // 房屋朝向
       }
     }
   },
   methods: {
     handleClick (tab, event) {
       console.log('tab切换', tab.name)
-      if (tab.name === '0' || tab.name === '3' || tab.name === '4' || tab.name === '5') {
+      if (tab.name === '0') {
         this.initData()
+      } else if (tab.name === '3') {
+        this.initData()
+        if (this.details.h_is_finish === 0) {
+          this.dialogVisible = true
+          this.dialogMessage = '房屋信息未采集'
+        }
+      } else if (tab.name === '4') {
+        this.initData()
+        if (this.details.d_is_finish === 0) {
+          this.dialogVisible = true
+          this.dialogMessage = '客户资料未采集'
+        }
+      } else if (tab.name === '5') {
+        this.initData()
+        if (this.details.rf_is_finish === 0) {
+          this.dialogVisible = true
+          this.dialogMessage = '排版子未采集'
+        }
       } else if (tab.name === '1') {
         let planId = this.$route.query.planId
         console.log('id', planId)
@@ -279,6 +337,10 @@ export default {
           axios.get('/api/customerDataPc/payStatus/' + planId).then(resp => {
             console.log('客户回款：')
             console.log(resp)
+            if (resp.length === 0) {
+              this.dialogVisible = true
+              this.dialogMessage = '暂无回款记录'
+            }
             this.payList = []
             for (let i = 0; i < resp.length; i++) {
               let payProgress = {
@@ -298,11 +360,15 @@ export default {
       console.log('id', planId)
       if (planId) {
         axios.get('/api/customerDataPc/planDetail/' + planId).then(resp => {
-          console.log('返回某个客户详细数据：', resp)
           this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
           this.details = resp
+          console.log('返回某个客户详细数据：', this.details)
         })
       }
+    },
+    showMax (url) {
+      console.log(url)
+      this.imgUrl = url
     }
   },
   mounted () {

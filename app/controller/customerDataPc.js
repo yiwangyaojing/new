@@ -65,7 +65,6 @@ class CustomerDataPc extends Controller {
         ctx.body = await service.customerDataPc.findPayStatusById(ctx.request.body)
     }
 
-
 }
 
 

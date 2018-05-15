@@ -160,7 +160,7 @@ export default {
       }
       if (isSelf) {
         this.saveDialogVisible = false
-        this.$message.error('公司创建者不可以修改自己的角色')
+        this.$message.error('公司创建者不可将自己变为业务员')
         return
       }
       const loading = this.$loading({

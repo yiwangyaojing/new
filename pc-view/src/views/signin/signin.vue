@@ -180,6 +180,14 @@ export default {
           }
           this.statisticaldata()
         })
+      } else {
+        axios.get('/api/pc/select/date/today').then(res => {
+          console.log(res)
+          for (let i in res) {
+            this.datevalue.push(res[i])
+          }
+          this.statisticaldata()
+        })
       }
     },
     selectdateChange (e) {

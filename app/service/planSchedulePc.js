@@ -24,7 +24,7 @@ class planSchedulePcService extends Service {
 
         // 获取权限查询条件
         const query = await this.service.homePc.getTeamQueryParams(req)
-        const params = query.params  //权限查询条件
+        const params = query.params
         const status  = [0,2,3,4]
         let search = req.search
         if(!search){
@@ -33,10 +33,6 @@ class planSchedulePcService extends Service {
         search = '%'+search+'%'
 
         let  andParams = {}
-        let  statusParams = [  // 状态筛选条件
-            Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
-            Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.endDate),
-        ]
         // 遍历条件查询条件
         if(req.scdStatus ==='all'){
             andParams = {
@@ -48,7 +44,7 @@ class planSchedulePcService extends Service {
         }else {
             if(req.scdStatus === '6'){
                 andParams.pay_gap = 0
-            }else{
+            }else {
                 andParams.scd_status = req.scdStatus
             }
         }
@@ -58,8 +54,6 @@ class planSchedulePcService extends Service {
         }else if(req.overDueStatus === '1'){
             andParams.overdue_date = {[Op.or]:[{[Op.gte]:dateNow},{[Op.eq]:null},{[Op.eq]:''}]}
         }
-        statusParams.push(andParams)
-
 
         // 计算当前条数
        // sequelize.col('dailyview.stateDate')),'>=',sequelize.fn('TO_DAYS',lastDate))
@@ -90,7 +84,12 @@ class planSchedulePcService extends Service {
                         },
                     }
                     ],
-                    statusParams
+                    [Op.and]:[
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.endDate),
+                        andParams,
+
+                    ]
 
                 }
             },

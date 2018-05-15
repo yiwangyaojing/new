@@ -156,7 +156,7 @@
           <el-tab-pane label="收资料" name="4">
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
-              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+              <div class="fl imgs" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;" v-if="item.data_type === 0" :src="item.mini_url" @click="showMax(item.url)" alt="">
               </div>
               <div class="fl imgs">
@@ -166,7 +166,7 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">产权证明/电费单/银行卡</div>
-              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+              <div class="fl imgs" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;" v-if="item.data_type === 1" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
               <div class="fl imgs">
@@ -176,7 +176,7 @@
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">并网申请/合同/其他</div>
-              <div class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+              <div class="fl imgs" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
                 <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
               </div>
               <div class="fl imgs">

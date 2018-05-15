@@ -326,7 +326,7 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
-          axios.get('/api/customerDataPc/contractStatus/' + planId).then(resp => {
+          axios.get('/api/pc/customerDataPc/contractStatus/' + planId).then(resp => {
             console.log('客户合同状态：')
             console.log('resp:', resp)
             this.contractProgressList = []
@@ -346,7 +346,7 @@ export default {
         let planId = this.$route.query.planId
         console.log('id', planId)
         if (planId) {
-          axios.get('/api/customerDataPc/payStatus/' + planId).then(resp => {
+          axios.get('/api/pc/customerDataPc/payStatus/' + planId).then(resp => {
             console.log('客户回款：')
             console.log(resp)
             if (resp.length === 0) {
@@ -371,7 +371,7 @@ export default {
       let planId = this.$route.query.planId
       console.log('id', planId)
       if (planId) {
-        axios.get('/api/customerDataPc/planDetail/' + planId).then(resp => {
+        axios.get('/api/pc/customerDataPc/planDetail/' + planId).then(resp => {
           this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
           this.details = resp
           console.log('返回某个客户详细数据：', this.details)

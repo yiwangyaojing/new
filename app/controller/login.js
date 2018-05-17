@@ -79,7 +79,7 @@ class LoginController extends Controller {
         });
         console.log(result.data)
         if(result.data||!result.data.unionid){
-            throw new Error('登录失败!')
+            throw new Error('登录失败')
         }else{
             const userInfo =  service.user.findByUnionId(result.data.unionid);
             if (!userInfo) {

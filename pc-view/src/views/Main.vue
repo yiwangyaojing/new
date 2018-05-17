@@ -6,7 +6,7 @@
   <el-container>
     <el-aside width="auto" style="position: relative;">
       <el-row type="flex" align="middle" class="logo">
-        <img src="../../static/img/logo.png"/>
+        <img src="../../static/img/logo.png" @click="goHome" style="cursor: pointer;"/>
       </el-row>
       <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF" :default-active="index"
                background-color="#fff" :collapse="collapsed">
@@ -48,7 +48,7 @@
     </el-aside>
     <el-container>
       <el-header height="60px">
-        <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px;" :gutter="8">
+        <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px; margin-top: 5px;" :gutter="8">
          <!-- <el-col>
             <el-button class="circle none toggle" size="mini" round icon="el-icon-vueboot-menu"/>
           </el-col>-->
@@ -218,6 +218,9 @@ export default {
           })
         }
       })
+    },
+    goHome () {
+      this.$router.push({name: 'Home'})
     }
   },
   updated () {

@@ -83,27 +83,129 @@ class CustomerDataPc extends Controller {
 
   async importExcelData() {
     const { ctx, service } = this;
+    const openId = ctx.session.user.openid;
     // 页面上传的excel数据
     const excelData = this.ctx.request.body;
-    // 取出个人信息和管理的团队信息
-    const userInfo = await this.ctx.service.user.findByOpenId(this.ctx.params.id);
+    // 取出个人信息和管理的团队信息 this.ctx.params.id
+    const userInfo = await this.ctx.service.user.findByOpenId(openId);
     // 取出公司所有用户团队信息
     // teamInfo.agents 公司所有用户信息
     // teamInfo.teams 公司所有团队信息
-    const teamUser = await this.ctx.service.teamUser.getFriendList(userInfo.company_id);
+    // const teamUser = await this.ctx.service.teamUser.getFriendList(userInfo.company_id);
 
+    const companyId = ctx.session.user.company_id;
+    const managerTeam = await service.teamUser.findManagerTeams(companyId,openId);
+    const teamInfo = await service.teamPc.findByIds(this.ctx.params.id);
+    // 获取团队业务员
+    let agents = await service.teamUserPc.getAgents(this.ctx.params.id,userInfo.company_id);
     const currentDate = moment().format('YYYY-MM-DD');
+    let createAgents = [];
+
+    if(excelData){
+      if(agents.length === 0){
+        for(let i=0;i<excelData.length;i++){
+            createAgents.push(excelData[i][1]);
+        }
+      }else{
+        let tmpAgentsArray = [];
+        for(let j=0;j<agents.length;j++){
+          tmpAgentsArray.push(agents[j].name);
+        }
+        for(let i=0;i<excelData.length;i++){
+          if(tmpAgentsArray.indexOf(excelData[i][1]) < 0){
+            createAgents.push(excelData[i][1]);
+          }
+        }
+      }
+    }
+
+    for(let i=0;i<createAgents.length;i++){
+      let userObj = {};
+      let timeStamp = process.hrtime();
+      userObj.openid = timeStamp[0].toString()+timeStamp[1].toString();
+      userObj.name = createAgents[i];
+      userObj.company_id = userInfo.company_id;
+      userObj.company_name = userInfo.company_name;
+      userObj.maxTeamId = this.ctx.params.id;
+      userObj.maxTeamRank = 2;
+      userObj.phone = "由导入创建";
+      userObj.avatarUrl = "http://haoxiaoshou-test.oss-cn-shanghai.aliyuncs.com/mp_xiaosolar-sales/20180517/2/0/12/tmp_d2cf98e0470fbc1af1c015f1418fcfdf65822b00ccbc93ea.jpg";
+      userObj.maxTeamLevel = teamInfo[0].level;
+      const userResult = await this.ctx.model.XUsers.create(userObj);
+      // 新建用户团队
+      let teamUserObj = {};
+      teamUserObj.open_id = userObj.openid;
+      teamUserObj.user_rank = 2;// 默认业务员
+      teamUserObj.team_id = this.ctx.params.id;
+      teamUserObj.team_company_id = userInfo.company_id;
+      const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj);
+    }
+
+
+
+    // if(excelData){
+    //   for(let i = 0;i<excelData.length;i++){
+    //     // 遍历上传数据，判断是否新建用户
+    //     if(agents.length === 0 ){
+
+
+
+
+    //       let userObj = {};
+    //       let timeStamp = process.hrtime();
+    //       userObj.openid = timeStamp[0].toString()+timeStamp[1].toString();
+    //       userObj.name = excelData[i][1];
+    //       userObj.company_id = userInfo.company_id;
+    //       userObj.company_name = userInfo.company_name;
+    //       userObj.maxTeamId = this.ctx.params.id;
+    //       userObj.maxTeamRank = 2;
+    //       userObj.maxTeamLevel = teamInfo[0].level;
+    //       const userResult = await this.ctx.model.XUsers.create(userObj);
+    //       // 新建用户团队
+    //       let teamUserObj = {};
+    //       teamUserObj.open_id = userObj.openid;
+    //       teamUserObj.user_rank = 2;// 默认业务员
+    //       teamUserObj.team_id = this.ctx.params.id;
+    //       teamUserObj.team_company_id = userInfo.company_id;
+    //       const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj);
+    //     }else{
+    //       for(let j=0;j<agents.length;j++){
+    //         if(agents[j].name !== excelData[i][1]){
+    //           // 新建用户
+    //           let userObj = {};
+    //           let timeStamp = process.hrtime();
+    //           userObj.openid = timeStamp[0].toString()+timeStamp[1].toString();
+    //           userObj.name = excelData[i][1];
+    //           userObj.company_id = userInfo.company_id;
+    //           userObj.company_name = userInfo.company_name;
+    //           userObj.maxTeamId = this.ctx.params.id;
+    //           userObj.maxTeamRank = 2;
+    //           userObj.maxTeamLevel = teamInfo[0].level;
+    //           const userResult = await this.ctx.model.XUsers.create(userObj);
+    //           // 新建用户团队
+    //           let teamUserObj = {};
+    //           teamUserObj.open_id = userObj.openid;
+    //           teamUserObj.user_rank = 2;// 默认业务员
+    //           teamUserObj.team_id = this.ctx.params.id;
+    //           teamUserObj.team_company_id = userInfo.company_id;
+    //           const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj);
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+
+    // 重新获得一遍用户
+    agents = await service.teamUserPc.getAgents(this.ctx.params.id, userInfo.company_id);
+
+
     if (excelData) {
-      for (let i = 0; i < excelData.length; i++) {
-        for (let j = 0; j < teamUser.agents.length; j++) {
-          // 用户匹配
-          if (teamUser.agents[j].name === excelData[i][1]) {
-            for (let k = 0; k < teamUser.agents[j].teams.length; k++) {
-              // 团队匹配
-              if (teamUser.agents[j].teams[k].teamName === excelData[i][0]) {
+      for(let i=0;i<excelData.length;i++){
+        for(let j=0;j<agents.length;j++){
+          if(agents[j].name === excelData[i][1]){
                 let planObj = {};
                 let planPayObj = {};
-                planObj.open_id = teamUser.agents[j].open_id;
+                planObj.open_id = agents[j].openid;
                 planObj.user_name = excelData[i][1];
                 planObj.cst_name = excelData[i][2];
                 planObj.cst_phone = excelData[i][3];
@@ -115,8 +217,8 @@ class CustomerDataPc extends Controller {
                 if (planObj.zj_input_format !== "" && planObj.zj_input_num !== "") {
                   planObj.zj_input_capacity = planObj.zj_input_format * planObj.zj_input_num / 1000;
                 }
-                // 如果没有回款金额，未回款为合同金额
-                if (excelData[i][9] === "") {
+                // 如果没有回款金额，未回款为合同金额；如果回款金额大于合同金额不记录
+                if (excelData[i][9] === "" || excelData[i][8] < excelData[i][9]) {
                   planObj.pay_gap = excelData[i][8];
                 } else {
                   planObj.pay_sum = excelData[i][9];
@@ -128,7 +230,7 @@ class CustomerDataPc extends Controller {
                     planObj.pay_time = excelData[i][14];
                   }
                   // x_plan_pay 表相关
-                  planPayObj.open_id = teamUser.agents[j].open_id;
+                  planPayObj.open_id = agents[j].openid;
                   planPayObj.zj_price = planObj.zj_price;
                   planPayObj.pay_period = 1;// 汇款批次默认为1
                   planPayObj.pay_time = planObj.pay_time;
@@ -139,7 +241,7 @@ class CustomerDataPc extends Controller {
                   planPayObj.pay_remark = "";
                 }
 
-                planObj.team_id = teamUser.agents[j].team_id;
+                planObj.team_id = agents[j].team_id;
                 planObj.company_id = userInfo.company_id;
                 // 往x_plan表插数据
                 const planResult = await this.ctx.model.XPlans.create(planObj);
@@ -215,16 +317,25 @@ class CustomerDataPc extends Controller {
                   },{where:{id:planResult.id}}
                 )
 
-                break;
-              }
-            }
-            break;
           }
+
         }
       }
+
     }
 
     ctx.body = 'import success';
+  }
+
+  // 获取用户管理的所有团队信息
+  async getUserManageTeam(){
+    const { ctx, service } = this;
+    const openId = ctx.session.user.openid;
+    const companyId = ctx.session.user.company_id;
+    const teamId = ctx.session.user.maxTeamI;
+    const teamLevel = ctx.session.user.maxTeamLeve;
+    const result = await service.teamUser.findManagerTeams(companyId,openId);
+    ctx.body = result;
   }
 
 }

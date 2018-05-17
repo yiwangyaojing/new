@@ -46,6 +46,10 @@ module.exports = appInfo => {
     //   username: 'xiaosolar_test_user',
     //   password: 'ooMoo8wun0etaaso',
     // };
+    config.cors = {
+        allowMethods:['GET','HEAD','PUT','POST','DELETE','OPTIONS'],
+        credentials: true,
+    };
     config.security = {
         csrf: {
             enable: false,
@@ -55,6 +59,7 @@ module.exports = appInfo => {
             sessionName: 'apicsrfToken', // Session 中的字段名，默认为 csrfToken
             headerName: 'x-csrf-token', // Session 中的字段名，默认为 csrfToken
         },
+        domainWhiteList: [ 'localhost:8003','web.xiaosolar.com' ,'mpa.xiaosolar.com','mp.xiaosolar.com']
     };
     config.oss = {
         client: {

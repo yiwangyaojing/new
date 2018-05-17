@@ -27,7 +27,7 @@
         <div ref="selectTeam" style="background-color:white">
            <el-card class="box-card">
               <div style="padding-bottom: 20px;font-weight: bolder;">
-                请选择导入团队：
+                请选择客户导入团队：
               </div>
                <el-col :span="8" class="y-Center">
                     <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>

@@ -68,7 +68,7 @@
               <el-col :span="5">
                 <img class="header" height="36" :src="avatarUrl"/>
               </el-col>
-              <el-col :span="9">
+              <el-col :span="9" style="cursor: pointer;">
                 <el-dropdown @command="handleCommand">
                     <span class="el-dropdown-link">
                       {{loginName}}<i class="el-icon-arrow-down el-icon--right"></i>

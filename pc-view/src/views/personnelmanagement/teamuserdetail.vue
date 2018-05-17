@@ -47,10 +47,10 @@
       <el-row class="row-top-margin row-h">
         <el-col class="fl">
           <div class="fl">
-            <div class="fl label-name">拍房子数量：</div><div class="fl label-view">{{data.h_is_finish_num || 0}}</div>
+            <div class="fl label-name">项目勘测数量：</div><div class="fl label-view">{{data.h_is_finish_num || 0}}</div>
           </div>
           <div class="fl m-l-40">
-            <div class="fl label-name">排板子数量：</div><div class="fl label-view">{{data.rf_is_finish_num || 0}}</div>
+            <div class="fl label-name">方案设计数量：</div><div class="fl label-view">{{data.rf_is_finish_num || 0}}</div>
           </div>
         </el-col>
       </el-row>

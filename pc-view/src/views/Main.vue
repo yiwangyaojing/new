@@ -6,7 +6,7 @@
   <el-container>
     <el-aside width="auto">
       <el-row type="flex" align="middle" class="logo">
-        <img src="../../static/img/Logo.gif"/>
+        <img src="../../static/img/logo.png"/>
       </el-row>
       <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF" :default-active="index"
                background-color="#fff" :collapse="collapsed">
@@ -330,7 +330,7 @@ export default {
     height: 60px;
     /*padding-top: 20px;*/
     padding-left: 24px;
-    background: #67c23a;
+    background: #00cc33;
     line-height: 60px;
   }
   .logo span {

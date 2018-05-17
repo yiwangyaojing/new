@@ -1,9 +1,9 @@
 <template>
   <el-row>
     <el-container>
-      <el-header style="background: #67c23a" class="xy-Center">
+      <el-header style="background: #00cc33" class="xy-Center">
         <div>
-          <img  src="/static/img/Logo.gif" alt="">
+          <img src="/static/img/logo.png" alt="">
         </div>
       </el-header>
     </el-container>
@@ -178,10 +178,11 @@ export default {
    -webkit-justify-content: center;
    justify-content: center;
  }
-  .el-tabs__nav {
-    width: 100% !important;
-  }
-  .el-tabs__item {
-    width: 50% !important;
-  }
+ .el-tabs__nav {
+   width: 100% !important;
+   text-align: center;
+ }
+ .el-tabs__item {
+   width: 51% !important;
+ }
 </style>

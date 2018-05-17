@@ -1,5 +1,11 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/Signin' }">签到统计</el-breadcrumb-item>
+      <el-breadcrumb-item><a>签到详情</a></el-breadcrumb-item>
+    </el-breadcrumb>
+    <br>
+    <br>
     <div style="font-size: 14px;">{{name}}</div>
     <div style="margin-top: 20px;font-size: 14px;">{{team}}</div>
     <el-row>

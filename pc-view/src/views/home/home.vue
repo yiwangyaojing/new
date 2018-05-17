@@ -1,6 +1,9 @@
 <template>
   <div>
     <el-card class="box-card">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/Home' }">首页</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-row>
         <div>
           <div style="margin-top: 20px;" class="clearfix">

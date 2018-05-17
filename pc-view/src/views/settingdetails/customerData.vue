@@ -421,7 +421,7 @@ export default {
         lock: true,
         text: '加载中...',
         spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
+        background: 'rgba(0, 0, 0, 0)'
       })
       setTimeout(() => {
         console.log('客户资料列表', this.datevalue[0])

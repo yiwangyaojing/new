@@ -14,7 +14,7 @@
             <el-col :span="16" class="y-Center">
               <div class="grid-content bg-purple" style="font-size: 14px;width: 100px">自定义时间段</div>
               <div class="block">
-                <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
               </div>
             </el-col>

@@ -76,18 +76,18 @@
               <el-table-column prop="cst_name" label="客户" ></el-table-column>
               <el-table-column prop="user_name" label="负责人" ></el-table-column>
               <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
-              <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
-              <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
-              <el-table-column prop="pay_sum" label="回款金额" ></el-table-column>
-              <el-table-column prop="scdTime" label="开始时间"></el-table-column>
-              <el-table-column prop="scd_status" label="合同状态"></el-table-column>
-              <el-table-column prop="overdue" label="逾期状态" width="100" filter-placement="bottom-end">
+              <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
+              <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
+              <el-table-column prop="pay_sum" label="回款金额" align="center"></el-table-column>
+              <el-table-column prop="scdTime" label="开始时间" align="center" width="100"></el-table-column>
+              <el-table-column prop="scd_status" label="合同状态" align="center"></el-table-column>
+              <el-table-column prop="overdue" label="逾期状态" width="80" filter-placement="bottom-end" align="center">
                 <template slot-scope="scope">
                   <el-tag size="mini" :type="scope.row.overdue === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.overdue}}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column prop="short_url" label="下载提取码"></el-table-column>
-              <el-table-column fixed="right" label="操作">
+              <el-table-column prop="short_url" label="下载提取码" align="center"></el-table-column>
+              <el-table-column fixed="right" label="操作" align="center">
                 <template slot-scope="scope">
                   <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                 </template>

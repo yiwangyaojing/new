@@ -12,39 +12,42 @@
                background-color="#fff" :collapse="collapsed">
         <el-menu-item-group>
           <el-menu-item index="0" :route="{name: 'Home'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-shouye" ></i>
             <span slot="title">首页</span>
           </el-menu-item>
           <el-menu-item index="1" :route="{name: 'SettingDetails'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-rili"></i>
             <span slot="title">进度详情</span>
           </el-menu-item>
           <el-menu-item index="2" :route="{name: 'CustomerData'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-ziliaoguanli"></i>
             <span slot="title">客户资料</span>
           </el-menu-item>
           <el-menu-item index="3" :route="{name: 'ImportCustomer'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-yonghutouxiang"></i>
             <span slot="title">客户导入</span>
           </el-menu-item>
           <el-menu-item index="4" :route="{name: 'Signin'}">
-            <i class="el-icon-location" style="color: #303133;"></i>
+            <i class="iconfont icon-weizhi"></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
           <el-menu-item index="5" :route="{name: 'PersonnelManagement'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-tuandui"></i>
             <span slot="title">团队结构</span>
           </el-menu-item>
         </el-menu-item-group>
         <el-menu-item index="6" :route="{name: 'TeamInformation'}">
-          <i class="el-icon-setting" style="color: #303133"></i>
+          <i class="iconfont icon-ziliaoguanli"></i>
           <span slot="title">团队信息</span>
         </el-menu-item>
         <el-menu-item index="7" :route="{name: 'AccountSetting'}">
-          <i class="el-icon-setting" style="color: #303133"></i>
+          <i class="iconfont icon-shezhi"></i>
           <span slot="title">账户设置</span>
         </el-menu-item>
       </el-menu>
+      <div style="position: fixed;bottom: 0;padding: 5px 0px">
+        <a href="http://www.xiqiao.io" style="color: #000">上海西樵软件</a>
+      </div>
     </el-aside>
     <el-container>
       <el-header height="60px">
@@ -87,9 +90,9 @@
         </transition>
       </el-main>
 
-      <el-footer style="background:rgb(238, 238, 238);font-size: 10px;text-align: right; " height="40px">
-        <a href="http://www.xiqiao.io" style="color: #999">技术支持:上海西樵软件有限公司</a>
-      </el-footer>
+      <!--<el-footer style="background:rgb(238, 238, 238);font-size: 10px;text-align: right; " height="40px">-->
+        <!--<a href="http://www.xiqiao.io" style="color: #999">技术支持:上海西樵软件有限公司</a>-->
+      <!--</el-footer>-->
       <!--修改密码弹出层-->
       <div>
         <el-dialog :visible.sync="passwordModel" title="修改密码" :modal="true">
@@ -389,5 +392,13 @@ export default {
   }
   .el-icon-location:hover {
     color: #67c23a !important;
+  }
+  i {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .iconfont {
+    font-size: 18px;
+    color: #303133;
   }
 </style>

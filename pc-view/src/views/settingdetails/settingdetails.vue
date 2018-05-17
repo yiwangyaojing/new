@@ -61,9 +61,9 @@
             </el-col>
           </div>
         </div>
-        <el-col :span="12" class="y-Center" style="margin-top: 20px;">
-          <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
-          <el-col :span="20">
+        <el-col :span="18" class="y-Center" style="margin-top: 20px;">
+          <el-col :span="2"><div style="font-size: 16px;margin-right: 20px">搜索</div></el-col>
+          <el-col :span="22">
             <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
             </el-input>
           </el-col>

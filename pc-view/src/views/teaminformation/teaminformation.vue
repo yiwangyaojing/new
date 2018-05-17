@@ -141,6 +141,7 @@ export default {
           message: '修改成功'
         })
         this.sessionUser.company_logo = this.company_logo
+        this.sessionUser.company_name = this.company_name
         window.sessionStorage.removeItem(values.storage.user)
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
         this.$emit('reloadUserData')

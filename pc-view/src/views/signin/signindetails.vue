@@ -113,6 +113,7 @@ export default {
   methods: {
     tjzqChange (e) {
       console.log('=====>>', e)
+      this.tjzqvalue = e
       this.datevalue = []
       if (this.tjzqvalue !== '自定义') {
         axios.get('/api/pc/select/date/' + e).then(res => {
@@ -123,13 +124,19 @@ export default {
           this.loadData()
         })
       } else {
-        axios.get('/api/pc/select/date/today').then(res => {
-          console.log(res)
-          for (let i in res) {
-            this.datevalue.push(res[i])
-          }
+        let params = this.$route.query
+        if (params.datevalue && params.datevalue.length > 1) {
+          this.datevalue.push(params.datevalue[0], params.datevalue[1])
           this.loadData()
-        })
+        } else {
+          axios.get('/api/pc/select/date/today').then(res => {
+            console.log(res)
+            for (let i in res) {
+              this.datevalue.push(res[i])
+            }
+            this.loadData()
+          })
+        }
       }
     },
     dateChange () {
@@ -189,7 +196,9 @@ export default {
     this.openid = params.openid
     this.team = params.teamname
     this.name = params.name
-    this.requestdata(this.loadData)
+    console.log('这里是===》》', params)
+    this.tjzqChange(params.tjzqvalue)
+    // this.requestdata(this.loadData)
   }
 }
 </script>

@@ -4,51 +4,51 @@
 </style>
 <template>
   <el-container>
-    <el-aside width="auto">
+    <el-aside width="auto" style="position: relative;">
       <el-row type="flex" align="middle" class="logo">
-        <img src="../../static/img/Logo.gif"/>
+        <img src="../../static/img/logo.png" @click="goHome" style="cursor: pointer;"/>
       </el-row>
-      <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF"
+      <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF" :default-active="index"
                background-color="#fff" :collapse="collapsed">
         <el-menu-item-group>
           <el-menu-item index="0" :route="{name: 'Home'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-shouye" ></i>
             <span slot="title">首页</span>
           </el-menu-item>
           <el-menu-item index="1" :route="{name: 'SettingDetails'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-rili"></i>
             <span slot="title">进度详情</span>
           </el-menu-item>
           <el-menu-item index="2" :route="{name: 'CustomerData'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-ziliaoguanli"></i>
             <span slot="title">客户资料</span>
           </el-menu-item>
           <el-menu-item index="3" :route="{name: 'ImportCustomer'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-yonghutouxiang"></i>
             <span slot="title">客户导入</span>
           </el-menu-item>
           <el-menu-item index="4" :route="{name: 'Signin'}">
-            <i class="el-icon-location" style="color: #303133;"></i>
+            <i class="iconfont icon-weizhi"></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
           <el-menu-item index="5" :route="{name: 'PersonnelManagement'}">
-            <i class="el-icon-setting" style="color: #303133"></i>
+            <i class="iconfont icon-tuandui"></i>
             <span slot="title">团队结构</span>
           </el-menu-item>
         </el-menu-item-group>
         <el-menu-item index="6" :route="{name: 'TeamInformation'}">
-          <i class="el-icon-setting" style="color: #303133"></i>
+          <i class="iconfont icon-ziliaoguanli"></i>
           <span slot="title">团队信息</span>
         </el-menu-item>
         <el-menu-item index="7" :route="{name: 'AccountSetting'}">
-          <i class="el-icon-setting" style="color: #303133"></i>
+          <i class="iconfont icon-shezhi"></i>
           <span slot="title">账户设置</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
     <el-container>
       <el-header height="60px">
-        <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px;" :gutter="8">
+        <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px; margin-top: 5px;" :gutter="8">
          <!-- <el-col>
             <el-button class="circle none toggle" size="mini" round icon="el-icon-vueboot-menu"/>
           </el-col>-->
@@ -59,12 +59,13 @@
             </div>
           </el-col>
 
-          <el-col :span="5" :xs="5" :sm="5" :lg="3" :xl="2">
+          <el-col :span="6">
             <el-row justify="right" align="middle" type="flex">
-              <el-col :span="10">
+              <el-col :span="10"></el-col>
+              <el-col :span="5">
                 <img class="header" height="36" :src="avatarUrl"/>
               </el-col>
-              <el-col :span="14">
+              <el-col :span="9" style="cursor: pointer;">
                 <el-dropdown @command="handleCommand">
                     <span class="el-dropdown-link">
                       {{loginName}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -87,9 +88,9 @@
         </transition>
       </el-main>
 
-      <el-footer style="background:rgb(238, 238, 238);font-size: 10px;text-align: right; " height="40px">
-        <a href="http://www.xiqiao.io" style="color: #999">技术支持:上海西樵软件有限公司</a>
-      </el-footer>
+      <!--<el-footer style="background:rgb(238, 238, 238);font-size: 10px;text-align: right; " height="40px">-->
+        <!--<a href="http://www.xiqiao.io" style="color: #999">技术支持:上海西樵软件有限公司</a>-->
+      <!--</el-footer>-->
       <!--修改密码弹出层-->
       <div>
         <el-dialog :visible.sync="passwordModel" title="修改密码" :modal="true">
@@ -148,6 +149,7 @@ export default {
       }
     }
     return {
+      index: '0',
       collapsed: false,
       company_logo: '',
       company_name: '',
@@ -173,7 +175,6 @@ export default {
       }
     }
   },
-  computed: {},
   methods: {
     handleCommand (cmd) {
       if (cmd === 'a') {
@@ -184,7 +185,7 @@ export default {
     },
     logout () {
       // 退出系统
-      this.$confirm('确定要退出当前系统吗', {
+      this.$confirm('确定要退出当前系统吗?', {
         callback: (action) => {
           if (action === 'confirm') {
             axios.post('/api/logout').then(() => {
@@ -217,7 +218,29 @@ export default {
           })
         }
       })
+    },
+    goHome () {
+      this.$router.push({name: 'Home'})
     }
+  },
+  updated () {
+    let menus = [
+      ['Home', 'Overdue'],
+      ['SettingDetails'],
+      ['CustomerData', 'CustomerDetails'],
+      ['ImportCustomer'],
+      ['Signin', 'SigninDetails'],
+      ['PersonnelManagement', 'TeamUserDetail'],
+      ['TeamInformation'],
+      ['AccountSetting']
+    ]
+    menus.forEach((item, index) => {
+      item.forEach(subItem => {
+        if (subItem === this.$route.name) {
+          this.index = String(index)
+        }
+      })
+    })
   },
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
@@ -225,7 +248,8 @@ export default {
     this.company_name = sessionUser.company_name
     this.company_logo = sessionUser.company_logo
     this.avatarUrl = sessionUser.avatarUrl
-  }
+  },
+  computed: {}
 }
 </script>
 
@@ -310,7 +334,7 @@ export default {
     height: 60px;
     /*padding-top: 20px;*/
     padding-left: 24px;
-    background: #67c23a;
+    background: #00cc33;
     line-height: 60px;
   }
   .logo span {
@@ -367,7 +391,15 @@ export default {
   .el-submenu__title:hover {
     background-color: unset !important;
   }
-  .el-icon-location:hover {
+  .el-menu-item:hover i{
     color: #67c23a !important;
+  }
+  i {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .iconfont {
+    font-size: 18px;
+    color: #303133;
   }
 </style>

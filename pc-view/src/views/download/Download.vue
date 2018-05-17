@@ -28,7 +28,7 @@ export default {
   name: 'download',
   data () {
     return {
-      shortUrl: ''
+      shortUrl: this.$route.query.shortUrl
     }
   },
   methods: {
@@ -37,7 +37,7 @@ export default {
         this.$message.error('请输入文件提取密码！')
         return
       }
-      let url = process.env.CONTEXT + '/file/download/' + this.shortUrl
+      let url = 'http://localhost:8002/backend/file/download/' + this.shortUrl
       window.open(encodeURI(url))
     }
   }

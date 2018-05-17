@@ -133,7 +133,11 @@ module.exports = app => {
         sdkversion: {
             type: DataTypes.STRING(50),
             allowNull: true
-        }
+        },
+        unionid: {
+            type: DataTypes.STRING(100),
+            allowNull: true
+        },
     }, {
         tableName: 'x_users'
     });

@@ -1,5 +1,9 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/Home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item><a>逾期规则</a></el-breadcrumb-item>
+    </el-breadcrumb>
       <el-row style="margin-top: 20px;">
         <div style="font-size: 20px;">逾期规则设置</div>
         <el-col :span="24">

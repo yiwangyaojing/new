@@ -1,5 +1,8 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/PersonnelManagement' }">团队结构</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-dialog
       title="提示"
       :visible.sync="dialogVisible"

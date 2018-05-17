@@ -1,5 +1,8 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/CustomerData' }">客户资料</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row>
       <div>
         <div :span="24" style="margin-top: 20px;" class="clearfix">

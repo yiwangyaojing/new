@@ -148,7 +148,8 @@ export default {
         window.sessionStorage.removeItem(values.storage.user)
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
         this.$emit('reloadUserData')
-      }, () => {
+      }, (fail) => {
+        this.$message.error(fail.message)
         this.tableLoading = false
       })
     }

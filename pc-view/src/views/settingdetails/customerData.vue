@@ -68,7 +68,11 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <el-table :data="tableData" size="small" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
+        <el-table :data="tableData" size="small" stripe
+                  v-loading="tableLoading"
+                  element-loading-text="加载中..."
+                  element-loading-spinner="el-icon-loading"
+                  style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
           <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
           <el-table-column prop="user_name" label="负责人" ></el-table-column>
           <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
@@ -106,6 +110,7 @@ export default {
   data () {
     return {
       showOverflowTooltip: true,
+      tableLoading: false,
       teamLevel: 'all',
       teamId: 'all',
       planOwner: 'all',
@@ -417,12 +422,7 @@ export default {
       this.formlistdata()
     },
     formlistdata () {
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0)'
-      })
+      this.tableLoading = true
       setTimeout(() => {
         console.log('客户资料列表', this.datevalue[0])
         let parameter = {
@@ -439,7 +439,7 @@ export default {
           type: 'customer'
         }
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
-          loading.close()
+          this.tableLoading = false
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
@@ -462,9 +462,9 @@ export default {
           }
           console.log('表格数据', this.tableData, res)
         }, () => {
-          loading.close()
+          this.tableLoading = false
         }).catch(() => {
-          loading.close()
+          this.tableLoading = false
         })
       }, 300)
     },

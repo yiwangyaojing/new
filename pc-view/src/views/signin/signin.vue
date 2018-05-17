@@ -43,7 +43,11 @@
     </el-row>
     <el-row>
       <el-col :span="24" style="margin-top: 30px;">
-        <el-table :data="tableData" size="mini" :border="true" style="width: 100%">
+        <el-table :data="tableData" size="mini" :border="true"
+                  v-loading="tableLoading"
+                  element-loading-text="加载中..."
+                  element-loading-spinner="el-icon-loading"
+                  style="width: 100%">
           <el-table-column  prop="name" label="姓名">
           </el-table-column>
           <el-table-column prop="team" label="所属团队">
@@ -82,6 +86,7 @@ export default {
       fuzerenvalue: '全部(可见范围)',
       teamname: '全部(可见范围)',
       teannameshow: true,
+      tableLoading: false,
       fuzerenshow: true,
       options: [{
         value: 'today',
@@ -288,21 +293,16 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0)'
-      })
+      this.tableLoading = true
       axios.post('/api/pc/signPc', req).then(res => {
         console.log('这里是查询签到结果===>>', res)
-        loading.close()
+        this.tableLoading = false
         this.tableData = res.content
         this.totalNum = res.totalCount
       }, () => {
-        loading.close()
+        this.tableLoading = false
       }).catch(() => {
-        loading.close()
+        this.tableLoading = false
       })
     },
     requestdata (fn) {

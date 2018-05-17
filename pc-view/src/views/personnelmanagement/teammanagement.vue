@@ -71,7 +71,11 @@
             </el-col>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">
-            <el-table size="mini" border stripe :data="tableData" style="width: 100%">
+            <el-table size="mini" border stripe :data="tableData"
+                      v-loading="tableLoading"
+                      element-loading-text="加载中..."
+                      element-loading-spinner="el-icon-loading"
+                      style="width: 100%">
               <el-table-column prop="name" label="姓名">
               </el-table-column>
               <el-table-column prop="user_rank"  label="角色" :formatter="formatterUserRank">
@@ -112,6 +116,7 @@ export default {
       sendCodeVisible: false,
       hightlight: true,
       sendLoading: false,
+      tableLoading: false,
       sendButtonContent: '发送验证码',
       phone: '',
       defaultKey: [],
@@ -342,16 +347,11 @@ export default {
       let userInfo = getUserInfo()
       console.log('this is userInfo ===>>', userInfo, this.selectedTeam)
       let openid = userInfo.openid
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0)'
-      })
+      this.tableLoading = true
       axios.get('/api/pc/teamPc/' + openid + '/' + this.pageNum + '/' + this.pagesizeNum + '/' + this.selectedTeam.id, {}).then((res) => {
         console.log('这里是请求结果handleNodeClick===>>', res)
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
         this.selectedItems = []
         this.tableData = res.users.data
@@ -365,11 +365,11 @@ export default {
         })
       }, () => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       }).catch(() => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       })
     },
@@ -391,15 +391,10 @@ export default {
       console.log('this is userInfo ===>>', userInfo, value)
       let openid = userInfo.openid
       // console.log('this is axios ===>>', this, axios)
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0)'
-      })
+      this.tableLoading = true
       axios.get('/api/pc/teamPc/' + openid, {}).then((res) => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
         console.log('这里是请求结果init===>>', res, value, res.teams)
         this.selectedItems = []
@@ -424,11 +419,11 @@ export default {
         })
       }, () => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       }).catch(() => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       })
     }

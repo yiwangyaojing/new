@@ -8,7 +8,6 @@
       </el-header>
     </el-container>
     <div class="x-Center" style="margin-top: 100px;">
-
       <el-col :xs="9" :md=7 :sm="8" :lg="7" :xl="4">
         <el-tabs type="border-card" style="width: 100%;">
           <el-tab-pane label="二维码">
@@ -64,7 +63,6 @@
         </el-tabs>
       </el-col>
     </div>
-
   </el-row>
 </template>
 <script>

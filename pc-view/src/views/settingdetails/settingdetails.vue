@@ -76,7 +76,7 @@
                     element-loading-text="加载中..."
                     element-loading-spinner="el-icon-loading"
                     style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
-              <el-table-column prop="cst_name" label="客户" ></el-table-column>
+              <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
               <el-table-column prop="user_name" label="负责人" ></el-table-column>
               <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
               <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
@@ -89,7 +89,6 @@
                   <el-tag size="mini" :type="scope.row.overdue === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.overdue}}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column prop="short_url" label="下载提取码" align="center"></el-table-column>
               <el-table-column fixed="right" label="操作" align="center">
                 <template slot-scope="scope">
                   <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>

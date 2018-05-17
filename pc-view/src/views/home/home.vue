@@ -46,111 +46,116 @@
             </el-col>
           </div>
         </div>
-        <div style="margin-top: 20px;">
-          <div style="font-size: 16px;">项目更新</div>
-          <el-row style="margin-top: 20px;">
-            <el-col :span="6" class="x-Center">
-              <el-col  :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="addprojectClick(0)">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">新增项目</div>
-                  <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #e3023b;font-size: 30px;">{{stateupdate0.total ? stateupdate0.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                  <div class="fl" style="width: 59%;font-size: 18px;">
-                    <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                    <div style="padding: 12px 0">{{stateupdate0.price ? stateupdate0.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+        <div
+          v-loading="tableLoading"
+          element-loading-text="加载中..."
+          element-loading-spinner="el-icon-loading">
+          <div style="margin-top: 20px;">
+            <div style="font-size: 16px;">项目更新</div>
+            <el-row style="margin-top: 20px;">
+              <el-col :span="6" class="x-Center">
+                <el-col  :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="addprojectClick(0)">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">新增项目</div>
+                    <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #e3023b;font-size: 30px;">{{stateupdate0.total ? stateupdate0.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                    <div class="fl" style="width: 59%;font-size: 18px;">
+                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                      <div style="padding: 12px 0">{{stateupdate0.price ? stateupdate0.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                    </div>
                   </div>
-                </div>
+                </el-col>
               </el-col>
-            </el-col>
-            <el-col :span="6" class="x-Center">
-              <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="htqdClick(2)">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
-                  <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">{{stateupdate2.total ? stateupdate2.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                  <div class="fl" style="width: 59%;font-size: 18px;">
-                    <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate2.input_capacity ? stateupdate2.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                    <div style="padding: 12px 0">{{stateupdate2.price ? stateupdate2.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+              <el-col :span="6" class="x-Center">
+                <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="htqdClick(2)">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
+                    <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">{{stateupdate2.total ? stateupdate2.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                    <div class="fl" style="width: 59%;font-size: 18px;">
+                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate2.input_capacity ? stateupdate2.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                      <div style="padding: 12px 0">{{stateupdate2.price ? stateupdate2.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                    </div>
                   </div>
-                </div>
 
+                </el-col>
               </el-col>
-            </el-col>
-            <el-col :span="6" class="x-Center">
-              <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="sgwccompleteClick(3)">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工完成</div>
-                  <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00abca;font-size: 30px;">{{stateupdate3.total ? stateupdate3.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                  <div class="fl" style="width: 59%;font-size: 18px;">
-                    <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate3.input_capacity ? stateupdate3.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                    <div style="padding: 12px 0">{{stateupdate3.price ? stateupdate3.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+              <el-col :span="6" class="x-Center">
+                <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="sgwccompleteClick(3)">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工完成</div>
+                    <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00abca;font-size: 30px;">{{stateupdate3.total ? stateupdate3.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                    <div class="fl" style="width: 59%;font-size: 18px;">
+                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate3.input_capacity ? stateupdate3.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                      <div style="padding: 12px 0">{{stateupdate3.price ? stateupdate3.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                    </div>
                   </div>
-                </div>
+                </el-col>
               </el-col>
-            </el-col>
-            <el-col :span="6" class="x-Center">
-              <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="bwwccompleteClick(4)">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网完成</div>
-                  <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #ca9b00;font-size: 30px;">{{stateupdate4.total ? stateupdate4.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                  <div class="fl" style="width: 59%;font-size: 18px;">
-                    <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate4.input_capacity ? stateupdate4.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                    <div style="padding: 12px 0">{{stateupdate4.price ? stateupdate4.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+              <el-col :span="6" class="x-Center">
+                <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="bwwccompleteClick(4)">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网完成</div>
+                    <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #ca9b00;font-size: 30px;">{{stateupdate4.total ? stateupdate4.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                    <div class="fl" style="width: 59%;font-size: 18px;">
+                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate4.input_capacity ? stateupdate4.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                      <div style="padding: 12px 0">{{stateupdate4.price ? stateupdate4.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                    </div>
                   </div>
-                </div>
+                </el-col>
               </el-col>
-            </el-col>
-            <el-col :span="6" class="x-Center" style="margin-top: 30px;">
-              <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="hkwccompleteClick(6)">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款完成</div>
-                  <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc87;font-size: 30px;">{{stateupdate6.total ? stateupdate6.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
-                  <div class="fl" style="width: 59%;font-size: 18px;">
-                    <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate6.input_capacity ? stateupdate6.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                    <div style="padding: 12px 0">{{stateupdate6.price ? stateupdate6.price / 10000: '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+              <el-col :span="6" class="x-Center" style="margin-top: 30px;">
+                <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="hkwccompleteClick(6)">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款完成</div>
+                    <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc87;font-size: 30px;">{{stateupdate6.total ? stateupdate6.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
+                    <div class="fl" style="width: 59%;font-size: 18px;">
+                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate6.input_capacity ? stateupdate6.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
+                      <div style="padding: 12px 0">{{stateupdate6.price ? stateupdate6.price / 10000: '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                    </div>
                   </div>
-                </div>
+                </el-col>
               </el-col>
-            </el-col>
-          </el-row>
-        </div>
-        <div style="margin-top: 20px;">
-          <div style="font-size: 16px;"><span>逾期项目</span> <router-link to="/Overdue" style="font-size: 10px;color: #409EFF;">规则设置</router-link></div>
-          <el-row style="margin-top: 20px;">
-            <el-col :span="6" class="x-Center">
-              <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="sgoverdueClick">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工逾期</div>
-                  <div style="padding: 10px 0;">
-                    <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata2.num ? overduedata2.num : '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                    <div style="color: #999;font-size: 12px;">最长{{overduedata2.differ ? overduedata2.differ : '--'}}天</div>
+            </el-row>
+          </div>
+          <div style="margin-top: 20px;">
+            <div style="font-size: 16px;"><span>逾期项目</span> <router-link to="/Overdue" style="font-size: 10px;color: #409EFF;">规则设置</router-link></div>
+            <el-row style="margin-top: 20px;">
+              <el-col :span="6" class="x-Center">
+                <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="sgoverdueClick">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工逾期</div>
+                    <div style="padding: 10px 0;">
+                      <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata2.num ? overduedata2.num : '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                      <div style="color: #999;font-size: 12px;">最长{{overduedata2.differ ? overduedata2.differ : '--'}}天</div>
+                    </div>
                   </div>
-                </div>
 
+                </el-col>
               </el-col>
-            </el-col>
-            <el-col :span="6" class="x-Center">
-              <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="sgoverdueClick">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网逾期</div>
-                  <div style="padding: 10px 0;">
-                    <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata3.num ? overduedata3.num: '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                    <div style="color: #999;font-size: 12px;">最长{{overduedata3.differ ? overduedata3.differ: '--'}}天</div>
+              <el-col :span="6" class="x-Center">
+                <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="sgoverdueClick">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网逾期</div>
+                    <div style="padding: 10px 0;">
+                      <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata3.num ? overduedata3.num: '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                      <div style="color: #999;font-size: 12px;">最长{{overduedata3.differ ? overduedata3.differ: '--'}}天</div>
+                    </div>
                   </div>
-                </div>
 
+                </el-col>
               </el-col>
-            </el-col>
-            <el-col :span="6" class="x-Center">
-              <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                <div @click="sgoverdueClick">
-                  <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款逾期</div>
-                  <div style="padding: 10px 0;">
-                    <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata4.num ? overduedata4.num :'--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
-                    <div style="color: #999;font-size: 12px;">最长{{overduedata4.differ ? overduedata4.differ: '--'}}天</div>
+              <el-col :span="6" class="x-Center">
+                <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                  <div @click="sgoverdueClick">
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款逾期</div>
+                    <div style="padding: 10px 0;">
+                      <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata4.num ? overduedata4.num :'--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
+                      <div style="color: #999;font-size: 12px;">最长{{overduedata4.differ ? overduedata4.differ: '--'}}天</div>
+                    </div>
                   </div>
-                </div>
+                </el-col>
               </el-col>
-            </el-col>
-          </el-row>
+            </el-row>
+          </div>
         </div>
       </el-row>
     </el-card>
@@ -162,6 +167,7 @@ import values from '../../utils/values'
 export default {
   data () {
     return {
+      tableLoading: false,
       options: [{
         value: 'today',
         label: '今天'
@@ -401,14 +407,9 @@ export default {
           teamId: String(this.teamId),
           planOwner: this.planOwner
         }
-        const loading = this.$loading({
-          lock: true,
-          text: '加载中...',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0)'
-        })
+        this.tableLoading = true
         axios.post('/api/pc/home', objdata).then(res => {
-          loading.close()
+          this.tableLoading = false
           console.log('项目更新数据', res)
           for (let i = 0; i < res.overDue.reverse().length; i++) {
             if (res.overDue[i].scd_status === 3) {
@@ -445,9 +446,9 @@ export default {
             }
           }
         }, () => {
-          loading.close()
+          this.tableLoading = false
         }).catch(() => {
-          loading.close()
+          this.tableLoading = false
         })
       }, 500)
     },

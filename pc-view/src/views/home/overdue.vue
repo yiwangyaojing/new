@@ -1,4 +1,8 @@
 <template>
+  <el-card class="box-card"
+           v-loading="tableLoading"
+           element-loading-text="处理中..."
+           element-loading-spinner="el-icon-loading">
   <el-card class="box-card">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/Home' }">首页</el-breadcrumb-item>
@@ -56,6 +60,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      tableLoading: false,
       editshow: false,
       datas: {
         htqd: 7,
@@ -81,6 +86,7 @@ export default {
       })
     },
     submitClick () {
+      this.tableLoading = true
       let fromData = {
         htqd: Number(this.datas.htqd),
         sgwc: Number(this.datas.sgwc),
@@ -89,7 +95,10 @@ export default {
         id: Number(this.datas.id)
       }
       axios.post('/api/pc/overduePc', fromData).then(res => {
+        this.tableLoading = false
         console.log(res)
+      }, () => {
+        this.tableLoading = false
       })
     }
   },

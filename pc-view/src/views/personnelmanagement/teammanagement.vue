@@ -69,7 +69,7 @@
               </el-select>
             </el-col>
             <el-col :span="5" :offset="1" >
-              <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存</el-button>
+              <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存修改</el-button>
             </el-col>
           </el-row>
           <el-row style="margin-top: 20px;">
@@ -226,6 +226,10 @@ export default {
     },
     saveRoleChange () {
       if (!this.changeItems || this.changeItems.length === 0) {
+        this.$message({
+          message: '请变更管理员后保存!',
+          type: 'warning'
+        })
         this.saveDialogVisible = false
         return
       }

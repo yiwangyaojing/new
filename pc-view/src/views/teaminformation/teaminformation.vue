@@ -29,9 +29,9 @@
       <el-col :span="24" class="y-Center" style="margin-top: 20px;">
         <el-col :span="2" style="font-size: 14px;">验证码</el-col>
         <el-col :span="3"><el-input v-model="yzmvalue" size="small" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="3">
-          <div v-if="showcode" class="xy-Center" style="border: 1px solid #dcdfe6;width: 90px;height: 32px;border-radius: 5px;margin-left: 30px;" @click="yzmcode">获取验证码</div>
-          <button v-if="!showcode" disabled class="xy-Center" style="border: 1px solid #dcdfe6;width: 60px;height: 32px;border-radius: 5px;margin-left: 30px;" @click="yzmcode">{{numcode}}秒</button>
+        <el-col :span="2" offset="1">
+          <el-button size="small" v-if="showcode" type="success" @click="yzmcode">获取验证码</el-button>
+          <el-button size="small" v-if="!showcode" style="width: 92px" type="success" disabled>{{numcode}}秒</el-button>
         </el-col>
       </el-col>
       <el-button @click="submitClick" size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">保存修改</el-button>
@@ -86,7 +86,6 @@ export default {
       clearInterval(timer)
       timer = setInterval(function () {
         if (_this.numcode > 0) {
-          console.log('开始倒计时')
           _this.numcode--
         } else {
           _this.numcode = 120
@@ -144,6 +143,7 @@ export default {
         this.sessionUser.company_logo = this.company_logo
         window.sessionStorage.removeItem(values.storage.user)
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
+        this.$emit('reloadUserData')
       }, () => {
         this.tableLoading = false
       })

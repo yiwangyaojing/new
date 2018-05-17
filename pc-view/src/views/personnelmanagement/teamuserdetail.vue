@@ -84,7 +84,7 @@ export default {
         lock: true,
         text: '加载中...',
         spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
+        background: 'rgba(0, 0, 0, 0)'
       })
       axios.get('/api/pc/teamUserPc/' + this.team_id + '/' + this.open_id, {}).then(res => {
         loading.close()

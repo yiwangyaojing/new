@@ -160,15 +160,15 @@ export default {
   mounted () {
     let redirectUri = encodeURI('http://web.xiaosolar.com/index.html#/login')
     var obj = new window.WxLogin({
-      self_redirect:true,
-      id:"login_container",
+      self_redirect: true,
+      id: 'login_container',
       appid: 'wxc63276646e2fe762',
       scope: 'snsapi_login',
       redirect_uri: redirectUri,
-      state: "",
-      style: "",
-      href: ""
-    });
+      state: '',
+      style: '',
+      href: ''
+    })
     console.log(obj)
   }
 }

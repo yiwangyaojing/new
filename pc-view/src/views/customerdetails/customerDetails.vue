@@ -308,20 +308,23 @@ export default {
       } else if (tab.name === '3') {
         this.initData()
         if (this.details.h_is_finish === 0) {
-          this.dialogVisible = true
-          this.dialogMessage = '房屋信息未采集'
+          // this.dialogVisible = true
+          // this.dialogMessage = '房屋信息未采集'
+          this.showWarningTips('房屋信息未采集')
         }
       } else if (tab.name === '4') {
         this.initData()
         if (this.details.d_is_finish === 0) {
-          this.dialogVisible = true
-          this.dialogMessage = '客户资料未采集'
+          // this.dialogVisible = true
+          // this.dialogMessage = '客户资料未采集'
+          this.showWarningTips('客户资料未采集')
         }
       } else if (tab.name === '5') {
         this.initData()
         if (this.details.rf_is_finish === 0) {
-          this.dialogVisible = true
-          this.dialogMessage = '排版子未采集'
+          // this.dialogVisible = true
+          // this.dialogMessage = '排版子未采集'
+          this.showWarningTips('排版子未采集')
         }
       } else if (tab.name === '1') {
         let planId = this.$route.query.planId
@@ -349,8 +352,9 @@ export default {
           // 返回客户回款列表
           axios.get('/api/pc/customerDataPc/payStatus/' + planId).then(resp => {
             if (resp.length === 0) {
-              this.dialogVisible = true
-              this.dialogMessage = '暂无回款记录'
+              // this.dialogVisible = true
+              // this.dialogMessage = '暂无回款记录'
+              this.showWarningTips('暂无回款记录')
             }
             this.payList = []
             for (let i = 0; i < resp.length; i++) {
@@ -401,6 +405,12 @@ export default {
         this.$router.push({path: '/download', query: {shortUrl: ''}})
       }
       this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
+    },
+    showWarningTips (text) {
+      this.$message({
+        message: text,
+        type: 'warning'
+      })
     }
   },
   mounted () {

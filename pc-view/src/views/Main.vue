@@ -185,7 +185,7 @@ export default {
     },
     logout () {
       // 退出系统
-      this.$confirm('确定要退出当前系统吗', {
+      this.$confirm('确定要退出当前系统吗?', {
         callback: (action) => {
           if (action === 'confirm') {
             axios.post('/api/logout').then(() => {

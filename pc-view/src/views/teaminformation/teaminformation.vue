@@ -29,7 +29,7 @@
       <el-col :span="24" class="y-Center" style="margin-top: 20px;">
         <el-col :span="2" style="font-size: 14px;">验证码</el-col>
         <el-col :span="3"><el-input v-model="yzmvalue" size="small" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="2" offset="1">
+        <el-col :span="2" :offset="1">
           <el-button size="small" v-if="showcode" type="success" @click="yzmcode">获取验证码</el-button>
           <el-button size="small" v-if="!showcode" style="width: 92px" type="success" disabled>{{numcode}}秒</el-button>
         </el-col>
@@ -80,32 +80,35 @@ export default {
       this.oss_name = response.oss_file_name
     },
     yzmcode () {
-      this.showcode = false
       let _this = this
-      let timer
-      clearInterval(timer)
-      timer = setInterval(function () {
-        if (_this.numcode > 0) {
-          _this.numcode--
-        } else {
-          _this.numcode = 120
-          _this.showcode = true
-          clearInterval(timer)
-        }
-      }, 1000)
+      const loading = this.$loading({
+        lock: true,
+        text: '发送中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0)'
+      })
       axios.post('api/team/sms', {open_id: this.open_id, register_phone: this.phone, template_code: 'SMS_134260282'}).then(res => {
         console.log('验证码成功', res)
-        if (res.message === '验证码发送成功！') {
-          this.$message({
-            type: 'success',
-            message: '验证码发送成功'
-          })
-        } else {
-          this.$message({
-            type: 'error',
-            message: '验证码发送失败'
-          })
-        }
+        loading.close()
+        this.showcode = false
+        let timer
+        clearInterval(timer)
+        timer = setInterval(function () {
+          if (_this.numcode > 0) {
+            _this.numcode--
+          } else {
+            _this.numcode = 120
+            _this.showcode = true
+            clearInterval(timer)
+          }
+        }, 1000)
+        this.$message({
+          type: 'success',
+          message: '验证码发送成功'
+        })
+      }, (fail) => {
+        loading.close()
+        this.$message.error(fail.message)
       })
     },
     submitClick () {

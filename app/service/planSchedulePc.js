@@ -25,12 +25,19 @@ class planSchedulePcService extends Service {
         // 获取权限查询条件
         const query = await this.service.homePc.getTeamQueryParams(req)
         const params = query.params
-        const status  = [0,2,3,4]
+        let status  = [0,2,3,4]
         let search = req.search
         if(!search){
             search= ''
         }
         search = '%'+search+'%'
+
+        // 判断时间的查询类型，默认是按照方案录入时间。
+        let queryTime = 'scd_time'
+        if(req.type === 'customer'){
+            queryTime = 'created_at'
+            status = [0,1,2,3,4,5,6]
+        }
 
         let  andParams = {}
         // 遍历条件查询条件
@@ -56,11 +63,6 @@ class planSchedulePcService extends Service {
         }
 
 
-        // 判断时间的查询类型，默认是按照方案录入时间。
-        let queryTime = 'scd_time'
-        if(req.type === 'customer'){
-            queryTime = 'created_at'
-        }
        // sequelize.col('dailyview.stateDate')),'>=',sequelize.fn('TO_DAYS',lastDate))
         await this.ctx.model.XPlans.findAndCountAll({
             attributes: {

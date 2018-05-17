@@ -1,5 +1,8 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/Signin' }">签到统计</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row>
       <div style="margin-top: 20px;" class="clearfix">
         <el-col :span="8" class="y-Center">

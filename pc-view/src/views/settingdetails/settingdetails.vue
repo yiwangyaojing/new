@@ -1,5 +1,8 @@
 <template>
     <el-card class="box-card">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/SettingDetails' }">进度详情</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-row>
         <div>
           <div :span="24" style="margin-top: 20px;" class="clearfix">
@@ -11,7 +14,7 @@
               </el-select>
             </el-col>
             <el-col :span="16" class="y-Center">
-              <div class="grid-content bg-purple" style="font-size: 14px;;width: 100px;">自定义时间段</div>
+              <div class="grid-content bg-purple" style="font-size: 14px;;width: 100px;">自定义时间</div>
               <div class="block">
                 <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
@@ -58,9 +61,9 @@
             </el-col>
           </div>
         </div>
-        <el-col :span="12" class="y-Center" style="margin-top: 20px;">
-          <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
-          <el-col :span="20">
+        <el-col :span="18" class="y-Center" style="margin-top: 20px;">
+          <el-col :span="2"><div style="font-size: 16px;margin-right: 20px">搜索</div></el-col>
+          <el-col :span="22">
             <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
             </el-input>
           </el-col>
@@ -73,7 +76,7 @@
                     element-loading-text="加载中..."
                     element-loading-spinner="el-icon-loading"
                     style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
-              <el-table-column prop="cst_name" label="客户" ></el-table-column>
+              <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
               <el-table-column prop="user_name" label="负责人" ></el-table-column>
               <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
               <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
@@ -86,7 +89,6 @@
                   <el-tag size="mini" :type="scope.row.overdue === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.overdue}}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column prop="short_url" label="下载提取码" align="center"></el-table-column>
               <el-table-column fixed="right" label="操作" align="center">
                 <template slot-scope="scope">
                   <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>

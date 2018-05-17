@@ -1,5 +1,11 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/PersonnelManagement' }">团队结构</el-breadcrumb-item>
+      <el-breadcrumb-item><a>团队详情</a></el-breadcrumb-item>
+    </el-breadcrumb>
+    <br>
+    <br>
     <el-row>
       <el-col :span="24">
         <el-row>

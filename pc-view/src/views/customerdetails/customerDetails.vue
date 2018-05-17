@@ -1,9 +1,15 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/SettingDetails' }">进度详情</el-breadcrumb-item>
+      <el-breadcrumb-item><a>客户详情</a></el-breadcrumb-item>
+    </el-breadcrumb>
+    <br>
+    <br>
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
         <div class="fl">{{this.details.cst_name}}</div>
-        <div class="fr" @click="download()" style="border: 1px solid #999;padding: 5px;border-radius: 5px;" >打包下载</div>
+        <el-button class="fr" @click="download()" size="mini" disabled="disabledshow" type="primary">打包下载</el-button>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
@@ -69,7 +75,7 @@
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
               <div class="fl">
-                <div style="width: 520px;height: 70px;border: 1px solid #e4e7ed;border-radius: 5px;">{{this.details.cst_remark}}</div>
+                <div style="padding: 10px;;width: 500px;height: 50px;border: 1px solid #e4e7ed;border-radius: 5px;">{{this.details.cst_remark}}</div>
                 <div class="clearfix" style="margin-top: 20px;">
                   <div :span="4" class="clearfix fl" style="width: 200px">
                     <div class="fl" style="width: 80px;">合同状态:</div>
@@ -265,6 +271,7 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
+      disabledshow: true,
       maxImgUrl: '', // 图片放大url地址
       centerDialogVisible: false, // 图片放大Dialog框 默认值
       collapsed: false,
@@ -393,9 +400,11 @@ export default {
       if (this.details.d_is_finish === 0 && this.details.h_is_finish === 0) {
         this.dialogVisible = true
         this.dialogMessage = '无可下载的资源'
+        this.disabledshow = false
       } else {
         this.downloadDialog = true
         this.dialogMessage = '是否下载该用户所有资料'
+        this.disabledshow = true
       }
     },
     downLoadData () {

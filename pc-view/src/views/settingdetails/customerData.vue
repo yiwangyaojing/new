@@ -13,7 +13,7 @@
           <el-col :span="16" class="y-Center">
             <div class="grid-content bg-purple" style="font-size: 14px;;width: 100px;">自定义时间段</div>
             <div class="block">
-              <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+              <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
               </el-date-picker>
             </div>
           </el-col>
@@ -68,19 +68,24 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <el-table :data="tableData" size="small" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
+        <el-table :data="tableData" size="small" stripe
+                  v-loading="tableLoading"
+                  element-loading-text="加载中..."
+                  element-loading-spinner="el-icon-loading"
+                  style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
           <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
           <el-table-column prop="user_name" label="负责人" ></el-table-column>
           <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
-          <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
-          <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
-          <el-table-column prop="h_is_finish" label="拍房子"></el-table-column>
-          <el-table-column prop="d_is_finish" label="收资料"></el-table-column>
-          <el-table-column prop="rf_is_finish" label="排版子"></el-table-column>
-          <el-table-column prop="scdTime" label="添加时间"></el-table-column>
-          <el-table-column fixed="right" label="操作">
+          <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
+          <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
+          <el-table-column prop="h_is_finish" label="项目勘测" align="center"></el-table-column>
+          <el-table-column prop="d_is_finish" label="资料收集" align="center"></el-table-column>
+          <el-table-column prop="rf_is_finish" label="方案设计" align="center"></el-table-column>
+          <el-table-column prop="short_url" label="提取码" width="70" align="center"></el-table-column>
+          <el-table-column prop="scdTime" label="添加时间" width="100" align="center"></el-table-column>
+          <el-table-column fixed="right" label="操作" width="100"  align="center">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
+              <el-button @click="handleClick(scope.row.id)" type="text" size="small" >详情</el-button>
               <el-button type="text" size="small">下载</el-button>
             </template>
           </el-table-column>
@@ -105,6 +110,7 @@ export default {
   data () {
     return {
       showOverflowTooltip: true,
+      tableLoading: false,
       teamLevel: 'all',
       teamId: 'all',
       planOwner: 'all',
@@ -416,12 +422,7 @@ export default {
       this.formlistdata()
     },
     formlistdata () {
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
-      })
+      this.tableLoading = true
       setTimeout(() => {
         console.log('客户资料列表', this.datevalue[0])
         let parameter = {
@@ -434,10 +435,11 @@ export default {
           overDueStatus: this.overDueStatus,
           pageNumber: this.pageNum,
           pageSize: this.pagesizeNum,
-          search: this.searchvalue
+          search: this.searchvalue,
+          type: 'customer'
         }
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
-          loading.close()
+          this.tableLoading = false
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
@@ -460,9 +462,9 @@ export default {
           }
           console.log('表格数据', this.tableData, res)
         }, () => {
-          loading.close()
+          this.tableLoading = false
         }).catch(() => {
-          loading.close()
+          this.tableLoading = false
         })
       }, 300)
     },

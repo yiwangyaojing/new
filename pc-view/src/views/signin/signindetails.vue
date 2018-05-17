@@ -14,7 +14,7 @@
         <el-col :span="16" class="y-Center">
           <div class="grid-content bg-purple" style="font-size: 14px;width: 100px;">自定义时间段</div>
           <div class="block">
-            <el-date-picker size="small" @change="dateChange" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+            <el-date-picker unlink-panels size="small" @change="dateChange" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
             </el-date-picker>
           </div>
         </el-col>
@@ -25,7 +25,11 @@
       <el-col :span="24" style="margin-top: 30px;">
         <el-col :span="15">
           <el-col :span="23">
-            <el-table :data="tableData" stripe border size="mini" style="width: 100%">
+            <el-table :data="tableData" stripe border size="mini"
+                      v-loading="tableLoading"
+                      element-loading-text="加载中..."
+                      element-loading-spinner="el-icon-loading"
+                      style="width: 100%">
               <el-table-column prop="createTime" label="时间" width="180">
               </el-table-column>
               <el-table-column prop="site" :show-overflow-tooltip="true" label="地点" width="180">
@@ -109,6 +113,7 @@ export default {
   methods: {
     tjzqChange (e) {
       console.log('=====>>', e)
+      this.tjzqvalue = e
       this.datevalue = []
       if (this.tjzqvalue !== '自定义') {
         axios.get('/api/pc/select/date/' + e).then(res => {
@@ -119,13 +124,19 @@ export default {
           this.loadData()
         })
       } else {
-        axios.get('/api/pc/select/date/today').then(res => {
-          console.log(res)
-          for (let i in res) {
-            this.datevalue.push(res[i])
-          }
+        let params = this.$route.query
+        if (params.datevalue && params.datevalue.length > 1) {
+          this.datevalue.push(params.datevalue[0], params.datevalue[1])
           this.loadData()
-        })
+        } else {
+          axios.get('/api/pc/select/date/today').then(res => {
+            console.log(res)
+            for (let i in res) {
+              this.datevalue.push(res[i])
+            }
+            this.loadData()
+          })
+        }
       }
     },
     dateChange () {
@@ -159,15 +170,10 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
-      })
+      this.tableLoading = true
       axios.post('/api/pc/signPc/detail', req).then(res => {
         console.log('这里是查询结果===>>', res)
-        loading.close()
+        this.tableLoading = false
         this.tableData = res.content
         this.totalNum = res.totalCount
         res.content.forEach(item => {
@@ -179,9 +185,9 @@ export default {
           this.center = [item.longitude, item.latitude]
         })
       }, () => {
-        loading.close()
+        this.tableLoading = false
       }).catch(() => {
-        loading.close()
+        this.tableLoading = false
       })
     }
   },
@@ -190,7 +196,9 @@ export default {
     this.openid = params.openid
     this.team = params.teamname
     this.name = params.name
-    this.requestdata(this.loadData)
+    console.log('这里是===》》', params)
+    this.tjzqChange(params.tjzqvalue)
+    // this.requestdata(this.loadData)
   }
 }
 </script>

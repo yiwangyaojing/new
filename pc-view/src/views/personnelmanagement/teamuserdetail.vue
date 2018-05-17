@@ -6,10 +6,10 @@
           <img :src="data.avatarUrl" width="80px" height="80px" class="fl" />
           <div class="fl top-name-wrap"><div class="top-name">{{data.name || ''}}</div></div>
         </el-row>
-        <el-row class="row-top-margin font-xl">
+        <el-row class="row-top-margin f-m">
           <div class="fl label-name">手机号：</div><div class="fl">{{data.phone || ''}}</div>
         </el-row>
-        <el-row class="row-top-margin font-xl">
+        <el-row class="row-top-margin f-m">
           <div class="fl label-name">加入时间：</div><div class="fl">{{ formatDate || ''}}</div>
         </el-row>
       </el-col>
@@ -33,12 +33,12 @@
         </el-table>
       </el-col>
     </el-row>
-    <el-row class="row-top-margin font-xl">
-      <el-row>
+    <el-row class="row-top-margin f-m">
+      <el-row class="row-h">
         <div class="fl label-name">客户数量：</div><div class="fl label-view">{{data.c_num || 0}}</div>
-        <el-button class="m-l-40 label-view-btn" @click="gotoCustomer" type="success" size="mini">他的客户</el-button>
+        <el-button class="m-l-o label-view-btn" @click="gotoCustomer" type="success" size="mini">他的客户</el-button>
       </el-row>
-      <el-row class="row-top-margin">
+      <el-row class="row-top-margin row-h">
         <el-col class="fl">
           <div class="fl">
             <div class="fl label-name">拍房子数量：</div><div class="fl label-view">{{data.h_is_finish_num || 0}}</div>
@@ -48,7 +48,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row class="row-top-margin">
+      <el-row class="row-top-margin row-h">
         <div class="fl label-name">收资料数量：</div><div class="fl label-view">{{data.d_is_finish_num || 0}}</div>
       </el-row>
     </el-row>
@@ -84,7 +84,7 @@ export default {
         lock: true,
         text: '加载中...',
         spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
+        background: 'rgba(0, 0, 0, 0)'
       })
       axios.get('/api/pc/teamUserPc/' + this.team_id + '/' + this.open_id, {}).then(res => {
         loading.close()
@@ -141,6 +141,7 @@ export default {
 }
 .label-view-btn {
   margin-left: 25px;
+  height: 25px;
 }
 .top-name {
   position: absolute;
@@ -150,5 +151,11 @@ export default {
 }
 .row-top-margin {
   margin-top: 10px;
+}
+.m-l-o {
+  margin-left: 35px;
+}
+.row-h {
+  height: 30px;
 }
 </style>

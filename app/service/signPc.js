@@ -46,7 +46,7 @@ class SignPcService extends Service {
             "select  " +
             "distinct u.openid, u.name, " +
             "group_concat(distinct t.name order by tu.team_level asc separator ',') as team,  " +
-            "(select count(1) from x_sign s where s.open_id = u.openid  and date_format(s.create_time, '%Y-%m-%d') >=:endDate and  date_format(s.create_time, '%Y-%m-%d') >=:beginDate ) as sign " +
+            "(select count(1) from x_sign s where s.open_id = u.openid  and date_format(s.create_time, '%Y-%m-%d') >=:beginDate and  date_format(s.create_time, '%Y-%m-%d') <=:endDate ) as sign " +
             "from x_team_user tu,x_team t ,x_users u  " +
             "where tu.open_id = u.openid  " +
             "and tu.team_id = t.id " +

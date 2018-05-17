@@ -13,7 +13,7 @@
             <el-col :span="16" class="y-Center">
               <div class="grid-content bg-purple" style="font-size: 14px;;width: 100px;">自定义时间段</div>
               <div class="block">
-                <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
               </div>
             </el-col>
@@ -68,21 +68,25 @@
       </el-row>
       <el-row>
         <el-col :span="24">
-          <el-table :data="tableData" size="small" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
-              <el-table-column prop="cst_name" label="客户" ></el-table-column>
+          <el-table :data="tableData" size="small" stripe
+                    v-loading="tableLoading"
+                    element-loading-text="加载中..."
+                    element-loading-spinner="el-icon-loading"
+                    style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
+              <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
               <el-table-column prop="user_name" label="负责人" ></el-table-column>
               <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
-              <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
-              <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
-              <el-table-column prop="pay_sum" label="回款金额" ></el-table-column>
-              <el-table-column prop="scdTime" label="开始时间"></el-table-column>
-              <el-table-column prop="scd_status" label="合同状态"></el-table-column>
-              <el-table-column prop="overdue" label="逾期状态" width="100" filter-placement="bottom-end">
+              <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
+              <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
+              <el-table-column prop="pay_sum" label="回款金额" align="center"></el-table-column>
+              <el-table-column prop="scdTime" label="开始时间" align="center" width="100"></el-table-column>
+              <el-table-column prop="scd_status" label="合同状态" align="center"></el-table-column>
+              <el-table-column prop="overdue" label="逾期状态" width="80" filter-placement="bottom-end" align="center">
                 <template slot-scope="scope">
                   <el-tag size="mini" :type="scope.row.overdue === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.overdue}}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column fixed="right" label="操作">
+              <el-table-column fixed="right" label="操作" align="center">
                 <template slot-scope="scope">
                   <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                 </template>
@@ -121,6 +125,7 @@ export default {
       teamoptionsAll: [],
       fuzerenoptions: [],
       fuzerenoptionsAll: [],
+      tableLoading: false,
       options: [{
         value: 'today',
         label: '今天'
@@ -383,9 +388,6 @@ export default {
         if (this.teamname !== '全部(可见范围)') {
           this.teamname = this.teamoptions[0].name
         }
-        if (this.planOwner !== 'all' && this.planOwner !== '个人') {
-          this.fuzerenvalue = this.fuzerenoptions[0].name
-        }
         console.log('团队名称', this.teamoptions, this.teamLevel, this.teamId)
         console.log('负责人', this.fuzerenoptions)
       })
@@ -427,14 +429,9 @@ export default {
           pageSize: this.pagesizeNum,
           search: this.searchvalue
         }
-        const loading = this.$loading({
-          lock: true,
-          text: '加载中...',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.5)'
-        })
+        this.tableLoading = true
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
-          loading.close()
+          this.tableLoading = false
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
@@ -463,9 +460,9 @@ export default {
           }
           console.log('表格数据', this.tableData, res)
         }, () => {
-          loading.close()
+          this.tableLoading = false
         }).catch(() => {
-          loading.close()
+          this.tableLoading = false
         })
       }, 500)
     },
@@ -532,6 +529,21 @@ export default {
         }
         if (parameter.teamLevel === 'one') {
           parameter.tdfwvalue = '个人'
+        }
+        if (String(parameter.scdStatus) === '0') {
+          this.contractvalue = '新增项目'
+        }
+        if (String(parameter.scdStatus) === '2') {
+          this.contractvalue = '合同签订'
+        }
+        if (String(parameter.scdStatus) === '3') {
+          this.contractvalue = '施工完成'
+        }
+        if (String(parameter.scdStatus) === '4') {
+          this.contractvalue = '并网完成'
+        }
+        if (String(parameter.scdStatus) === '6') {
+          this.contractvalue = '回款完成'
         }
         this.tjzqvalue = parameter.tjzqvalue
         this.tdfwvalue = parameter.tdfwvalue

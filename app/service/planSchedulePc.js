@@ -25,12 +25,19 @@ class planSchedulePcService extends Service {
         // 获取权限查询条件
         const query = await this.service.homePc.getTeamQueryParams(req)
         const params = query.params
-        const status  = [0,2,3,4]
+        let status  = [0,2,3,4]
         let search = req.search
         if(!search){
             search= ''
         }
         search = '%'+search+'%'
+
+        // 判断时间的查询类型，默认是按照方案录入时间。
+        let queryTime = 'scd_time'
+        if(req.type === 'customer'){
+            queryTime = 'created_at'
+            status = [0,1,2,3,4,5,6]
+        }
 
         let  andParams = {}
         // 遍历条件查询条件
@@ -55,7 +62,7 @@ class planSchedulePcService extends Service {
             andParams.overdue_date = {[Op.or]:[{[Op.gte]:dateNow},{[Op.eq]:null},{[Op.eq]:''}]}
         }
 
-        // 计算当前条数
+
        // sequelize.col('dailyview.stateDate')),'>=',sequelize.fn('TO_DAYS',lastDate))
         await this.ctx.model.XPlans.findAndCountAll({
             attributes: {
@@ -90,10 +97,9 @@ class planSchedulePcService extends Service {
                     }
                     ],
                     [Op.and]:[
-                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
-                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.endDate),
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col(queryTime), '%Y-%m-%d'),'>=' ,req.beginDate),
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col(queryTime), '%Y-%m-%d'),'<=' ,req.endDate),
                         andParams,
-
                     ]
 
                 }

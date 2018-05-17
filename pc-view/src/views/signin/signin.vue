@@ -12,7 +12,7 @@
         <el-col :span="16" class="y-Center">
           <div class="grid-content bg-purple" style="font-size: 14px;width: 100px">自定义时间段</div>
           <div class="block">
-            <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+            <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
             </el-date-picker>
           </div>
         </el-col>
@@ -43,16 +43,20 @@
     </el-row>
     <el-row>
       <el-col :span="24" style="margin-top: 30px;">
-        <el-table :data="tableData" size="mini" :border="true" style="width: 100%">
+        <el-table :data="tableData" size="mini" :border="true"
+                  v-loading="tableLoading"
+                  element-loading-text="加载中..."
+                  element-loading-spinner="el-icon-loading"
+                  style="width: 100%">
           <el-table-column  prop="name" label="姓名">
           </el-table-column>
           <el-table-column prop="team" label="所属团队">
           </el-table-column>
-          <el-table-column prop="sign" label="签到次数">
+          <el-table-column prop="sign" label="签到次数" align="center">
           </el-table-column>
-          <el-table-column label="操作" width="100">
+          <el-table-column label="操作" width="100" align="center">
             <template slot-scope="scope">
-              <a href="javascript:void(0)" @click="gotoDetail(scope.row)" type="text" size="small">详情</a>
+              <el-button @click="gotoDetail(scope.row)" type="text" size="small" >详情</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -82,6 +86,7 @@ export default {
       fuzerenvalue: '全部(可见范围)',
       teamname: '全部(可见范围)',
       teannameshow: true,
+      tableLoading: false,
       fuzerenshow: true,
       options: [{
         value: 'today',
@@ -288,21 +293,16 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
-      })
+      this.tableLoading = true
       axios.post('/api/pc/signPc', req).then(res => {
         console.log('这里是查询签到结果===>>', res)
-        loading.close()
+        this.tableLoading = false
         this.tableData = res.content
         this.totalNum = res.totalCount
       }, () => {
-        loading.close()
+        this.tableLoading = false
       }).catch(() => {
-        loading.close()
+        this.tableLoading = false
       })
     },
     requestdata (fn) {
@@ -329,7 +329,16 @@ export default {
     },
     gotoDetail (row) {
       console.log('这里是跳转到详情===>>', row)
-      this.$router.push({path: '/SigninDetails', query: {teamname: row.team, openid: row.openid, name: row.name}})
+      this.$router.push({path: '/SigninDetails',
+        query: {
+          teamname: row.team,
+          openid: row.openid,
+          name: row.name,
+          tjzqvalue: this.tjzqvalue,
+          datevalue: this.datevalue,
+          tdfwvalue: this.tdfwvalue,
+          fuzerenshow: this.fuzerenshow
+        }})
     }
   },
   mounted () {

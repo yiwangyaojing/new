@@ -3,7 +3,7 @@
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
         <div class="fl">{{this.details.cst_name}}</div>
-        <div class="fr" style="border: 1px solid #999;padding: 5px;border-radius: 5px;">打包下载</div>
+        <div class="fr" @click="download()" style="border: 1px solid #999;padding: 5px;border-radius: 5px;" >打包下载</div>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
@@ -106,7 +106,7 @@
               </el-col>
             </el-col>
           </el-tab-pane>
-          <el-tab-pane label="拍房子" name="3">
+          <el-tab-pane label="项目勘测" name="3">
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">房屋朝向</div>
@@ -149,7 +149,7 @@
               <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.h_remark}}</div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="收资料" name="4">
+          <el-tab-pane label="资料收集" name="4">
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
               <div class="fl imgs"  v-if="item.data_type === 0" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
@@ -185,7 +185,7 @@
               <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.d_remark}}</div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="排版子" name="5">
+          <el-tab-pane label="方案设计" name="5">
             <div class="clearfix" style="margin-top: 20px;">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">组件规格</div>
@@ -236,7 +236,7 @@
       </el-button>
       <!--放大后的图片end-->
     </el-dialog>
-<!--    <el-dialog
+    <el-dialog
       title="提示"
       :visible.sync="downloadDialog"
       width="30%">
@@ -245,7 +245,7 @@
          <el-button @click="downloadDialog = false">取 消</el-button>
         <el-button type="primary" @click="downLoadData">确 定</el-button>
         </span>
-    </el-dialog>-->
+    </el-dialog>
 
     <el-dialog
       title="提示"
@@ -256,12 +256,6 @@
     <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
   </span>
-    </el-dialog>
-
-    <el-dialog
-      :visible.sync="imgVisible"
-      width="50%">
-      <img :src="imgUrl" style="width: 100%;"/>
     </el-dialog>
   </el-card>
 </template>
@@ -314,20 +308,23 @@ export default {
       } else if (tab.name === '3') {
         this.initData()
         if (this.details.h_is_finish === 0) {
-          this.dialogVisible = true
-          this.dialogMessage = '房屋信息未采集'
+          // this.dialogVisible = true
+          // this.dialogMessage = '房屋信息未采集'
+          this.showWarningTips('房屋信息未采集')
         }
       } else if (tab.name === '4') {
         this.initData()
         if (this.details.d_is_finish === 0) {
-          this.dialogVisible = true
-          this.dialogMessage = '客户资料未采集'
+          // this.dialogVisible = true
+          // this.dialogMessage = '客户资料未采集'
+          this.showWarningTips('客户资料未采集')
         }
       } else if (tab.name === '5') {
         this.initData()
         if (this.details.rf_is_finish === 0) {
-          this.dialogVisible = true
-          this.dialogMessage = '排版子未采集'
+          // this.dialogVisible = true
+          // this.dialogMessage = '排版子未采集'
+          this.showWarningTips('排版子未采集')
         }
       } else if (tab.name === '1') {
         let planId = this.$route.query.planId
@@ -355,8 +352,9 @@ export default {
           // 返回客户回款列表
           axios.get('/api/pc/customerDataPc/payStatus/' + planId).then(resp => {
             if (resp.length === 0) {
-              this.dialogVisible = true
-              this.dialogMessage = '暂无回款记录'
+              // this.dialogVisible = true
+              // this.dialogMessage = '暂无回款记录'
+              this.showWarningTips('暂无回款记录')
             }
             this.payList = []
             for (let i = 0; i < resp.length; i++) {
@@ -390,6 +388,29 @@ export default {
     },
     showMax1 () {
       this.centerDialogVisible = false
+    },
+    download () {
+      if (this.details.d_is_finish === 0 && this.details.h_is_finish === 0) {
+        this.dialogVisible = true
+        this.dialogMessage = '无可下载的资源'
+      } else {
+        this.downloadDialog = true
+        this.dialogMessage = '是否下载该用户所有资料'
+      }
+    },
+    downLoadData () {
+      let shortUrl = this.details.short_url
+      if (!shortUrl) {
+        this.$message.error('下载提取码自动获取失败！手动填写')
+        this.$router.push({path: '/download', query: {shortUrl: ''}})
+      }
+      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
+    },
+    showWarningTips (text) {
+      this.$message({
+        message: text,
+        type: 'warning'
+      })
     }
   },
   mounted () {

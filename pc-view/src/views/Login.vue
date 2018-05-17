@@ -10,9 +10,10 @@
         <el-card>
           <br/><br/><br/><br/>
           <el-row type="flex" justify="center" align="middle">
-            <el-col style="font-size: 30px;text-align: center">Sign In</el-col>
+            <el-col style="font-size: 30px;text-align: center">用户登录</el-col>
           </el-row>
-          <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
+          <div id="login"></div>
+          <!--<el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
                    class="form">
             <el-form-item prop="username">
               <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
@@ -25,7 +26,7 @@
                               placeholder="验证码"/>
                   </el-col>
                 </el-col>
-                <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
+                &lt;!&ndash;<el-button type="danger" @click="getValidateCode">获取验证码</el-button>&ndash;&gt;
                 <el-col v-if="codeShow" :span="9">
                   <el-button size="medium" @click="getValidateCode" type="primary" :disabled="!codeShow">获取验证码
                   </el-button>
@@ -38,19 +39,19 @@
             </el-form-item>
             <el-form-item prop="captcha">
               <el-row>
-                <!--<el-col :span=16>-->
-                <!--<el-input type="text" :maxlength="6" v-model="loginForm.captcha" auto-complete="off" placeholder="验证码"/>-->
-                <!--</el-col>-->
-                <!--<el-col :span=8>-->
-                <!--<img :src="captchaUrl" width="100%" style="height: 35px;" @keyup.enter="handleSubmit"/>-->
-                <!--</el-col>-->
+                &lt;!&ndash;<el-col :span=16>&ndash;&gt;
+                &lt;!&ndash;<el-input type="text" :maxlength="6" v-model="loginForm.captcha" auto-complete="off" placeholder="验证码"/>&ndash;&gt;
+                &lt;!&ndash;</el-col>&ndash;&gt;
+                &lt;!&ndash;<el-col :span=8>&ndash;&gt;
+                &lt;!&ndash;<img :src="captchaUrl" width="100%" style="height: 35px;" @keyup.enter="handleSubmit"/>&ndash;&gt;
+                &lt;!&ndash;</el-col>&ndash;&gt;
               </el-row>
             </el-form-item>
             <el-form-item>
-              <el-button type="danger" style="width: 80px;" round @click="handleSubmit('loginForm')">Login</el-button>
-              <el-button type="text" size="mini" disabled>Forgot password?</el-button>
+              <el-button type="danger" style="width: 120px;" round @click="handleSubmit('loginForm')">登录</el-button>
+              &lt;!&ndash;<el-button type="text" size="mini" disabled>Forgot password?</el-button>&ndash;&gt;
             </el-form-item>
-          </el-form>
+          </el-form>-->
           <el-row type="flex" justify="center" align="middle">
             <el-col/>
           </el-row>
@@ -176,7 +177,18 @@ export default {
     }
   },
   mounted () {
-
+    let redirectUrl = encodeURI('http://baidu.com')
+    var obj = new window.WxLogin({
+      self_redirect: true,
+      id: 'login',
+      appid: 'wxc63276646e2fe762',
+      scope: 'snsapi_login',
+      redirect_uri: redirectUrl,
+      state: '',
+      style: '',
+      href: ''
+    })
+    console.log(obj)
   }
 }
 </script>

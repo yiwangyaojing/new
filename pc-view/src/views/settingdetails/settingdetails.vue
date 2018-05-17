@@ -429,7 +429,7 @@ export default {
           lock: true,
           text: '加载中...',
           spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.5)'
+          background: 'rgba(0, 0, 0, 0)'
         })
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
           loading.close()

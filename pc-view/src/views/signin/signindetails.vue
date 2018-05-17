@@ -163,7 +163,7 @@ export default {
         lock: true,
         text: '加载中...',
         spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
+        background: 'rgba(0, 0, 0, 0)'
       })
       axios.post('/api/pc/signPc/detail', req).then(res => {
         console.log('这里是查询结果===>>', res)

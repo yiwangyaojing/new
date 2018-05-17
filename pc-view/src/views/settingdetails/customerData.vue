@@ -61,9 +61,9 @@
           </el-col>
         </div>
       </div>
-      <el-col :span="12" class="y-Center" style="margin-top: 20px;">
+      <el-col :span="18" class="y-Center" style="margin-top: 20px;">
         <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
-        <el-col :span="20">
+        <el-col :span="22">
           <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
           </el-input>
         </el-col>
@@ -81,15 +81,15 @@
           <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
           <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
           <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
-          <el-table-column prop="h_is_finish" label="项目勘测" align="center"></el-table-column>
-          <el-table-column prop="d_is_finish" label="资料收集" align="center"></el-table-column>
-          <el-table-column prop="rf_is_finish" label="方案设计" align="center"></el-table-column>
+          <el-table-column :formatter="finishFormat" prop="h_is_finish" label="项目勘测" align="center"></el-table-column>
+          <el-table-column :formatter="finishFormat" prop="d_is_finish" label="资料收集" align="center"></el-table-column>
+          <el-table-column :formatter="finishFormat" prop="rf_is_finish" label="方案设计" align="center"></el-table-column>
           <el-table-column prop="short_url" label="提取码" width="70" align="center"></el-table-column>
           <el-table-column prop="scdTime" label="添加时间" width="100" align="center"></el-table-column>
           <el-table-column fixed="right" label="操作" width="100"  align="center">
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row.id)" type="text" size="small" >详情</el-button>
-              <el-button type="text" size="small">下载</el-button>
+              <el-button :disabled="scope.row.h_is_finish == 0 && scope.row.d_is_finish == 0" type="text" @click="downLoadData()" size="small">下载</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -112,6 +112,7 @@ import values from '../../utils/values'
 export default {
   data () {
     return {
+      disabled: true,
       showOverflowTooltip: true,
       tableLoading: false,
       teamLevel: 'all',
@@ -232,6 +233,9 @@ export default {
     }
   },
   methods: {
+    finishFormat (row, column, cellValue, index) {
+      return cellValue === 0 ? '否' : '是'
+    },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
       this.pagesizeNum = val
@@ -444,26 +448,12 @@ export default {
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
           this.tableLoading = false
           this.tableData = res.content
+          console.log('表格数据11111111111111111111', this.tableData)
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
             this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
-            if (this.tableData[i].h_is_finish === 0) {
-              this.tableData[i].h_is_finish = '否'
-            } else {
-              this.tableData[i].h_is_finish = '是'
-            }
-            if (this.tableData[i].d_is_finish === 0) {
-              this.tableData[i].d_is_finish = '否'
-            } else {
-              this.tableData[i].d_is_finish = '是'
-            }
-            if (this.tableData[i].rf_is_finish === 0) {
-              this.tableData[i].rf_is_finish = '否'
-            } else {
-              this.tableData[i].rf_is_finish = '是'
-            }
           }
-          console.log('表格数据', this.tableData, res)
+          console.log('表格数据11111111111111111111', this.tableData, res)
         }, () => {
           this.tableLoading = false
         }).catch(() => {
@@ -478,6 +468,14 @@ export default {
       console.log('id:')
       console.log(id)
       this.$router.push({path: '/CustomerDetails', query: {planId: id}})
+    },
+    downLoadData () {
+      let shortUrl = this.tableData.short_url
+      if (!shortUrl) {
+        this.$message.error('下载提取码自动获取失败！手动填写')
+        this.$router.push({path: '/download', query: {shortUrl: ''}})
+      }
+      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
     }
   },
   mounted () {

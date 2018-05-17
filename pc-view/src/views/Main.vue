@@ -6,7 +6,7 @@
   <el-container>
     <el-aside width="auto" style="position: relative;">
       <el-row type="flex" align="middle" class="logo">
-        <img src="../../static/img/logo.png"/>
+        <img src="../../static/img/logo.png" @click="goHome" style="cursor: pointer;"/>
       </el-row>
       <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF" :default-active="index"
                background-color="#fff" :collapse="collapsed">
@@ -221,6 +221,9 @@ export default {
           })
         }
       })
+    },
+    goHome () {
+      this.$router.push({name: 'Home'})
     }
   },
   updated () {

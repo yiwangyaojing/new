@@ -223,6 +223,10 @@ export default {
     },
     saveRoleChange () {
       if (!this.changeItems || this.changeItems.length === 0) {
+        this.$message({
+          message: '请变更管理员后保存!',
+          type: 'warning'
+        })
         this.saveDialogVisible = false
         return
       }

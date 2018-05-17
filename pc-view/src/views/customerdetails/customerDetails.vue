@@ -1,7 +1,8 @@
 <template>
   <el-card class="box-card">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/SettingDetails' }">进度详情</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="from" :to="{ path: '/SettingDetails' }">进度详情</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="!from" :to="{ path: '/CustomerData' }">客户资料</el-breadcrumb-item>
       <el-breadcrumb-item><a>客户详情</a></el-breadcrumb-item>
     </el-breadcrumb>
     <br>
@@ -281,6 +282,7 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
+      from: true,
       paifangzishow: true,
       shouziliaoshow: true,
       paibanzishow: true,
@@ -439,6 +441,11 @@ export default {
     }
   },
   mounted () {
+    if (this.$route.query.from === 1) {
+      this.from = true
+    } else {
+      this.from = false
+    }
     this.initData()
   }
 }

@@ -73,6 +73,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      tableLoading: false,
       name: '',
       team: '',
       openid: '',

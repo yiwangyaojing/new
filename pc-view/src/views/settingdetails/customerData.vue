@@ -449,21 +449,6 @@ export default {
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
             this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
-//            if (this.tableData[i].h_is_finish === 0) {
-//              this.tableData[i].h_is_finish = '否'
-//            } else {
-//              this.tableData[i].h_is_finish = '是'
-//            }
-//            if (this.tableData[i].d_is_finish === 0) {
-//              this.tableData[i].d_is_finish = '否'
-//            } else {
-//              this.tableData[i].d_is_finish = '是'
-//            }
-//            if (this.tableData[i].rf_is_finish === 0) {
-//              this.tableData[i].rf_is_finish = '否'
-//            } else {
-//              this.tableData[i].rf_is_finish = '是'
-//            }
           }
           console.log('表格数据11111111111111111111', this.tableData, res)
         }, () => {

@@ -397,9 +397,8 @@ export default {
     downLoadData () {
       let shortUrl = this.details.short_url
       if (!shortUrl) {
-        this.$message.error('下载提取码获取失败！')
-        this.downloadDialog = false
-        return
+        this.$message.error('下载提取码自动获取失败！手动填写')
+        this.$router.push({path: '/download', query: {shortUrl: ''}})
       }
       this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
     }

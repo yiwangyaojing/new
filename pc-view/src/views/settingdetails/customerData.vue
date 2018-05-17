@@ -469,7 +469,7 @@ export default {
     handleClick (id) {
       console.log('id:')
       console.log(id)
-      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
+      this.$router.push({path: '/CustomerDetails', query: {planId: id, from: 2}})
     },
     downLoadData () {
       let shortUrl = this.tableData.short_url

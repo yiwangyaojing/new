@@ -36,7 +36,7 @@
                       element-loading-text="加载中..."
                       element-loading-spinner="el-icon-loading"
                       style="width: 100%">
-              <el-table-column prop="createTime" label="时间" width="180">
+              <el-table-column prop="createTime" :formatter="finishFormat" label="时间" width="180">
               </el-table-column>
               <el-table-column prop="site" :show-overflow-tooltip="true" label="地点" width="180">
               </el-table-column>
@@ -70,6 +70,7 @@
 </template>
 <script>
 import axios from 'axios'
+import dateFormat from 'dateformat'
 export default {
   data () {
     return {
@@ -118,6 +119,10 @@ export default {
     }
   },
   methods: {
+    finishFormat (row, column, cellValue, index) {
+      console.log('44444444',cellValue)
+      return  dateFormat(cellValue, 'yyyy-MM-dd HH:mm:ss')
+    },
     tjzqChange (e) {
       console.log('=====>>', e)
       this.tjzqvalue = e

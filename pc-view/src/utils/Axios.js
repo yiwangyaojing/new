@@ -24,6 +24,10 @@ export default class Axios {
       config.withCredentials = true
       // 增加csrfToken参数
       config.headers['x-csrf-token'] = cookie.getCookie('backendcsrfToken')
+
+      // basic auto
+      config.headers['Authorization'] = 'Basic bWFydmVsX2NvbWljczpYaWFvc29sYXIyMDE4'
+
       if (conf && conf.baseURL) {
         config.baseURL = conf.baseURL
       }

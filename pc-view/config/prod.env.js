@@ -1,6 +1,6 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  CONTEXT: '"/front-api"',
+  CONTEXT: '"https://mpa.xiaosolar.com/front-api"',
   CONTEXT_HTML : '"/front-api/public"'
 }

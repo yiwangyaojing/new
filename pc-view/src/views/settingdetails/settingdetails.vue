@@ -487,7 +487,7 @@ export default {
     handleClick (id) {
       console.log('id:')
       console.log(id)
-      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
+      this.$router.push({path: '/CustomerDetails', query: {planId: id, from: 1}})
     }
   },
   mounted () {

@@ -44,11 +44,20 @@ class TeamPcController extends Controller {
       const { ctx, service } = this
       const rule = {
         teamid: {type: 'string', required: true},
-        openid: {type: 'string', required: true}
-      };
-
+        openid: {type: 'string', required: true},
+        phone: {type: 'string', required: true},
+        code: {type: 'string', required: true}
+      }
       const req = ctx.params
-      ctx.validate(rule, req);
+      ctx.validate(rule, req)
+      try{
+        //  验证码校验
+        if (!await service.sms.doValidate(req.phone, req.code)) {
+            return;
+        }
+      }catch(e){
+        throw e;
+      }
       ctx.body = await service.teamPc.dissolveTeam(req.teamid, req.openid)
     }
 
@@ -63,6 +72,17 @@ class TeamPcController extends Controller {
       const req = ctx.request.body
       ctx.validate(rule, req)
       ctx.body = await service.teamPc.changeTeamUsersRole(req.team_id, req.open_id, req.users)
+    }
+
+    // 发送短信验证码
+    async sms() {
+      const {ctx, service} = this
+      const rule = {
+        phone: {type: 'string', required: true},
+      };
+      const req = ctx.request.body
+      ctx.validate(rule, req);
+      ctx.body = await service.sms.sendValidateCode(req.phone, req.phone, "SMS_135031292");
     }
 }
 

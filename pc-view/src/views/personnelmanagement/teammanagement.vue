@@ -7,7 +7,7 @@
       <span style="color: #FF0000;">确定解散团队？解散后将会删除所有团队信息，且不可恢复！</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dissolveTeam">确 定</el-button>
+        <el-button type="primary" @click="sendCodeVisible = true">确 定</el-button>
       </span>
     </el-dialog>
     <el-dialog
@@ -18,6 +18,30 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="saveDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="saveRoleChange">确 定</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog
+      :visible.sync="sendCodeVisible"
+      width="20%"
+      center>
+      <el-row class="font-size-20">
+        <el-col :span="10">注册手机号：</el-col>
+        <el-col :span="14">{{phone}}</el-col>
+      </el-row>
+      <el-row class="m-t-10 font-size-20">
+        <el-col :span="10">验证码：</el-col>
+        <el-col :span="14">
+          <el-input size="small" v-model="code" placeholder="请输入验证码"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="m-t-10 font-size-20">
+        <el-col :offset="10" :span="14">
+          <el-button size="small" style="width: 120px" :loading="sendLoading" type="success" @click="sendCode">{{sendButtonContent}}</el-button>
+        </el-col>
+      </el-row>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="small" @click="sendCodeVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="dissolveTeam">确 定</el-button>
       </span>
     </el-dialog>
     <el-row>
@@ -85,7 +109,11 @@ export default {
     return {
       saveDialogVisible: false,
       dialogVisible: false,
+      sendCodeVisible: false,
       hightlight: true,
+      sendLoading: false,
+      sendButtonContent: '发送验证码',
+      phone: '',
       defaultKey: [],
       data: [],
       selectedTeam: null,
@@ -94,6 +122,7 @@ export default {
         children: 'children',
         label: 'name'
       },
+      code: '',
       founder: {},
       users: [],
       selectedItems: [],
@@ -105,6 +134,43 @@ export default {
     }
   },
   methods: {
+    sendCode () {
+      this.sendLoading = true
+      const loading = this.$loading({
+        lock: true,
+        text: '处理中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0)'
+      })
+      axios.post('/api/teamPc/sms', {phone: this.phone}).then((res) => {
+        this.$notify({
+          title: '成功',
+          message: '验证码发送成功',
+          type: 'success'
+        })
+        loading.close()
+        this.changeSendBtn()
+      }, () => {
+        loading.close()
+        this.sendButtonContent = '发送验证码'
+        this.sendLoading = false
+      }).catch(() => {
+        loading.close()
+        this.sendButtonContent = '发送验证码'
+        this.sendLoading = false
+      })
+    },
+    changeSendBtn () {
+      this.sendButtonContent = 120
+      let id = setInterval(() => {
+        this.sendButtonContent--
+        if (this.sendButtonContent === 0) {
+          this.sendButtonContent = '发送验证码'
+          this.sendLoading = false
+          clearInterval(id)
+        }
+      }, 1000)
+    },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
       this.pagesizeNum = val
@@ -194,6 +260,10 @@ export default {
       console.log('解散团队===>>', value)
       let userInfo = getUserInfo()
       console.log('this is userInfo ===>>', userInfo)
+      if (!this.code) {
+        this.$message.error('请输入验证码！')
+        return false
+      }
       let openid = userInfo.openid
       const loading = this.$loading({
         lock: true,
@@ -201,7 +271,7 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0)'
       })
-      axios.delete('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then(res => {
+      axios.delete('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id + '/' + this.phone + '/' + this.code, {}).then(res => {
         loading.close()
         this.dialogVisible = false
         this.$notify({
@@ -210,11 +280,16 @@ export default {
           type: 'success'
         })
         console.log('这里是删除结果===>>', res)
-      }, () => {
-        this.dialogVisible = false
+      }, (fail) => {
+        console.log('fail ===>>', fail)
+        this.$message.error(fail.message)
+        // this.dialogVisible = false
+        // this.sendCodeVisible = false
         loading.close()
-      }).catch(() => {
+      }).catch((err) => {
+        console.log('err ===>>', err)
         this.dialogVisible = false
+        this.sendCodeVisible = false
         loading.close()
       })
     },
@@ -320,6 +395,8 @@ export default {
     }
   },
   mounted () {
+    let userInfo = getUserInfo()
+    this.phone = userInfo.phone
     let params = this.$route.query
     console.log('这里是跳转过来的参数===>>', params)
     if (params.id) {
@@ -366,5 +443,11 @@ export default {
     display: -webkit-flex;
     -webkit-align-items: center;
     align-items: center;
+  }
+  .m-t-10 {
+    margin-top: 10px;
+  }
+  .font-size-20 {
+    font-size: 18px
   }
 </style>

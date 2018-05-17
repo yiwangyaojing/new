@@ -1,5 +1,8 @@
 <template>
-  <el-card class="box-card">
+  <el-card class="box-card"
+           v-loading="tableLoading"
+           element-loading-text="处理中..."
+           element-loading-spinner="el-icon-loading">
       <el-row style="margin-top: 20px;">
         <div style="font-size: 20px;">逾期规则设置</div>
         <el-col :span="24">
@@ -52,6 +55,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      tableLoading: false,
       editshow: false,
       datas: {
         htqd: 7,
@@ -77,6 +81,7 @@ export default {
       })
     },
     submitClick () {
+      this.tableLoading = true
       let fromData = {
         htqd: Number(this.datas.htqd),
         sgwc: Number(this.datas.sgwc),
@@ -85,7 +90,10 @@ export default {
         id: Number(this.datas.id)
       }
       axios.post('/api/pc/overduePc', fromData).then(res => {
+        this.tableLoading = false
         console.log(res)
+      }, () => {
+        this.tableLoading = false
       })
     }
   },

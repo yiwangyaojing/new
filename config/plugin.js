@@ -8,7 +8,11 @@ exports.validate = {
   enable: true,
   package: 'egg-validate',
 };
-
+//允许跨域请求
+exports.cors = {
+    enable: true,
+    package: 'egg-cors',
+};
 exports.redis = {
   enable: true,
   package: 'egg-redis',

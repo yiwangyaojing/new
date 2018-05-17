@@ -10,7 +10,7 @@
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
         <div class="fl">{{this.details.cst_name}}</div>
-        <el-button class="fr" @click="download()" size="mini" disabled="disabledshow" type="primary">打包下载</el-button>
+        <el-button class="fr" @click="download()" size="mini" :disabled="disabledshow" type="primary">打包下载</el-button>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
@@ -101,6 +101,17 @@
                 </el-card>
               </el-col>
             </el-col>
+            <el-col :span="10" :offset="7">
+            <el-alert
+              v-if="!hetongzhuangtaishow"
+              width="300px"
+              title="暂无合同状态记录"
+              type="warning"
+              :closable= false
+              center
+              show-icon>
+            </el-alert>
+            </el-col>
           </el-tab-pane>
           <el-tab-pane label="回款" name="2">
             <el-col :span="24" style="margin-bottom: 20px;" v-for="(items, index) in payList" :key="index">
@@ -111,6 +122,16 @@
                   <div style="color: #999;">备注：{{items.pay_remark}}</div>
                 </el-card>
               </el-col>
+            </el-col>
+            <el-col :span="10" :offset="7">
+            <el-alert
+              v-if="!huikuanshow"
+              title="暂无汇款记录"
+              type="warning"
+              :closable= false
+              center
+              show-icon>
+            </el-alert>
             </el-col>
           </el-tab-pane>
           <el-tab-pane label="项目勘测" name="3">
@@ -156,7 +177,16 @@
                 <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.h_remark}}</div>
               </div>
             </div>
-            <div v-if="!paifangzishow" style="text-align: center;">暂无数据</div>
+            <el-col :span="10" :offset="7">
+            <el-alert
+              v-if="!paifangzishow"
+              title="项目未勘测"
+              type="warning"
+              :closable= false
+              center
+              show-icon>
+            </el-alert>
+            </el-col>
           </el-tab-pane>
           <el-tab-pane label="资料收集" name="4">
             <div v-if="shouziliaoshow">
@@ -195,9 +225,16 @@
                 <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.d_remark}}</div>
               </div>
             </div>
-            <div v-if="!shouziliaoshow" style="text-align: center;">
-              暂无数据
-            </div>
+            <el-col :span="10" :offset="7">
+            <el-alert
+              v-if="!shouziliaoshow"
+              title="资料未收集"
+              type="warning"
+              center
+              :closable= false
+              show-icon>
+            </el-alert>
+            </el-col>
           </el-tab-pane>
           <el-tab-pane label="方案设计" name="5">
             <div v-if="paibanzishow">
@@ -233,7 +270,17 @@
               <div style="margin-top: 20px;font-size: 16px;">排布示意图</div>
               <div style="margin-top: 20px;"><img width="400" :src="details.rf_image" alt=""></div>
             </div>
-            <div v-if="!paibanzishow" style="text-align: center;">暂无数据</div>
+            <el-col :span="10" :offset="7">
+              <el-alert
+                v-if="!paibanzishow"
+                title="暂无设计方案"
+                :closable= false
+                type="warning"
+                width="300px"
+                center
+                show-icon>
+              </el-alert>
+            </el-col>
           </el-tab-pane>
         </el-tabs>
       </el-col>
@@ -284,6 +331,8 @@ export default {
     return {
       from: true,
       paifangzishow: true,
+      hetongzhuangtaishow: true,
+      huikuanshow: true,
       shouziliaoshow: true,
       paibanzishow: true,
       disabledshow: true,
@@ -332,7 +381,7 @@ export default {
         if (this.details.h_is_finish === 0) {
           // this.dialogVisible = true
           // this.dialogMessage = '房屋信息未采集'
-          this.showWarningTips('房屋信息未采集')
+          this.showWarningTips('项目未勘测')
           this.paifangzishow = false
         }
       } else if (tab.name === '4') {
@@ -340,7 +389,7 @@ export default {
         if (this.details.d_is_finish === 0) {
           // this.dialogVisible = true
           // this.dialogMessage = '客户资料未采集'
-          this.showWarningTips('客户资料未采集')
+          this.showWarningTips('资料未采集')
           this.shouziliaoshow = false
         }
       } else if (tab.name === '5') {
@@ -348,7 +397,7 @@ export default {
         if (this.details.rf_is_finish === 0) {
           // this.dialogVisible = true
           // this.dialogMessage = '排版子未采集'
-          this.showWarningTips('排版子未采集')
+          this.showWarningTips('暂无设计方案')
           this.paibanzishow = false
         }
       } else if (tab.name === '1') {
@@ -357,6 +406,10 @@ export default {
         if (planId) {
           // 返回客户合同状态列表
           axios.get('/api/pc/customerDataPc/contractStatus/' + planId).then(resp => {
+            if (resp.length === 0) {
+              this.hetongzhuangtaishow = false
+              this.showWarningTips('暂无合同状态记录')
+            }
             this.contractProgressList = []
             for (let i = 0; i < resp.length; i++) {
               let contractProgress = {
@@ -379,6 +432,7 @@ export default {
             if (resp.length === 0) {
               // this.dialogVisible = true
               // this.dialogMessage = '暂无回款记录'
+              this.huikuanshow = false
               this.showWarningTips('暂无回款记录')
             }
             this.payList = []

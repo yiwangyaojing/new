@@ -1,87 +1,107 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/CustomerData' }">客户资料</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row>
-      <div>
-        <div :span="24" style="margin-top: 20px;" class="clearfix">
+      <el-row class="f-m">
+        <el-col :span="24" style="margin-top: 20px;" class="clearfix">
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
-            <el-select @change="tjzqChange" class="fl" v-model="tjzqvalue" size="small">
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-select>
+            <el-col :span="6" class="font-right">统计周期：</el-col >
+            <el-col :span="18">
+              <el-select @change="tjzqChange" v-model="tjzqvalue" size="small">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
           </el-col>
-          <el-col :span="16" class="y-Center">
-            <div class="grid-content bg-purple" style="font-size: 14px;;width: 100px;">自定义时间段</div>
-            <div class="block">
-              <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+          <el-col :span="8" class="y-Center">
+            <el-col :span="6" class="grid-content bg-purple font-right">自定义时间：</el-col>
+            <el-col :span="18">
+              <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" style="width: 88%" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
               </el-date-picker>
-            </div>
+            </el-col>
           </el-col>
-        </div>
-        <div style="margin-top: 20px;" class="clearfix">
+        </el-col>
+        <el-col :span="24" style="margin-top: 20px;" class="clearfix">
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>
-            <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
-              <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-select>
-          </el-col>
-          <el-col :span="8" class="y-Center">
-            <div class="fl"  style="font-size: 14px;width: 100px;">团队名称</div>
-            <el-select @change="teannameChange" size="small" :disabled="teannameshow" class="fl" v-model="teamname">
-              <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
-              </el-option>
-            </el-select>
+            <el-col :span="6" class="font-right">团队范围：</el-col>
+            <el-col :span="18">
+              <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
+                <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
           </el-col>
           <el-col :span="8" class="y-Center">
-            <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
-            <el-select size="small" class="fl" v-model="fuzerenvalue" @change="fuzerenChange" :disabled="fuzerenshow">
+            <el-col :span="6" class="font-right">团队名称：</el-col>
+            <el-col :span="18">
+              <el-select @change="teannameChange" size="small" style="width: 88%" :disabled="teannameshow" class="fl" v-model="teamname">
+                <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
+            </el-col>
+          </el-col>
+          <el-col :span="8" class="y-Center">
+            <el-col :span="6" class="font-right">负责人：</el-col>
+            <el-select size="small" v-model="fuzerenvalue" @change="fuzerenChange" :disabled="fuzerenshow">
               <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
               </el-option>
             </el-select>
           </el-col>
-        </div>
-        <div style="margin-top: 20px;" class="clearfix">
+        </el-col>
+        <el-col :span="24" style="margin-top: 20px;" class="clearfix">
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;margin-right: 20px;">合同状态</div>
+            <el-col :span="6" class="font-right">合同状态：</el-col>
             <el-select size="small" class="fl" @change="contractChange" v-model="contractvalue" placeholder="请选择">
               <el-option v-for="item in contractoptions" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
           </el-col>
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;;width: 100px;">逾期状态</div>
-            <el-select size="small" class="fl" @change="overdueChange" v-model="overduevalue" placeholder="请选择">
-              <el-option v-for="item in overdueoptions" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-select>
+            <el-col :span="6" class="font-right">逾期状态：</el-col>
+            <el-col :span="18">
+              <el-select style="width: 88%" size="small" @change="overdueChange" v-model="overduevalue" placeholder="请选择">
+                <el-option v-for="item in overdueoptions" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
           </el-col>
-        </div>
-      </div>
-      <el-col :span="12" class="y-Center" style="margin-top: 20px;">
-        <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
-        <el-col :span="20">
-          <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
-          </el-input>
         </el-col>
-      </el-col>
+        <el-col :span="24" style="margin-top: 20px;">
+          <el-col :span="16" class="y-Center">
+            <el-col :span="3" class="font-right">搜索条件：</el-col>
+            <el-col :span="21">
+              <el-col>
+                <el-input style="width: 95%;" size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
+                </el-input>
+              </el-col>
+            </el-col>
+          </el-col>
+        </el-col>
+      </el-row>
     </el-row>
     <el-row>
       <el-col :span="24">
-        <el-table :data="tableData" size="small" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
+        <el-table :data="tableData" size="small" stripe
+                  v-loading="tableLoading"
+                  element-loading-text="加载中..."
+                  element-loading-spinner="el-icon-loading"
+                  style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
           <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
           <el-table-column prop="user_name" label="负责人" ></el-table-column>
           <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
-          <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
-          <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
-          <el-table-column prop="h_is_finish" label="拍房子"></el-table-column>
-          <el-table-column prop="d_is_finish" label="收资料"></el-table-column>
-          <el-table-column prop="rf_is_finish" label="排版子"></el-table-column>
-          <el-table-column prop="scdTime" label="添加时间"></el-table-column>
-          <el-table-column fixed="right" label="操作">
+          <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
+          <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
+          <el-table-column :formatter="finishFormat" prop="h_is_finish" label="项目勘测" align="center"></el-table-column>
+          <el-table-column :formatter="finishFormat" prop="d_is_finish" label="资料收集" align="center"></el-table-column>
+          <el-table-column :formatter="finishFormat" prop="rf_is_finish" label="方案设计" align="center"></el-table-column>
+          <el-table-column prop="short_url" label="提取码" width="70" align="center"></el-table-column>
+          <el-table-column prop="scdTime" label="添加时间" width="100" align="center"></el-table-column>
+          <el-table-column fixed="right" label="操作" width="100"  align="center">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
-              <el-button type="text" size="small">下载</el-button>
+              <el-button @click="handleClick(scope.row.id)" type="text" size="small" >详情</el-button>
+              <el-button :disabled="scope.row.h_is_finish == 0 && scope.row.d_is_finish == 0" type="text" @click="downLoadData()" size="small">下载</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -104,7 +124,9 @@ import values from '../../utils/values'
 export default {
   data () {
     return {
+      disabled: true,
       showOverflowTooltip: true,
+      tableLoading: false,
       teamLevel: 'all',
       teamId: 'all',
       planOwner: 'all',
@@ -223,6 +245,9 @@ export default {
     }
   },
   methods: {
+    finishFormat (row, column, cellValue, index) {
+      return cellValue === 0 ? '否' : '是'
+    },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
       this.pagesizeNum = val
@@ -416,12 +441,7 @@ export default {
       this.formlistdata()
     },
     formlistdata () {
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
-      })
+      this.tableLoading = true
       setTimeout(() => {
         console.log('客户资料列表', this.datevalue[0])
         let parameter = {
@@ -434,35 +454,22 @@ export default {
           overDueStatus: this.overDueStatus,
           pageNumber: this.pageNum,
           pageSize: this.pagesizeNum,
-          search: this.searchvalue
+          search: this.searchvalue,
+          type: 'customer'
         }
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
-          loading.close()
+          this.tableLoading = false
           this.tableData = res.content
+          console.log('表格数据11111111111111111111', this.tableData)
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
             this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
-            if (this.tableData[i].h_is_finish === 0) {
-              this.tableData[i].h_is_finish = '否'
-            } else {
-              this.tableData[i].h_is_finish = '是'
-            }
-            if (this.tableData[i].d_is_finish === 0) {
-              this.tableData[i].d_is_finish = '否'
-            } else {
-              this.tableData[i].d_is_finish = '是'
-            }
-            if (this.tableData[i].rf_is_finish === 0) {
-              this.tableData[i].rf_is_finish = '否'
-            } else {
-              this.tableData[i].rf_is_finish = '是'
-            }
           }
-          console.log('表格数据', this.tableData, res)
+          console.log('表格数据11111111111111111111', this.tableData, res)
         }, () => {
-          loading.close()
+          this.tableLoading = false
         }).catch(() => {
-          loading.close()
+          this.tableLoading = false
         })
       }, 300)
     },
@@ -472,7 +479,15 @@ export default {
     handleClick (id) {
       console.log('id:')
       console.log(id)
-      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
+      this.$router.push({path: '/CustomerDetails', query: {planId: id, from: 2}})
+    },
+    downLoadData () {
+      let shortUrl = this.tableData.short_url
+      if (!shortUrl) {
+        this.$message.error('下载提取码自动获取失败！手动填写')
+        this.$router.push({path: '/download', query: {shortUrl: ''}})
+      }
+      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
     }
   },
   mounted () {

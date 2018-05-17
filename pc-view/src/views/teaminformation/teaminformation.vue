@@ -1,5 +1,8 @@
 <template>
-  <el-card class="box-card">
+  <el-card class="box-card"
+           v-loading="tableLoading"
+           element-loading-text="处理中..."
+           element-loading-spinner="el-icon-loading">
     <el-row>
       <el-col :span="24" class="y-Center">
         <el-col :span="2" style="font-size: 14px;">团队名称</el-col>
@@ -26,9 +29,9 @@
       <el-col :span="24" class="y-Center" style="margin-top: 20px;">
         <el-col :span="2" style="font-size: 14px;">验证码</el-col>
         <el-col :span="3"><el-input v-model="yzmvalue" size="small" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="3">
-          <div v-if="showcode" class="xy-Center" style="border: 1px solid #dcdfe6;width: 90px;height: 32px;border-radius: 5px;margin-left: 30px;" @click="yzmcode">获取验证码</div>
-          <button v-if="!showcode" disabled class="xy-Center" style="border: 1px solid #dcdfe6;width: 60px;height: 32px;border-radius: 5px;margin-left: 30px;" @click="yzmcode">{{numcode}}秒</button>
+        <el-col :span="2" :offset="1">
+          <el-button size="small" v-if="showcode" type="success" @click="yzmcode">获取验证码</el-button>
+          <el-button size="small" v-if="!showcode" style="width: 92px" type="success" disabled>{{numcode}}秒</el-button>
         </el-col>
       </el-col>
       <el-button @click="submitClick" size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">保存修改</el-button>
@@ -41,6 +44,7 @@ import values from '../../utils/values'
 export default {
   data () {
     return {
+      tableLoading: false,
       open_id: '',
       company_name: '',
       phone: '',
@@ -59,11 +63,15 @@ export default {
   },
   methods: {
     requestdata () {
-      axios.get('/api/pc/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
+      this.tableLoading = true
+      axios.get('/api/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
         console.log('查询团队', res)
+        this.tableLoading = false
         this.oss_name = res.oss_name
         this.company_name = res.company_name
         this.company_logo = res.logo
+      }, () => {
+        this.tableLoading = false
       })
     },
     successImg (response, file, fileList) {
@@ -72,22 +80,35 @@ export default {
       this.oss_name = response.oss_file_name
     },
     yzmcode () {
-      this.showcode = false
       let _this = this
-      let timer
-      clearInterval(timer)
-      timer = setInterval(function () {
-        if (_this.numcode > 0) {
-          console.log('开始倒计时')
-          _this.numcode--
-        } else {
-          _this.numcode = 120
-          _this.showcode = true
-          clearInterval(timer)
-        }
-      }, 1000)
+      const loading = this.$loading({
+        lock: true,
+        text: '发送中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0)'
+      })
       axios.post('api/team/sms', {open_id: this.open_id, register_phone: this.phone, template_code: 'SMS_134260282'}).then(res => {
         console.log('验证码成功', res)
+        loading.close()
+        this.showcode = false
+        let timer
+        clearInterval(timer)
+        timer = setInterval(function () {
+          if (_this.numcode > 0) {
+            _this.numcode--
+          } else {
+            _this.numcode = 120
+            _this.showcode = true
+            clearInterval(timer)
+          }
+        }, 1000)
+        this.$message({
+          type: 'success',
+          message: '验证码发送成功'
+        })
+      }, (fail) => {
+        loading.close()
+        this.$message.error(fail.message)
       })
     },
     submitClick () {
@@ -100,11 +121,36 @@ export default {
         id: this.company_id,
         oss_name: this.oss_name
       }
+      if (this.company_name === '') {
+        this.$message({
+          type: 'error',
+          message: '请输入团队名称'
+        })
+        return
+      }
+      if (this.yzmvalue === '') {
+        this.$message({
+          type: 'error',
+          message: '请输入验证码'
+        })
+        return
+      }
+      this.tableLoading = true
       axios.put('api/team/company', objdata).then(res => {
         console.log('修改成功', res)
+        this.tableLoading = false
+        this.$message({
+          type: 'success',
+          message: '修改成功'
+        })
         this.sessionUser.company_logo = this.company_logo
+        this.sessionUser.company_name = this.company_name
+        window.sessionStorage.removeItem(values.storage.user)
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
-        window.location.reload()
+        this.$emit('reloadUserData')
+      }, (fail) => {
+        this.$message.error(fail.message)
+        this.tableLoading = false
       })
     }
   },

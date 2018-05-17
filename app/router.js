@@ -114,6 +114,7 @@ module.exports = app => {
     router.post('/api/login/sms', controller.login.sms);
     router.post('/api/login', controller.login.userLogin);
     router.post('/api/logout', controller.login.logout);
+    router.get('/api/qrLogin/:code', controller.login.qrLogin);
 
     // 首页
     router.post('/api/pc/home',controller.homePc.query); //首页统计列表
@@ -149,7 +150,9 @@ module.exports = app => {
     // PC 团队管理
     router.get('/api/pc/teamPc/:openid', controller.teamPc.index)
     router.get('/api/pc/teamPc/:openid/:pageNum/:pageSize/:id', controller.teamPc.findTeamUsersByPage)
+    router.del('/api/pc/teamPc/:openid/:teamid/:phone/:code', controller.teamPc.dissolveCompany)
     router.del('/api/pc/teamPc/:openid/:teamid', controller.teamPc.dissolveTeam)
+    router.post('/api/teamPc/sms', controller.teamPc.sms)
     router.put('/api/pc/teamPc/changeTeamUsersRole', controller.teamPc.changeTeamUsersRole)
 
     // PC 查询团队用户信息

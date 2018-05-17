@@ -1,5 +1,8 @@
 <template>
   <el-card class="box-card">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: '/PersonnelManagement' }">团队结构</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-dialog
       title="提示"
       :visible.sync="dialogVisible"
@@ -7,7 +10,7 @@
       <span style="color: #FF0000;">确定解散团队？解散后将会删除所有团队信息，且不可恢复！</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dissolveTeam">确 定</el-button>
+        <el-button type="primary" @click="dissolveTeamJuge">确 定</el-button>
       </span>
     </el-dialog>
     <el-dialog
@@ -20,34 +23,61 @@
         <el-button type="primary" @click="saveRoleChange">确 定</el-button>
       </span>
     </el-dialog>
-    <el-row>
+    <el-dialog
+      :visible.sync="sendCodeVisible"
+      width="20%"
+      center>
+      <el-row class="font-size-20">
+        <el-col :span="10">注册手机号：</el-col>
+        <el-col :span="14">{{phone}}</el-col>
+      </el-row>
+      <el-row class="m-t-10 font-size-20">
+        <el-col :span="10">验证码：</el-col>
+        <el-col :span="14">
+          <el-input size="small" v-model="code" placeholder="请输入验证码"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="m-t-10 font-size-20">
+        <el-col :offset="10" :span="14">
+          <el-button size="small" style="width: 90px" :loading="sendLoading" type="success" @click="sendCode">{{sendButtonContent}}</el-button>
+        </el-col>
+      </el-row>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="small" @click="sendCodeVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="dissolveCompany">确 定</el-button>
+      </span>
+    </el-dialog>
+    <el-row class="f-m">
       <el-col :span="24">
         <el-col :span="5">
           <el-tree :data="data" :props="defaultProps" node-key="id" :default-checked-keys="defaultKey" :highlight-current='hightlight' :auto-expand-parent="hightlight" :default-expanded-keys="defaultKey" @node-click="handleNodeClick"></el-tree>
         </el-col>
         <el-col :span="19">
-          <el-col :span="24">
-            <div style="font-size: 14px;">
-              <div class="fl">创建者: &nbsp;&nbsp;{{founder.name}}</div>
-              <el-button v-if="founder.isCompanyManage" class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
-            </div>
-          </el-col>
-          <el-col :span="24" style="margin-top: 20px;">
-            <el-col :span="15">
-              <div class="y-Center">
-                <div class="fl" style="font-size: 14px;">管理员: &nbsp;&nbsp;</div>
-                <el-select style="width: 500px;" size="small" class="fl" v-model="selectedItems" :disabled="!founder.isSaveShow" filterable multiple placeholder="请选择" @change="selectChange">
-                  <el-option v-for="item in users" :key="item.openid" :label="item.name" :value="item.openid">
-                  </el-option>
-                </el-select>
-              </div>
-            </el-col>
+          <el-row class="row-d">
+            <el-col :span="2" style="line-height: 30px;">创建者: &nbsp;&nbsp;</el-col>
+            <el-col :span="3" style="line-height: 30px;">{{founder.name}}</el-col>
             <el-col :span="5">
-              <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存</el-button>
+              <el-button v-if="founder.isCompanyManage" type="info" style="margin-left: 20px; height: 30px;" size="mini" @click="dialogVisible = true" plain>解散团队</el-button>
             </el-col>
-          </el-col>
-          <el-col :span="24" style="margin-top: 20px;">
-            <el-table size="mini" border stripe :data="tableData" style="width: 100%">
+          </el-row>
+          <el-row class="row-d" style="margin-top: 20px;">
+            <el-col :span="2" class="f-m" style="line-height: 30px;">管理员: &nbsp;&nbsp;</el-col>
+            <el-col :span="12">
+              <el-select style="width: 100%;" size="small" class="fl" v-model="selectedItems" :disabled="!founder.isSaveShow" filterable multiple placeholder="请选择" @change="selectChange">
+                <el-option v-for="item in users" :key="item.openid" :label="item.name" :value="item.openid">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="5" :offset="1" >
+              <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存修改</el-button>
+            </el-col>
+          </el-row>
+          <el-row style="margin-top: 20px;">
+            <el-table size="mini" border stripe :data="tableData"
+                      v-loading="tableLoading"
+                      element-loading-text="加载中..."
+                      element-loading-spinner="el-icon-loading"
+                      style="width: 100%">
               <el-table-column prop="name" label="姓名">
               </el-table-column>
               <el-table-column prop="user_rank"  label="角色" :formatter="formatterUserRank">
@@ -69,7 +99,7 @@
                            layout="total, sizes, prev, pager, next, jumper"
                            :total="totalNum">
             </el-pagination>
-          </el-col>
+          </el-row>
         </el-col>
       </el-col>
     </el-row>
@@ -85,7 +115,12 @@ export default {
     return {
       saveDialogVisible: false,
       dialogVisible: false,
+      sendCodeVisible: false,
       hightlight: true,
+      sendLoading: false,
+      tableLoading: false,
+      sendButtonContent: '发送验证码',
+      phone: '',
       defaultKey: [],
       data: [],
       selectedTeam: null,
@@ -94,6 +129,7 @@ export default {
         children: 'children',
         label: 'name'
       },
+      code: '',
       founder: {},
       users: [],
       selectedItems: [],
@@ -105,6 +141,53 @@ export default {
     }
   },
   methods: {
+    dissolveTeamJuge () {
+      // 判断当前团队是否是公司团队
+      console.log('this is team ===>>', this.selectedTeam)
+      if (this.selectedTeam.id === this.selectedTeam.company_id) {
+        this.sendCodeVisible = true
+      } else {
+        this.dissolveTeam()
+      }
+    },
+    sendCode () {
+      this.sendLoading = true
+      const loading = this.$loading({
+        lock: true,
+        text: '处理中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0)'
+      })
+      axios.post('/api/teamPc/sms', {phone: this.phone}).then((res) => {
+        this.$notify({
+          title: '成功',
+          message: '验证码发送成功',
+          type: 'success'
+        })
+        loading.close()
+        this.changeSendBtn()
+      }, (fail) => {
+        loading.close()
+        this.sendButtonContent = '发送验证码'
+        this.sendLoading = false
+        this.$message.error(fail.message)
+      }).catch(() => {
+        loading.close()
+        this.sendButtonContent = '发送验证码'
+        this.sendLoading = false
+      })
+    },
+    changeSendBtn () {
+      this.sendButtonContent = 120
+      let id = setInterval(() => {
+        this.sendButtonContent--
+        if (this.sendButtonContent === 0) {
+          this.sendButtonContent = '发送验证码'
+          this.sendLoading = false
+          clearInterval(id)
+        }
+      }, 1000)
+    },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
       this.pagesizeNum = val
@@ -144,6 +227,10 @@ export default {
     },
     saveRoleChange () {
       if (!this.changeItems || this.changeItems.length === 0) {
+        this.$message({
+          message: '请变更管理员后保存!',
+          type: 'warning'
+        })
         this.saveDialogVisible = false
         return
       }
@@ -167,7 +254,7 @@ export default {
         lock: true,
         text: '处理中...',
         spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
+        background: 'rgba(0, 0, 0, 0)'
       })
       let _this = this
       axios.put('/api/pc/teamPc/changeTeamUsersRole', {open_id: openid, team_id: this.selectedTeam.id, users: this.changeItems}).then(res => {
@@ -190,8 +277,7 @@ export default {
         loading.close()
       })
     },
-    dissolveTeam (value) {
-      console.log('解散团队===>>', value)
+    dissolveTeam () {
       let userInfo = getUserInfo()
       console.log('this is userInfo ===>>', userInfo)
       let openid = userInfo.openid
@@ -199,7 +285,7 @@ export default {
         lock: true,
         text: '处理中...',
         spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
+        background: 'rgba(0, 0, 0, 0)'
       })
       axios.delete('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then(res => {
         loading.close()
@@ -210,11 +296,51 @@ export default {
           type: 'success'
         })
         console.log('这里是删除结果===>>', res)
-      }, () => {
-        this.dialogVisible = false
+      }, (fail) => {
+        console.log('fail ===>>', fail)
+        this.$message.error(fail.message)
         loading.close()
-      }).catch(() => {
+      }).catch((err) => {
+        console.log('err ===>>', err)
         this.dialogVisible = false
+        this.sendCodeVisible = false
+        loading.close()
+      })
+    },
+    dissolveCompany (value) {
+      console.log('解散团队===>>', value)
+      let userInfo = getUserInfo()
+      console.log('this is userInfo ===>>', userInfo)
+      if (!this.code) {
+        this.$message.error('请输入验证码！')
+        return false
+      }
+      let openid = userInfo.openid
+      const loading = this.$loading({
+        lock: true,
+        text: '处理中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0)'
+      })
+      axios.delete('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id + '/' + this.phone + '/' + this.code, {}).then(res => {
+        loading.close()
+        this.dialogVisible = false
+        this.$notify({
+          title: '提示',
+          message: '操作成功!',
+          type: 'success'
+        })
+        console.log('这里是删除结果===>>', res)
+      }, (fail) => {
+        console.log('fail ===>>', fail)
+        this.$message.error(fail.message)
+        // this.dialogVisible = false
+        // this.sendCodeVisible = false
+        loading.close()
+      }).catch((err) => {
+        console.log('err ===>>', err)
+        this.dialogVisible = false
+        this.sendCodeVisible = false
         loading.close()
       })
     },
@@ -228,16 +354,11 @@ export default {
       let userInfo = getUserInfo()
       console.log('this is userInfo ===>>', userInfo, this.selectedTeam)
       let openid = userInfo.openid
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
-      })
+      this.tableLoading = true
       axios.get('/api/pc/teamPc/' + openid + '/' + this.pageNum + '/' + this.pagesizeNum + '/' + this.selectedTeam.id, {}).then((res) => {
         console.log('这里是请求结果handleNodeClick===>>', res)
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
         this.selectedItems = []
         this.tableData = res.users.data
@@ -251,11 +372,11 @@ export default {
         })
       }, () => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       }).catch(() => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       })
     },
@@ -277,15 +398,10 @@ export default {
       console.log('this is userInfo ===>>', userInfo, value)
       let openid = userInfo.openid
       // console.log('this is axios ===>>', this, axios)
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.5)'
-      })
+      this.tableLoading = true
       axios.get('/api/pc/teamPc/' + openid, {}).then((res) => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
         console.log('这里是请求结果init===>>', res, value, res.teams)
         this.selectedItems = []
@@ -310,16 +426,18 @@ export default {
         })
       }, () => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       }).catch(() => {
         setTimeout(() => {
-          loading.close()
+          this.tableLoading = false
         }, 100)
       })
     }
   },
   mounted () {
+    let userInfo = getUserInfo()
+    this.phone = userInfo.phone
     let params = this.$route.query
     console.log('这里是跳转过来的参数===>>', params)
     if (params.id) {
@@ -366,5 +484,14 @@ export default {
     display: -webkit-flex;
     -webkit-align-items: center;
     align-items: center;
+  }
+  .m-t-10 {
+    margin-top: 10px;
+  }
+  .font-size-20 {
+    font-size: 18px
+  }
+  .row-d {
+    height: 25px;
   }
 </style>

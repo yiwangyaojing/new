@@ -1,88 +1,107 @@
 <template>
     <el-card class="box-card">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/SettingDetails' }">进度详情</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-row>
-        <div>
-          <div :span="24" style="margin-top: 20px;" class="clearfix">
+        <el-row class="f-m">
+          <el-col :span="24" style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
-              <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
-              <el-select @change="tjzqChange" class="fl" v-model="tjzqvalue" size="small">
-                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                </el-option>
-              </el-select>
+              <el-col :span="6" class="font-right">统计周期：</el-col >
+              <el-col :span="18">
+                <el-select @change="tjzqChange" v-model="tjzqvalue" size="small">
+                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                  </el-option>
+                </el-select>
+              </el-col>
             </el-col>
-            <el-col :span="16" class="y-Center">
-              <div class="grid-content bg-purple" style="font-size: 14px;;width: 100px;">自定义时间段</div>
-              <div class="block">
-                <el-date-picker @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+            <el-col :span="8" class="y-Center">
+              <el-col :span="6" class="grid-content bg-purple font-right">自定义时间：</el-col>
+              <el-col :span="18">
+                <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" style="width: 88%" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
-              </div>
+              </el-col>
             </el-col>
-          </div>
-          <div style="margin-top: 20px;" class="clearfix">
+          </el-col>
+          <el-col :span="24" style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
-              <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>
-              <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
-                <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
-                </el-option>
-              </el-select>
-            </el-col>
-            <el-col :span="8" class="y-Center">
-              <div class="fl"  style="font-size: 14px;width: 100px;">团队名称</div>
-              <el-select @change="teannameChange" size="small" :disabled="teannameshow" class="fl" v-model="teamname">
-                <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
-                </el-option>
-              </el-select>
+              <el-col :span="6" class="font-right">团队范围：</el-col>
+              <el-col :span="18">
+                <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
+                  <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
+                  </el-option>
+                </el-select>
+              </el-col>
             </el-col>
             <el-col :span="8" class="y-Center">
-              <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
-              <el-select size="small" class="fl" v-model="fuzerenvalue" @change="fuzerenChange" :disabled="fuzerenshow">
+              <el-col :span="6" class="font-right">团队名称：</el-col>
+              <el-col :span="18">
+                <el-select @change="teannameChange" size="small" style="width: 88%" :disabled="teannameshow" class="fl" v-model="teamname">
+                  <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
+                  </el-option>
+                </el-select>
+              </el-col>
+            </el-col>
+            <el-col :span="8" class="y-Center">
+              <el-col :span="6" class="font-right">负责人：</el-col>
+              <el-select size="small" v-model="fuzerenvalue" @change="fuzerenChange" :disabled="fuzerenshow">
                 <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
                 </el-option>
               </el-select>
             </el-col>
-          </div>
-          <div style="margin-top: 20px;" class="clearfix">
+          </el-col>
+          <el-col :span="24" style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
-              <div class="fl" style="font-size: 14px;margin-right: 20px;">合同状态</div>
+              <el-col :span="6" class="font-right">合同状态：</el-col>
               <el-select size="small" class="fl" @change="contractChange" v-model="contractvalue" placeholder="请选择">
                 <el-option v-for="item in contractoptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
             </el-col>
             <el-col :span="8" class="y-Center">
-              <div class="fl" style="font-size: 14px;;width: 100px;">逾期状态</div>
-              <el-select size="small" class="fl" @change="overdueChange" v-model="overduevalue" placeholder="请选择">
-                <el-option v-for="item in overdueoptions" :key="item.value" :label="item.label" :value="item.value">
-                </el-option>
-              </el-select>
+              <el-col :span="6" class="font-right">逾期状态：</el-col>
+              <el-col :span="18">
+                <el-select style="width: 88%" size="small" @change="overdueChange" v-model="overduevalue" placeholder="请选择">
+                  <el-option v-for="item in overdueoptions" :key="item.value" :label="item.label" :value="item.value">
+                  </el-option>
+                </el-select>
+              </el-col>
             </el-col>
-          </div>
-        </div>
-        <el-col :span="12" class="y-Center" style="margin-top: 20px;">
-          <el-col :span="2"><div style="font-size: 16px;">搜索</div></el-col>
-          <el-col :span="20">
-            <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
-            </el-input>
           </el-col>
-        </el-col>
+          <el-col :span="24" style="margin-top: 20px;">
+            <el-col :span="16" class="y-Center">
+              <el-col :span="3" class="font-right">搜索条件：</el-col>
+              <el-col :span="21">
+                <el-col>
+                  <el-input style="width: 95%;" size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
+                  </el-input>
+                </el-col>
+              </el-col>
+            </el-col>
+          </el-col>
+        </el-row>
       </el-row>
       <el-row>
         <el-col :span="24">
-          <el-table :data="tableData" size="small" stripe style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
-              <el-table-column prop="cst_name" label="客户" ></el-table-column>
+          <el-table :data="tableData" size="small" stripe
+                    v-loading="tableLoading"
+                    element-loading-text="加载中..."
+                    element-loading-spinner="el-icon-loading"
+                    style="width: 100%;border: 1px solid #ebeef5;margin-top: 30px;">
+              <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
               <el-table-column prop="user_name" label="负责人" ></el-table-column>
               <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
-              <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
-              <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
-              <el-table-column prop="pay_sum" label="回款金额" ></el-table-column>
-              <el-table-column prop="scdTime" label="开始时间"></el-table-column>
-              <el-table-column prop="scd_status" label="合同状态"></el-table-column>
-              <el-table-column prop="overdue" label="逾期状态" width="100" filter-placement="bottom-end">
+              <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
+              <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
+              <el-table-column prop="pay_sum" label="回款金额" align="center"></el-table-column>
+              <el-table-column prop="scdTime" label="开始时间" align="center" width="100"></el-table-column>
+              <el-table-column prop="scd_status" label="合同状态" align="center"></el-table-column>
+              <el-table-column prop="overdue" label="逾期状态" width="80" filter-placement="bottom-end" align="center">
                 <template slot-scope="scope">
                   <el-tag size="mini" :type="scope.row.overdue === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.overdue}}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column fixed="right" label="操作">
+              <el-table-column fixed="right" label="操作" align="center">
                 <template slot-scope="scope">
                   <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                 </template>
@@ -121,6 +140,7 @@ export default {
       teamoptionsAll: [],
       fuzerenoptions: [],
       fuzerenoptionsAll: [],
+      tableLoading: false,
       options: [{
         value: 'today',
         label: '今天'
@@ -424,14 +444,9 @@ export default {
           pageSize: this.pagesizeNum,
           search: this.searchvalue
         }
-        const loading = this.$loading({
-          lock: true,
-          text: '加载中...',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.5)'
-        })
+        this.tableLoading = true
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
-          loading.close()
+          this.tableLoading = false
           this.tableData = res.content
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
@@ -460,9 +475,9 @@ export default {
           }
           console.log('表格数据', this.tableData, res)
         }, () => {
-          loading.close()
+          this.tableLoading = false
         }).catch(() => {
-          loading.close()
+          this.tableLoading = false
         })
       }, 500)
     },
@@ -472,7 +487,7 @@ export default {
     handleClick (id) {
       console.log('id:')
       console.log(id)
-      this.$router.push({path: '/CustomerDetails', query: {planId: id}})
+      this.$router.push({path: '/CustomerDetails', query: {planId: id, from: 1}})
     }
   },
   mounted () {
@@ -529,6 +544,21 @@ export default {
         }
         if (parameter.teamLevel === 'one') {
           parameter.tdfwvalue = '个人'
+        }
+        if (String(parameter.scdStatus) === '0') {
+          this.contractvalue = '新增项目'
+        }
+        if (String(parameter.scdStatus) === '2') {
+          this.contractvalue = '合同签订'
+        }
+        if (String(parameter.scdStatus) === '3') {
+          this.contractvalue = '施工完成'
+        }
+        if (String(parameter.scdStatus) === '4') {
+          this.contractvalue = '并网完成'
+        }
+        if (String(parameter.scdStatus) === '6') {
+          this.contractvalue = '回款完成'
         }
         this.tjzqvalue = parameter.tjzqvalue
         this.tdfwvalue = parameter.tdfwvalue

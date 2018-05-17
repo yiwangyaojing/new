@@ -106,7 +106,7 @@
               </el-col>
             </el-col>
           </el-tab-pane>
-          <el-tab-pane label="拍房子" name="3">
+          <el-tab-pane label="项目勘测" name="3">
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">房屋朝向</div>
@@ -149,7 +149,7 @@
               <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.h_remark}}</div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="收资料" name="4">
+          <el-tab-pane label="资料收集" name="4">
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
               <div class="fl imgs"  v-if="item.data_type === 0" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
@@ -185,7 +185,7 @@
               <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.d_remark}}</div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="排版子" name="5">
+          <el-tab-pane label="方案设计" name="5">
             <div class="clearfix" style="margin-top: 20px;">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">组件规格</div>

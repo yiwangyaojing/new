@@ -11,8 +11,8 @@
       <el-col :xs="9" :md=7 :sm="8" :lg="7" :xl="4">
         <el-tabs type="border-card" style="width: 100%;">
           <el-tab-pane label="二维码">
-            <div class="x-Center" style="padding: 10px 0">
-              <img style="width: 160px;height: 160px" src="/static/img/erweima.png" alt="">
+            <div class="x-Center" style="padding: 10px 0" id="login_container">
+              <!--<img style="width: 160px;height: 160px" src="/static/img/erweima.png" alt="">-->
             </div>
             <!--<div style="text-align: center;padding: 20px 0;">打开<span style="color: #55a532">光伏好销售</span>扫一扫登录</div>-->
           </el-tab-pane>
@@ -158,7 +158,18 @@ export default {
     }
   },
   mounted () {
-
+    let redirectUri = encodeURI('http://web.xiaosolar.com/index.html#/login')
+    var obj = new window.WxLogin({
+      self_redirect:true,
+      id:"login_container",
+      appid: 'wxc63276646e2fe762',
+      scope: 'snsapi_login',
+      redirect_uri: redirectUri,
+      state: "",
+      style: "",
+      href: ""
+    });
+    console.log(obj)
   }
 }
 </script>

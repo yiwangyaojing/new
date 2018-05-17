@@ -1,7 +1,22 @@
 <template>
     <div id="hot-preview">
-        <HotTable ref="hotTable" :root="root" :settings="hotSettings"></HotTable>
-        <el-button @click="getTableData()" size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">导入</el-button>
+        <div style="background-color:white">
+            <HotTable ref="hotTable" :root="root" :settings="hotSettings"></HotTable>
+        </div>
+        <div>
+            <el-button @click="getTableData()" size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">导入</el-button>
+        </div>
+        <div>
+            导入规则：</br>
+                1.导入功能表格第一行默认一条示例客户，可删除</br>
+                2.右击表格，进行插入行、删除行操作</br>
+                3.单元格黄色表示单元格内容出错，团队或负责人不匹配</br>
+                4.所属团队列单元格黄色时表示为空或者团队名称有错误，请从下拉框内选择所属团队</br>
+                5.项目负责人列单元格黄色时表示为空或者改团队无此人</br>
+                6.客户名称列单元格黄色时表示内容为空</br>
+                7.'联系电话'、'组件规格'、'组件数量'、'合同金额'、'回款金额'这几列只能填入数字,'组件规格'和'组件数量'不能为0</br>
+                8.回款金额不能大于合同金额
+        </div>
     </div>
 </template>
 <script>
@@ -13,79 +28,6 @@ export default {
     return {
       root: 'test-hot',
       hotSettings: {}
-      // hotSettings: {
-      //   data: [
-      //     ["上海分公司", "张三", "示例客户", 13815165465, "上海市徐汇区xxx", 285, 10, "土瓦，客户要多装", 20000, 10000, "2018-05-02", "2018-05-03", "2018-05-04", "2018-05-05", "2018-05-06"],
-      //   ],
-      //   colHeaders: ['所属团队（选填）','项目负责人（选填）','客户名称（必填）','联系电话（选填）','项目地址（选填）','组件规格（W）（选填）','组件数量（块）（选填）','备注（选填）','合同金额（元）（选填）','回款金额（元）（选填）','新建项目时间（选填）','签订合同时间（选填）','施工完成时间（选填）','并网完成时间（选填）','回款完成（选填）'],
-      //   columns:[
-      //       {
-      //           // 所属团队（选填）
-      //           type: 'text',
-      //       },
-      //       {
-      //           // 项目负责人（选填）
-      //           type: 'text',
-      //       },
-      //       {
-      //           // 客户名称（必填）
-      //           type: 'text',
-      //       },
-      //       {
-      //           // 联系电话（选填）
-      //           type: 'numeric',
-      //       },
-      //       {
-      //           // 项目地址（选填）
-      //           type: 'text',
-      //       },
-      //       {
-      //           // 组件规格（W）（选填）
-      //           type: 'numeric',
-      //       },
-      //       {
-      //           // 组件数量（块）（选填）
-      //           type: 'numeric',
-      //       },
-      //       {
-      //           // 备注（选填）
-      //           type: 'text',
-      //       },
-      //       {
-      //           // 合同金额（元）（选填）
-      //           type: 'numeric',
-      //       },
-      //       {
-      //           // 回款金额（元）（选填）
-      //           type: 'numeric',
-      //       },
-      //       {
-      //           // 新建项目时间（选填）
-      //           type: 'date',
-      //           dateFormat: 'YYYY-MM-DD'
-      //       },
-      //       {
-      //           // 签订合同时间（选填）
-      //           type: 'date',
-      //           dateFormat: 'YYYY-MM-DD'
-      //       },
-      //       {
-      //           // 施工完成时间（选填）
-      //           type: 'date',
-      //           dateFormat: 'YYYY-MM-DD'
-      //       },
-      //       {
-      //           // 并网完成时间（选填）
-      //           type: 'date',
-      //           dateFormat: 'YYYY-MM-DD'
-      //       },
-      //       {
-      //           // 回款完成（选填）
-      //           type: 'date',
-      //           dateFormat: 'YYYY-MM-DD'
-      //       },
-      //   ]
-      // },
     }
   },
   components: {
@@ -95,7 +37,7 @@ export default {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
     const _this = this
     // 从后台获取该用户下的所有团队和成员信息
-    axios.get('/api/pc/customerDataPc/getTeamAndUser/'+sessionUser.openid).then((resp) => {
+    axios.get('/api/pc/customerDataPc/getTeamAndUser/' + sessionUser.openid).then((resp) => {
       console.log(resp)
       // resp.agents 公司所有用户信息
       // resp.teams 公司所有团队信息
@@ -107,8 +49,10 @@ export default {
       }
       for (let i = 0; i < resp.agents.length; i++) {
         for (let j = 0; j < teamArray.length; j++) {
-          if (resp.agents[i].team_name === teamArray[j]) {
-            userArray[j].push(resp.agents[i].name)
+          for (let k = 0; k < resp.agents[i].teams.length; k++) {
+            if (resp.agents[i].teams[k].teamName === teamArray[j]) {
+              userArray[j].push(resp.agents[i].name)
+            }
           }
         }
       }
@@ -137,13 +81,7 @@ export default {
             // 客户名称（必填）
             type: 'text',
             allowEmpty: false,
-            validator: function (value, callback) {
-              if (!value || value.length === 0) {
-                callback(false)
-              } else {
-                callback(true)
-              }
-            }
+            validator: _this.emptyValidator
           },
           {
             // 联系电话（选填）
@@ -209,6 +147,15 @@ export default {
             },
             'remove_row': {
               name: '删除行'
+            },
+            'undo': {
+              name: '撤销'
+            },
+            'redo': {
+              name: '重做'
+            },
+            'copy': {
+              name: '复制'
             }
           }
         },
@@ -232,109 +179,31 @@ export default {
             } else {
               cellMeta.source = []
             }
+          } else if (column === 5) {
+            if (tableObj.getDataAtCell(row, 5) === 0) {
+              cellMeta.valid = false
+            }
+          } else if (column === 6) {
+            if (tableObj.getDataAtCell(row, 6) === 0) {
+              cellMeta.valid = false
+            }
+          } else if (column === 9) {
+            // 如果合同金额和回款金额都不为空
+            if (tableObj.getDataAtCell(row, 8) !== '' && tableObj.getDataAtCell(row, 9) !== '') {
+              if (tableObj.getDataAtCell(row, 9) > tableObj.getDataAtCell(row, 8)) {
+                cellMeta.valid = false
+              }
+            }
           }
           return cellMeta
         }
-        // modifyData: function(row, column, valueHolder, ioMode) {
-        //     // if (this.toPhysicalColumn(column) === 2 && ioMode === 'get') {
-        //     // valueHolder.value = getOwnerTeam(this.getDataAtCell(this.toVisualRow(row), this.toVisualColumn(1)));
-        //     // }
-        //     if(column === 0){
 
-        //     }
-        //     console.log(row, column, valueHolder, ioMode)
-        // }
-
-        // beforeChange: function (changes) {
-        //     var instance = this.$refs.hotTable.table,
-        //         ilen = changes.length,
-        //         clen = instance.countCols(),
-        //         rowColumnSeen = {},
-        //         rowsToFill = {},
-        //         i,
-        //         c;
-
-        //     for (i = 0; i < ilen; i++) {
-        //         // if oldVal is empty
-        //         if (changes[i][2] === null && changes[i][3] !== null) {
-        //         if (isEmptyRow(instance, changes[i][0])) {
-        //             // add this row/col combination to cache so it will not be overwritten by template
-        //             rowColumnSeen[changes[i][0] + '/' + changes[i][1]] = true;
-        //             rowsToFill[changes[i][0]] = true;
-        //         }
-        //         }
-        //     }
-        //     for (var r in rowsToFill) {
-        //         if (rowsToFill.hasOwnProperty(r)) {
-        //         for (c = 0; c < clen; c++) {
-        //             // if it is not provided by user in this change set, take value from template
-        //             if (!rowColumnSeen[r + '/' + c]) {
-        //             changes.push([r, c, null, null]);
-        //             }
-        //         }
-        //         }
-        //     }
-        // }
       }
-      // 往表格里添加事件
-      // 每次修改数据后触发
-      // this.$refs.hotTable.table.addHook('afterChange', function(changes, row, prop){
-      //     console.log(changes)
-      //     // changes 是数组，[0]:row, [1]:col, [2]:old value, [3]:new value
-      //     // if(changes != null){
-      //     //     for(let i=0;i<changes.length;i++){
-      //     //         if(changes[i][1] === 2 &&  _this.trim(changes[i][3]) === ""){
-      //     //             return false
-      //     //         }else{
-      //     //             return 0
-      //     //         }
-      //     //     }
-      //     // }
-      //     _this.$refs.hotTable.table.validateCells()
-      // })
-
-      // this.$refs.hotTable.table.addHook('afterChange', function(){
-      //     console.log('afterChange')
-      //     _this.$refs.hotTable.table.validateCells()
-      // })
 
       this.$refs.hotTable.table.addHook('afterRender', function () {
         console.log('afterRender')
         _this.$refs.hotTable.table.validateCells()
       })
-
-      // const tableObj = this.$refs.hotTable.table
-      // this.$refs.hotTable.table.addHook('afterChange', function(changes, row, prop){
-      //     console.log(changes)
-      //     // changes 是数组，[0]:row, [1]:col, [2]:old value, [3]:new value
-      //     // if(changes !== null && changes === ""){
-      //     //     return false
-      //     // }else{
-      //     //     return 0
-      //     // }
-      //     //this.getCellMeta(0,1).source=['123','321']
-      //     if(changes != null){
-      //         for(let i=0;i<changes.length;i++){
-      //             // 如果修改了所属团队->动态修改项目负责人下拉框的内容
-      //             if(changes[i][1] === 0){
-      //                 // const cellProp = tableObj.getCellMeta(changes[i][0],1)
-      //                 // // cellProp.source=['123','321']
-      //                 // tableObj.setCellMeta(changes[i][0], 1, 'source', '123')
-      //                 // const cellProp2 = tableObj.getCellMeta(changes[i][0],1)
-      //                 // console.log(changes[i][0]+"       "+i)
-      //                 //this.getCellMeta(changes[i][0],1).source=['123','321']
-      //                 tableObj.setCellMeta(changes[i][0], 1, 'source', ['123','321'])
-      //                 console.log(changes[i][0]+"       "+i)
-      //             }
-      //         }
-      //     }
-      //     // changes.forEach(change => {
-      //     //     // 如果修改了所属团队->动态修改项目负责人下拉框的内容
-      //     //     if(change[1] === 0){
-      //     //         this.getCellMeta(change[0],1).source=['123','321']
-      //     //     }
-      //     // });
-      //     })
     }, (response) => {
       this.$message.error(response.message ? response.message : '系统或网络异常')
     })
@@ -351,9 +220,10 @@ export default {
           let r = confirm('可以提交，确认提交吗？')
           if (r === true) {
             const tableData = _this.$refs.hotTable.table.getData()
+            console.log(tableData)
             let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
             // 把json格式的数据传到后台
-            return axios.post('/api/pc/customerDataPc/importExcelData/'+sessionUser.openid, tableData).then(response => {
+            return axios.post('/api/pc/customerDataPc/importExcelData/' + sessionUser.openid, tableData).then(response => {
               if (response === 'import success') {
                 confirm('导入成功')
               } else {
@@ -370,13 +240,13 @@ export default {
       return str.replace(/(^\s*)|(\s*$)/g, '')
     },
     // Empty validator
-    // emptyValidator: function (value, callback) {
-    //   if (!value || value.length === 0) {
-    //     callback(false)
-    //   } else {
-    //     callback(true)
-    //   }
-    // },
+    emptyValidator: function (value, callback) {
+      if (!value || value.length === 0) {
+        callback(false)
+      } else {
+        callback(true)
+      }
+    },
     // 上传excel,导数据入表格
     uploadExcel (event) {
       const files = event.target.files
@@ -425,7 +295,10 @@ export default {
 <style>
 #test-hot {
   width: 100%;
-  height: 400px;
+  height: 600px;
   overflow: hidden;
+}
+.handsontable td.htInvalid {
+  background-color: yellow !important;
 }
 </style>

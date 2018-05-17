@@ -10,7 +10,7 @@
         <el-card>
           <br/><br/><br/><br/>
           <el-row type="flex" justify="center" align="middle">
-            <el-col style="font-size: 30px;text-align: center">Sign In</el-col>
+            <el-col style="font-size: 30px;text-align: center">用户登录</el-col>
           </el-row>
           <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
                    class="form">
@@ -47,8 +47,8 @@
               </el-row>
             </el-form-item>
             <el-form-item>
-              <el-button type="danger" style="width: 80px;" round @click="handleSubmit('loginForm')">Login</el-button>
-              <el-button type="text" size="mini" disabled>Forgot password?</el-button>
+              <el-button type="danger" style="width: 120px;" round @click="handleSubmit('loginForm')">登录</el-button>
+              <!--<el-button type="text" size="mini" disabled>Forgot password?</el-button>-->
             </el-form-item>
           </el-form>
           <el-row type="flex" justify="center" align="middle">

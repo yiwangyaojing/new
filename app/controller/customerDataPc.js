@@ -112,6 +112,9 @@ class CustomerDataPc extends Controller {
                 planObj.zj_input_num = excelData[i][6];
                 planObj.cst_remark = excelData[i][7];
                 planObj.zj_price = excelData[i][8];
+                if (planObj.zj_input_format !== "" && planObj.zj_input_num !== "") {
+                  planObj.zj_input_capacity = planObj.zj_input_format * planObj.zj_input_num / 1000;
+                }
                 // 如果没有回款金额，未回款为合同金额
                 if (excelData[i][9] === "") {
                   planObj.pay_gap = excelData[i][8];

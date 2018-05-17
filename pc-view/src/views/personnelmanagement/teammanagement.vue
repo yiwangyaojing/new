@@ -66,7 +66,7 @@
               </el-select>
             </el-col>
             <el-col :span="5" :offset="1" >
-              <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存</el-button>
+              <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存修改</el-button>
             </el-col>
           </el-row>
           <el-row style="margin-top: 20px;">

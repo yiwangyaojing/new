@@ -83,7 +83,7 @@
       <el-main style="background:rgb(238, 238, 238);">
         <transition name="fade" mode="out-in">
           <div style="padding: 20px">
-            <router-view/>
+            <router-view v-on:reloadUserData="listenerReloadUserData"/>
           </div>
         </transition>
       </el-main>
@@ -221,6 +221,17 @@ export default {
     },
     goHome () {
       this.$router.push({name: 'Home'})
+    },
+    loadUserData () {
+      let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+      this.loginName = sessionUser.name// 登录账号名称
+      this.company_name = sessionUser.company_name
+      this.company_logo = sessionUser.company_logo
+      this.avatarUrl = sessionUser.avatarUrl
+    },
+    listenerReloadUserData () {
+      console.log('loadUserData')
+      this.loadUserData()
     }
   },
   updated () {
@@ -243,11 +254,7 @@ export default {
     })
   },
   mounted () {
-    let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
-    this.loginName = sessionUser.name// 登录账号名称
-    this.company_name = sessionUser.company_name
-    this.company_logo = sessionUser.company_logo
-    this.avatarUrl = sessionUser.avatarUrl
+    this.loadUserData()
   },
   computed: {}
 }
@@ -391,7 +398,7 @@ export default {
   .el-submenu__title:hover {
     background-color: unset !important;
   }
-  .el-menu-item[data-v-7aa0650d]:hover i{
+  .el-menu-item:hover i{
     color: #67c23a !important;
   }
   i {

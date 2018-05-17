@@ -42,7 +42,7 @@
     <el-row class="row-top-margin f-m">
       <el-row class="row-h">
         <div class="fl label-name">客户数量：</div><div class="fl label-view">{{data.c_num || 0}}</div>
-        <el-button class="m-l-o label-view-btn" @click="gotoCustomer" type="success" size="mini">他的客户</el-button>
+        <el-button v-if="false" class="m-l-o label-view-btn" @click="gotoCustomer" type="success" size="mini">他的客户</el-button>
       </el-row>
       <el-row class="row-top-margin row-h">
         <el-col class="fl">

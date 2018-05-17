@@ -3,7 +3,7 @@
     <el-container>
       <el-header style="background: #00cc33" class="xy-Center">
         <div>
-          <img src="/static/img/logo.png" alt="">
+          <img src="../../static/img/logo.png" alt="">
         </div>
       </el-header>
     </el-container>
@@ -158,7 +158,15 @@ export default {
     }
   },
   mounted () {
-    let redirectUri = encodeURI('http://web.xiaosolar.com/static/qrLogin.html')
+    let uat = '/test'
+    // 判断环境
+    let href = window.location.href
+    let origin = window.origin
+
+    if (href.indexOf(uat) !== -1) {
+      origin += uat
+    }
+    let redirectUri = encodeURI(origin + '/static/qrLogin.html')
     var obj = new window.WxLogin({
       self_redirect: true,
       id: 'login_container',

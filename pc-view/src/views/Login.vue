@@ -1,88 +1,71 @@
-<style scoped>
-  @import '../resources/css/base.css';
-  @import '../resources/css/flex.css';
-  @import '../resources/css/styles.css';
-</style>
 <template>
-  <div style="background: #eceff4; height: 100%">
-    <el-row type="flex" style="height: 100%" justify="center" align="middle">
+  <el-row>
+    <el-container>
+      <el-header style="background: #67c23a" class="xy-Center">
+        <div>
+          <img  src="/static/img/Logo.gif" alt="">
+        </div>
+      </el-header>
+    </el-container>
+    <div class="x-Center" style="margin-top: 100px;">
+
       <el-col :xs="9" :md=7 :sm="8" :lg="7" :xl="4">
-        <el-card>
-          <br/><br/><br/><br/>
-          <el-row type="flex" justify="center" align="middle">
-            <el-col style="font-size: 30px;text-align: center">用户登录</el-col>
-          </el-row>
-          <div id="login"></div>
-          <!--<el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
-                   class="form">
-            <el-form-item prop="username">
-              <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
-            </el-form-item>
-            <el-form-item prop="validateCode">
-              <el-col :span="24">
-                <el-col :span="15">
-                  <el-col :span="20">
-                    <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off"
-                              placeholder="验证码"/>
+        <el-tabs type="border-card" style="width: 100%;">
+          <el-tab-pane label="二维码">
+            <div class="x-Center" style="padding: 10px 0">
+              <img style="width: 160px;height: 160px" src="/static/img/erweima.png" alt="">
+            </div>
+            <div style="text-align: center;padding: 20px 0;">打开<span style="color: #55a532">光伏好销售</span>扫一扫登录</div>
+          </el-tab-pane>
+          <el-tab-pane label="手机号">
+              <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
+                       class="form" style="margin-top: 20px;padding: 20px 40px;">
+                <el-form-item prop="username">
+                  <el-input type="text" v-model="loginForm.phone" maxlength="11" auto-complete="off" placeholder="手机号"/>
+                </el-form-item>
+                <el-form-item prop="validateCode">
+                  <el-col :span="24">
+                    <el-col :span="15">
+                      <el-col :span="20">
+                        <el-input type="text" v-model="loginForm.validateCode" maxlength="4" auto-complete="off"
+                                  placeholder="验证码"/>
+                      </el-col>
+                    </el-col>
+                    <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
+                    <el-col v-if="codeShow" :span="9">
+                      <el-button size="small" @click="getValidateCode" type="primary" :disabled="!codeShow">获取验证码
+                      </el-button>
+                    </el-col>
+                    <el-col v-if="!codeShow" :span="9">
+                      <el-button size="small" @click="getValidateCode" type="primary" disabled>{{numCode}}秒</el-button>
+
+                    </el-col>
                   </el-col>
-                </el-col>
-                &lt;!&ndash;<el-button type="danger" @click="getValidateCode">获取验证码</el-button>&ndash;&gt;
-                <el-col v-if="codeShow" :span="9">
-                  <el-button size="medium" @click="getValidateCode" type="primary" :disabled="!codeShow">获取验证码
-                  </el-button>
-                </el-col>
-                <el-col v-if="!codeShow" :span="9">
-                  <el-button size="medium" @click="getValidateCode" type="primary" disabled>{{numCode}}秒</el-button>
-
-                </el-col>
-              </el-col>
-            </el-form-item>
-            <el-form-item prop="captcha">
-              <el-row>
-                &lt;!&ndash;<el-col :span=16>&ndash;&gt;
-                &lt;!&ndash;<el-input type="text" :maxlength="6" v-model="loginForm.captcha" auto-complete="off" placeholder="验证码"/>&ndash;&gt;
-                &lt;!&ndash;</el-col>&ndash;&gt;
-                &lt;!&ndash;<el-col :span=8>&ndash;&gt;
-                &lt;!&ndash;<img :src="captchaUrl" width="100%" style="height: 35px;" @keyup.enter="handleSubmit"/>&ndash;&gt;
-                &lt;!&ndash;</el-col>&ndash;&gt;
+                </el-form-item>
+                <el-form-item prop="captcha">
+                  <el-row>
+                    <!--<el-col :span=16>-->
+                    <!--<el-input type="text" :maxlength="6" v-model="loginForm.captcha" auto-complete="off" placeholder="验证码"/>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span=8>-->
+                    <!--<img :src="captchaUrl" width="100%" style="height: 35px;" @keyup.enter="handleSubmit"/>-->
+                    <!--</el-col>-->
+                  </el-row>
+                </el-form-item>
+                <el-form-item>
+                  <el-button style="width: 100%" size="medium" type="success" @click="handleSubmit('loginForm')">登录</el-button>
+                  <!--<el-button type="text" size="mini" disabled>Forgot password?</el-button>-->
+                </el-form-item>
+              </el-form>
+              <el-row type="flex" justify="center" align="middle">
+                <el-col/>
               </el-row>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="danger" style="width: 120px;" round @click="handleSubmit('loginForm')">登录</el-button>
-              &lt;!&ndash;<el-button type="text" size="mini" disabled>Forgot password?</el-button>&ndash;&gt;
-            </el-form-item>
-          </el-form>-->
-          <el-row type="flex" justify="center" align="middle">
-            <el-col/>
-          </el-row>
-        </el-card>
+          </el-tab-pane>
+        </el-tabs>
       </el-col>
-      <el-col :xs="9" :md=7 :sm="8" :lg="7" :xl="4">
-        <el-card class="right-card">
-          <br/><br/>
-          <el-row type="flex" align="middle">
-            <el-col style="font-size: 26px; color: white;">光伏好销售系统-团队管理功能</el-col>
-          </el-row>
-          <br/>
-          <el-row type="flex" align="middle">
-            <el-col style="font-size: 12px; color: #484f66;">
+    </div>
 
-            </el-col>
-          </el-row>
-          <br/>
-          <el-row type="flex" align="middle">
-            <el-col style="font-size: 12px; color: #484f66;"/>
-          </el-row>
-          <br/>
-          <!--<el-row type="flex" align="middle">
-            <el-col>
-              <el-button type="danger" size="small" style="width: 100px;" round>Learn more</el-button>
-            </el-col>
-          </el-row>-->
-        </el-card>
-      </el-col>
-    </el-row>
-  </div>
+  </el-row>
 </template>
 <script>
 import axios from 'axios'
@@ -177,49 +160,30 @@ export default {
     }
   },
   mounted () {
-    let redirectUrl = encodeURI('http://baidu.com')
-    var obj = new window.WxLogin({
-      self_redirect: true,
-      id: 'login',
-      appid: 'wxc63276646e2fe762',
-      scope: 'snsapi_login',
-      redirect_uri: redirectUrl,
-      state: '',
-      style: '',
-      href: ''
-    })
-    console.log(obj)
+
   }
 }
 </script>
-
 <style scoped>
-  .el-button + .el-button {
-    margin-left: 3px;
-  }
 
-  .el-card {
-    box-shadow: 0 0px 50px 0 rgba(0, 0, 0, 0.05);
-    border-radius: 0px;
-    border: 0px;
-    height: 380px;
+ .x-Center{
+   display: flex;
+   display: -webkit-flex;
+   -webkit-justify-content: center;
+   justify-content: center;
+ }
+ .xy-Center{
+   display: flex;
+   display: -webkit-flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+ }
+  .el-tabs__nav {
+    width: 100% !important;
   }
-
-  .right-card {
-    background: #23293b;
-    height: 300px;
-    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.05);
+  .el-tabs__item {
+    width: 50% !important;
   }
-
-  .form .el-input .el-input__inner {
-    border-radius: 0px;
-    border-width: 0px;
-    border-bottom: 1px solid #dcdfe6;
-    padding: 0 8px;
-  }
-
-  .form {
-    margin: 15px 40px 25px 40px;
-  }
-
 </style>

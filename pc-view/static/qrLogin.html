@@ -29,24 +29,49 @@
     return theRequest;
   }
 
+
   let urlParams = getRequest()
+
+  let context = "https://mp.xiaosolar.com/front-api"; //生产环境
+
   console.log(urlParams)
   let code = urlParams.code
   // let state = urlParams.state
 
-  let context = "http://localhost:7001";
+  let uat = '/test'
+  //判断环境
+  let href = window.location.href
+  let origin = window.origin
+
+  if(href.indexOf(uat) !==-1){
+    origin += uat
+    context = "https://mpa.xiaosolar.com/front-api"; //测试环境
+  }
+
+  $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+
 
   // 调用后接口登录
   //页面跳转后直接调用接口获取openId;
   $.ajax(context+"/api/qrLogin/"+code, {
     type: "GET",
     dataType: "json",
+    headers: {
+      'Authorization':'Basic bWFydmVsX2NvbWljczpYaWFvc29sYXIyMDE4'
+    },
     success: function (data) {
       console.log(data)
       localStorage.setItem('user',JSON.stringify(data))
+      if(window.parent){
+        window.parent.location.href = origin +"/static/index.html#Home" // 首页跳转
+      }
     },
     error: function (error) {
       console.log(error)
+      alert("微信登录失败！");
+      if(window.parent){
+        window.parent.location.reload()
+      }
       if (error.status == 500) {
         console.log(error);
       } else {

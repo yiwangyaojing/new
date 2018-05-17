@@ -89,7 +89,7 @@
               </div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="合同动态" name="1">
+          <el-tab-pane label="合同状态" name="1">
             <el-col v-for="(items, index) in contractProgressList" :key="index" :span="24" style="margin-bottom: 20px;">
               <el-col :span="10" style="margin-top: 20px;padding: 0 10px;line-height: 30px;border-radius: 5px;">
                 <el-card class="box-card">
@@ -362,7 +362,7 @@ export default {
                 from_name: resp[i].from_name, // 来源名称
                 scd_remark: resp[i].scd_remark, // 负责人
                 scd_r_remark: resp[i].scd_r_remark, // 进度备注
-                updated_at: dateFormat(resp[i].updated_at, 'yyyy-mm-dd') // 更新时间
+                updated_at: dateFormat(resp[i].updated_at, 'yyyy-MM-dd HH:mm:ss') // 更新时间
               }
               this.contractProgressList.push(contractProgress)
             }
@@ -385,7 +385,7 @@ export default {
                 name: resp[i].name, // 负责人
                 pay_money: resp[i].pay_money, // 回款金额
                 pay_remark: resp[i].pay_remark, // 进度备注
-                pay_time: dateFormat(resp[i].pay_time, 'yyyy-mm-dd') // 回款时间
+                pay_time: dateFormat(resp[i].pay_time, 'yyyy-MM-dd HH:mm:ss') // 回款时间
               }
               this.payList.push(payProgress)
             }
@@ -398,7 +398,7 @@ export default {
       let planId = this.$route.query.planId
       if (planId) {
         axios.get('/api/pc/customerDataPc/planDetail/' + planId).then(resp => {
-          this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd')
+          this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-MM-dd HH:mm:ss')
           this.details = resp
         })
       }

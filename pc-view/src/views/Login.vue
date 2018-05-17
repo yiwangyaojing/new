@@ -158,7 +158,7 @@ export default {
     }
   },
   mounted () {
-    let redirectUri = encodeURI('http://web.xiaosolar.com/index.html#/login')
+    let redirectUri = encodeURI('http://web.xiaosolar.com/static/qrLogin.html')
     var obj = new window.WxLogin({
       self_redirect: true,
       id: 'login_container',

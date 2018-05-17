@@ -400,6 +400,14 @@ class UserService extends Service {
         let result = await this.ctx.model.XUsers.findOne({where: {phone: phone}})
         return result
     }
+
+    /**
+     * PC 扫码登录
+     */
+    async findByUnionId(unionid) {
+        let result = await this.ctx.model.XUsers.findOne({where: {unionid: unionid}})
+        return result
+    }
 }
 
 module.exports = UserService;

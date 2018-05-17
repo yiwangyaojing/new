@@ -16,7 +16,10 @@ class Wechat extends Controller {
     console.log(appId);
     console.log(secret);
     // 发送http请求获取OpenId等参数信息
-    const result = await ctx.curl(url + '?appid=' + appId + '&secret=' + secret + '&grant_type=authorization_code&js_code=' + code);
+    const result = await ctx.curl(url + '?appid=' + appId + '&secret=' + secret + '&grant_type=authorization_code&js_code=' + code ,{
+        method: 'GET',
+        dataType: 'json',
+    });
     ctx.body = result.data;
   }
 

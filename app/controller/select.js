@@ -40,7 +40,7 @@ class SelectController extends Controller {
         } else if (type === 'thisYear') {
             beginDate = moment().startOf("year").format("YYYY-MM-DD");
         } else if (type === 'total') {
-            beginDate = '2018-01-01'
+            beginDate = '2015-01-01'
         }
 
         ctx.body = {beginDate: beginDate, endDate: endDate}

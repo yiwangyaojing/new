@@ -6,7 +6,7 @@
   <el-container>
     <el-aside width="auto" style="position: relative;">
       <el-row type="flex" align="middle" class="logo">
-        <img src="../../static/img/logo.png"/>
+        <img src="../../static/img/logo.png" @click="goHome" style="cursor: pointer;"/>
       </el-row>
       <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF" :default-active="index"
                background-color="#fff" :collapse="collapsed">
@@ -45,13 +45,10 @@
           <span slot="title">账户设置</span>
         </el-menu-item>
       </el-menu>
-      <div style="position: absolute;bottom: 0;padding: 5px 0px;width: 100%;">
-        <a href="http://www.xiqiao.io" style="color: #999;font-size: 10px;width: 100%;text-align: center;display: inline-block;">开发商:上海西樵软件</a>
-      </div>
     </el-aside>
     <el-container>
       <el-header height="60px">
-        <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px;" :gutter="8">
+        <el-row type="flex" class="warp" justify="right" align="middle" style="height: 54px; margin-top: 5px;" :gutter="8">
          <!-- <el-col>
             <el-button class="circle none toggle" size="mini" round icon="el-icon-vueboot-menu"/>
           </el-col>-->
@@ -68,7 +65,7 @@
               <el-col :span="5">
                 <img class="header" height="36" :src="avatarUrl"/>
               </el-col>
-              <el-col :span="9">
+              <el-col :span="9" style="cursor: pointer;">
                 <el-dropdown @command="handleCommand">
                     <span class="el-dropdown-link">
                       {{loginName}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -188,7 +185,7 @@ export default {
     },
     logout () {
       // 退出系统
-      this.$confirm('确定要退出当前系统吗', {
+      this.$confirm('确定要退出当前系统吗?', {
         callback: (action) => {
           if (action === 'confirm') {
             axios.post('/api/logout').then(() => {
@@ -221,6 +218,9 @@ export default {
           })
         }
       })
+    },
+    goHome () {
+      this.$router.push({name: 'Home'})
     }
   },
   updated () {

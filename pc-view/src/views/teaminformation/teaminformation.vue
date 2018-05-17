@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     requestdata () {
-      axios.get('/api/pc/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
+      axios.get('/api/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
         console.log('查询团队', res)
         this.oss_name = res.oss_name
         this.company_name = res.company_name
@@ -88,6 +88,17 @@ export default {
       }, 1000)
       axios.post('api/team/sms', {open_id: this.open_id, register_phone: this.phone, template_code: 'SMS_134260282'}).then(res => {
         console.log('验证码成功', res)
+        if (res.message === '验证码发送成功！') {
+          this.$message({
+            type: 'success',
+            message: '验证码发送成功'
+          })
+        } else {
+          this.$message({
+            type: 'error',
+            message: '验证码发送失败'
+          })
+        }
       })
     },
     submitClick () {
@@ -100,8 +111,26 @@ export default {
         id: this.company_id,
         oss_name: this.oss_name
       }
+      if (this.company_name === '') {
+        this.$message({
+          type: 'error',
+          message: '请输入团队名称'
+        })
+        return
+      }
+      if (this.yzmvalue === '') {
+        this.$message({
+          type: 'error',
+          message: '请输入验证码'
+        })
+        return
+      }
       axios.put('api/team/company', objdata).then(res => {
         console.log('修改成功', res)
+        this.$message({
+          type: 'success',
+          message: '修改成功'
+        })
         this.sessionUser.company_logo = this.company_logo
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
         window.location.reload()

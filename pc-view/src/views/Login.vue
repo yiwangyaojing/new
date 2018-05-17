@@ -10,13 +10,13 @@
     <div class="x-Center" style="margin-top: 100px;">
       <el-col :xs="9" :md=7 :sm="8" :lg="7" :xl="4">
         <el-tabs type="border-card" style="width: 100%;">
-          <el-tab-pane label="二维码">
+          <el-tab-pane label="   二维码   ">
             <div class="x-Center" style="padding: 10px 0" id="login_container">
               <!--<img style="width: 160px;height: 160px" src="/static/img/erweima.png" alt="">-->
             </div>
             <!--<div style="text-align: center;padding: 20px 0;">打开<span style="color: #55a532">光伏好销售</span>扫一扫登录</div>-->
           </el-tab-pane>
-          <el-tab-pane label="手机号">
+          <el-tab-pane label="   手机号   ">
               <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
                        class="form" style="margin-top: 20px;padding: 20px 40px;">
                 <el-form-item prop="username">
@@ -32,11 +32,11 @@
                     </el-col>
                     <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
                     <el-col v-if="codeShow" :span="9">
-                      <el-button size="small" @click="getValidateCode" type="primary" :disabled="!codeShow">获取验证码
+                      <el-button style="color: #000" size="small" @click="getValidateCode"  :disabled="!codeShow">获取验证码
                       </el-button>
                     </el-col>
                     <el-col v-if="!codeShow" :span="9">
-                      <el-button size="small" @click="getValidateCode" type="primary" disabled>{{numCode}}秒</el-button>
+                      <el-button style="color: #000" size="small" @click="getValidateCode"  disabled>{{numCode}}秒</el-button>
 
                     </el-col>
                   </el-col>
@@ -52,7 +52,7 @@
                   </el-row>
                 </el-form-item>
                 <el-form-item>
-                  <el-button style="width: 100%" size="medium" type="success" @click="handleSubmit('loginForm')">登录</el-button>
+                  <el-button style="width: 100%;background: #01cd33;color: #fff" size="medium"  @click="handleSubmit('loginForm')">登录</el-button>
                   <!--<el-button type="text" size="mini" disabled>Forgot password?</el-button>-->
                 </el-form-item>
               </el-form>
@@ -196,4 +196,5 @@ export default {
  .el-tabs__item {
    width: 51% !important;
  }
+
 </style>

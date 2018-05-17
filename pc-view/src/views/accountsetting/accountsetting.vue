@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     requestdata () {
-      axios.get('/api/pc/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
+      axios.get('/api/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
         console.log('查询团队', res)
       })
     },
@@ -60,6 +60,17 @@ export default {
       }, 1000)
       axios.post('api/team/sms', {open_id: this.open_id, register_phone: this.phone, template_code: 'SMS_134260282'}).then(res => {
         console.log('验证码成功', res)
+        if (res.message === '验证码发送成功！') {
+          this.$message({
+            type: 'success',
+            message: '验证码发送成功'
+          })
+        } else {
+          this.$message({
+            type: 'error',
+            message: '验证码发送失败'
+          })
+        }
       })
     },
     submitClick () {
@@ -69,8 +80,26 @@ export default {
         phone: this.phone,
         validateCode: this.yzmvalue
       }
+      if (this.name === '') {
+        this.$message({
+          type: 'error',
+          message: '请输入姓名'
+        })
+        return
+      }
+      if (this.yzmvalue === '') {
+        this.$message({
+          type: 'error',
+          message: '请输入验证码'
+        })
+        return
+      }
       axios.put('api/pc/user', parameter).then(res => {
         console.log('修改成功', res)
+        this.$message({
+          type: 'success',
+          message: '修改成功'
+        })
         this.sessionUser.name = this.name
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
         console.log(this.sessionUser)

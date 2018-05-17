@@ -56,7 +56,7 @@
           </el-table-column>
           <el-table-column label="操作" width="100" align="center">
             <template slot-scope="scope">
-              <a href="javascript:void(0)" @click="gotoDetail(scope.row)" type="text" size="small">详情</a>
+              <el-button @click="gotoDetail(scope.row)" type="text" size="small" >详情</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -329,7 +329,16 @@ export default {
     },
     gotoDetail (row) {
       console.log('这里是跳转到详情===>>', row)
-      this.$router.push({path: '/SigninDetails', query: {teamname: row.team, openid: row.openid, name: row.name}})
+      this.$router.push({path: '/SigninDetails',
+        query: {
+          teamname: row.team,
+          openid: row.openid,
+          name: row.name,
+          tjzqvalue: this.tjzqvalue,
+          datevalue: this.datevalue,
+          tdfwvalue: this.tdfwvalue,
+          fuzerenshow: this.fuzerenshow
+        }})
     }
   },
   mounted () {

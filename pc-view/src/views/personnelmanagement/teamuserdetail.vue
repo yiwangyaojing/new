@@ -124,7 +124,7 @@ export default {
   computed: {
     formatDate: function () {
       console.log('=============')
-      return moment(this.data.join_date).utc().zone(-8).format('YYYY-MM-DD HH:mm:ss')
+      return moment(this.data.join_date).utc().zone(-8).format('yyyy-mm-dd HH:MM:ss')
     }
   }
 }

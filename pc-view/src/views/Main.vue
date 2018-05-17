@@ -391,7 +391,7 @@ export default {
   .el-submenu__title:hover {
     background-color: unset !important;
   }
-  .el-menu-item[data-v-7aa0650d]:hover i{
+  .el-menu-item:hover i{
     color: #67c23a !important;
   }
   i {

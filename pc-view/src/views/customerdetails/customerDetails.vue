@@ -401,7 +401,6 @@ export default {
         this.dialogVisible = true
         this.dialogMessage = '无可下载的资源'
         this.disabledshow = false
-
       } else {
         this.downloadDialog = true
         this.dialogMessage = '是否下载该用户所有资料'

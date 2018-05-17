@@ -13,6 +13,10 @@ class Wechat extends Controller {
     const appId = config.wechat.appId;
     const secret = config.wechat.secret;
     const url = config.wechat.openIdUrl;
+
+    const qrAppId = config.wechat.qrAppId
+    const grSecret = config.wechat.qrSecret
+    const qrUrl = config.wechat.accessTokenUrl
     const code = ctx.params.code;
     console.log(appId);
     console.log(secret);
@@ -24,11 +28,12 @@ class Wechat extends Controller {
     resp = result.data
       // 获取用户 unionid
     if(resp){
-      const info =  await ctx.curl(url + '?appid=' + appId + '&secret='+secret+'&code='+code+'&grant_type=authorization_code',{
+      const info =  await ctx.curl(qrUrl + '?appid=' + qrAppId + '&secret='+grSecret+'&code='+code+'&grant_type=authorization_code',{
           method: 'GET',
           dataType: 'json',
       });
-      if(info.data.unionid){
+        console.log(info.data)
+        if(info.data.unionid){
           resp.unionid = info.data.unionid
       }
     }

@@ -23,7 +23,8 @@ class UserService extends Service {
             province:user.province,
             city:user.city,
             avatarUrl:user.avatarUrl,
-            login_infor:user.login_infor
+            login_infor:user.login_infor,
+            unionid:user.unionid
         }
 
         createUser.name = user.nickName

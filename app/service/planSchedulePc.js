@@ -55,7 +55,12 @@ class planSchedulePcService extends Service {
             andParams.overdue_date = {[Op.or]:[{[Op.gte]:dateNow},{[Op.eq]:null},{[Op.eq]:''}]}
         }
 
-        // 计算当前条数
+
+        // 判断时间的查询类型，默认是按照方案录入时间。
+        let queryTime = 'scd_time'
+        if(req.type === 'customer'){
+            queryTime = 'created_at'
+        }
        // sequelize.col('dailyview.stateDate')),'>=',sequelize.fn('TO_DAYS',lastDate))
         await this.ctx.model.XPlans.findAndCountAll({
             attributes: {
@@ -90,10 +95,9 @@ class planSchedulePcService extends Service {
                     }
                     ],
                     [Op.and]:[
-                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
-                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col('scd_time'), '%Y-%m-%d'),'<=' ,req.endDate),
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col(queryTime), '%Y-%m-%d'),'>=' ,req.beginDate),
+                        Sequelize.where(Sequelize.fn('date_format', Sequelize.col(queryTime), '%Y-%m-%d'),'<=' ,req.endDate),
                         andParams,
-
                     ]
 
                 }

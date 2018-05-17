@@ -230,7 +230,7 @@ export default {
       this.avatarUrl = sessionUser.avatarUrl
     },
     listenerReloadUserData () {
-      console.log("loadUserData")
+      console.log('loadUserData')
       this.loadUserData()
     }
   },

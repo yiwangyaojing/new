@@ -28,7 +28,7 @@ export default {
   name: 'download',
   data () {
     return {
-      shortUrl: ''
+      shortUrl: this.$route.query.shortUrl
     }
   },
   methods: {

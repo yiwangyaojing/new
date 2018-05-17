@@ -395,7 +395,13 @@ export default {
       }
     },
     downLoadData () {
-      this.$router.push({path: '/download'})
+      let shortUrl = this.details.short_url
+      if (!shortUrl) {
+        this.$message.error('下载提取码获取失败！')
+        this.downloadDialog = false
+        return
+      }
+      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
     }
   },
   mounted () {

@@ -77,7 +77,7 @@
           <el-table-column prop="h_is_finish" label="项目勘测"></el-table-column>
           <el-table-column prop="d_is_finish" label="资料收集"></el-table-column>
           <el-table-column prop="rf_is_finish" label="方案设计"></el-table-column>
-          <el-table-column prop="short_url" label="下载提取码"></el-table-column>
+          <el-table-column prop="short_url" label="提取码"></el-table-column>
           <el-table-column prop="scdTime" label="添加时间"></el-table-column>
           <el-table-column fixed="right" label="操作">
             <template slot-scope="scope">
@@ -435,7 +435,8 @@ export default {
           overDueStatus: this.overDueStatus,
           pageNumber: this.pageNum,
           pageSize: this.pagesizeNum,
-          search: this.searchvalue
+          search: this.searchvalue,
+          type: 'customer'
         }
         axios.post('/api/pc/planSchedulePc', parameter).then(res => {
           loading.close()

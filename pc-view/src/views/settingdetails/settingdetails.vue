@@ -531,19 +531,19 @@ export default {
         if (parameter.teamLevel === 'one') {
           parameter.tdfwvalue = '个人'
         }
-        if(parameter.scdStatus === '0') {
+        if(String(parameter.scdStatus) === '0') {
           this.contractvalue = '新增项目'
         }
-        if(parameter.scdStatus === '2') {
+        if(String(parameter.scdStatus) === '2') {
           this.contractvalue = '合同签订'
         }
-        if(parameter.scdStatus === '3') {
+        if(String(parameter.scdStatus) === '3') {
           this.contractvalue = '施工完成'
         }
-        if(parameter.scdStatus === '4') {
+        if(String(parameter.scdStatus) === '4') {
           this.contractvalue = '并网完成'
         }
-        if(parameter.scdStatus === '6') {
+        if(String(parameter.scdStatus) === '6') {
           this.contractvalue = '回款完成'
         }
         this.tjzqvalue = parameter.tjzqvalue

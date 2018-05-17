@@ -36,7 +36,15 @@
           </el-col>
         </el-col>
       </el-row>
-      <el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
+      <el-col :span="24" style="padding: 30px 0;">
+        <el-col :span="5">
+          <el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
+        </el-col>
+        <el-col :span="5">
+          <a href="javascript:history.go(-1)"><el-button type="danger" @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;">返回</el-button></a>
+
+        </el-col>
+      </el-col>
   </el-card>
 </template>
 <script>
@@ -46,9 +54,9 @@ export default {
     return {
       editshow: false,
       datas: {
-        htqd: 0,
-        sgwc: 0,
-        bwwc: 0,
+        htqd: 7,
+        sgwc: 7,
+        bwwc: 7,
         company_id: '',
         id: ''
       }
@@ -58,7 +66,9 @@ export default {
     requestdata () {
       axios.get('/api/pc/overduePc').then(res => {
         console.log(res)
-        this.datas = res.content
+        if (res.content) {
+          this.datas = res.content
+        }
         if (!res.rule) {
           this.editshow = true
         } else {

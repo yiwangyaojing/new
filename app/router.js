@@ -167,5 +167,5 @@ module.exports = app => {
   router.get('/api/pc/customerDataPc/getTeamAndUser/:id', controller.customerDataPc.teamAndUser);
   // 页面传值到后台，保存到数据库
   router.post('/api/pc/customerDataPc/importExcelData/:id', controller.customerDataPc.importExcelData);
-
+  router.post('/api/pc/customerDataPc/getUserManageTeam', controller.customerDataPc.getUserManageTeam);
 };

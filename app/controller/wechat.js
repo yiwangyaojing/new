@@ -8,6 +8,7 @@ class Wechat extends Controller {
 
     const { ctx, config } = this;
 
+    let resp = {}
     // 获取参数
     const appId = config.wechat.appId;
     const secret = config.wechat.secret;
@@ -20,7 +21,19 @@ class Wechat extends Controller {
         method: 'GET',
         dataType: 'json',
     });
-    ctx.body = result.data;
+    resp = result.data
+      // 获取用户 unionid
+    if(resp){
+      const info =  await ctx.curl(url + '?appid=' + appId + '&secret='+secret+'&code='+code+'&grant_type=authorization_code',{
+          method: 'GET',
+          dataType: 'json',
+      });
+      if(info.data.unionid){
+          resp.unionid = info.data.unionid
+      }
+    }
+
+    ctx.body = resp;
   }
 
 }

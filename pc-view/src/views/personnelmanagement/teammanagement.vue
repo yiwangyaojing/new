@@ -39,7 +39,7 @@
       </el-row>
       <el-row class="m-t-10 font-size-20">
         <el-col :offset="10" :span="14">
-          <el-button size="small" style="width: 120px" :loading="sendLoading" type="success" @click="sendCode">{{sendButtonContent}}</el-button>
+          <el-button size="small" style="width: 90px" :loading="sendLoading" type="success" @click="sendCode">{{sendButtonContent}}</el-button>
         </el-col>
       </el-row>
       <span slot="footer" class="dialog-footer">
@@ -166,10 +166,11 @@ export default {
         })
         loading.close()
         this.changeSendBtn()
-      }, () => {
+      }, (fail) => {
         loading.close()
         this.sendButtonContent = '发送验证码'
         this.sendLoading = false
+        this.$message.error(fail.message)
       }).catch(() => {
         loading.close()
         this.sendButtonContent = '发送验证码'

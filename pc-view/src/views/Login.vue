@@ -3,7 +3,7 @@
     <el-container>
       <el-header style="background: #00cc33" class="xy-Center">
         <div>
-          <img src="/static/img/logo.png" alt="">
+          <img src="../../static/img/logo.png" alt="">
         </div>
       </el-header>
     </el-container>
@@ -32,12 +32,11 @@
                     </el-col>
                     <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
                     <el-col v-if="codeShow" :span="9">
-                      <el-button style="color: #000" size="small" @click="getValidateCode"  :disabled="!codeShow">获取验证码
+                      <el-button style="color: #000; width: 92px" size="small" @click="getValidateCode"  :disabled="!codeShow">获取验证码
                       </el-button>
                     </el-col>
                     <el-col v-if="!codeShow" :span="9">
-                      <el-button style="color: #000" size="small" @click="getValidateCode"  disabled>{{numCode}}秒</el-button>
-
+                      <el-button style="color: #000; width: 92px" size="small" @click="getValidateCode"  disabled>{{numCode}}秒</el-button>
                     </el-col>
                   </el-col>
                 </el-form-item>
@@ -95,6 +94,7 @@ export default {
         this.countDown()
       } else {
         this.$message.error('手机号不能为空')
+        return
       }
       axios.post('/api/login/sms', this.loginForm).then(response => {
         let message = response.message
@@ -158,7 +158,15 @@ export default {
     }
   },
   mounted () {
-    let redirectUri = encodeURI('http://web.xiaosolar.com/static/qrLogin.html')
+    let uat = '/test'
+    // 判断环境
+    let href = window.location.href
+    let origin = window.origin
+
+    if (href.indexOf(uat) !== -1) {
+      origin += uat
+    }
+    let redirectUri = encodeURI(origin + '/static/qrLogin.html')
     var obj = new window.WxLogin({
       self_redirect: true,
       id: 'login_container',

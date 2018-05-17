@@ -48,9 +48,9 @@
           </el-table-column>
           <el-table-column prop="team" label="所属团队">
           </el-table-column>
-          <el-table-column prop="sign" label="签到次数">
+          <el-table-column prop="sign" label="签到次数" align="center">
           </el-table-column>
-          <el-table-column label="操作" width="100">
+          <el-table-column label="操作" width="100" align="center">
             <template slot-scope="scope">
               <a href="javascript:void(0)" @click="gotoDetail(scope.row)" type="text" size="small">详情</a>
             </template>

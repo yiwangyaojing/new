@@ -72,16 +72,16 @@
           <el-table-column prop="cst_name" label="客户名称" ></el-table-column>
           <el-table-column prop="user_name" label="负责人" ></el-table-column>
           <el-table-column prop="cst_address" :show-overflow-tooltip="showOverflowTooltip" label="地址" width="200"></el-table-column>
-          <el-table-column prop="zj_input_capacity" label="装机容量" ></el-table-column>
-          <el-table-column prop="zj_price" label="合同金额" ></el-table-column>
-          <el-table-column prop="h_is_finish" label="项目勘测"></el-table-column>
-          <el-table-column prop="d_is_finish" label="资料收集"></el-table-column>
-          <el-table-column prop="rf_is_finish" label="方案设计"></el-table-column>
-          <el-table-column prop="short_url" label="提取码"></el-table-column>
-          <el-table-column prop="scdTime" label="添加时间"></el-table-column>
-          <el-table-column fixed="right" label="操作">
+          <el-table-column prop="zj_input_capacity" label="装机容量" align="center"></el-table-column>
+          <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
+          <el-table-column prop="h_is_finish" label="项目勘测" align="center"></el-table-column>
+          <el-table-column prop="d_is_finish" label="资料收集" align="center"></el-table-column>
+          <el-table-column prop="rf_is_finish" label="方案设计" align="center"></el-table-column>
+          <el-table-column prop="short_url" label="提取码" width="70" align="center"></el-table-column>
+          <el-table-column prop="scdTime" label="添加时间" width="100" align="center"></el-table-column>
+          <el-table-column fixed="right" label="操作" width="100"  align="center">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
+              <el-button @click="handleClick(scope.row.id)" type="text" size="small" >详情</el-button>
               <el-button type="text" size="small">下载</el-button>
             </template>
           </el-table-column>

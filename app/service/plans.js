@@ -188,6 +188,7 @@ class PlansService extends Service {
         // sampleClient start
         // 如果page.pageNumber == 1,则将示例客户添加到其他客户的最前，此次返回16条数据，原本返回15条
         if (parseInt(page.pageNumber) === 1) {
+            console.log('显示示例客户')
             // 查看用户是否删除了示例客户
             const userInfo = await this.ctx.model.XUsers.findOne({
                 limit: 1,
@@ -203,15 +204,14 @@ class PlansService extends Service {
                         id: FileType.sampleClientId,
                     }
                 });
+                console.log(sampleClient)
                 // 将示例客户添加到其他客户最前
                 if(sampleClient){
-
                     pageList.unshift(sampleClient);
                 }
             }
         }
         // sampleClient end
-        let teams = [] // 当前的团队
         // 获取方案拍房子图片
         for (const page of pageList) {
             let houseImg = '';
@@ -235,7 +235,7 @@ class PlansService extends Service {
             page.dataValues.houseImg = houseImg;
 
             const team = await this.ctx.model.XTeam.findOne({where:{id:page.team_id}})
-            if( team.dataValues && team.dataValues.name){
+            if( team && team.dataValues && team.dataValues.name){
                 page.dataValues.company_name = team.dataValues.name;
             }
         }

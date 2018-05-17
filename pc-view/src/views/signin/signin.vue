@@ -13,7 +13,7 @@
           </el-select>
         </el-col>
         <el-col :span="16" class="y-Center">
-          <div class="grid-content bg-purple" style="font-size: 14px;width: 100px">自定义时间段</div>
+          <div class="grid-content bg-purple" style="font-size: 14px;width: 90px">自定义时间</div>
           <div class="block">
             <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
             </el-date-picker>
@@ -29,14 +29,14 @@
           </el-select>
         </el-col>
         <el-col :span="8" class="y-Center">
-          <div class="fl"  style="font-size: 14px;width: 100px;">团队名称</div>
+          <div class="fl"  style="font-size: 14px;width: 90px;">团队名称</div>
           <el-select @change="teannameChange" size="small" :disabled="teannameshow" class="fl" v-model="teamname">
             <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
             </el-option>
           </el-select>
         </el-col>
         <el-col :span="8" class="y-Center">
-          <div class="fl"  style="font-size: 14px;width: 100px;">负责人</div>
+          <div class="fl"  style="font-size: 14px;width: 60px;">负责人</div>
           <el-select size="small" @change="fuzerenChange" class="fl" v-model="fuzerenvalue" :disabled="fuzerenshow">
             <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
             </el-option>

@@ -29,7 +29,7 @@
     <div style="margin-top: 20px;font-size: 14px;">签到统计</div>
     <el-row>
       <el-col :span="24" style="margin-top: 30px;">
-        <el-col :span="15">
+        <el-col :span="14">
           <el-col :span="23">
             <el-table :data="tableData" stripe border size="mini"
                       v-loading="tableLoading"

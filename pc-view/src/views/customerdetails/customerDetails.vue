@@ -113,116 +113,126 @@
             </el-col>
           </el-tab-pane>
           <el-tab-pane label="项目勘测" name="3">
-            <div class="clearfix">
-              <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
-                <div class="fl" style="width: 80px;">房屋朝向</div>
-                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
+            <div v-if="paifangzishow">
+              <div class="clearfix">
+                <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
+                  <div class="fl" style="width: 80px;">房屋朝向</div>
+                  <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
+                </div>
+              </div>
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl" style="width: 80px;">房屋照片</div>
+                <div v-if=" item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
+                  <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
+                </div>
+                <!--<div class="fl imgs">
+                  <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                  <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
+                </div>-->
+              </div>
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl" style="width: 80px;">电表箱</div>
+                <div v-if=" item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
+                  <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
+                </div>
+                <!--<div class="fl imgs">
+                  <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                  <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄用户的电表</div>
+                </div>-->
+              </div>
+              <div  class="clearfix" style="margin-top: 20px;">
+                <div class="fl" style="width: 80px;">其他</div>
+                <div class="fl imgs" v-if=" item.data_type === 2" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                  <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
+                </div>
+                <!--<div class="fl imgs">
+                  <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                  <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">可以拍摄用户房屋周边环境</div>
+                </div>-->
+              </div>
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl" style="width: 80px;">备注</div>
+                <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.h_remark}}</div>
               </div>
             </div>
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">房屋照片</div>
-              <div v-if=" item.data_type === 0" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index"  style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
-              </div>
-              <!--<div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄房屋正面及侧面照片</div>
-              </div>-->
-            </div>
-
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">电表箱</div>
-              <div v-if=" item.data_type === 1" class="fl imgs" v-for="(item,index) in details.houseImgs" :key="index" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)" alt="暂无图片">
-              </div>
-              <!--<div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄用户的电表</div>
-              </div>-->
-            </div>
-            <div  class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">其他</div>
-              <div class="fl imgs" v-if=" item.data_type === 2" v-for="(item,index) in details.houseImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" v-if="item.data_type === 2" :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
-              </div>
-              <!--<div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">可以拍摄用户房屋周边环境</div>
-              </div>-->
-            </div>
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">备注</div>
-              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.h_remark}}</div>
-            </div>
+            <div v-if="!paifangzishow" style="text-align: center;">暂无数据</div>
           </el-tab-pane>
           <el-tab-pane label="资料收集" name="4">
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
-              <div class="fl imgs"  v-if="item.data_type === 0" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;" :src="item.mini_url" @click="showMax(item.url)" alt="">
+            <div v-if="shouziliaoshow">
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl imgs" style="width: 80px;">身份证/户口本/结婚证</div>
+                <div class="fl imgs"  v-if="item.data_type === 0" v-for="(item,index) in details.dataImgs" :key="index" style="width: 70px; height: 70px;">
+                  <img style="width: 70px; height: 70px;" :src="item.mini_url" @click="showMax(item.url)" alt="">
+                </div>
+                <!--<div class="fl imgs">
+                  <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                  <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
+                </div>-->
               </div>
-              <!--<div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>-->
-            </div>
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl imgs" style="width: 80px;">产权证明/电费单/银行卡</div>
-              <div class="fl imgs" v-if="item.data_type === 1" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
-              </div>
-              <!--<div class="fl imgs">-->
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl imgs" style="width: 80px;">产权证明/电费单/银行卡</div>
+                <div class="fl imgs" v-if="item.data_type === 1" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                  <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
+                </div>
+                <!--<div class="fl imgs">-->
                 <!--<div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>-->
                 <!--<div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>-->
-              <!--</div>-->
-            </div>
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl imgs" style="width: 80px;">并网申请/合同/其他</div>
-              <div class="fl imgs" v-if="item.data_type === 2" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
-                <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
+                <!--</div>-->
               </div>
-              <!--<div class="fl imgs">
-                <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
-                <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
-              </div>-->
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl imgs" style="width: 80px;">并网申请/合同/其他</div>
+                <div class="fl imgs" v-if="item.data_type === 2" v-for="(item,index) in details.dataImgs" :key="index" style="margin-right: 5px;width: 70px; height: 70px;">
+                  <img style="width: 70px; height: 70px;"  :src="item.mini_url" @click="showMax(item.url)"  alt="暂无图片">
+                </div>
+                <!--<div class="fl imgs">
+                  <div style="width: 70px; height: 70px;border: 1px dashed #e4e7ed;text-align: center;line-height: 70px;font-size: 30px;color: #c0c4cc">+</div>
+                  <div style="color: #c0c4cc;font-size: 10px;margin-top: 5px;">重点拍摄证件正面照片</div>
+                </div>-->
+              </div>
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl" style="width: 80px;">备注</div>
+                <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.d_remark}}</div>
+              </div>
             </div>
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">备注</div>
-              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.d_remark}}</div>
+            <div v-if="!shouziliaoshow" style="text-align: center;">
+              暂无数据
             </div>
           </el-tab-pane>
           <el-tab-pane label="方案设计" name="5">
-            <div class="clearfix" style="margin-top: 20px;">
-              <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
-                <div class="fl" style="width: 80px;">组件规格</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_format}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
+            <div v-if="paibanzishow">
+              <div class="clearfix" style="margin-top: 20px;">
+                <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
+                  <div class="fl" style="width: 80px;">组件规格</div>
+                  <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                    <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_format}}</div>
+                    <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
+                  </div>
+                </div>
+                <div :span="10" class="clearfix fl y-Center">
+                  <div class="fl" style="width: 80px;">组件数量</div>
+                  <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                    <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
+                    <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
+                  </div>
                 </div>
               </div>
-              <div :span="10" class="clearfix fl y-Center">
-                <div class="fl" style="width: 80px;">组件数量</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
+              <div class="clearfix" style="margin-top: 20px;">
+                <div :span="10" class="clearfix y-Center" style="width: 400px;">
+                  <div class="fl" style="width: 80px;">装机容量</div>
+                  <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                    <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
+                    <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="clearfix" style="margin-top: 20px;">
-              <div :span="10" class="clearfix y-Center" style="width: 400px;">
-                <div class="fl" style="width: 80px;">装机容量</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                  <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
-                </div>
+              <div class="clearfix" style="margin-top: 20px;">
+                <div class="fl" style="width: 80px;">备注</div>
+                <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.rf_remark}}</div>
               </div>
+              <div style="margin-top: 20px;font-size: 16px;">排布示意图</div>
+              <div style="margin-top: 20px;"><img width="400" :src="details.rf_image" alt=""></div>
             </div>
-            <div class="clearfix" style="margin-top: 20px;">
-              <div class="fl" style="width: 80px;">备注</div>
-              <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.rf_remark}}</div>
-            </div>
-            <div style="margin-top: 20px;font-size: 16px;">排布示意图</div>
-            <div style="margin-top: 20px;"><img width="400" :src="details.rf_image" alt=""></div>
+            <div v-if="!paibanzishow" style="text-align: center;">暂无数据</div>
           </el-tab-pane>
         </el-tabs>
       </el-col>
@@ -271,6 +281,9 @@ import dateFormat from 'dateformat'
 export default {
   data () {
     return {
+      paifangzishow: true,
+      shouziliaoshow: true,
+      paibanzishow: true,
       disabledshow: true,
       maxImgUrl: '', // 图片放大url地址
       centerDialogVisible: false, // 图片放大Dialog框 默认值
@@ -318,6 +331,7 @@ export default {
           // this.dialogVisible = true
           // this.dialogMessage = '房屋信息未采集'
           this.showWarningTips('房屋信息未采集')
+          this.paifangzishow = false
         }
       } else if (tab.name === '4') {
         this.initData()
@@ -325,6 +339,7 @@ export default {
           // this.dialogVisible = true
           // this.dialogMessage = '客户资料未采集'
           this.showWarningTips('客户资料未采集')
+          this.shouziliaoshow = false
         }
       } else if (tab.name === '5') {
         this.initData()
@@ -332,6 +347,7 @@ export default {
           // this.dialogVisible = true
           // this.dialogMessage = '排版子未采集'
           this.showWarningTips('排版子未采集')
+          this.paibanzishow = false
         }
       } else if (tab.name === '1') {
         let planId = this.$route.query.planId

@@ -7,7 +7,7 @@
       <span style="color: #FF0000;">确定解散团队？解散后将会删除所有团队信息，且不可恢复！</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="sendCodeVisible = true">确 定</el-button>
+        <el-button type="primary" @click="dissolveTeamJuge">确 定</el-button>
       </span>
     </el-dialog>
     <el-dialog
@@ -53,7 +53,7 @@
           <el-col :span="24">
             <div style="font-size: 14px;">
               <div class="fl">创建者: &nbsp;&nbsp;{{founder.name}}</div>
-              <el-button v-if="founder.isCompanyManage" class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dissolveTeamJuge">解散团队</el-button>
+              <el-button v-if="founder.isCompanyManage" class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
             </div>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">

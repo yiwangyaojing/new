@@ -44,33 +44,32 @@
         <el-button size="small" type="primary" @click="dissolveCompany">确 定</el-button>
       </span>
     </el-dialog>
-    <el-row>
+    <el-row class="f-m">
       <el-col :span="24">
         <el-col :span="5">
           <el-tree :data="data" :props="defaultProps" node-key="id" :default-checked-keys="defaultKey" :highlight-current='hightlight' :auto-expand-parent="hightlight" :default-expanded-keys="defaultKey" @node-click="handleNodeClick"></el-tree>
         </el-col>
         <el-col :span="19">
-          <el-col :span="24">
-            <div style="font-size: 14px;">
-              <div class="fl">创建者: &nbsp;&nbsp;{{founder.name}}</div>
-              <el-button v-if="founder.isCompanyManage" class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
-            </div>
-          </el-col>
-          <el-col :span="24" style="margin-top: 20px;">
-            <el-col :span="15">
-              <div class="y-Center">
-                <div class="fl" style="font-size: 14px;">管理员: &nbsp;&nbsp;</div>
-                <el-select style="width: 500px;" size="small" class="fl" v-model="selectedItems" :disabled="!founder.isSaveShow" filterable multiple placeholder="请选择" @change="selectChange">
-                  <el-option v-for="item in users" :key="item.openid" :label="item.name" :value="item.openid">
-                  </el-option>
-                </el-select>
-              </div>
-            </el-col>
+          <el-row class="row-d">
+            <el-col :span="2" style="line-height: 30px;">创建者: &nbsp;&nbsp;</el-col>
+            <el-col :span="3" style="line-height: 30px;">{{founder.name}}</el-col>
             <el-col :span="5">
+              <el-button v-if="founder.isCompanyManage" type="danger" style="margin-left: 20px; height: 30px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
+            </el-col>
+          </el-row>
+          <el-row class="row-d" style="margin-top: 20px;">
+            <el-col :span="2" class="f-m" style="line-height: 30px;">管理员: &nbsp;&nbsp;</el-col>
+            <el-col :span="12">
+              <el-select style="width: 100%;" size="small" class="fl" v-model="selectedItems" :disabled="!founder.isSaveShow" filterable multiple placeholder="请选择" @change="selectChange">
+                <el-option v-for="item in users" :key="item.openid" :label="item.name" :value="item.openid">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="5" :offset="1" >
               <el-button type="success" v-if="founder.isSaveShow" size="small" @click="saveDialogVisible = true">保存</el-button>
             </el-col>
-          </el-col>
-          <el-col :span="24" style="margin-top: 20px;">
+          </el-row>
+          <el-row style="margin-top: 20px;">
             <el-table size="mini" border stripe :data="tableData"
                       v-loading="tableLoading"
                       element-loading-text="加载中..."
@@ -97,7 +96,7 @@
                            layout="total, sizes, prev, pager, next, jumper"
                            :total="totalNum">
             </el-pagination>
-          </el-col>
+          </el-row>
         </el-col>
       </el-col>
     </el-row>
@@ -483,5 +482,8 @@ export default {
   }
   .font-size-20 {
     font-size: 18px
+  }
+  .row-d {
+    height: 25px;
   }
 </style>

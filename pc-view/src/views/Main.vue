@@ -8,7 +8,7 @@
       <el-row type="flex" align="middle" class="logo">
         <img src="../../static/img/Logo.gif"/>
       </el-row>
-      <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF"
+      <el-menu :router="true" class="el-menu-vertical" text-color="#303133" active-text-color="#FFFFFF" :default-active="index"
                background-color="#fff" :collapse="collapsed">
         <el-menu-item-group>
           <el-menu-item index="0" :route="{name: 'Home'}">
@@ -148,6 +148,7 @@ export default {
       }
     }
     return {
+      index: '0',
       collapsed: false,
       company_logo: '',
       company_name: '',
@@ -173,7 +174,6 @@ export default {
       }
     }
   },
-  computed: {},
   methods: {
     handleCommand (cmd) {
       if (cmd === 'a') {
@@ -217,7 +217,29 @@ export default {
           })
         }
       })
+    },
+    menu () {
+      return null
     }
+  },
+  updated () {
+    let menus = [
+      ['Home', 'Overdue'],
+      ['SettingDetails'],
+      ['CustomerData', 'CustomerDetails'],
+      ['ImportCustomer'],
+      ['Signin', 'SigninDetails'],
+      ['PersonnelManagement', 'TeamUserDetail'],
+      ['TeamInformation'],
+      ['AccountSetting']
+    ]
+    menus.forEach((item, index) => {
+      item.forEach(subItem => {
+        if (subItem === this.$route.name) {
+          this.index = index
+        }
+      })
+    })
   },
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
@@ -225,7 +247,9 @@ export default {
     this.company_name = sessionUser.company_name
     this.company_logo = sessionUser.company_logo
     this.avatarUrl = sessionUser.avatarUrl
-  }
+    this.menu()
+  },
+  computed: {}
 }
 </script>
 

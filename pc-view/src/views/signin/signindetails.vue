@@ -25,7 +25,11 @@
       <el-col :span="24" style="margin-top: 30px;">
         <el-col :span="15">
           <el-col :span="23">
-            <el-table :data="tableData" stripe border size="mini" style="width: 100%">
+            <el-table :data="tableData" stripe border size="mini"
+                      v-loading="tableLoading"
+                      element-loading-text="加载中..."
+                      element-loading-spinner="el-icon-loading"
+                      style="width: 100%">
               <el-table-column prop="createTime" label="时间" width="180">
               </el-table-column>
               <el-table-column prop="site" :show-overflow-tooltip="true" label="地点" width="180">
@@ -159,15 +163,10 @@ export default {
         pageNumber: this.pageNum,
         pageSize: this.pagesizeNum
       }
-      const loading = this.$loading({
-        lock: true,
-        text: '加载中...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0)'
-      })
+      this.tableLoading = true
       axios.post('/api/pc/signPc/detail', req).then(res => {
         console.log('这里是查询结果===>>', res)
-        loading.close()
+        this.tableLoading = false
         this.tableData = res.content
         this.totalNum = res.totalCount
         res.content.forEach(item => {
@@ -179,9 +178,9 @@ export default {
           this.center = [item.longitude, item.latitude]
         })
       }, () => {
-        loading.close()
+        this.tableLoading = false
       }).catch(() => {
-        loading.close()
+        this.tableLoading = false
       })
     }
   },

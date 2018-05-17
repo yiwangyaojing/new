@@ -56,6 +56,9 @@
   $.ajax(context+"/api/qrLogin/"+code, {
     type: "GET",
     dataType: "json",
+    xhrFields: {
+      withCredentials: true
+    },
     headers: {
       'Authorization':'Basic bWFydmVsX2NvbWljczpYaWFvc29sYXIyMDE4'
     },

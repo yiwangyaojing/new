@@ -86,7 +86,6 @@
                   <el-tag size="mini" :type="scope.row.overdue === '正常' ? 'success' : 'danger'" disable-transitions>{{scope.row.overdue}}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column prop="short_url" label="提取码" align="center"></el-table-column>
               <el-table-column fixed="right" label="操作" align="center">
                 <template slot-scope="scope">
                   <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>

@@ -61,14 +61,13 @@
             </el-col>
           </div>
         </div>
-        <el-col :span="18" class="y-Center" style="margin-top: 20px;">
-          <el-col :span="2"><div style="font-size: 14px;">搜索条件</div></el-col>
-          <el-col :span="22">
-            <el-col :span="18">
+        <el-col :span="24" class="y-Center" style="margin-top: 20px;">
+          <div style="font-size: 14px;margin-right: 20px;">搜索条件</div>
+          <el-col :span="16">
+            <el-col>
               <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
               </el-input>
             </el-col>
-
           </el-col>
         </el-col>
       </el-row>

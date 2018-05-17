@@ -3,7 +3,6 @@
            v-loading="tableLoading"
            element-loading-text="处理中..."
            element-loading-spinner="el-icon-loading">
-  <el-card class="box-card">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/Home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item><a>逾期规则</a></el-breadcrumb-item>
@@ -46,11 +45,10 @@
       </el-row>
       <el-col :span="24" style="padding: 30px 0;">
         <el-col :span="5">
-          <el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
+          <a href="javascript:history.go(-1)"><el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;">返回</el-button></a>
         </el-col>
         <el-col :span="5">
-          <a href="javascript:history.go(-1)"><el-button type="danger" @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;">返回</el-button></a>
-
+          <el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
         </el-col>
       </el-col>
   </el-card>
@@ -95,6 +93,10 @@ export default {
         id: Number(this.datas.id)
       }
       axios.post('/api/pc/overduePc', fromData).then(res => {
+          this.$message({
+          type: 'success',
+          message: '修改成功'
+        })
         this.tableLoading = false
         console.log(res)
       }, () => {

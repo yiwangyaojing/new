@@ -4,72 +4,82 @@
       <el-breadcrumb-item :to="{ path: '/CustomerData' }">客户资料</el-breadcrumb-item>
     </el-breadcrumb>
     <el-row>
-      <div>
-        <div :span="24" style="margin-top: 20px;" class="clearfix">
+      <el-row class="f-m">
+        <el-col :span="24" style="margin-top: 20px;" class="clearfix">
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;margin-right: 20px;">统计周期</div>
-            <el-select @change="tjzqChange" class="fl" v-model="tjzqvalue" size="small">
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-select>
+            <el-col :span="6" class="font-right">统计周期：</el-col >
+            <el-col :span="18">
+              <el-select @change="tjzqChange" v-model="tjzqvalue" size="small">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
           </el-col>
-          <el-col :span="16" class="y-Center">
-            <div class="grid-content bg-purple" style="font-size: 14px;;width: 90px;">自定义时间</div>
-            <div class="block">
-              <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+          <el-col :span="8" class="y-Center">
+            <el-col :span="6" class="grid-content bg-purple font-right">自定义时间：</el-col>
+            <el-col :span="18">
+              <el-date-picker unlink-panels @change="selectdateChange" value-format="yyyy-MM-dd" style="width: 88%" size="small" v-model="datevalue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
               </el-date-picker>
-            </div>
+            </el-col>
           </el-col>
-        </div>
-        <div style="margin-top: 20px;" class="clearfix">
+        </el-col>
+        <el-col :span="24" style="margin-top: 20px;" class="clearfix">
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>
-            <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
-              <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-select>
-          </el-col>
-          <el-col :span="8" class="y-Center">
-            <div class="fl"  style="font-size: 14px;width: 90px;">团队名称</div>
-            <el-select @change="teannameChange" size="small" :disabled="teannameshow" class="fl" v-model="teamname">
-              <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
-              </el-option>
-            </el-select>
+            <el-col :span="6" class="font-right">团队范围：</el-col>
+            <el-col :span="18">
+              <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
+                <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
           </el-col>
           <el-col :span="8" class="y-Center">
-            <div class="fl"  style="font-size: 14px;width: 60px;">负责人</div>
-            <el-select size="small" class="fl" v-model="fuzerenvalue" @change="fuzerenChange" :disabled="fuzerenshow">
+            <el-col :span="6" class="font-right">团队名称：</el-col>
+            <el-col :span="18">
+              <el-select @change="teannameChange" size="small" style="width: 88%" :disabled="teannameshow" class="fl" v-model="teamname">
+                <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
+            </el-col>
+          </el-col>
+          <el-col :span="8" class="y-Center">
+            <el-col :span="6" class="font-right">负责人：</el-col>
+            <el-select size="small" v-model="fuzerenvalue" @change="fuzerenChange" :disabled="fuzerenshow">
               <el-option v-for="(item, index) in fuzerenoptions" :key="index" :label="item.name" :value="item.openid">
               </el-option>
             </el-select>
           </el-col>
-        </div>
-        <div style="margin-top: 20px;" class="clearfix">
+        </el-col>
+        <el-col :span="24" style="margin-top: 20px;" class="clearfix">
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;margin-right: 20px;">合同状态</div>
+            <el-col :span="6" class="font-right">合同状态：</el-col>
             <el-select size="small" class="fl" @change="contractChange" v-model="contractvalue" placeholder="请选择">
               <el-option v-for="item in contractoptions" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
           </el-col>
           <el-col :span="8" class="y-Center">
-            <div class="fl" style="font-size: 14px;;width: 90px;">逾期状态</div>
-            <el-select size="small" class="fl" @change="overdueChange" v-model="overduevalue" placeholder="请选择">
-              <el-option v-for="item in overdueoptions" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-select>
-          </el-col>
-        </div>
-      </div>
-      <el-col :span="18" class="y-Center" style="margin-top: 20px;">
-        <div style="font-size: 14px;margin-right: 20px;">搜索条件</div>
-        <el-col :span="22">
-          <el-col :span="18">
-            <el-input size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
-            </el-input>
+            <el-col :span="6" class="font-right">逾期状态：</el-col>
+            <el-col :span="18">
+              <el-select style="width: 88%" size="small" @change="overdueChange" v-model="overduevalue" placeholder="请选择">
+                <el-option v-for="item in overdueoptions" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
           </el-col>
         </el-col>
-      </el-col>
+        <el-col :span="24" style="margin-top: 20px;">
+          <el-col :span="16" class="y-Center">
+            <el-col :span="3" class="font-right">搜索条件：</el-col>
+            <el-col :span="21">
+              <el-col>
+                <el-input style="width: 95%;" size="small" @input="searchChange" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="searchvalue">
+                </el-input>
+              </el-col>
+            </el-col>
+          </el-col>
+        </el-col>
+      </el-row>
     </el-row>
     <el-row>
       <el-col :span="24">

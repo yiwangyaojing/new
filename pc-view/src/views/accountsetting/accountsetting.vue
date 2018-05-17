@@ -1,5 +1,8 @@
 <template>
-  <el-card class="box-card">
+  <el-card class="box-card"
+           v-loading="tableLoading"
+           element-loading-text="处理中..."
+           element-loading-spinner="el-icon-loading">
     <el-row>
       <el-col :span="24" class="y-Center">
         <el-col :span="2" style="font-size: 14px;">姓名</el-col>
@@ -27,6 +30,7 @@ import values from '../../utils/values'
 export default {
   data () {
     return {
+      tableLoading: false,
       open_id: '',
       phone: '',
       name: '',
@@ -94,8 +98,10 @@ export default {
         })
         return
       }
-      axios.put('api/pc/user', parameter).then(res => {
+      this.tableLoading = true
+      axios.put('/api/pc/userPc', parameter).then(res => {
         console.log('修改成功', res)
+        this.tableLoading = false
         this.$message({
           type: 'success',
           message: '修改成功'
@@ -104,6 +110,8 @@ export default {
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
         console.log(this.sessionUser)
         window.location.reload()
+      }, () => {
+        this.tableLoading = false
       })
     }
   },

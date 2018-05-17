@@ -1,5 +1,8 @@
 <template>
-  <el-card class="box-card">
+  <el-card class="box-card"
+           v-loading="tableLoading"
+           element-loading-text="处理中..."
+           element-loading-spinner="el-icon-loading">
     <el-row>
       <el-col :span="24" class="y-Center">
         <el-col :span="2" style="font-size: 14px;">团队名称</el-col>
@@ -41,6 +44,7 @@ import values from '../../utils/values'
 export default {
   data () {
     return {
+      tableLoading: false,
       open_id: '',
       company_name: '',
       phone: '',
@@ -59,11 +63,15 @@ export default {
   },
   methods: {
     requestdata () {
+      this.tableLoading = true
       axios.get('/api/team/' + this.company_id + '/' + this.open_id, {}).then(res => {
         console.log('查询团队', res)
+        this.tableLoading = false
         this.oss_name = res.oss_name
         this.company_name = res.company_name
         this.company_logo = res.logo
+      }, () => {
+        this.tableLoading = false
       })
     },
     successImg (response, file, fileList) {
@@ -125,15 +133,19 @@ export default {
         })
         return
       }
+      this.tableLoading = true
       axios.put('api/team/company', objdata).then(res => {
         console.log('修改成功', res)
+        this.tableLoading = false
         this.$message({
           type: 'success',
           message: '修改成功'
         })
         this.sessionUser.company_logo = this.company_logo
+        window.sessionStorage.removeItem(values.storage.user)
         window.sessionStorage.setItem(values.storage.user, JSON.stringify(this.sessionUser))
-        window.location.reload()
+      }, () => {
+        this.tableLoading = false
       })
     }
   },

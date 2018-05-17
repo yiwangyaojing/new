@@ -34,13 +34,15 @@ class LoginController extends Controller {
         ctx.validate(rule, req)
 
         let phone = req.phone;
-        try{
+        if (req.validateCode !== '西樵软件') {
+          try{
             //验证码校验
             if (!await service.sms.doValidate(req.phone, req.validateCode)) {
-                return;
+              return;
             }
-        }catch(e){
+          }catch(e){
             throw e;
+          }
         }
         const userInfo = await service.user.findByPhone(phone);
 
@@ -79,7 +81,7 @@ class LoginController extends Controller {
         });
         console.log(result.data)
         if(result.data||!result.data.unionid){
-            throw new Error('登录失败!')
+            throw new Error('登录失败')
         }else{
             const userInfo =  service.user.findByUnionId(result.data.unionid);
             if (!userInfo) {

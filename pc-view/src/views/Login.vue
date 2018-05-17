@@ -32,12 +32,11 @@
                     </el-col>
                     <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
                     <el-col v-if="codeShow" :span="9">
-                      <el-button style="color: #000" size="small" @click="getValidateCode"  :disabled="!codeShow">获取验证码
+                      <el-button style="color: #000; width: 92px" size="small" @click="getValidateCode"  :disabled="!codeShow">获取验证码
                       </el-button>
                     </el-col>
                     <el-col v-if="!codeShow" :span="9">
-                      <el-button style="color: #000" size="small" @click="getValidateCode"  disabled>{{numCode}}秒</el-button>
-
+                      <el-button style="color: #000; width: 92px" size="small" @click="getValidateCode"  disabled>{{numCode}}秒</el-button>
                     </el-col>
                   </el-col>
                 </el-form-item>
@@ -95,6 +94,7 @@ export default {
         this.countDown()
       } else {
         this.$message.error('手机号不能为空')
+        return
       }
       axios.post('/api/login/sms', this.loginForm).then(response => {
         let message = response.message

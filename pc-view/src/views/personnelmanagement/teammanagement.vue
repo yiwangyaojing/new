@@ -54,7 +54,7 @@
             <el-col :span="2" style="line-height: 30px;">创建者: &nbsp;&nbsp;</el-col>
             <el-col :span="3" style="line-height: 30px;">{{founder.name}}</el-col>
             <el-col :span="5">
-              <el-button v-if="founder.isCompanyManage" type="danger" style="margin-left: 20px; height: 30px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
+              <el-button v-if="founder.isCompanyManage" type="info" style="margin-left: 20px; height: 30px;" size="mini" @click="dialogVisible = true" plain>解散团队</el-button>
             </el-col>
           </el-row>
           <el-row class="row-d" style="margin-top: 20px;">

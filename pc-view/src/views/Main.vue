@@ -4,7 +4,7 @@
 </style>
 <template>
   <el-container>
-    <el-aside width="auto">
+    <el-aside width="auto" style="position: relative;">
       <el-row type="flex" align="middle" class="logo">
         <img src="../../static/img/logo.png"/>
       </el-row>
@@ -45,8 +45,8 @@
           <span slot="title">账户设置</span>
         </el-menu-item>
       </el-menu>
-      <div style="position: fixed;bottom: 0;padding: 5px 0px">
-        <a href="http://www.xiqiao.io" style="color: #000">上海西樵软件</a>
+      <div style="position: absolute;bottom: 0;padding: 5px 0px;width: 100%;">
+        <a href="http://www.xiqiao.io" style="color: #999;font-size: 10px;width: 100%;text-align: center;display: inline-block;">开发商:上海西樵软件</a>
       </div>
     </el-aside>
     <el-container>
@@ -62,12 +62,13 @@
             </div>
           </el-col>
 
-          <el-col :span="5" :xs="5" :sm="5" :lg="3" :xl="2">
+          <el-col :span="6">
             <el-row justify="right" align="middle" type="flex">
-              <el-col :span="10">
+              <el-col :span="10"></el-col>
+              <el-col :span="5">
                 <img class="header" height="36" :src="avatarUrl"/>
               </el-col>
-              <el-col :span="14">
+              <el-col :span="9">
                 <el-dropdown @command="handleCommand">
                     <span class="el-dropdown-link">
                       {{loginName}}<i class="el-icon-arrow-down el-icon--right"></i>

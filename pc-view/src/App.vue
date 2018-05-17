@@ -24,5 +24,13 @@ export default {
   }
   html,body{
     height: 100%;
+    margin: 0 !important;
+  }
+  .el-tabs__nav {
+    width: 100% !important;
+    text-align: center;
+  }
+  .el-tabs__item {
+    width: 51% !important;
   }
 </style>

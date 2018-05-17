@@ -1,4 +1,4 @@
-import Login from '@/views/Login'
+import Login from '@/views/Login1'
 import Main from '@/views/Main'
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -20,7 +20,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/', redirect: '/login'},
+    {path: '/', redirect: '/login1'},
     {path: '/login', name: 'Login', component: Login},
     {path: '/download', name: 'Download', component: Download},
     {

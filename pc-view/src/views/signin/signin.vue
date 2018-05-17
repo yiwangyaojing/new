@@ -56,7 +56,7 @@
           </el-table-column>
           <el-table-column label="操作" width="100" align="center">
             <template slot-scope="scope">
-              <a href="javascript:void(0)" @click="gotoDetail(scope.row)" type="text" size="small">详情</a>
+              <el-button @click="gotoDetail(scope.row)" type="text" size="small" >详情</el-button>
             </template>
           </el-table-column>
         </el-table>

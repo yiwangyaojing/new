@@ -40,7 +40,7 @@ class TeamPcController extends Controller {
     }
 
     // 解散团队
-    async dissolveTeam() {
+    async dissolveCompany() {
       const { ctx, service } = this
       const rule = {
         teamid: {type: 'string', required: true},
@@ -60,6 +60,18 @@ class TeamPcController extends Controller {
       }
       ctx.body = await service.teamPc.dissolveTeam(req.teamid, req.openid)
     }
+
+  // 解散团队
+  async dissolveTeam() {
+    const { ctx, service } = this
+    const rule = {
+      teamid: {type: 'string', required: true},
+      openid: {type: 'string', required: true}
+    }
+    const req = ctx.params
+    ctx.validate(rule, req)
+    ctx.body = await service.teamPc.dissolveTeam(req.teamid, req.openid)
+  }
 
     // 管理员修改
     async changeTeamUsersRole() {

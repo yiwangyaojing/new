@@ -41,7 +41,7 @@
       </el-row>
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="sendCodeVisible = false">取 消</el-button>
-        <el-button size="small" type="primary" @click="dissolveTeam">确 定</el-button>
+        <el-button size="small" type="primary" @click="dissolveCompany">确 定</el-button>
       </span>
     </el-dialog>
     <el-row>
@@ -53,7 +53,7 @@
           <el-col :span="24">
             <div style="font-size: 14px;">
               <div class="fl">创建者: &nbsp;&nbsp;{{founder.name}}</div>
-              <el-button v-if="founder.isCompanyManage" class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dialogVisible = true">解散团队</el-button>
+              <el-button v-if="founder.isCompanyManage" class="fl" type="danger" style="margin-left: 20px;" size="mini" @click="dissolveTeamJuge">解散团队</el-button>
             </div>
           </el-col>
           <el-col :span="24" style="margin-top: 20px;">
@@ -134,6 +134,15 @@ export default {
     }
   },
   methods: {
+    dissolveTeamJuge () {
+      // 判断当前团队是否是公司团队
+      console.log('this is team ===>>', this.selectedTeam)
+      if (this.selectedTeam.id === this.selectedTeam.company_id) {
+        this.sendCodeVisible = true
+      } else {
+        this.dissolveTeam()
+      }
+    },
     sendCode () {
       this.sendLoading = true
       const loading = this.$loading({
@@ -256,7 +265,37 @@ export default {
         loading.close()
       })
     },
-    dissolveTeam (value) {
+    dissolveTeam () {
+      let userInfo = getUserInfo()
+      console.log('this is userInfo ===>>', userInfo)
+      let openid = userInfo.openid
+      const loading = this.$loading({
+        lock: true,
+        text: '处理中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0)'
+      })
+      axios.delete('/api/pc/teamPc/' + openid + '/' + this.selectedTeam.id, {}).then(res => {
+        loading.close()
+        this.dialogVisible = false
+        this.$notify({
+          title: '提示',
+          message: '操作成功!',
+          type: 'success'
+        })
+        console.log('这里是删除结果===>>', res)
+      }, (fail) => {
+        console.log('fail ===>>', fail)
+        this.$message.error(fail.message)
+        loading.close()
+      }).catch((err) => {
+        console.log('err ===>>', err)
+        this.dialogVisible = false
+        this.sendCodeVisible = false
+        loading.close()
+      })
+    },
+    dissolveCompany (value) {
       console.log('解散团队===>>', value)
       let userInfo = getUserInfo()
       console.log('this is userInfo ===>>', userInfo)

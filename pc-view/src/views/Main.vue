@@ -46,7 +46,7 @@
         </el-menu-item>
       </el-menu>
       <div style="position: absolute;bottom: 0;padding: 5px 0px;width: 100%;">
-        <a href="http://www.xiqiao.io" style="color: #999;font-size: 10px;width: 100%;text-align: center;display: inline-block;">开发商:上海西樵软件</a>
+        <a href="http://www.xiqiao.io" style="color: #999;font-size: 10px;width: 100%;text-align: center;display: inline-block;" target="_blank">开发商:上海西樵软件</a>
       </div>
     </el-aside>
     <el-container>

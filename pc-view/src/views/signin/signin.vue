@@ -329,7 +329,16 @@ export default {
     },
     gotoDetail (row) {
       console.log('这里是跳转到详情===>>', row)
-      this.$router.push({path: '/SigninDetails', query: {teamname: row.team, openid: row.openid, name: row.name}})
+      this.$router.push({path: '/SigninDetails',
+        query: {
+          teamname: row.team,
+          openid: row.openid,
+          name: row.name,
+          tjzqvalue: this.tjzqvalue,
+          datevalue: this.datevalue,
+          tdfwvalue: this.tdfwvalue,
+          fuzerenshow: this.fuzerenshow
+        }})
     }
   },
   mounted () {

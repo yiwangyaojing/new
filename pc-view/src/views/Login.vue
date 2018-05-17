@@ -32,11 +32,11 @@
                     </el-col>
                     <!--<el-button type="danger" @click="getValidateCode">获取验证码</el-button>-->
                     <el-col v-if="codeShow" :span="9">
-                      <el-button size="small" @click="getValidateCode" type="primary" :disabled="!codeShow">获取验证码
+                      <el-button style="color: #000" size="small" @click="getValidateCode"  :disabled="!codeShow">获取验证码
                       </el-button>
                     </el-col>
                     <el-col v-if="!codeShow" :span="9">
-                      <el-button size="small" @click="getValidateCode" type="primary" disabled>{{numCode}}秒</el-button>
+                      <el-button style="color: #000" size="small" @click="getValidateCode"  disabled>{{numCode}}秒</el-button>
 
                     </el-col>
                   </el-col>
@@ -52,7 +52,7 @@
                   </el-row>
                 </el-form-item>
                 <el-form-item>
-                  <el-button style="width: 100%" size="medium" type="success" @click="handleSubmit('loginForm')">登录</el-button>
+                  <el-button style="width: 100%;background: #01cd33;color: #fff" size="medium"  @click="handleSubmit('loginForm')">登录</el-button>
                   <!--<el-button type="text" size="mini" disabled>Forgot password?</el-button>-->
                 </el-form-item>
               </el-form>
@@ -196,4 +196,5 @@ export default {
  .el-tabs__item {
    width: 51% !important;
  }
+
 </style>

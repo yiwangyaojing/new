@@ -3,7 +3,7 @@
     <el-row>
       <div class="clearfix" style="font-size: 14px;">
         <div class="fl">{{this.details.cst_name}}</div>
-        <div class="fr" style="border: 1px solid #999;padding: 5px;border-radius: 5px;">打包下载</div>
+        <div class="fr" @click="download()" style="border: 1px solid #999;padding: 5px;border-radius: 5px;" >打包下载</div>
       </div>
       <el-col :span="24" style="margin-top: 10px;font-size: 14px;">
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
@@ -236,7 +236,7 @@
       </el-button>
       <!--放大后的图片end-->
     </el-dialog>
-<!--    <el-dialog
+    <el-dialog
       title="提示"
       :visible.sync="downloadDialog"
       width="30%">
@@ -245,7 +245,7 @@
          <el-button @click="downloadDialog = false">取 消</el-button>
         <el-button type="primary" @click="downLoadData">确 定</el-button>
         </span>
-    </el-dialog>-->
+    </el-dialog>
 
     <el-dialog
       title="提示"
@@ -256,12 +256,6 @@
     <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
   </span>
-    </el-dialog>
-
-    <el-dialog
-      :visible.sync="imgVisible"
-      width="50%">
-      <img :src="imgUrl" style="width: 100%;"/>
     </el-dialog>
   </el-card>
 </template>
@@ -390,6 +384,23 @@ export default {
     },
     showMax1 () {
       this.centerDialogVisible = false
+    },
+    download () {
+      if (this.details.d_is_finish === 0 && this.details.h_is_finish === 0) {
+        this.dialogVisible = true
+        this.dialogMessage = '无可下载的资源'
+      } else {
+        this.downloadDialog = true
+        this.dialogMessage = '是否下载该用户所有资料'
+      }
+    },
+    downLoadData () {
+      let shortUrl = this.details.short_url
+      if (!shortUrl) {
+        this.$message.error('下载提取码自动获取失败！手动填写')
+        this.$router.push({path: '/download', query: {shortUrl: ''}})
+      }
+      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
     }
   },
   mounted () {

@@ -233,7 +233,7 @@ export default {
     menus.forEach((item, index) => {
       item.forEach(subItem => {
         if (subItem === this.$route.name) {
-          this.index = index
+          this.index = String(index)
         }
       })
     })

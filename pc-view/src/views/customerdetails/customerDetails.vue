@@ -126,7 +126,7 @@
             <el-col :span="10" :offset="7">
             <el-alert
               v-if="!huikuanshow"
-              title="暂无汇款记录"
+              title="暂无回款记录"
               type="warning"
               :closable= false
               center

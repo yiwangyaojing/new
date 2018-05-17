@@ -217,9 +217,6 @@ export default {
           })
         }
       })
-    },
-    menu () {
-      return null
     }
   },
   updated () {
@@ -247,7 +244,6 @@ export default {
     this.company_name = sessionUser.company_name
     this.company_logo = sessionUser.company_logo
     this.avatarUrl = sessionUser.avatarUrl
-    this.menu()
   },
   computed: {}
 }

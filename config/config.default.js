@@ -96,6 +96,15 @@ module.exports = appInfo => {
         qrSecret:'f1b0306f9af3b2adfbdef176500f4631',
         accessTokenUrl:'https://api.weixin.qq.com/sns/oauth2/access_token'
     };
+    config.httpAuth = {
+        username: 'marvel_comics',
+        password: 'Xiaosolar2018',
+        // match: '/api',
+        // which routes you want to ignore this middleware
+        // ignore: ''
+        // match: (ctx) {
+        // }
+    };
     config.onerror = {
         html(err, ctx) {
             // html hander

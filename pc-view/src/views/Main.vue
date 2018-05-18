@@ -52,8 +52,8 @@
          <!-- <el-col>
             <el-button class="circle none toggle" size="mini" round icon="el-icon-vueboot-menu"/>
           </el-col>-->
-          <el-col  class="y-Center">
-            <div class="clearfix">
+          <el-col class="y-Center">
+            <div class="clearfix" v-if="company_id">
               <div class="fl"><img style="width: 50px;height: 50px;border-radius: 50%;" :src="company_logo"/></div>
               <div class="fl" style="margin-left: 10px;font-size: 14px;line-height: 54px;">{{company_name}}</div>
             </div>
@@ -150,6 +150,7 @@ export default {
     }
     return {
       index: '0',
+      company_id: '',
       collapsed: false,
       company_logo: '',
       company_name: '',
@@ -228,6 +229,7 @@ export default {
       this.company_name = sessionUser.company_name
       this.company_logo = sessionUser.company_logo
       this.avatarUrl = sessionUser.avatarUrl
+      this.company_id = sessionUser.company_id
     },
     listenerReloadUserData () {
       console.log('loadUserData')

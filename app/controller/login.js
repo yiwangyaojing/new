@@ -80,8 +80,8 @@ class LoginController extends Controller {
             dataType: 'json',
         });
         console.log(result.data)
-        if(result.data||!result.data.unionid){
-            throw new Error('登录失败')
+        if(!result.data||!result.data.unionid){
+            throw new Error('登录失败:'+result.data)
         }else{
             const userInfo =  service.user.findByUnionId(result.data.unionid);
             if (!userInfo) {

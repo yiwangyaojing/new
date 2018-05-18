@@ -125,7 +125,7 @@ export default {
     formatDate: function () {
       console.log('2222222=============', this.data.created_at)
       let date = new Date(this.data.created_at)
-      let datejion = date.getTime() - 8 * 3600
+      let datejion = date.getTime()
       return dateFormat(datejion, 'yyyy-mm-dd HH:MM:ss')
     }
   }

@@ -143,6 +143,11 @@ class CustomerDataPcService extends Service {
     async findContractStatusById(rowId){
         const result = await this.ctx.model.XPlanSchedule.findAll(
             {
+                attributes: {
+                    include: [
+                        [Sequelize.fn('date_format',Sequelize.fn('DATE_ADD',Sequelize.col('updated_at'),Sequelize.literal('INTERVAL 8 hour')),'%Y-%m-%d %H:%m:%s'),'updateTime' ],
+                        [Sequelize.fn('date_format',Sequelize.fn('DATE_ADD',Sequelize.col('created_at'),Sequelize.literal('INTERVAL 8 hour')),'%Y-%m-%d %H:%m:%s'),'createTime' ],
+                    ] },
                 where: {plan_id: rowId},
                 order: [['updated_at', 'desc']]
             },
@@ -162,7 +167,6 @@ class CustomerDataPcService extends Service {
         const payUser = await sequelize.query(
             "select p.* , xu.name from x_plan_pay p , x_users xu " +
             "where p.plan_id = :plan_id " +
-            "and  p.open_id = :open_id " +
             "and  xu.openid = p.open_id " +
             "order by p.updated_at desc",
             {replacements: {open_id: params.openId,plan_id: params.id}, type: Sequelize.QueryTypes.SELECT})

@@ -3,41 +3,62 @@
         <div ref="hotPreview">
           <el-card class="box-card">
             <div>
+              <div style="float: left;">
+                  请将您要导入的客户信息填写在以下表格中<br>
+                  <br>
+                  说明：<br>
+                  1 通过“Ctrl+V”可以将Excel表格中的内容粘贴到表格内，也可以手动输入<br>
+                  2 右击表格内区域，进行插入行、删除行等操作<br>
+                  3 导入功能表格第一行默认为示例客户，可更改/删除<br>
+              </div>
+              <!-- <div style="float: right">
+                <div style="background-color: #ECB827;padding: 10px;">
+                  有项目负责人<br>
+                  不在团队中。<br>
+                  仍然导入？<br>
+                  <br>
+                </div>
+              </div> -->
+              <div style="clear: both"></div>
+            </div>
+            <div>
+              <br>
               当前选中的团队为：<span v-html="selectTeamName"></span>
             </div>
             <div style="background-color:white">
                 <HotTable ref="hotTable" :root="root" :settings="hotSettings"></HotTable>
             </div>
             <div>
-                <el-button @click="getTableData()" size="medium" style="margin-top: 40px;background: #67c23a;color: #fff;">导入</el-button>
+                <div ref="colorHint" style="float: left">
+                  <br>
+                  <span ref="yellowHint" style="display:none">单元格黄色：项目负责人不在该团队中，但也可以继续导入<br></span>
+                  <span ref="redHint" style="display:none">单元格红色：不符合规则，无法导入</span>
+                </div>
+                <button class="el-button el-button--default el-button--medium" ref="nextStep" @click="nextStep()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;">下一步</button>
+                <button class="el-button el-button--default el-button--medium" ref="saveButton" @click="getTableData()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;display: none">导入</button>
+                <div style="clear:both"></div>
             </div>
-            <div>
-                导入规则：<br>
-                1  导入功能表格第一行默认一条示例客户，可删除<br>
-                2  右击表格，进行插入行、删除行等操作<br>
-                3  通过“ctrl+V”可以将excel表格中的内容添加到表格内，也可以手动输入<br>
-                4  项目负责人列单元格黄色时表示为空或者改团队无此人<br>
-                5  客户名称列单元格黄色时表示内容为空<br>
-                6  联系电话'、'组件规格'、'组件数量'、'合同金额'、'回款金额'这几列只能填入数字,'组件规格'和'组件数量'不能为0<br>
-                7  回款金额不能大于合同金额
-            </div>
+
           </el-card>
         </div>
         <!-- 选择团队窗口 -->
         <div ref="selectTeam" style="background-color:white">
            <el-card class="box-card">
-              <div style="padding-bottom: 20px;font-weight: bolder;">
+              <el-breadcrumb separator="/" style="padding-bottom: 20px;">
+                <el-breadcrumb-item>请选择客户导入团队:</el-breadcrumb-item>
+              </el-breadcrumb>
+              <!-- <div style="padding-bottom: 20px;font-weight: bolder;">
                 请选择客户导入团队：
-              </div>
+              </div> -->
                <el-col :span="8" class="y-Center">
-                    <div class="fl" style="font-size: 14px;margin-right: 20px;">团队范围</div>
+                    <el-col :span="6" class="font-right">团队级别：</el-col>
                     <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
                     <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
                     </el-option>
                     </el-select>
                 </el-col>
                 <el-col :span="8" class="y-Center">
-                    <div class="fl"  style="font-size: 14px;width: 100px;">团队名称</div>
+                    <el-col :span="6" class="font-right">团队名称：</el-col>
                     <el-select  @change="teamNameChange" size="small" class="fl" v-model="teamname">
                     <el-option v-for="(item, index) in teamoptions" :key="index" :label="item.name" :value="item.id">
                     </el-option>
@@ -59,13 +80,15 @@ export default {
       root: 'test-hot',
       hotSettings: {},
       tdfwoptions: [],
-      tdfwvalue: '',
+      tdfwvalue: '全部(可见范围)',
       teamname: '',
       teamoptionsAll: [],
       teamoptions: [],
       selectTeam: '',
       allTeamData: {},
-      selectTeamName: ''
+      selectTeamName: '',
+      userArray: [],
+      returnMoneyCheck: true
     }
   },
   components: {
@@ -101,6 +124,10 @@ export default {
         // 公司级别管理员
         _this.tdfwoptions = [
           {
+            value: 'all',
+            label: '全部(可见范围)'
+          },
+          {
             value: 1,
             label: '一级团队'
           },
@@ -117,6 +144,10 @@ export default {
         // 公司级别管理员
         _this.tdfwoptions = [
           {
+            value: 'all',
+            label: '全部(可见范围)'
+          },
+          {
             value: 2,
             label: '二级团队'
           },
@@ -129,6 +160,10 @@ export default {
         // 公司级别管理员
         _this.tdfwoptions = [
           {
+            value: 'all',
+            label: '全部(可见范围)'
+          },
+          {
             value: 3,
             label: '三级团队'
           }
@@ -137,40 +172,65 @@ export default {
     })
     // 获取团队信息
     _this.getTeamData()
+
+    _this.teamoptions = _this.teamoptionsAll
   },
   methods: {
     // 获取表格内所有数据
     getTableData: function () {
       const _this = this
-      this.$refs.hotTable.table.validateCells(function (callback) {
-        if (callback === false) {
-        //   confirm('表格内仍有错误项，请按照规则填写后提交')
-          _this.$message.error('表格内仍有错误项，请按照规则填写后提交')
-        } else {
-          let r = confirm('可以提交，确认提交吗？')
-          if (r === true) {
-            let tableData = _this.$refs.hotTable.table.getData()
-            let importData = []
-            let array = ['', '', '', '', '', '', '', '', '', '', '', '', '', '']
-            for (let i = 0; i < tableData.length; i++) {
-              if (tableData[i].toString() !== array.toString()) {
-                tableData[i].unshift(_this.selectTeam)
-                importData.push(tableData[i])
-              }
-            }
-            // console.log(importData)
-            // let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
-            // 把json格式的数据传到后台
-            return axios.post('/api/pc/customerDataPc/importExcelData/' + _this.selectTeam, importData).then(response => {
-              if (response === 'import success') {
-                confirm('导入成功')
-              } else {
-                confirm('导入失败')
-              }
-            })
+      let r = confirm('确认导入吗？')
+      if (r === true) {
+        let tableData = _this.$refs.hotTable.table.getData()
+        let importData = []
+        let array = ['', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        for (let i = 0; i < tableData.length; i++) {
+          if (tableData[i].toString() !== array.toString()) {
+            tableData[i].unshift(_this.selectTeam)
+            importData.push(tableData[i])
           }
         }
-      })
+        console.log(importData)
+        // let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+        // 把json格式的数据传到后台
+        return axios.post('/api/pc/customerDataPc/importExcelData/' + _this.selectTeam, importData).then(response => {
+          if (response === 'import success') {
+            confirm('导入成功')
+          } else {
+            confirm('导入失败')
+          }
+        })
+      }
+
+      // this.$refs.hotTable.table.validateCells(function (callback) {
+      //   if (callback === false) {
+      //   //   confirm('表格内仍有错误项，请按照规则填写后提交')
+      //     _this.$message.error('表格内有错误项，请按照左下角提示填写正确信息')
+      //   } else {
+      //     let r = confirm('确认导入吗？')
+      //     if (r === true) {
+      //       let tableData = _this.$refs.hotTable.table.getData()
+      //       let importData = []
+      //       let array = ['', '', '', '', '', '', '', '', '', '', '', '', '', '']
+      //       for (let i = 0; i < tableData.length; i++) {
+      //         if (tableData[i].toString() !== array.toString()) {
+      //           tableData[i].unshift(_this.selectTeam)
+      //           importData.push(tableData[i])
+      //         }
+      //       }
+      //       // console.log(importData)
+      //       // let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+      //       // 把json格式的数据传到后台
+      //       return axios.post('/api/pc/customerDataPc/importExcelData/' + _this.selectTeam, importData).then(response => {
+      //         if (response === 'import success') {
+      //           confirm('导入成功')
+      //         } else {
+      //           confirm('导入失败')
+      //         }
+      //       })
+      //     }
+      //   }
+      // })
     },
     // 去除字符串两边空格
     trim: function (str) {
@@ -186,10 +246,8 @@ export default {
     },
     dropdownValidator: function (value, callback) {
       if (value === '') {
-        console.log('dropdown 1')
         callback(false)
       } else {
-        console.log('dropdown 2')
         callback(true)
       }
     },
@@ -276,6 +334,7 @@ export default {
       // }
       console.log('teamArray', teamArray)
       console.log('userArray', userArray)
+      _this.userArray = userArray
       // let selectOption = ''
       // for(let i=0;i<teamArray.length;i++){
       //   //   _this.$refs.selectTeam.append("<option value='" + teamArray[i] + "'>" + teamArray[i] + "</option>")
@@ -404,31 +463,32 @@ export default {
           //   }
           // }
           if (column === 0) {
-            if (tableObj.isEmptyRow(row)) {
-              cellMeta.className = ''
-            } else {
-              if (tableObj.getDataAtCell(row, 0) !== '') {
-                if (Array.indexOf(userArray, tableObj.getDataAtCell(row, 0)) < 0) {
-                  cellMeta.className = 'yellow'
-                } else {
-                  cellMeta.className = ''
-                }
-              } else {
-                cellMeta.className = 'yellow'
-              }
-            }
+            // if (tableObj.isEmptyRow(row)) {
+            //   cellMeta.className = ''
+            // } else {
+            //   if (tableObj.getDataAtCell(row, 0) !== '') {
+            //     if (Array.indexOf(userArray, tableObj.getDataAtCell(row, 0)) < 0) {
+            //       cellMeta.className = 'yellow'
+            //     } else {
+            //       cellMeta.className = ''
+            //     }
+            //   } else {
+            //     cellMeta.className = 'yellow'
+            //   }
+            // }
+            cellMeta.valid = true
             cellMeta.source = userArray
           } else if (column === 1) {
             // 如果这行是空行，不判断客户名称是否为空
-            if (tableObj.isEmptyRow(row)) {
-              cellMeta.valid = true
-            } else {
-              if (tableObj.getDataAtCell(row, 1) === '') {
-                cellMeta.valid = false
-              } else {
-                cellMeta.valid = true
-              }
-            }
+            // if (tableObj.isEmptyRow(row)) {
+            //   cellMeta.valid = true
+            // } else {
+            //   if (tableObj.getDataAtCell(row, 1) === '') {
+            //     cellMeta.valid = false
+            //   } else {
+            //     cellMeta.valid = true
+            //   }
+            // }
           } else if (column === 4) {
             if (tableObj.getDataAtCell(row, 4) === 0) {
               cellMeta.valid = false
@@ -439,34 +499,43 @@ export default {
             }
           } else if (column === 8) {
             // 如果合同金额和回款金额都不为空
-            if (tableObj.getDataAtCell(row, 7) !== '' && tableObj.getDataAtCell(row, 8) !== '') {
-              if (tableObj.getDataAtCell(row, 8) > tableObj.getDataAtCell(row, 7)) {
-                cellMeta.valid = false
-              }
-            }
-          } else if (column === 9 || column === 10 || column === 11 || column === 12 || column === 13) {
-            if (tableObj.getDataAtCell(row, 9) === '' || tableObj.getDataAtCell(row, 10) === '' || tableObj.getDataAtCell(row, 11) === '' || tableObj.getDataAtCell(row, 12) === '' || tableObj.getDataAtCell(row, 13) === '') {
-              cellMeta.valid = true
-            }
+            // if (tableObj.getDataAtCell(row, 7) !== '' && tableObj.getDataAtCell(row, 8) !== '') {
+            //   if (tableObj.getDataAtCell(row, 8) > tableObj.getDataAtCell(row, 7)) {
+            //     cellMeta.valid = false
+            //     _this.returnMoneyCheck = false
+            //   }else{
+            //     cellMeta.valid = true
+            //     _this.returnMoneyCheck = true
+            //   }
+            // }
           }
+          //  else if (column === 9 || column === 10 || column === 11 || column === 12 || column === 13) {
+          //   if (tableObj.getDataAtCell(row, 9) === '' || tableObj.getDataAtCell(row, 10) === '' || tableObj.getDataAtCell(row, 11) === '' || tableObj.getDataAtCell(row, 12) === '' || tableObj.getDataAtCell(row, 13) === '') {
+          //     cellMeta.valid = true
+          //   }
+          // }
           return cellMeta
         }
       }
 
-      this.$refs.hotTable.table.addHook('beforeValidate', function (val, row, prop) {
-        if (_this.$refs.hotTable.table.isEmptyRow(row)) {
+      // this.$refs.hotTable.table.addHook('beforeValidate', function (val, row, prop) {
+      //   if (_this.$refs.hotTable.table.isEmptyRow(row)) {
 
-        }
-      })
+      //   }
+      // })
       this.$refs.hotTable.table.addHook('afterValidate', function (isValid, value, row, prop, source) {
         if (!isValid) {
           if (_this.$refs.hotTable.table.isEmptyRow(row)) {
-            console.log()
             return true
           } else {
             console.log(isValid, value, row, prop, source)
           }
         }
+      })
+      this.$refs.hotTable.table.addHook('afterChange', function (changes, source) {
+        // 在用户做了修改后显示'下一步'按钮，隐藏'导入'按钮
+        _this.$refs.nextStep.style.display = ''
+        _this.$refs.saveButton.style.display = 'none'
       })
       _this.$refs.hotPreview.style.display = ''
     // }, (response) => {
@@ -505,6 +574,76 @@ export default {
       } else {
         this.$message.error('请先选择正确的团队信息')
       }
+    },
+    nextStep () {
+      const tableObj = this.$refs.hotTable.table
+      const userArray = this.userArray
+      const _this = this
+      let yellowFlag = false
+      let redFlag = false
+      const row = tableObj.countRows()
+      _this.returnMoneyCheck = true
+      for (let i = 0; i < row; i++) {
+        // 项目负责人的校验
+        let className = ''
+        if (tableObj.isEmptyRow(i)) {
+          className = ''
+        } else {
+          if (tableObj.getDataAtCell(i, 0) !== '') {
+            if (Array.indexOf(userArray, tableObj.getDataAtCell(i, 0)) < 0) {
+              className = 'yellow'
+              yellowFlag = true
+            } else {
+              className = ''
+            }
+          } else {
+            className = 'red'
+            redFlag = true
+          }
+        }
+        tableObj.setCellMeta(i, 0, 'className', className)
+        // 回款金额的校验
+        // let valid = true
+        if (tableObj.getDataAtCell(i, 7) !== '' && tableObj.getDataAtCell(i, 8) !== '') {
+          if (tableObj.getDataAtCell(i, 8) > tableObj.getDataAtCell(i, 7)) {
+            // valid = false
+            className = 'red'
+            _this.returnMoneyCheck = false
+          } else {
+            // valid = true
+            className = ''
+          }
+        } else if (tableObj.getDataAtCell(i, 7) === '' && tableObj.getDataAtCell(i, 8) === '') {
+          className = ''
+        }
+        tableObj.setCellMeta(i, 8, 'className', className)
+      }
+      tableObj.render()
+      if (yellowFlag === true) {
+        this.$refs.yellowHint.style.display = ''
+      } else {
+        this.$refs.yellowHint.style.display = 'none'
+      }
+
+      tableObj.validateCells(function (callback) {
+        if (callback === false) {
+          _this.$refs.redHint.style.display = ''
+          redFlag = true
+        } else {
+          if (_this.returnMoneyCheck === false) {
+            _this.$refs.redHint.style.display = ''
+            redFlag = true
+          } else {
+            _this.$refs.redHint.style.display = 'none'
+            // 隐藏'下一步'按钮，显示'导入'按钮
+            _this.$refs.nextStep.style.display = 'none'
+            _this.$refs.saveButton.style.display = ''
+          }
+        }
+        if (redFlag) {
+          _this.$message.error('表格内有错误项，请按照左下角提示填写正确信息')
+        }
+      })
     }
   }
 }
@@ -516,10 +655,13 @@ export default {
   height: 600px;
   overflow: hidden;
 }
-.handsontable td.htInvalid {
+/* .handsontable td.htInvalid {
   background-color: yellow !important;
-}
+} */
 .handsontable .yellow {
   background: yellow;
+}
+.handsontable .red {
+  background: red;
 }
 </style>

@@ -47,7 +47,7 @@
         <el-col :span="5">
           <a href="javascript:history.go(-1)"><el-button @click="submitClick1" size="medium" class="x-Center" style="margin-top: 30px;">返回</el-button></a>
         </el-col>
-        <el-col :span="5">
+        <el-col v-if="rule" :span="5">
           <el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
         </el-col>
       </el-col>

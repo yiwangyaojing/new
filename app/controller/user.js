@@ -14,7 +14,7 @@ class UserController extends Controller {
 
     const { ctx, service } = this;
     const body = ctx.request.body;
-    const user = Object.assign({}, body);
+    let user = Object.assign({}, body);
     user.province = ProvinceFormart.formart(user.province);
 
     const result = await service.user.create(user);

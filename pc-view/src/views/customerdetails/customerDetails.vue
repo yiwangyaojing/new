@@ -335,7 +335,7 @@ export default {
       huikuanshow: true,
       shouziliaoshow: true,
       paibanzishow: true,
-      disabledshow: true,
+      disabledshow: false,
       maxImgUrl: '', // 图片放大url地址
       centerDialogVisible: false, // 图片放大Dialog框 默认值
       collapsed: false,
@@ -456,6 +456,7 @@ export default {
         axios.get('/api/pc/customerDataPc/planDetail/' + planId).then(resp => {
           this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd HH:MM:ss')
           this.details = resp
+          console.log('99999', this.details)
         })
       }
     },
@@ -472,20 +473,22 @@ export default {
       if (this.details.d_is_finish === 0 && this.details.h_is_finish === 0) {
         this.dialogVisible = true
         this.dialogMessage = '无可下载的资源'
-        this.disabledshow = false
+        this.disabledshow = true
       } else {
         this.downloadDialog = true
         this.dialogMessage = '是否下载该用户所有资料'
-        this.disabledshow = true
+        this.disabledshow = false
       }
     },
     downLoadData () {
       let shortUrl = this.details.short_url
+      console.log('666666', shortUrl)
       if (!shortUrl) {
         this.$message.error('下载提取码自动获取失败！手动填写')
-        this.$router.push({path: '/download', query: {shortUrl: ''}})
+        // this.$router.push({path: '/download', query: {shortUrl: ''}})
+        window.open('#/download?shortUrl=' + shortUrl) // 打开新窗口
       }
-      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
+      window.open('#/download?shortUrl=' + shortUrl) // 打开新窗口
     },
     showWarningTips (text) {
       this.$message({

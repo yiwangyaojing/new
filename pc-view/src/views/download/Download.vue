@@ -37,7 +37,7 @@ export default {
         this.$message.error('请输入文件提取密码！')
         return
       }
-      let url = 'https://mpa.xiaosolar.com/backend/file/download/' + this.shortUrl
+      let url = 'https://mpa.xiaosolar.com/backend-pai/backend/file/download/' + this.shortUrl
       window.open(encodeURI(url))
     }
   }

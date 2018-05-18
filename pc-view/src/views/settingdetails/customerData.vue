@@ -101,7 +101,7 @@
           <el-table-column fixed="right" label="操作" width="100"  align="center">
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row.id)" type="text" size="small" >详情</el-button>
-              <el-button :disabled="scope.row.h_is_finish == 0 && scope.row.d_is_finish == 0" type="text" @click="downLoadData()" size="small">下载</el-button>
+              <el-button :disabled="scope.row.h_is_finish == 0 && scope.row.d_is_finish == 0" type="text" @click="downLoadData(scope.row.short_url)" size="small">下载</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -481,13 +481,14 @@ export default {
       console.log(id)
       this.$router.push({path: '/CustomerDetails', query: {planId: id, from: 2}})
     },
-    downLoadData () {
-      let shortUrl = this.tableData.short_url
-      if (!shortUrl) {
+    downLoadData (url) {
+      console.log('777777', url)
+      if (!url) {
         this.$message.error('下载提取码自动获取失败！手动填写')
-        this.$router.push({path: '/download', query: {shortUrl: ''}})
+        // this.$router.push({path: '/download', query: {url: ''}})
+        window.open('#/download?shortUrl=' + url) // 打开新窗口
       }
-      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
+      window.open('#/download?shortUrl=' + url)
     }
   },
   mounted () {

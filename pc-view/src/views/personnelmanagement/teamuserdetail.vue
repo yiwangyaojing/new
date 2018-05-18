@@ -63,7 +63,7 @@
 
 <script>
 import axios from 'axios'
-import moment from 'moment'
+import dateFormat from 'dateformat'
 export default {
   name: 'teamuserdetail',
   data () {
@@ -123,8 +123,10 @@ export default {
   },
   computed: {
     formatDate: function () {
-      console.log('=============')
-      return moment(this.data.join_date).utc().zone(-8).format('yyyy-mm-dd HH:MM:ss')
+      console.log('2222222=============', this.data.created_at)
+      let date = new Date(this.data.created_at)
+      let datejion = date.getTime() - 8 * 3600
+      return dateFormat(datejion, 'yyyy-mm-dd HH:MM:ss')
     }
   }
 }

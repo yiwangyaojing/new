@@ -440,7 +440,7 @@ export default {
                 name: resp[i].name, // 负责人
                 pay_money: resp[i].pay_money, // 回款金额
                 pay_remark: resp[i].pay_remark, // 进度备注
-                pay_time: resp[i].updateTime // 回款时间
+                pay_time: resp[i].pay_time.slice(0, 10)// 回款时间
               }
               this.payList.push(payProgress)
             }
@@ -481,6 +481,7 @@ export default {
       }
     },
     downLoadData () {
+      this.downloadDialog = false
       let shortUrl = this.details.short_url
       console.log('666666', shortUrl)
       if (!shortUrl) {

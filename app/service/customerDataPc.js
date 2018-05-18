@@ -85,7 +85,14 @@ class CustomerDataPcService extends Service {
         const houseImgs = [];
         const dataImgs = [];
 
-        const XPlans = await this.ctx.model.XPlans.findOne({ where: { id: rowId } });
+        const XPlans = await this.ctx.model.XPlans.findOne({
+            attributes: {
+                include: [
+                    [Sequelize.fn('date_format',Sequelize.fn('DATE_ADD',Sequelize.col('updated_at'),Sequelize.literal('INTERVAL 8 hour')),'%Y-%m-%d %H:%m:%s'),'updateTime' ],
+                    [Sequelize.fn('date_format',Sequelize.fn('DATE_ADD',Sequelize.col('created_at'),Sequelize.literal('INTERVAL 8 hour')),'%Y-%m-%d %H:%m:%s'),'createTime' ],
+                ] },
+            where: { id: rowId }
+        });
         if (XPlans === null) {
             throw new Error('该方案数据不存在！');
         }

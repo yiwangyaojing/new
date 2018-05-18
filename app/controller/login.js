@@ -83,7 +83,7 @@ class LoginController extends Controller {
         if(!result.data||!result.data.unionid){
             throw new Error('登录失败:'+result.data)
         }else{
-            const userInfo =  service.user.findByUnionId(result.data.unionid);
+            const userInfo = await service.user.findByUnionId(result.data.unionid);
             if (!userInfo) {
                 throw new Error('当前用户不存在!')
             } else {

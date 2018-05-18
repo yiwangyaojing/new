@@ -39,15 +39,15 @@ export default {
       }
 
       let uat = '/test'
-      let context =  "https://mp.xiaosolar.com/backend-pai"
-      //判断环境
+      let context = 'https://mp.xiaosolar.com/backend-pai'
+      // 判断环境
       let href = window.location.href
 
-      if(href.indexOf(uat) !==-1){
-        context = "https://mpa.xiaosolar.com/backend-pai"; //测试环境
+      if (href.indexOf(uat) !== -1) {
+        context = 'https://mpa.xiaosolar.com/backend-pai' // 测试环境
       }
 
-      let url = context+ '/backend/file/download/' + this.shortUrl
+      let url = context + '/backend/file/download/' + this.shortUrl
       window.open(encodeURI(url))
     }
   }

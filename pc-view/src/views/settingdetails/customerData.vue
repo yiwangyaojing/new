@@ -485,9 +485,10 @@ export default {
       console.log('777777', url)
       if (!url) {
         this.$message.error('下载提取码自动获取失败！手动填写')
-        this.$router.push({path: '/download', query: {url: ''}})
+        // this.$router.push({path: '/download', query: {url: ''}})
+        window.open('#/download?shortUrl=' + url) // 打开新窗口
       }
-      this.$router.push({path: '/download', query: {shortUrl: url}})
+      window.open('#/download?shortUrl=' + url)
     }
   },
   mounted () {

@@ -31,3 +31,7 @@ exports.alinode = {
   package: 'egg-alinode',
   env: [ 'test', 'prod' ],
 };
+exports.httpAuth = {
+    enable: true,
+    package: 'egg-http-auth',
+};

@@ -97,7 +97,7 @@
           <el-table-column :formatter="finishFormat" prop="d_is_finish" label="资料收集" align="center"></el-table-column>
           <el-table-column :formatter="finishFormat" prop="rf_is_finish" label="方案设计" align="center"></el-table-column>
           <el-table-column prop="short_url" label="提取码" width="70" align="center"></el-table-column>
-          <el-table-column prop="scdTime" label="添加时间" width="100" align="center"></el-table-column>
+          <el-table-column prop="createTime" label="添加时间" width="100" align="center"></el-table-column>
           <el-table-column fixed="right" label="操作" width="100"  align="center">
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row.id)" type="text" size="small" >详情</el-button>
@@ -463,7 +463,7 @@ export default {
           console.log('表格数据11111111111111111111', this.tableData)
           this.totalNum = res.totalCount
           for (let i = 0; i < this.tableData.length; i++) {
-            this.tableData[i].scdTime = this.tableData[i].scdTime.slice(0, 10)
+            this.tableData[i].createTime = this.tableData[i].createTime.slice(0, 10)
           }
           console.log('表格数据11111111111111111111', this.tableData, res)
         }, () => {

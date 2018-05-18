@@ -167,6 +167,7 @@ export default {
       origin += uat
     }
     let redirectUri = encodeURI(origin + '/static/qrLogin.html')
+    console.log(redirectUri)
     var obj = new window.WxLogin({
       self_redirect: true,
       id: 'login_container',

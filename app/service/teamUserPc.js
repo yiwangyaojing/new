@@ -188,7 +188,8 @@ class TeamUserPcService extends Service {
       //   'count(1) as c_num from x_plans c where c.open_id = :open_id and c.team_id = :team_id' +
       //   ') as tab2 on tab1.open_id = tab2.open_id', {replacements: {open_id: openid ,team_id:teamid}, type: Sequelize.QueryTypes.SELECT});
       let result = await sequelize.query('select * from (' +
-        'select a.* from x_users a where a.openid = :open_id) as tab1 ' +
+        'select a.* , DATE_ADD( a.updated_at, INTERVAL 0 HOUR ) AS updateTime,' +
+        ' DATE_ADD( a.created_at, INTERVAL 0 HOUR ) AS createTime from x_users a where a.openid = :open_id) as tab1 ' +
         ' left join (' +
         'select sum(c.h_is_finish) as h_is_finish_num, ' +
         'sum(c.d_is_finish) as d_is_finish_num, ' +
@@ -198,10 +199,10 @@ class TeamUserPcService extends Service {
       // 查询用户角色信息
       const role = await sequelize.query('select * from (select * from x_team_user a where a.open_id = :open_id) as tab1 ' +
         'left join x_team b on tab1.team_id = b.id', {replacements: {open_id: openid}, type: Sequelize.QueryTypes.SELECT})
-      logger.info('这边是请求结果===>>', result)
-      if (result&&result.length&&result[0].join_date) {
-        result[0].join_date = result[0].join_date.getTime()
+      if (role && role.length > 0) {
+          // result[0].createdAt =
       }
+      logger.info('这边是请求结果===>>', result)
       return {
         data: result ? result.length ? result[0] : null : null,
         teams: role

@@ -60,6 +60,7 @@ export default {
     return {
       tableLoading: false,
       editshow: false,
+      rule: false,
       datas: {
         htqd: 7,
         sgwc: 7,
@@ -78,8 +79,10 @@ export default {
         }
         if (!res.rule) {
           this.editshow = true
+          this.rule = false
         } else {
           this.editshow = false
+          this.rule = true
         }
       })
     },

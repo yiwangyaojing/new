@@ -481,6 +481,7 @@ export default {
       }
     },
     downLoadData () {
+      this.downloadDialog = false
       let shortUrl = this.details.short_url
       console.log('666666', shortUrl)
       if (!shortUrl) {

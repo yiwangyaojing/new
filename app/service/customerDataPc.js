@@ -167,7 +167,6 @@ class CustomerDataPcService extends Service {
         const payUser = await sequelize.query(
             "select p.* , xu.name from x_plan_pay p , x_users xu " +
             "where p.plan_id = :plan_id " +
-            "and  p.open_id = :open_id " +
             "and  xu.openid = p.open_id " +
             "order by p.updated_at desc",
             {replacements: {open_id: params.openId,plan_id: params.id}, type: Sequelize.QueryTypes.SELECT})

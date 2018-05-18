@@ -23,7 +23,8 @@ class UserService extends Service {
             province:user.province,
             city:user.city,
             avatarUrl:user.avatarUrl,
-            login_infor:user.login_infor
+            login_infor:user.login_infor,
+            unionid:user.unionid
         }
 
         createUser.name = user.nickName
@@ -263,11 +264,13 @@ class UserService extends Service {
             console.log(data);
             return {};
         }
+        // console.log('输出当前团队项目')
+        // console.log(data)
         for (var i = 0; i < data.length; i++) {
             // 如果 该项目的状态是未启动,也就是新客户, 那么不需要进行下面的操作;
-            if (!data[i].dataValues.scd_status || data[i].dataValues.scd_status == 0) {
-                continue;
-            }
+            // if (!data[i].dataValues.scd_status || data[i].dataValues.scd_status == 0) {
+            //     continue;
+            // }
             // 项目的创建时间
             var date = time(moment(data[i].dataValues.scd_time).format('YYYY-MM-DD HH:mm'));
             date = date - 0 + 1;
@@ -284,7 +287,9 @@ class UserService extends Service {
                 // 负责人姓名
                 'duty_name': '' + (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
                 // 当前项目的 id
-                'id': data[i].dataValues.id
+                'id': data[i].dataValues.id,
+                // 项目时间
+                'time': data[i].dataValues.scd_time
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)
@@ -398,6 +403,14 @@ class UserService extends Service {
      */
     async findByPhone(phone) {
         let result = await this.ctx.model.XUsers.findOne({where: {phone: phone}})
+        return result
+    }
+
+    /**
+     * PC 扫码登录
+     */
+    async findByUnionId(unionid) {
+        let result = await this.ctx.model.XUsers.findOne({where: {unionid: unionid}})
         return result
     }
 }

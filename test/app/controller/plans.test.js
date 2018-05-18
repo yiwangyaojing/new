@@ -11,11 +11,10 @@ describe('test/app/controller/plans.test.js', () => {
       .send(OBJ.planyInfo)
       .expect(200);
   });
-
   it('获取用户的所有客户信息 GET /api/plans/:openId',() => {
       app.mockCsrf();
       return app.httpRequest()
-          .get('/api/plans/osT8H0QFSjZdqWqJ-PKSS57pzdx0')
+          .get('/api/plans/'+OBJ.openId)
           .expect(200)
           .then(response => {
               assert(response.body.length > -1, true)
@@ -36,7 +35,7 @@ describe('test/app/controller/plans.test.js', () => {
 
     it('通过用户 id 和翻页数量查询客户项目信息 POST /api/plans/:openId/:pageNumber',() => {
         app.mockCsrf();
-        let id = 'osT8H0QFSjZdqWqJ-PKSS57pzdx0';
+        let id = OBJ.openId;
         let num = 3;
         return app.httpRequest()
             .post('/api/plans/'+ id +'/' + num)
@@ -49,7 +48,7 @@ describe('test/app/controller/plans.test.js', () => {
 
     it('通过用户 id 和翻页数量和搜索条件来查询客户项目信息 POST /api/plans/:openId/:pageNumber/:search',() => {
         app.mockCsrf();
-        let id = 'osT8H0QFSjZdqWqJ-PKSS57pzdx0';
+        let id = OBJ.openId;
         let num = 3;
         let name = '项目'
         return app.httpRequest()
@@ -58,6 +57,25 @@ describe('test/app/controller/plans.test.js', () => {
             .then(response => {
                 console.log(response.body)
             })
+
+    })
+
+
+    it('通过方案 id, 删除当前方案信息 DEL /api/plans/:id',() => {
+        app.mockCsrf();
+        return app.httpRequest()
+            .del('/api/plans/1')
+            .expect(200)
+
+    })
+
+    it('通过用户 id, 修改是否可见实例用户 PUT /api/plans/sampleClient/:id',() => {
+        app.mockCsrf();
+        let id = OBJ.openId;
+        let num = 3;
+        return app.httpRequest()
+            .put('/api/plans/sampleClient/' + OBJ.openId)
+            .expect(200)
 
     })
 });

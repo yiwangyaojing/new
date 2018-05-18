@@ -7,14 +7,27 @@ module.exports = appInfo => {
     config.keys = appInfo.name + '_1521168656806_9590';
 
     // add your config here
-    config.middleware = [];
+    config.middleware = [ 'adminAuthHandler' ];
+
+    config.adminAuthHandler = {
+        // 只针对这个路径开头的请求做拦截
+        match: '/api/pc',
+    };
+
+    // add your config here
     config.redis = {
         client: {
-            port: 6379, // Redis port
+            port: 6379, // Redis portn
             host: '120.26.102.228', // Redis host
             password: 'None',
             db: 0,
         },
+    };
+    config.session = {
+        key: "EGG_SESSION",
+        maxAge: 8* 60 * 60 * 1000, // 8h
+        httpOnly: true,
+        encrypt: false
     };
 
     config.sequelize = {
@@ -25,6 +38,14 @@ module.exports = appInfo => {
         username: 'xiaosolar_dev_user',
         password: 'aiy1ohqu0Yopheet',
     };
+/*    config.sequelize = {
+      dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+      database: 'xiaosolar_test',
+      host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+      port: '3306',
+      username: 'xiaosolar_test_user',
+      password: 'ooMoo8wun0etaaso',
+    };*/
     // config.sequelize = {
     //   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
     //   database: 'xiaosolar_test',
@@ -33,6 +54,10 @@ module.exports = appInfo => {
     //   username: 'xiaosolar_test_user',
     //   password: 'ooMoo8wun0etaaso',
     // };
+    config.cors = {
+        allowMethods:['GET','HEAD','PUT','POST','DELETE','OPTIONS'],
+        credentials: true,
+    };
     config.security = {
         csrf: {
             enable: false,
@@ -42,6 +67,7 @@ module.exports = appInfo => {
             sessionName: 'apicsrfToken', // Session 中的字段名，默认为 csrfToken
             headerName: 'x-csrf-token', // Session 中的字段名，默认为 csrfToken
         },
+        domainWhiteList: [ 'localhost:8003','web.xiaosolar.com' ,'mpa.xiaosolar.com','mp.xiaosolar.com']
     };
     config.oss = {
         client: {
@@ -65,6 +91,10 @@ module.exports = appInfo => {
         appId: 'wx6441dd4482409ffb',
         secret: 'cf5450752f7639a753f57acaa796da7d',
         openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
+
+        qrAppId :'wxc63276646e2fe762',
+        qrSecret:'f1b0306f9af3b2adfbdef176500f4631',
+        accessTokenUrl:'https://api.weixin.qq.com/sns/oauth2/access_token'
     };
     config.onerror = {
         html(err, ctx) {

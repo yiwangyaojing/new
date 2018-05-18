@@ -23,9 +23,15 @@
     "autod-egg": "^1.0.0",
     "egg-bin": "^4.3.5",
     "egg-ci": "^1.8.0",
+    "egg-cors": "^2.0.0",
     "egg-mock": "^3.14.0",
     "eslint": "^4.18.2",
     "eslint-config-egg": "^6.0.0",
+    "eslint-config-standard": "^12.0.0-alpha.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "eslint-plugin-vue": "^4.5.0",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {

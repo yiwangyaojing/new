@@ -5,7 +5,8 @@ const FileType = require('../const/FileType')
 const Sequelize = require('sequelize')
 
 // 时间工具插件;
-var moment = require('moment');
+const moment = require('moment');
+const WXBizDataCrypt = require('../util/WXBizDataCrypt')
 
 class UserService extends Service {
     // async findByOpenId(openid) {
@@ -15,6 +16,18 @@ class UserService extends Service {
 
     async create(user) {
         let result;
+
+        // 换取用户的 unionid
+        const sessionKey = user.session_key
+        const encryptedData = user.encryptedData
+        const iv  = user.iv
+
+        let pc = new WXBizDataCrypt(this.config.wechat.appId, sessionKey)
+
+        let data = await pc.decryptData(encryptedData , iv)
+        if(data){
+            user.unionid = data.unionId
+        }
 
         let createUser = Object.assign({}, user)
         let updateUser = {

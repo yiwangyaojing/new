@@ -3,7 +3,7 @@
         <div ref="hotPreview">
           <el-card class="box-card">
             <div>
-              <div style="float: left;">
+              <div style="float: left;font-size: 14px">
                   请将您要导入的客户信息填写在以下表格中<br>
                   <br>
                   说明：<br>
@@ -21,7 +21,7 @@
               </div> -->
               <div style="clear: both"></div>
             </div>
-            <div>
+            <div style="font-size: 14px">
               <br>
               当前选中的团队为：<span v-html="selectTeamName"></span>
             </div>
@@ -31,11 +31,11 @@
             <div>
                 <div ref="colorHint" style="float: left">
                   <br>
-                  <span ref="yellowHint" style="display:none">单元格黄色：项目负责人不在该团队中，但也可以继续导入<br></span>
-                  <span ref="redHint" style="display:none">单元格红色：不符合规则，无法导入</span>
+                  <span ref="yellowHint" style="display:none;font-size: 14px">单元格黄色：项目负责人不在该团队中，但也可以继续导入<br></span>
+                  <span ref="redHint" style="display:none;font-size: 14px">单元格红色：不符合规则，无法导入</span>
                 </div>
-                <button class="el-button el-button--default el-button--medium" ref="nextStep" @click="nextStep()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;">下一步</button>
-                <button class="el-button el-button--default el-button--medium" ref="saveButton" @click="getTableData()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;display: none">导入</button>
+                <button class="el-button el-button--default el-button--medium" ref="nextStep" @click="nextStep()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;font-size: 14px">校验</button>
+                <button class="el-button el-button--default el-button--medium" ref="saveButton" @click="getTableData()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;font-size: 14px;display: none">导入</button>
                 <div style="clear:both"></div>
             </div>
 
@@ -193,9 +193,13 @@ export default {
         console.log(importData)
         // let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
         // 把json格式的数据传到后台
+        this.$message.success('导入中')
         return axios.post('/api/pc/customerDataPc/importExcelData/' + _this.selectTeam, importData).then(response => {
           if (response === 'import success') {
-            confirm('导入成功')
+            let r = confirm('导入成功')
+            if (r === true || r === false) {
+              location.reload()
+            }
           } else {
             confirm('导入失败')
           }

@@ -132,6 +132,7 @@ class HomePcService extends Service {
 
         const sql = query.sql
         let  sqlParams =Object.assign({},query.sqlParams)
+        console.log('权限查询 sql =======>',sql)
         sqlParams.beginDate = req.beginDate
         sqlParams.endDate = req.endDate
 
@@ -166,16 +167,14 @@ class HomePcService extends Service {
             "FROM " +
             "  x_plans p  " +
             "where  " +
-            "p.pay_gap <= 0 " +
+            "p.pay_gap = 0 and p.pay_sum = p.zj_price " +
             "and  date_format(p.scd_time, '%Y-%m-%d') >=:beginDate " +
             "and  date_format(p.scd_time, '%Y-%m-%d') <=:endDate " +
-            " "+sql+" " +
-            "GROUP BY " +
-            "scd_status",
+            " "+sql+" " ,
             {replacements: sqlParams, type: Sequelize.QueryTypes.SELECT})
 
         if(payFinish.length > 0){
-            schedule.push(payFinish)
+            schedule.push(payFinish[0])
         }
 
         // 统计逾期

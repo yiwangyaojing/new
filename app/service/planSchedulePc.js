@@ -45,13 +45,17 @@ class planSchedulePcService extends Service {
             andParams = {
                 [Op.or]: [
                     {scd_status: status},
-                    {pay_gap: 0}
+                    {[Op.and]:[ {pay_gap: 0},{pay_sum:Sequelize.col('zj_price')}]},
                 ]
             }
         }else {
             if(req.scdStatus === '6'){
-                andParams.pay_gap = 0
-            }else {
+                andParams = {
+                    pay_gap: 0,
+                    pay_sum:Sequelize.col('zj_price'),
+                }
+            }
+            else {
                 andParams.scd_status = req.scdStatus
             }
         }

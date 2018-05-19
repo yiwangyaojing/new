@@ -10,12 +10,12 @@
     <div class="x-Center" style="margin-top: 100px;">
       <el-col :xs="9" :md=7 :sm="8" :lg="7" :xl="4">
         <el-tabs type="border-card" style="width: 100%;">
-          <el-tab-pane label="   二维码   ">
-            <div class="x-Center" style="padding: 10px 0" id="login_container">
-              <!--<img style="width: 160px;height: 160px" src="/static/img/erweima.png" alt="">-->
-            </div>
-            <!--<div style="text-align: center;padding: 20px 0;">打开<span style="color: #55a532">光伏好销售</span>扫一扫登录</div>-->
-          </el-tab-pane>
+          <!--<el-tab-pane label="   二维码   ">-->
+            <!--<div class="x-Center" style="padding: 10px 0" id="login_container">-->
+              <!--&lt;!&ndash;<img style="width: 160px;height: 160px" src="/static/img/erweima.png" alt="">&ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div style="text-align: center;padding: 20px 0;">打开<span style="color: #55a532">光伏好销售</span>扫一扫登录</div>&ndash;&gt;-->
+          <!--</el-tab-pane>-->
           <el-tab-pane label="   手机号   ">
               <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"
                        class="form" style="margin-top: 20px;padding: 20px 40px;">
@@ -158,10 +158,10 @@ export default {
     }
   },
   mounted () {
-    let uat = '/test'
+    /* let uat = '/test'
     // 判断环境
     let href = window.location.href
-    let origin = window.origin
+    let origin = window.location.origin
 
     if (href.indexOf(uat) !== -1) {
       origin += uat
@@ -178,7 +178,7 @@ export default {
       style: '',
       href: ''
     })
-    console.log(obj)
+    console.log(obj) */
   }
 }
 </script>

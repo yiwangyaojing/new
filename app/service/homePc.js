@@ -167,7 +167,7 @@ class HomePcService extends Service {
             "FROM " +
             "  x_plans p  " +
             "where  " +
-            "p.pay_gap = 0 and p.pay_sum = p.zj_price " +
+            "p.pay_sum >= p.zj_price " +
             "and  date_format(p.scd_time, '%Y-%m-%d') >=:beginDate " +
             "and  date_format(p.scd_time, '%Y-%m-%d') <=:endDate " +
             " "+sql+" " ,
@@ -186,13 +186,13 @@ class HomePcService extends Service {
             " p.scd_status,  " +
             " p.scd_name,  " +
             " p.overdue_date,  " +
-            " TIMESTAMPDIFF( DAY, p.overdue_date, '2018-05-13' ) as differ  " +
+            " TIMESTAMPDIFF( DAY, p.overdue_date, :date ) as differ  " +
             "FROM  " +
             " x_plans p   " +
             "WHERE  " +
             " p.overdue_date IS NOT NULL   " +
             " AND p.overdue_date != ''   " +
-            " AND p.overdue_date < '2018-05-13'   " +
+            " AND p.overdue_date < :date   " +
             " "+sql+" " +
             "ORDER BY  " +
             " p.overdue_date ASC",

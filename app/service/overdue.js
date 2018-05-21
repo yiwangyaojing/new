@@ -46,7 +46,7 @@ class OverDueService extends Service {
             }
             result = await ctx.model.XPlans.findAll(
                 {
-                    attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price', 'zj_input_capacity'],
+                    attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price', 'zj_input_capacity','pay_gap','pay_sum'],
                     where: {
                         [Op.or]:[
                             {open_id: req.open_id, team_id:teamIds},
@@ -70,7 +70,7 @@ class OverDueService extends Service {
 
                 result = await ctx.model.XPlans.findAll(
                     {
-                        attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price' ,'zj_input_capacity'],
+                        attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price' ,'zj_input_capacity','pay_gap','pay_sum'],
                         where: {
                             team_id: {[Op.in]: teams},
                             company_id: req.company_id,
@@ -83,7 +83,7 @@ class OverDueService extends Service {
                 console.log("查找总公司本级")
                 result = await ctx.model.XPlans.findAll(
                     {
-                        attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price' ,'zj_input_capacity'],
+                        attributes: ['id', 'open_id', 'cst_name', 'user_name', 'scd_status', 'zj_capacity', 'zj_price' ,'zj_input_capacity','pay_gap','pay_sum'],
                         where: {
                             team_id: req.company_id,
                             // company_id: req.company_id,

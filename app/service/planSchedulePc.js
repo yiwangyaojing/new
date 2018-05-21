@@ -51,8 +51,7 @@ class planSchedulePcService extends Service {
         }else {
             if(req.scdStatus === '6'){
                 andParams = {
-                    pay_gap: 0,
-                    pay_sum:Sequelize.col('zj_price'),
+                    pay_sum:{[Op.gte]:Sequelize.col('zj_price')},
                 }
             }
             else {

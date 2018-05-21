@@ -127,7 +127,7 @@
             <el-row style="margin-top: 20px;">
               <el-col :span="6" class="x-Center">
                 <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                  <div @click="sgoverdueClick" style="cursor: pointer">
+                  <div @click="sgoverdueClick(3)" style="cursor: pointer">
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工逾期</div>
                     <div style="padding: 10px 0;">
                       <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata2.num ? overduedata2.num : '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
@@ -139,7 +139,7 @@
               </el-col>
               <el-col :span="6" class="x-Center">
                 <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                  <div @click="sgoverdueClick" style="cursor: pointer">
+                  <div @click="sgoverdueClick(4)" style="cursor: pointer">
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">并网逾期</div>
                     <div style="padding: 10px 0;">
                       <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata3.num ? overduedata3.num: '--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
@@ -151,7 +151,7 @@
               </el-col>
               <el-col :span="6" class="x-Center">
                 <el-col :span="20" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
-                  <div @click="sgoverdueClick" style="cursor: pointer">
+                  <div @click="sgoverdueClick(6)" style="cursor: pointer">
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款逾期</div>
                     <div style="padding: 10px 0;">
                       <div class="xy-Center"><span style="color: #e3023b;font-size: 30px;">{{overduedata4.num ? overduedata4.num :'--'}}</span> <span style="font-size: 12px;color: #999;">&nbsp;个</span></div>
@@ -489,7 +489,7 @@ export default {
     hkwccompleteClick (scdStatus) {
       this.Jumpparameter(scdStatus)
     },
-    sgoverdueClick () {
+    sgoverdueClick (scdStatus) {
       let overdueparameter = {
         teamLevel: String(this.teamLevel),
         teamId: String(this.teamId),
@@ -497,7 +497,8 @@ export default {
         overDueStatus: '0',
         teamname: this.teamname,
         tdfwvalue: this.tdfwvalue,
-        fuzerenvalue: this.fuzerenvalue
+        fuzerenvalue: this.fuzerenvalue,
+        scdStatus: scdStatus
 
       }
       this.$router.push({path: '/SettingDetails', query: overdueparameter})

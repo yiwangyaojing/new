@@ -506,7 +506,17 @@ export default {
         this.teamLevel = overdueparameter.teamLevel
         this.fuzerenvalue = overdueparameter.fuzerenvalue
         this.tdfwvalue = overdueparameter.tdfwvalue
-        this.scdStatus = 'all'
+        this.scdStatus = String(overdueparameter.scdStatus)
+        if (String(overdueparameter.scdStatus) === '3') {
+          this.contractvalue = '施工完成'
+        }
+        if (String(overdueparameter.scdStatus) === '4') {
+          this.contractvalue = '并网完成'
+        }
+        if (String(overdueparameter.scdStatus) === '6') {
+          this.contractvalue = '回款完成'
+        }
+
         if (overdueparameter.teamLevel === '1') {
           overdueparameter.tdfwvalue = '一级团队'
         }

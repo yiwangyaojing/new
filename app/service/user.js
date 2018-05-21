@@ -302,7 +302,11 @@ class UserService extends Service {
                 // 当前项目的 id
                 'id': data[i].dataValues.id,
                 // 项目时间
-                'time': data[i].dataValues.scd_time
+                'time': data[i].dataValues.scd_time,
+                // 回款金额
+                'pay_sum':data[i].dataValues.pay_sum,
+                // 剩余金额
+                'pay_gap':data[i].dataValues.pay_gap,
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)

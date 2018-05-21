@@ -132,6 +132,7 @@ class HomePcService extends Service {
 
         const sql = query.sql
         let  sqlParams =Object.assign({},query.sqlParams)
+        console.log('权限查询 sql =======>',sql)
         sqlParams.beginDate = req.beginDate
         sqlParams.endDate = req.endDate
 
@@ -166,16 +167,14 @@ class HomePcService extends Service {
             "FROM " +
             "  x_plans p  " +
             "where  " +
-            "p.pay_gap <= 0 " +
+            "p.pay_sum >= p.zj_price " +
             "and  date_format(p.scd_time, '%Y-%m-%d') >=:beginDate " +
             "and  date_format(p.scd_time, '%Y-%m-%d') <=:endDate " +
-            " "+sql+" " +
-            "GROUP BY " +
-            "scd_status",
+            " "+sql+" " ,
             {replacements: sqlParams, type: Sequelize.QueryTypes.SELECT})
 
         if(payFinish.length > 0){
-            schedule.push(payFinish)
+            schedule.push(payFinish[0])
         }
 
         // 统计逾期
@@ -187,13 +186,13 @@ class HomePcService extends Service {
             " p.scd_status,  " +
             " p.scd_name,  " +
             " p.overdue_date,  " +
-            " TIMESTAMPDIFF( DAY, p.overdue_date, '2018-05-13' ) as differ  " +
+            " TIMESTAMPDIFF( DAY, p.overdue_date, :date ) as differ  " +
             "FROM  " +
             " x_plans p   " +
             "WHERE  " +
             " p.overdue_date IS NOT NULL   " +
             " AND p.overdue_date != ''   " +
-            " AND p.overdue_date < '2018-05-13'   " +
+            " AND p.overdue_date < :date   " +
             " "+sql+" " +
             "ORDER BY  " +
             " p.overdue_date ASC",

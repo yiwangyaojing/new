@@ -23,7 +23,7 @@ export default class Axios {
       config.crossDomain = true
       config.withCredentials = true
       // 增加csrfToken参数
-      config.headers['x-csrf-token'] = cookie.getCookie('backendcsrfToken')
+      config.headers['x-csrf-token'] = cookie.getCookie('apicsrfToken')
 
       // basic auto
       config.headers['Authorization'] = 'Basic bWFydmVsX2NvbWljczpYaWFvc29sYXIyMDE4'

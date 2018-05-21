@@ -88,7 +88,8 @@ export default {
       allTeamData: {},
       selectTeamName: '',
       userArray: [],
-      returnMoneyCheck: true
+      returnMoneyCheck: true,
+      nextStepClickTimes: 0
     }
   },
   components: {
@@ -538,6 +539,9 @@ export default {
       })
       this.$refs.hotTable.table.addHook('afterChange', function (changes, source) {
         // 在用户做了修改后显示'下一步'按钮，隐藏'导入'按钮
+        if (_this.nextStepClickTimes === 1) {
+          _this.$refs.nextStep.innerHTML = '重新校验'
+        }
         _this.$refs.nextStep.style.display = ''
         _this.$refs.saveButton.style.display = 'none'
       })
@@ -583,6 +587,7 @@ export default {
       const tableObj = this.$refs.hotTable.table
       const userArray = this.userArray
       const _this = this
+      _this.nextStepClickTimes = 1
       let yellowFlag = false
       let redFlag = false
       const row = tableObj.countRows()
@@ -656,7 +661,7 @@ export default {
 <style>
 #test-hot {
   width: 100%;
-  height: 600px;
+  height: 450px;
   overflow: hidden;
 }
 /* .handsontable td.htInvalid {

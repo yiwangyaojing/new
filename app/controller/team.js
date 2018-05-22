@@ -190,6 +190,21 @@ class TeamController extends Controller {
         ctx.body = await service.team.getUserTeam(req)
     }
 
+    /**
+     * 修改团队负责人
+     */
+    async changeCompanyOwner() {
+        const { ctx, service } = this;
+        const req = ctx.request.body;
+        const rule = {
+            phone: { type: 'string', required: true },
+            newOpenId: { type: 'string', required: true },
+            oldOpenId: { type: 'string', required: true },
+            companyId: { type: 'int', required: true },
+        }
+        ctx.validate(rule, req);
+        ctx.body = await service.team.changeCompanyOwner(req)
+    }
 }
 
 module.exports = TeamController;

@@ -365,6 +365,97 @@ class TeamService extends Service {
 
     }
 
+    async changeCompanyOwner(params) {
+
+        // 修改team表
+        const teamResut = await this.ctx.model.XTeam.update({
+            open_id: params.newOpenId,
+            register_phone: params.phone
+        }, {
+                where: {
+                    company_id: params.companyId,
+                    level: 0
+                }
+            })
+
+        // 修改user表
+        const userResult = await this.ctx.model.XUsers.update({
+            company_founder: params.newOpenId
+        }, {
+                where: {
+                    company_founder: params.oldOpenId
+                }
+            })
+
+        // 判断新负责人是否是管理员
+        const teamUserInfo1 = await this.ctx.model.XTeamUser.findOne({
+            where: {
+                open_id: params.newOpenId,
+                user_rank: 1,
+                team_id: params.companyId
+            }
+        })
+
+        if(!teamUserInfo1){
+            const teamUserObj = {}
+            teamUserObj.open_id = params.newOpenId
+            teamUserObj.user_rank = 1
+            teamUserObj.team_id = params.companyId
+            teamUserObj.team_level = 0
+            teamUserObj.team_company_id = params.companyId
+            const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj)
+            const userResult = await this.ctx.model.XUsers.update({
+                maxTeamId: params.companyId,
+                maxTeamLevel: 0,
+                maxTeamRank: 1
+            }, {
+                    where: {
+                        openid: params.newOpenId
+                    }
+                })
+        }
+
+        // 如果新负责人在总公司里是业务员则删除他的业务员身份
+        const teamUserInfo2 = await this.ctx.model.XTeamUser.destroy({
+            where: {
+                open_id: params.newOpenId,
+                user_rank: 2,
+                team_id: params.companyId
+            }
+        })
+
+        // 修改team_user表，把原本的团队负责人改成团队管理员
+        // 判断他原本是不是团队管理员
+        const teamUserInfo3 = await this.ctx.model.XTeamUser.findOne({
+            where: {
+                open_id: params.oldOpenId,
+                user_rank: 1,
+                team_id: params.companyId
+            }
+        })
+
+        // 如果他不是管理员，把他置为管理员
+        if (!teamUserInfo3) {
+            const teamUserObj = {}
+            teamUserObj.open_id = params.oldOpenId
+            teamUserObj.user_rank = 1
+            teamUserObj.team_id = params.companyId
+            teamUserObj.team_level = 0
+            teamUserObj.team_company_id = params.companyId
+            const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj)
+            const userResult = await this.ctx.model.XUsers.update({
+                maxTeamId: params.companyId,
+                maxTeamLevel: 0,
+                maxTeamRank: 1
+            }, {
+                    where: {
+                        openid: params.oldOpenId
+                    }
+                })
+        }
+
+        return 'success'
+    }
 
 }
 

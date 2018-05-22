@@ -186,6 +186,7 @@ class TeamPcService extends Service {
 
   // 分页查询team users
   async findTeamUsersByPage(teamId, openid, pageIndex, limit) {
+    teamId = String(teamId)
     const { ctx } = this
     const logger = ctx.logger
     const cfg = this.config.sequelize;
@@ -206,6 +207,46 @@ class TeamPcService extends Service {
         openid: team.open_id
       }
     })
+    let teamUsers
+    let total
+    if (team.level === 0) {
+      total = await sequelize.query('select count(1) as total from (select a.name, a.company_id, a.openid, a.company_founder from x_users a where a.company_id = :teamId) as tab1 ' +
+        ' left join ( select b.team_id, b.open_id, b.user_rank from  x_team_user b where b.team_id = :teamId) as tab2 on tab1.openid = tab2.open_id ' +
+        ' left join (select c.open_id, c.team_id, count(1) as num from x_plans c where c.team_id = :teamId group by c.open_id) as tab3 on tab3.open_id = tab1.openid'
+        , {replacements: {teamId: teamId}, type: Sequelize.QueryTypes.SELECT})
+      teamUsers = await sequelize.query('select * from (select a.name, a.company_id, a.openid, a.company_founder from x_users a where a.company_id = :teamId) as tab1 ' +
+        ' left join ( select b.team_id, b.open_id, b.user_rank from  x_team_user b where b.team_id = :teamId) as tab2 on tab1.openid = tab2.open_id ' +
+        ' left join (select c.open_id, c.team_id, count(1) as num from x_plans c where c.team_id = :teamId group by c.open_id) as tab3 on tab3.open_id = tab1.openid' +
+        ' limit :pageIndex, :pageSize', {replacements: {pageIndex: pageIndex, pageSize: limit, teamId: teamId}, type: Sequelize.QueryTypes.SELECT})
+    } else {
+      let target = []
+      const teamAll = await ctx.model.XTeam.findAll({
+        where: {
+          company_id: team.dataValues.company_id
+        }
+      })
+      await this.getUsers(team, teamAll, target)
+
+      let teamIdList = []
+      target.forEach(item => {
+        teamIdList.push(item.id)
+      })
+      total = await sequelize.query('select count(1) as total from (select a.id, a.user_rank, a.team_id, a.team_company_id, a.created_at, a.open_id ' +
+        ' from x_team_user a where a.team_id in (:teamIdList) GROUP BY a.open_id) as tab1' +
+        ' left join (select b.open_id, b.team_id, count(1) as num from x_plans b where b.team_id = :teamId group by b.open_id ) as tab2' +
+        ' on tab1.open_id = tab2.open_id', {replacements: {teamIdList: teamIdList, teamId: teamId}, type: Sequelize.QueryTypes.SELECT})
+      // 查询team下所有的users
+      teamUsers = await sequelize.query('select * from (select a.id, a.user_rank, a.team_id, a.team_company_id, a.created_at, a.open_id ' +
+        ' from x_team_user a where a.team_id in (:teamIdList) GROUP BY a.open_id) as tab1' +
+        ' left join (select b.open_id, b.team_id as b_team_id, count(1) as num from x_plans b where b.team_id = :teamId group by b.open_id ) as tab2' +
+        ' on tab1.open_id = tab2.open_id left join (select c.openid, c.name from x_users c where c.company_id = :companyId) as tab3 on tab3.openid = tab1.open_id limit :pageIndex, :pageSize', {replacements: {teamIdList: teamIdList, teamId: teamId, pageIndex: pageIndex, companyId: team.company_id, pageSize: limit}, type: Sequelize.QueryTypes.SELECT})
+    }
+    teamUsers.forEach(item => {
+      if (String(item.team_id) !== teamId) {
+        item.user_rank = null
+      }
+    })
+
     let teamUsersList = await ctx.model.XTeamUser.findAll({
       where: {
         open_id: openid,
@@ -238,48 +279,48 @@ class TeamPcService extends Service {
       }
     })
     console.log('这里是创建者===>>', user)
-    const teamUsers = await sequelize.query('select tab1.*, tab2.*, c.* from (' +
-      'SELECT ' +
-      'a.* ' +
-      'FROM ' +
-      'x_team_user a ' +
-      'WHERE ' +
-      'team_id = :teamId ' +
-      ') as tab1 ' +
-      'LEFT JOIN (' +
-      'SELECT ' +
-      'b.open_id,' +
-      'count( 1 ) AS num ' +
-      'FROM ' +
-      'x_plans b ' +
-      'WHERE team_id = :teamId ' +
-      'GROUP BY ' +
-      'b.open_id ' +
-      ') AS tab2 ON tab2.open_id = tab1.open_id ' +
-      'LEFT JOIN x_users c ON c.openid = tab1.open_id limit :pageIndex, :pageSize', {
-      replacements: {teamId: teamId, open_id: openid, pageIndex: pageIndex, pageSize: limit}, type: Sequelize.QueryTypes.SELECT
-    })
-    const total = await  sequelize.query('select count(1) as total from (' +
-      'SELECT ' +
-      'a.* ' +
-      'FROM ' +
-      'x_team_user a ' +
-      'WHERE ' +
-      'team_id = :teamId ' +
-      ') as tab1 ' +
-      'LEFT JOIN (' +
-      'SELECT ' +
-      'b.open_id,' +
-      'count( 1 ) AS num ' +
-      'FROM ' +
-      'x_plans b ' +
-      'WHERE team_id = :teamId ' +
-      'GROUP BY ' +
-      'b.open_id ' +
-      ') AS tab2 ON tab2.open_id = tab1.open_id ' +
-      'LEFT JOIN x_users c ON c.openid = tab1.open_id limit :pageIndex, :pageSize', {
-      replacements: {teamId: teamId, open_id: openid, pageIndex: pageIndex, pageSize: limit}, type: Sequelize.QueryTypes.SELECT
-    })
+    // const teamUsers = await sequelize.query('select tab1.*, tab2.*, c.* from (' +
+    //   'SELECT ' +
+    //   'a.* ' +
+    //   'FROM ' +
+    //   'x_team_user a ' +
+    //   'WHERE ' +
+    //   'team_id = :teamId ' +
+    //   ') as tab1 ' +
+    //   'LEFT JOIN (' +
+    //   'SELECT ' +
+    //   'b.open_id,' +
+    //   'count( 1 ) AS num ' +
+    //   'FROM ' +
+    //   'x_plans b ' +
+    //   'WHERE team_id = :teamId ' +
+    //   'GROUP BY ' +
+    //   'b.open_id ' +
+    //   ') AS tab2 ON tab2.open_id = tab1.open_id ' +
+    //   'LEFT JOIN x_users c ON c.openid = tab1.open_id limit :pageIndex, :pageSize', {
+    //   replacements: {teamId: teamId, open_id: openid, pageIndex: pageIndex, pageSize: limit}, type: Sequelize.QueryTypes.SELECT
+    // })
+    // const total = await  sequelize.query('select count(1) as total from (' +
+    //   'SELECT ' +
+    //   'a.* ' +
+    //   'FROM ' +
+    //   'x_team_user a ' +
+    //   'WHERE ' +
+    //   'team_id = :teamId ' +
+    //   ') as tab1 ' +
+    //   'LEFT JOIN (' +
+    //   'SELECT ' +
+    //   'b.open_id,' +
+    //   'count( 1 ) AS num ' +
+    //   'FROM ' +
+    //   'x_plans b ' +
+    //   'WHERE team_id = :teamId ' +
+    //   'GROUP BY ' +
+    //   'b.open_id ' +
+    //   ') AS tab2 ON tab2.open_id = tab1.open_id ' +
+    //   'LEFT JOIN x_users c ON c.openid = tab1.open_id limit :pageIndex, :pageSize', {
+    //   replacements: {teamId: teamId, open_id: openid, pageIndex: pageIndex, pageSize: limit}, type: Sequelize.QueryTypes.SELECT
+    // })
     logger.info('这里是人员信息查询结果===>>', teamUsers, total)
     if (teamIds.indexOf(Number(teamId)) > -1) {
       user.dataValues.isSaveShow = true
@@ -315,6 +356,18 @@ class TeamPcService extends Service {
       },
       founder: user,
       company: company
+    }
+  }
+
+  async getUsers (team, teamAll, targetList) {
+    targetList.push(team.dataValues)
+    if (team.level === 3) {
+      return
+    }
+    for (let i = 0; i < teamAll.length; i++) {
+      if (team.id === teamAll[i].parent_id) {
+        this.getUsers(teamAll[i], teamAll, targetList)
+      }
     }
   }
 

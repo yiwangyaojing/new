@@ -41,7 +41,7 @@
   let uat = '/test'
   //判断环境
   let href = window.location.href
-  let origin = window.origin
+  let origin = window.location.origin
 
   if(href.indexOf(uat) !==-1){
     origin += uat
@@ -64,9 +64,10 @@
     },
     success: function (data) {
       console.log(data)
-      localStorage.setItem('user',JSON.stringify(data))
+      window.sessionStorage.setItem('user',JSON.stringify(data))
       if(window.parent){
-        window.parent.location.href = origin +"/static/index.html#Home" // 首页跳转
+        window.parent.location.href = origin +"/index.html#Home" // 首页跳转
+        window.parent.location.reload()
       }
     },
     error: function (error) {

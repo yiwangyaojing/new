@@ -26,7 +26,7 @@ class OverDuePcController extends Controller {
       const teamUser = await service.teamUserPc.findByParams(params)
       const overDue = await service.overdue.index(req);
 
-      if(teamUser){
+      if(teamUser && teamUser.length>0){
           result.rule = true
           result.content = overDue
       }

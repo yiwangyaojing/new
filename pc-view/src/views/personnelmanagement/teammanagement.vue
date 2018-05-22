@@ -64,7 +64,7 @@
             <el-col :span="2" class="f-m" style="line-height: 30px;">管理员: &nbsp;&nbsp;</el-col>
             <el-col :span="12">
               <el-select style="width: 100%;" size="small" class="fl" v-model="selectedItems" :disabled="!founder.isSaveShow" filterable multiple placeholder="请选择" @change="selectChange">
-                <el-option v-for="item in users" :key="item.openid" :label="item.name" :value="item.openid">
+                <el-option v-for="item in tmpSelectItem" :key="item.openid" :label="item.name" :value="item.openid">
                 </el-option>
               </el-select>
             </el-col>
@@ -133,6 +133,7 @@ export default {
       founder: {},
       users: [],
       selectedItems: [],
+      tmpSelectItem: [],
       changeItems: [],
       currentPage4: 1,
       totalNum: 0,
@@ -200,7 +201,7 @@ export default {
     },
     formatterUserRank (row, column, cellValue, index) {
       console.log('this is table ===>>>', row, column, cellValue, index)
-      return row.user_rank === 1 ? '管理员' : '业务员'
+      return row.user_rank === 1 ? '管理员' : row.user_rank === 2 ? '业务员' : ''
     },
     formatterNum (row, column, cellValue, index) {
       return row.num ? row.num : '0'
@@ -361,6 +362,7 @@ export default {
           this.tableLoading = false
         }, 100)
         this.selectedItems = []
+        this.tmpSelectItem = []
         this.tableData = res.users.data
         this.totalNum = res.users.total
         this.users = res.users.data
@@ -368,6 +370,9 @@ export default {
         this.users.forEach((item) => {
           if (item.user_rank === 1) {
             this.selectedItems.push(item.openid)
+          }
+          if (item.user_rank) {
+            this.tmpSelectItem.push(item)
           }
         })
       }, () => {
@@ -405,6 +410,7 @@ export default {
         }, 100)
         console.log('这里是请求结果init===>>', res, value, res.teams)
         this.selectedItems = []
+        this.tmpSelectItem = []
         this.data = res.teams
         if (!value) {
           this.selectedTeam = res.teams[0]
@@ -422,6 +428,9 @@ export default {
         this.users.forEach((item) => {
           if (item.user_rank === 1) {
             this.selectedItems.push(item.openid)
+          }
+          if (item.user_rank) {
+            this.tmpSelectItem.push(item)
           }
         })
       }, () => {

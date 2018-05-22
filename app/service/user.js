@@ -5,7 +5,8 @@ const FileType = require('../const/FileType')
 const Sequelize = require('sequelize')
 
 // 时间工具插件;
-var moment = require('moment');
+const moment = require('moment');
+const WXBizDataCrypt = require('../util/WXBizDataCrypt')
 
 class UserService extends Service {
     // async findByOpenId(openid) {
@@ -16,15 +17,27 @@ class UserService extends Service {
     async create(user) {
         let result;
 
+        // 换取用户的 unionid
+        const sessionKey = user.session_key
+        const encryptedData = user.encryptedData
+        const iv = user.iv
+
+        let pc = new WXBizDataCrypt(this.config.wechat.appId, sessionKey)
+
+        let data = await pc.decryptData(encryptedData, iv)
+        if (data) {
+            user.unionid = data.unionId
+        }
+
         let createUser = Object.assign({}, user)
         let updateUser = {
-            nickName:user.nickName,
-            gender:user.gender,
-            province:user.province,
-            city:user.city,
-            avatarUrl:user.avatarUrl,
-            login_infor:user.login_infor,
-            unionid:user.unionid
+            nickName: user.nickName,
+            gender: user.gender,
+            province: user.province,
+            city: user.city,
+            avatarUrl: user.avatarUrl,
+            login_infor: user.login_infor,
+            unionid: user.unionid
         }
 
         createUser.name = user.nickName
@@ -32,8 +45,13 @@ class UserService extends Service {
         result = await this.findByOpenId(user.openid)
 
         if (!result) {
-            result = await this.ctx.model.XUsers.create(createUser)
-        } else {
+            // 根据用户unionid获取用户信息
+            result = await this.findByUnionId(user.unionid)
+            if (!result){
+                result = await this.ctx.model.XUsers.create(createUser)
+            }
+        }
+        else {
             if(!result.source_scene && user.source_scene){
                 updateUser.source_scene = user.source_scene
             }
@@ -289,7 +307,11 @@ class UserService extends Service {
                 // 当前项目的 id
                 'id': data[i].dataValues.id,
                 // 项目时间
-                'time': data[i].dataValues.scd_time
+                'time': data[i].dataValues.scd_time,
+                // 回款金额
+                'pay_sum':data[i].dataValues.pay_sum,
+                // 剩余金额
+                'pay_gap':data[i].dataValues.pay_gap,
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)

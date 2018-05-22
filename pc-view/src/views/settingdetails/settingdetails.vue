@@ -241,7 +241,8 @@ export default {
       scdStatus: 'all',
       overDueStatus: 'all',
       pagesizeNum: 10,
-      pageNum: 1
+      pageNum: 1,
+      zdydate: 'today'
     }
   },
   methods: {
@@ -358,10 +359,11 @@ export default {
       this.formlistdata()
     },
     requestdata () {
-      axios.get('/api/pc/select/date/' + 'today').then(res => {
+      axios.get('/api/pc/select/date/' + this.zdydate).then(res => {
         if (this.datevalue.length === 0) {
           this.datevalue.push(res.beginDate, res.endDate)
         }
+        console.log('不执行')
         console.log('统计周期', this.datevalue)
       })
       axios.get('/api/pc/select/team').then(res => {
@@ -506,7 +508,18 @@ export default {
         this.teamLevel = overdueparameter.teamLevel
         this.fuzerenvalue = overdueparameter.fuzerenvalue
         this.tdfwvalue = overdueparameter.tdfwvalue
-        this.scdStatus = 'all'
+        this.zdydate = 'total'
+        this.scdStatus = String(overdueparameter.scdStatus)
+        if (String(overdueparameter.scdStatus) === '3') {
+          this.contractvalue = '施工完成'
+        }
+        if (String(overdueparameter.scdStatus) === '4') {
+          this.contractvalue = '并网完成'
+        }
+        if (String(overdueparameter.scdStatus) === '6') {
+          this.contractvalue = '回款完成'
+        }
+
         if (overdueparameter.teamLevel === '1') {
           overdueparameter.tdfwvalue = '一级团队'
         }
@@ -525,9 +538,9 @@ export default {
         if (this.teamname !== '全部(可见范围)' && this.teamname !== '个人') {
           this.teannameshow = false
         }
-        axios.get('/api/pc/select/date/' + 'total').then(res => {
-          this.datevalue.push(res.beginDate, res.endDate)
-        })
+        //        axios.get('/api/pc/select/date/' + 'total').then(res => {
+        //          this.datevalue.push(res.beginDate, res.endDate)
+        //        })
       }
     } else {
       let parameter = this.$route.query

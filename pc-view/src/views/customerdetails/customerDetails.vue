@@ -325,7 +325,6 @@
 </template>
 <script>
 import axios from 'axios'
-import dateFormat from 'dateformat'
 export default {
   data () {
     return {
@@ -335,7 +334,7 @@ export default {
       huikuanshow: true,
       shouziliaoshow: true,
       paibanzishow: true,
-      disabledshow: true,
+      disabledshow: false,
       maxImgUrl: '', // 图片放大url地址
       centerDialogVisible: false, // 图片放大Dialog框 默认值
       collapsed: false,
@@ -417,7 +416,7 @@ export default {
                 from_name: resp[i].from_name, // 来源名称
                 scd_remark: resp[i].scd_remark, // 负责人
                 scd_r_remark: resp[i].scd_r_remark, // 进度备注
-                updated_at: dateFormat(resp[i].updated_at, 'yyyy-mm-dd HH:MM:ss') // 更新时间
+                updated_at: resp[i].updateTime // 更新时间
               }
               this.contractProgressList.push(contractProgress)
             }
@@ -441,7 +440,7 @@ export default {
                 name: resp[i].name, // 负责人
                 pay_money: resp[i].pay_money, // 回款金额
                 pay_remark: resp[i].pay_remark, // 进度备注
-                pay_time: dateFormat(resp[i].pay_time, 'yyyy-mm-dd HH:MM:ss') // 回款时间
+                pay_time: resp[i].pay_time.slice(0, 10)// 回款时间
               }
               this.payList.push(payProgress)
             }
@@ -454,8 +453,10 @@ export default {
       let planId = this.$route.query.planId
       if (planId) {
         axios.get('/api/pc/customerDataPc/planDetail/' + planId).then(resp => {
-          this.updated_at1 = dateFormat(resp.updated_at, 'yyyy-mm-dd HH:MM:ss')
+          this.updated_at1 = resp.updateTime
+          console.log('7777777777', this.updated_at1)
           this.details = resp
+          console.log('99999', this.details)
         })
       }
     },
@@ -472,20 +473,23 @@ export default {
       if (this.details.d_is_finish === 0 && this.details.h_is_finish === 0) {
         this.dialogVisible = true
         this.dialogMessage = '无可下载的资源'
-        this.disabledshow = false
+        this.disabledshow = true
       } else {
         this.downloadDialog = true
         this.dialogMessage = '是否下载该用户所有资料'
-        this.disabledshow = true
+        this.disabledshow = false
       }
     },
     downLoadData () {
+      this.downloadDialog = false
       let shortUrl = this.details.short_url
+      console.log('666666', shortUrl)
       if (!shortUrl) {
         this.$message.error('下载提取码自动获取失败！手动填写')
-        this.$router.push({path: '/download', query: {shortUrl: ''}})
+        // this.$router.push({path: '/download', query: {shortUrl: ''}})
+        window.open('#/download?shortUrl=' + shortUrl) // 打开新窗口
       }
-      this.$router.push({path: '/download', query: {shortUrl: shortUrl}})
+      window.open('#/download?shortUrl=' + shortUrl) // 打开新窗口
     },
     showWarningTips (text) {
       this.$message({

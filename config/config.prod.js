@@ -7,7 +7,6 @@ module.exports = appInfo => {
     config.keys = appInfo.name + '_1521168656806_9590';
 
     // add your config here
-    config.middleware = [];
     config.redis = {
         client: {
             port: 6379, // Redis port

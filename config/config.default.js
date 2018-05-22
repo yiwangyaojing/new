@@ -30,22 +30,22 @@ module.exports = appInfo => {
         encrypt: false
     };
 
+    // config.sequelize = {
+    //     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    //     database: 'xiaosolar_development',
+    //     host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+    //     port: '3306',
+    //     username: 'xiaosolar_dev_user',
+    //     password: 'aiy1ohqu0Yopheet',
+    // };
     config.sequelize = {
-        dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-        database: 'xiaosolar_development',
-        host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
-        port: '3306',
-        username: 'xiaosolar_dev_user',
-        password: 'aiy1ohqu0Yopheet',
-    };
-/*    config.sequelize = {
       dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
       database: 'xiaosolar_test',
       host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
       port: '3306',
       username: 'xiaosolar_test_user',
       password: 'ooMoo8wun0etaaso',
-    };*/
+    };
     // config.sequelize = {
     //   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
     //   database: 'xiaosolar_test',
@@ -95,6 +95,15 @@ module.exports = appInfo => {
         qrAppId :'wxc63276646e2fe762',
         qrSecret:'f1b0306f9af3b2adfbdef176500f4631',
         accessTokenUrl:'https://api.weixin.qq.com/sns/oauth2/access_token'
+    };
+    config.httpAuth = {
+        username: 'marvel_comics',
+        password: 'Xiaosolar2018',
+        // match: '/api',
+        // which routes you want to ignore this middleware
+        // ignore: ''
+        // match: (ctx) {
+        // }
     };
     config.onerror = {
         html(err, ctx) {

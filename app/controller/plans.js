@@ -120,6 +120,20 @@ class Plans extends Controller {
 
     }
 
+    // 客户在用户间转移
+    async changePlanOwner() {
+        const { ctx } = this;
+        const rule = {
+            customerId: { type: 'int', required: true },
+            openId: { type: 'string', required: true },
+            userName: { type: 'string', required: true },
+            teamId: { type: 'int', required: true },
+            operatorName: { type: 'string', required: true },
+        };
+        ctx.validate(rule, ctx.request.body);
+
+        ctx.body = await this.service.plans.changePlanOwner(ctx.request.body);
+    }
 
 }
 

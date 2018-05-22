@@ -37,6 +37,7 @@ module.exports = app => {
     router.put('/api/plans', controller.plans.update);  //已写入测试-运行正常    更新方案,项目信息(创建方案,项目详细信息)
     router.del('/api/plans/:id', controller.plans.destroy); //已写入测试-运行正常     通过方案(项目)id 删除当前方案(项目)
     router.put('/api/plans/sampleClient/:id', controller.plans.updateSampleClient); //已写入测试-运行正常    删除示例客户(修改用户)
+    router.post('/api/plans/changePlanOwner', controller.plans.changePlanOwner); // 客户在用户间转移
 
     // 方案进度 --  逾期
     router.post('/api/planSchedule', controller.planSchedule.create);       //已写入测试-运行正常    新增方案

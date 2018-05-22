@@ -536,6 +536,42 @@ class PlansService extends Service {
 
     // 通过业务员获取项目信息;
 
+    // 客户在用户间转移
+    async changePlanOwner(params) {
+        const customerId = params.customerId;
+        const openId = params.openId;
+        const newUserName = params.userName;
+        const newTeamId = params.teamId;
+        const operatorName = params.operatorName;
+        // 获取客户数据
+        const planInfo = await this.ctx.model.XPlans.findOne({ where: { id: customerId } });
+        // 原始用户，团队信息
+        const oldUserName = planInfo.user_name;
+        // const oldTeamId = planInfo.team_id;
+
+        // 插入项目状态
+        let planScheduleObj = {};
+        planScheduleObj.open_id = openId;
+        planScheduleObj.plan_id = customerId;
+        planScheduleObj.scd_status = FileType.schedule.xmzy;
+        planScheduleObj.scd_name = '项目负责人由 '+ oldUserName +' 变更为 ' + newUserName;
+        planScheduleObj.scd_remark = operatorName;
+        planScheduleObj.scd_time = new Date();
+        const planScheduleResult = await this.ctx.model.XPlanSchedule.create(planScheduleObj);
+        // 修改用户表
+        const planResult = await this.ctx.model.XPlans.update({
+            open_id: openId,
+            user_name: newUserName,
+            team_id: newTeamId,
+        }, {
+                where: {
+                    id: customerId
+                }
+            }
+        )
+
+        return planResult
+    }
 
 }
 

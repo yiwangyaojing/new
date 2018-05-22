@@ -73,6 +73,7 @@ module.exports = app => {
     router.post('/api/team', controller.team.create);   //已写入测试  团队创建
     router.put('/api/team', controller.team.update);    //已写入测试-运行正常  修改团队
     router.del('/api/team/:id/:open_id', controller.team.destroy);  //已写入测试-运行正常 通过团队 id 和操作人 id解散团队
+    router.post('/api/team/changeCompanyOwner', controller.team.changeCompanyOwner); // 修改团队负责人
     // 团队成员
     router.get('/api/teamUser/:teamId', controller.teamUser.index); //已写入测试-运行正常  查询当前团队所有用户
     router.put('/api/teamUser', controller.teamUser.updateRule);    //已写入测试-运行正常  修改用户权限

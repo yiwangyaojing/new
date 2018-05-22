@@ -30,22 +30,22 @@ module.exports = appInfo => {
         encrypt: false
     };
 
+    // config.sequelize = {
+    //     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    //     database: 'xiaosolar_development',
+    //     host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+    //     port: '3306',
+    //     username: 'xiaosolar_dev_user',
+    //     password: 'aiy1ohqu0Yopheet',
+    // };
     config.sequelize = {
-        dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-        database: 'xiaosolar_development',
-        host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
-        port: '3306',
-        username: 'xiaosolar_dev_user',
-        password: 'aiy1ohqu0Yopheet',
-    };
-/*    config.sequelize = {
       dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
       database: 'xiaosolar_test',
       host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
       port: '3306',
       username: 'xiaosolar_test_user',
       password: 'ooMoo8wun0etaaso',
-    };*/
+    };
     // config.sequelize = {
     //   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
     //   database: 'xiaosolar_test',

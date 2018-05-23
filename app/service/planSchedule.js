@@ -63,7 +63,7 @@ class planScheduleService extends Service {
             }else{
                 overdue = await ctx.model.XOverdue.findOne({where: {company_id: req.company_id}})
             }
-            let overdue_date = ''
+            let overdue_date
 
             console.log(4)
             if (req.scd_status === FileType.schedule.htqd) {

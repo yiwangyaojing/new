@@ -48,6 +48,13 @@ class planSchedulePcService extends Service {
                     {[Op.and]:[ {pay_gap: 0},{pay_sum:Sequelize.col('zj_price')}]},
                 ]
             }
+        }else if(req.scdStatus ==='0'){
+            andParams = {
+                [Op.or]: [
+                    {scd_status: '0'},
+                    {scd_status: '1'},
+                ]
+            }
         }else {
             if(req.scdStatus === '6'){
                 andParams = {

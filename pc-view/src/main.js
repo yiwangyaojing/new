@@ -19,7 +19,7 @@ Vue.use(element)
 Vue.use(moment)
 Vue.use(UTree)
 Vue.use(VueAMap)
-Axios.init({baseURL: process.env.CONTEXT, unauthorizedUrl: '/#/login'})
+Axios.init({baseURL: process.env.CONTEXT, unauthorizedUrl: process.env.CONTEXT_HTML + '/index.html#/login'})
 VueAMap.initAMapApiLoader({
   key: 'c1280b1ee49f4ecf90a6c8f0213bc1c2',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],

@@ -494,7 +494,7 @@ export default {
       }
 
       let url = context + '/backend/file/download/' + shortUrl
-      window.open(encodeURI(url))
+      window.location.href = url
     },
     showWarningTips (text) {
       this.$message({

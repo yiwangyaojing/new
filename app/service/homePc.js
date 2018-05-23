@@ -147,7 +147,7 @@ class HomePcService extends Service {
             "FROM " +
             "  x_plans p  " +
             "where  " +
-            "p.scd_status in (0,2,3,4)  " +
+            "p.scd_status in (0,1,2,3,4)  " +
             "and  date_format(p.scd_time, '%Y-%m-%d') >=:beginDate " +
             "and  date_format(p.scd_time, '%Y-%m-%d') <=:endDate " +
             " "+sql+" " +

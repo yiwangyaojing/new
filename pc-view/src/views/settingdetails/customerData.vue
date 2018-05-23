@@ -481,14 +481,25 @@ export default {
       console.log(id)
       this.$router.push({path: '/CustomerDetails', query: {planId: id, from: 2}})
     },
-    downLoadData (url) {
-      console.log('777777', url)
-      if (!url) {
-        this.$message.error('下载提取码自动获取失败！手动填写')
-        // this.$router.push({path: '/download', query: {url: ''}})
-        window.open('#/download?shortUrl=' + url) // 打开新窗口
+    downLoadData (tqurl) {
+      console.log('777777', tqurl)
+      let uat = '/test'
+      let context = 'https://mp.xiaosolar.com/backend-api'
+      // 判断环境
+      let href = window.location.href
+
+      if (href.indexOf(uat) !== -1) {
+        context = 'https://mpa.xiaosolar.com/backend-api' // 测试环境
       }
-      window.open('#/download?shortUrl=' + url)
+
+      let url = context + '/backend/file/download/' + tqurl
+      window.location.href = url
+      //      if (!url) {
+      //        this.$message.error('下载提取码自动获取失败！手动填写')
+      //        // this.$router.push({path: '/download', query: {url: ''}})
+      //        window.open('#/download?shortUrl=' + url) // 打开新窗口
+      //      }
+      //      window.open('#/download?shortUrl=' + url)
     }
   },
   mounted () {

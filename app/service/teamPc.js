@@ -216,7 +216,7 @@ class TeamPcService extends Service {
         , {replacements: {teamId: teamId}, type: Sequelize.QueryTypes.SELECT})
       teamUsers = await sequelize.query('select * from (select a.name, a.company_id, a.openid, a.company_founder from x_users a where a.company_id = :teamId) as tab1 ' +
         ' left join ( select b.team_id, b.open_id, b.user_rank from  x_team_user b where b.team_id = :teamId) as tab2 on tab1.openid = tab2.open_id ' +
-        ' left join (select c.open_id, c.team_id, count(1) as num from x_plans c where c.team_id = :teamId group by c.open_id) as tab3 on tab3.open_id = tab1.openid' +
+        ' left join (select c.open_id, count(1) as num from x_plans c where c.team_id = :teamId group by c.open_id) as tab3 on tab3.open_id = tab1.openid' +
         ' limit :pageIndex, :pageSize', {replacements: {pageIndex: pageIndex, pageSize: limit, teamId: teamId}, type: Sequelize.QueryTypes.SELECT})
     } else {
       let target = []

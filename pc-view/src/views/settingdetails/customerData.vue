@@ -493,7 +493,7 @@ export default {
       }
 
       let url = context + '/backend/file/download/' + tqurl
-      window.open(encodeURI(url))
+      window.location.href = url
       //      if (!url) {
       //        this.$message.error('下载提取码自动获取失败！手动填写')
       //        // this.$router.push({path: '/download', query: {url: ''}})

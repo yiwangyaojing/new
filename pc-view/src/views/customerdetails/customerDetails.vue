@@ -484,12 +484,17 @@ export default {
       this.downloadDialog = false
       let shortUrl = this.details.short_url
       console.log('666666', shortUrl)
-      if (!shortUrl) {
-        this.$message.error('下载提取码自动获取失败！手动填写')
-        // this.$router.push({path: '/download', query: {shortUrl: ''}})
-        window.open('#/download?shortUrl=' + shortUrl) // 打开新窗口
+      let uat = '/test'
+      let context = 'https://mp.xiaosolar.com/backend-api'
+      // 判断环境
+      let href = window.location.href
+
+      if (href.indexOf(uat) !== -1) {
+        context = 'https://mpa.xiaosolar.com/backend-api' // 测试环境
       }
-      window.open('#/download?shortUrl=' + shortUrl) // 打开新窗口
+
+      let url = context + '/backend/file/download/' + shortUrl
+      window.open(encodeURI(url))
     },
     showWarningTips (text) {
       this.$message({

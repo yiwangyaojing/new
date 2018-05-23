@@ -20,7 +20,7 @@ class Wechat extends Controller {
         const result = await ctx.curl(url + '?appid=' + appId + '&secret=' + secret + '&grant_type=authorization_code&js_code=' + code, {
             method: 'GET',
             dataType: 'json',
-            timeout: 30000,// 30 秒超时
+            timeout: 30000 // 30 秒超时
         });
 
         ctx.body = result.data

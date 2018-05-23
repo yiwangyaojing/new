@@ -14,6 +14,8 @@ class HomePcService extends Service {
 
         const service  = this.service
 
+        const Op = Sequelize.Op
+
         let result = {}
 
 
@@ -59,18 +61,25 @@ class HomePcService extends Service {
 
         }else {
              if(teamId === 'all' ){
-                 sql = "and p.team_id in (:managerTeams) "
+                 sql = "and p.team_id in (:managerTeams) and company_id = :company_id "
                  sqlParams.managerTeams = managerTeams
+                 sqlParams.company_id = companyId
                  params.push(
-                     { team_id:managerTeams},
+                     {[Op.and]:[
+                             { team_id:managerTeams},
+                             { company_id:companyId},
+                     ]}
                  )
              }else{
                  if(planOwner  ==='all'){
-                     sql = "and p.team_id in (:managerTeams)  "
-                     sqlParams.teamId = teamId
+                     sql = "and p.team_id in (:managerTeams)  and company_id =:company_id "
+                     sqlParams.company_id = companyId
                      sqlParams.managerTeams = managerTeams
                      params.push(
-                         { team_id:managerTeams},
+                         {[Op.and]:[
+                                 { team_id:managerTeams},
+                                 { company_id:companyId},
+                             ]}
                      )
                  }else{
                      sql = "and p.team_id =:teamId and open_id = :open_id "
@@ -147,7 +156,7 @@ class HomePcService extends Service {
             "FROM " +
             "  x_plans p  " +
             "where  " +
-            "p.scd_status in (0,2,3,4)  " +
+            "p.scd_status in (0,1,2,3,4)  " +
             "and  date_format(p.scd_time, '%Y-%m-%d') >=:beginDate " +
             "and  date_format(p.scd_time, '%Y-%m-%d') <=:endDate " +
             " "+sql+" " +

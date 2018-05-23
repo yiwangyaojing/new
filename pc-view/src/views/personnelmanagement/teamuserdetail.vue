@@ -166,4 +166,7 @@ export default {
 .row-h {
   height: 30px;
 }
+.el-table tr {
+  cursor: pointer !important;
+}
 </style>

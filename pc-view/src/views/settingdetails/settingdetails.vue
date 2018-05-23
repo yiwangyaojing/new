@@ -456,6 +456,9 @@ export default {
             if (this.tableData[i].scd_status === 0) {
               this.tableData[i].scd_status = '新增项目'
             }
+            if (this.tableData[i].scd_status === 1) {
+              this.tableData[i].scd_status = '意向沟通'
+            }
             if (this.tableData[i].scd_status === 2) {
               this.tableData[i].scd_status = '合同签定'
             }

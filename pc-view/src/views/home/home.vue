@@ -62,7 +62,7 @@
               <el-col :span="6" class="x-Center">
                 <el-col  :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                   <div @click="addprojectClick(0)" style="cursor: pointer">
-                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">新增项目</div>
+                    <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">客户数量</div>
                     <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #e3023b;font-size: 30px;">{{stateupdate0.total ? stateupdate0.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                     <div class="fl" style="width: 59%;font-size: 18px;">
                       <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
@@ -85,7 +85,7 @@
                 </el-col>
               </el-col>
               <el-col :span="6" class="x-Center">
-                <el-col :span="20" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
+                <el-col :span="24" class="clearfix" style="border: 1px solid #dcdfe6;text-align: center;font-size: 14px;">
                   <div @click="sgwccompleteClick(3)" style="cursor: pointer">
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工完成</div>
                     <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00abca;font-size: 30px;">{{stateupdate3.total ? stateupdate3.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
@@ -258,6 +258,7 @@ export default {
       teamId: 'all',
       planOwner: 'all',
       stateupdate0: {},
+      stateupdate1: {},
       stateupdate2: {},
       stateupdate3: {},
       stateupdate4: {},
@@ -389,6 +390,7 @@ export default {
       let overduedata3length = []
       let overduedata4length = []
       this.stateupdate0 = {}
+      this.stateupdate1 = {}
       this.stateupdate2 = {}
       this.stateupdate3 = {}
       this.stateupdate4 = {}
@@ -416,7 +418,7 @@ export default {
         this.tableLoading = true
         axios.post('/api/pc/home', objdata).then(res => {
           this.tableLoading = false
-          console.log('项目更新数据', res)
+          console.log('项目更新数据', res.schedule)
           for (let i = 0; i < res.overDue.reverse().length; i++) {
             if (res.overDue[i].scd_status === 3) {
               this.overduedata3.differ = res.overDue[i].differ
@@ -438,6 +440,9 @@ export default {
             if (res.schedule[i].scd_status === 0) {
               this.stateupdate0 = res.schedule[i]
             }
+            if (res.schedule[i].scd_status === 1) {
+              this.stateupdate1 = res.schedule[i]
+            }
             if (res.schedule[i].scd_status === 2) {
               this.stateupdate2 = res.schedule[i]
             }
@@ -451,6 +456,9 @@ export default {
               this.stateupdate6 = res.schedule[i]
             }
           }
+          this.stateupdate0.total = this.stateupdate0.total + this.stateupdate1.total
+          this.stateupdate0.input_capacity = this.stateupdate0.input_capacity + this.stateupdate1.input_capacity
+          this.stateupdate0.price = this.stateupdate0.price + this.stateupdate1.price
         }, () => {
           this.tableLoading = false
         }).catch(() => {

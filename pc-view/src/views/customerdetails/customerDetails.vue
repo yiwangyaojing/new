@@ -18,65 +18,65 @@
             <div class="clearfix">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">电话</div>
-                <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 200px;border-radius: 5px;height: 30px;line-height: 30px;">{{this.details.cst_phone}}</div>
+                <div class="fl" style="padding:0 10px;width: 200px;border-radius: 5px;height: 30px;line-height: 30px;">{{this.details.cst_phone}}</div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">地址</div>
-                <div class="fl one-txt-cut" style="border: 1px solid #e4e7ed;padding:0 10px;min-width: 200px;border-radius: 5px;height: 30px;line-height: 30px;" >{{this.details.cst_address}}</div>
+                <div class="fl one-txt-cut" style="padding:0 10px;min-width: 200px;border-radius: 5px;height: 30px;line-height: 30px;" >{{this.details.cst_address}}</div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">组件规格</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                   <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_format}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
+                  <div class="fr" style="width: 25%;text-align: center;">瓦</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">组件数量</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                   <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
+                  <div class="fr" style="width: 25%;text-align: center;">块</div>
                 </div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">系统容量</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                   <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
+                  <div class="fr" style="width: 25%;text-align: center;">千瓦</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">系统单价</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                   <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_unit_price}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
+                  <div class="fr" style="width: 25%;text-align: center;">元</div>
                 </div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                 <div class="fl" style="width: 80px;">系统总价</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                   <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_price}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
+                  <div class="fr" style="width: 25%;text-align: center;">元</div>
                 </div>
               </div>
               <div :span="10" class="clearfix fl y-Center">
                 <div class="fl" style="width: 80px;">已回款</div>
-                <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                   <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.pay_sum}}</div>
-                  <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">元</div>
+                  <div class="fr" style="width: 25%;text-align: center;">元</div>
                 </div>
               </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
               <div class="fl" style="width: 80px;">备注</div>
               <div class="fl">
-                <div style="padding: 10px;;width: 500px;height: 50px;border: 1px solid #e4e7ed;border-radius: 5px;">{{this.details.cst_remark}}</div>
+                <div style="padding: 10px;;width: 500px;height: 50px;border-radius: 5px;">{{this.details.cst_remark}}</div>
                 <div class="clearfix" style="margin-top: 20px;">
                   <div :span="4" class="clearfix fl" style="width: 200px">
                     <div class="fl" style="width: 80px;">合同状态:</div>
@@ -139,7 +139,7 @@
               <div class="clearfix">
                 <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                   <div class="fl" style="width: 80px;">房屋朝向</div>
-                  <div class="fl" style="border: 1px solid #e4e7ed;padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
+                  <div class="fl" style="padding:0 10px;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;counter-reset: #c0c4cc;">{{this.details.h_face}}</div>
                 </div>
               </div>
               <div class="clearfix" style="margin-top: 20px;">
@@ -174,7 +174,7 @@
               </div>
               <div class="clearfix" style="margin-top: 20px;">
                 <div class="fl" style="width: 80px;">备注</div>
-                <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.h_remark}}</div>
+                <div class="fl" style="width: 400px;height:60px;border-radius: 5px; ">{{this.details.h_remark}}</div>
               </div>
             </div>
             <el-col :span="10" :offset="7">
@@ -222,7 +222,7 @@
               </div>
               <div class="clearfix" style="margin-top: 20px;">
                 <div class="fl" style="width: 80px;">备注</div>
-                <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.d_remark}}</div>
+                <div class="fl" style="width: 400px;height:60px;border-radius: 5px; ">{{this.details.d_remark}}</div>
               </div>
             </div>
             <el-col :span="10" :offset="7">
@@ -241,31 +241,31 @@
               <div class="clearfix" style="margin-top: 20px;">
                 <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
                   <div class="fl" style="width: 80px;">组件规格</div>
-                  <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                  <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                     <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_format}}</div>
-                    <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">瓦</div>
+                    <div class="fr" style="width: 25%;text-align: center;">瓦</div>
                   </div>
                 </div>
                 <div :span="10" class="clearfix fl y-Center">
                   <div class="fl" style="width: 80px;">组件数量</div>
-                  <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                  <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                     <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
-                    <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">块</div>
+                    <div class="fr" style="width: 25%;text-align: center;">块</div>
                   </div>
                 </div>
               </div>
               <div class="clearfix" style="margin-top: 20px;">
                 <div :span="10" class="clearfix y-Center" style="width: 400px;">
                   <div class="fl" style="width: 80px;">装机容量</div>
-                  <div class="fl clearfix" style="border: 1px solid #e4e7ed;width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
+                  <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
                     <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
-                    <div class="fr" style="width: 25%;background: #f5f8f8;text-align: center;">千瓦</div>
+                    <div class="fr" style="width: 25%;text-align: center;">千瓦</div>
                   </div>
                 </div>
               </div>
               <div class="clearfix" style="margin-top: 20px;">
                 <div class="fl" style="width: 80px;">备注</div>
-                <div class="fl" style="width: 400px;height:60px;border: 1px solid rgb(228, 231, 237);border-radius: 5px; ">{{this.details.rf_remark}}</div>
+                <div class="fl" style="width: 400px;height:60px;border-radius: 5px; ">{{this.details.rf_remark}}</div>
               </div>
               <div style="margin-top: 20px;font-size: 16px;">排布示意图</div>
               <div style="margin-top: 20px;"><img width="400" :src="details.rf_image" alt=""></div>

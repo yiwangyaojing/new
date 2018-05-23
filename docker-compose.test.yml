@@ -8,6 +8,8 @@ services:
   front-api:
     image: docker.xiaosolar.com/xq/front-api/develop:latest
     restart: always
+    ports:
+      - "7001:7001"
     networks:
       - lb_traefiknet
     volumes:

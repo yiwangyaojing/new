@@ -266,7 +266,7 @@ class PlansService extends Service {
             throw new Error('用户基本信息不存在!');
         }
         // 创建方案基本信息
-        if (detail.zj_price) {
+        if (detail.zj_price && !plan.zj_price) {
             detail.pay_gap = detail.zj_price
         }
 

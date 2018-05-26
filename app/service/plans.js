@@ -9,8 +9,11 @@ class PlansService extends Service {
 
     // 分页查询方案基本信息
     async findByPage(params) {
+        console.log('输出当前分页查询')
+        console.log(params)
         const Op = Sequelize.Op;
         const page = {};
+        let team_id = params.team_id;
         // 设置默认值
         page.pageNumber = params.pageNumber || 1;
         page.pageSize = 15;
@@ -35,12 +38,17 @@ class PlansService extends Service {
         let agentTeams = [] // 业务员团队
 
         //管理员获取所有管理的团队
+
+
         if (user.company_id) {
             let result = await  this.service.teamUser.findManagerTeams(user.company_id, params.openId)
             managerTeams = result.managerTeamIds
 
             if(managerTeams && managerTeams.length > 0){
                 userRank = FileType.UserRank.admin
+                if( team_id && team_id.length > 0 ){
+                    managerTeams = team_id
+                }
                 console.log('管理员：',userRank)
             }
 
@@ -180,6 +188,7 @@ class PlansService extends Service {
         // sampleClient start
         // 如果page.pageNumber == 1,则将示例客户添加到其他客户的最前，此次返回16条数据，原本返回15条
         if (parseInt(page.pageNumber) === 1) {
+            console.log('显示示例客户')
             // 查看用户是否删除了示例客户
             const userInfo = await this.ctx.model.XUsers.findOne({
                 limit: 1,
@@ -195,15 +204,14 @@ class PlansService extends Service {
                         id: FileType.sampleClientId,
                     }
                 });
+                console.log(sampleClient)
                 // 将示例客户添加到其他客户最前
                 if(sampleClient){
-
                     pageList.unshift(sampleClient);
                 }
             }
         }
         // sampleClient end
-
         // 获取方案拍房子图片
         for (const page of pageList) {
             let houseImg = '';
@@ -223,16 +231,36 @@ class PlansService extends Service {
                     houseImg = xfile.url;
                 }
             }
+            // if( page.dataValues && page.dataValues. )
             page.dataValues.houseImg = houseImg;
+
+            const team = await this.ctx.model.XTeam.findOne({where:{id:page.team_id}})
+            if( team && team.dataValues && team.dataValues.name){
+                page.dataValues.company_name = team.dataValues.name;
+            }
         }
         return pageList;
     }
-
+    // 获取公司信息
+    async getTeam(id){
+        let teamInfo = await this.ctx.model.XTeam.findOne({where:{id:id}})
+        if( teamInfo && teamInfo.dataValues ){
+            let obj = {
+                id:teamInfo.dataValues.id,
+                name:teamInfo.dataValues.name,
+                level:teamInfo.dataValues.level
+            }
+            return obj
+        }else{
+            return null
+        }
+    }
     // 创建方案基本信息
     async basicCreate(XPlansModel) {
 
         XPlansModel.scd_status = FileType.schedule.xzxm,
-            XPlansModel.scd_name = FileType.scheduleName[FileType.schedule.xzxm]
+        XPlansModel.scd_name = FileType.scheduleName[FileType.schedule.xzxm]
+        XPlansModel.scd_time = new Date()
 
         console.log(XPlansModel);
         const result = await this.ctx.model.XPlans.create(XPlansModel);
@@ -508,6 +536,42 @@ class PlansService extends Service {
 
     // 通过业务员获取项目信息;
 
+    // 客户在用户间转移
+    async changePlanOwner(params) {
+        const customerId = params.customerId;
+        const openId = params.openId;
+        const newUserName = params.userName;
+        const newTeamId = params.teamId;
+        const operatorName = params.operatorName;
+        // 获取客户数据
+        const planInfo = await this.ctx.model.XPlans.findOne({ where: { id: customerId } });
+        // 原始用户，团队信息
+        const oldUserName = planInfo.user_name;
+        // const oldTeamId = planInfo.team_id;
+
+        // 插入项目状态
+        let planScheduleObj = {};
+        planScheduleObj.open_id = openId;
+        planScheduleObj.plan_id = customerId;
+        planScheduleObj.scd_status = FileType.schedule.xmzy;
+        planScheduleObj.scd_name = '项目负责人由 '+ oldUserName +' 变更为 ' + newUserName;
+        planScheduleObj.scd_remark = operatorName;
+        planScheduleObj.scd_time = new Date();
+        const planScheduleResult = await this.ctx.model.XPlanSchedule.create(planScheduleObj);
+        // 修改用户表
+        const planResult = await this.ctx.model.XPlans.update({
+            open_id: openId,
+            user_name: newUserName,
+            team_id: newTeamId,
+        }, {
+                where: {
+                    id: customerId
+                }
+            }
+        )
+
+        return planResult
+    }
 
 }
 

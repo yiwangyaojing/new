@@ -33,7 +33,7 @@ class planScheduleService extends Service {
     async create(req) {
 
         const ctx = this.ctx
-
+        console.log(1)
         // 获取上一次最新的状态
         const scd = await ctx.model.XPlanSchedule.findOne(
             {
@@ -50,8 +50,10 @@ class planScheduleService extends Service {
         req.from_name = FileType.scheduleName[req.from_status]
         req.scd_time = new Date(req.scd_time)
 
+        console.log(2)
         const result = await ctx.model.XPlanSchedule.create(req)
         if (result) {
+            console.log(3)
             // 查询公司逾期规则
             let overdue = {}
             if(!req.company_id){
@@ -61,8 +63,9 @@ class planScheduleService extends Service {
             }else{
                 overdue = await ctx.model.XOverdue.findOne({where: {company_id: req.company_id}})
             }
-            let overdue_date = ''
+            let overdue_date
 
+            console.log(4)
             if (req.scd_status === FileType.schedule.htqd) {
                 overdue_date = moment(req.scd_time).add(overdue.htqd + 1, 'days').format("YYYY-MM-DD")
             } else if (req.scd_status === FileType.schedule.sgwc) {
@@ -71,6 +74,7 @@ class planScheduleService extends Service {
                 overdue_date = moment(req.scd_time).add(overdue.bwwc + 1, 'days').format("YYYY-MM-DD")
             }
 
+            console.log(5)
             await ctx.model.XPlans.update(
                 {
                     scd_status: req.scd_status,
@@ -87,6 +91,7 @@ class planScheduleService extends Service {
                 })
         }
 
+        console.log(6)
         return result
     }
 

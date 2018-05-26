@@ -14,7 +14,7 @@ class UserController extends Controller {
 
     const { ctx, service } = this;
     const body = ctx.request.body;
-    const user = Object.assign({}, body);
+    let user = Object.assign({}, body);
     user.province = ProvinceFormart.formart(user.province);
 
     const result = await service.user.create(user);
@@ -83,7 +83,7 @@ class UserController extends Controller {
       return;
     }
     const team = await service.user.findTeamByOpenId(company_id);
-	  const data = await service.teamUser.findOneByOpenIdteamId(company_id, openId);
+    const data = await service.teamUser.findOneByOpenIdteamId(company_id, openId);
 	  ctx.body = { data, team };
   }
 
@@ -92,6 +92,7 @@ class UserController extends Controller {
     const { ctx, service } = this;  
     let body = ctx.request.body;
     let openId = body.openId;
+    console.log(body)
     // 
     let ProjectInfo = await service.user.getProjectInfo(openId,'one');
     // console.log(ProjectInfo)

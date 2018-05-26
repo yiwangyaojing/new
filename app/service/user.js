@@ -5,7 +5,8 @@ const FileType = require('../const/FileType')
 const Sequelize = require('sequelize')
 
 // 时间工具插件;
-var moment = require('moment');
+const moment = require('moment');
+const WXBizDataCrypt = require('../util/WXBizDataCrypt')
 
 class UserService extends Service {
     // async findByOpenId(openid) {
@@ -16,14 +17,27 @@ class UserService extends Service {
     async create(user) {
         let result;
 
+        // 换取用户的 unionid
+        const sessionKey = user.session_key
+        const encryptedData = user.encryptedData
+        const iv = user.iv
+
+        let pc = new WXBizDataCrypt(this.config.wechat.appId, sessionKey)
+
+        let data = await pc.decryptData(encryptedData, iv)
+        if (data) {
+            user.unionid = data.unionId
+        }
+
         let createUser = Object.assign({}, user)
         let updateUser = {
-            nickName:user.nickName,
-            gender:user.gender,
-            province:user.province,
-            city:user.city,
-            avatarUrl:user.avatarUrl,
-            login_infor:user.login_infor
+            nickName: user.nickName,
+            gender: user.gender,
+            province: user.province,
+            city: user.city,
+            avatarUrl: user.avatarUrl,
+            login_infor: user.login_infor,
+            unionid: user.unionid
         }
 
         createUser.name = user.nickName
@@ -31,8 +45,13 @@ class UserService extends Service {
         result = await this.findByOpenId(user.openid)
 
         if (!result) {
-            result = await this.ctx.model.XUsers.create(createUser)
-        } else {
+            // 根据用户unionid获取用户信息
+            result = await this.findByUnionId(user.unionid)
+            if (!result){
+                result = await this.ctx.model.XUsers.create(createUser)
+            }
+        }
+        else {
             if(!result.source_scene && user.source_scene){
                 updateUser.source_scene = user.source_scene
             }
@@ -263,11 +282,13 @@ class UserService extends Service {
             console.log(data);
             return {};
         }
+        // console.log('输出当前团队项目')
+        // console.log(data)
         for (var i = 0; i < data.length; i++) {
             // 如果 该项目的状态是未启动,也就是新客户, 那么不需要进行下面的操作;
-            if (!data[i].dataValues.scd_status || data[i].dataValues.scd_status == 0) {
-                continue;
-            }
+            // if (!data[i].dataValues.scd_status || data[i].dataValues.scd_status == 0) {
+            //     continue;
+            // }
             // 项目的创建时间
             var date = time(moment(data[i].dataValues.scd_time).format('YYYY-MM-DD HH:mm'));
             date = date - 0 + 1;
@@ -284,7 +305,13 @@ class UserService extends Service {
                 // 负责人姓名
                 'duty_name': '' + (await this.ctx.model.XUsers.findOne({where: {openid: data[i].dataValues.open_id}})).dataValues.name,
                 // 当前项目的 id
-                'id': data[i].dataValues.id
+                'id': data[i].dataValues.id,
+                // 项目时间
+                'time': data[i].dataValues.scd_time,
+                // 回款金额
+                'pay_sum':data[i].dataValues.pay_sum,
+                // 剩余金额
+                'pay_gap':data[i].dataValues.pay_gap,
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)
@@ -398,6 +425,14 @@ class UserService extends Service {
      */
     async findByPhone(phone) {
         let result = await this.ctx.model.XUsers.findOne({where: {phone: phone}})
+        return result
+    }
+
+    /**
+     * PC 扫码登录
+     */
+    async findByUnionId(unionid) {
+        let result = await this.ctx.model.XUsers.findOne({where: {unionid: unionid}})
         return result
     }
 }

@@ -19,8 +19,15 @@ export default class Axios {
       }
       // 标识为ajax异步请求
       config.headers['X-Requested-With'] = 'XMLHttpRequest'
+      // 标识为跨域请求，服务端允许保存cookie
+      config.crossDomain = true
+      config.withCredentials = true
       // 增加csrfToken参数
-      config.headers['x-csrf-token'] = cookie.getCookie('backendcsrfToken')
+      config.headers['x-csrf-token'] = cookie.getCookie('apicsrfToken')
+
+      // basic auto
+      config.headers['Authorization'] = 'Basic bWFydmVsX2NvbWljczpYaWFvc29sYXIyMDE4'
+
       if (conf && conf.baseURL) {
         config.baseURL = conf.baseURL
       }

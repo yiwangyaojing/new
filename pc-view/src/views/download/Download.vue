@@ -28,7 +28,7 @@ export default {
   name: 'download',
   data () {
     return {
-      shortUrl: ''
+      shortUrl: this.$route.query.shortUrl
     }
   },
   methods: {
@@ -37,7 +37,17 @@ export default {
         this.$message.error('请输入文件提取密码！')
         return
       }
-      let url = process.env.CONTEXT + '/file/download/' + this.shortUrl
+
+      let uat = '/test'
+      let context = 'https://mp.xiaosolar.com/backend-api'
+      // 判断环境
+      let href = window.location.href
+
+      if (href.indexOf(uat) !== -1) {
+        context = 'https://mpa.xiaosolar.com/backend-api' // 测试环境
+      }
+
+      let url = context + '/backend/file/download/' + this.shortUrl
       window.open(encodeURI(url))
     }
   }

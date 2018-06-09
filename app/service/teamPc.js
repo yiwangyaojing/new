@@ -72,11 +72,23 @@ class TeamPcService extends Service {
     if (!team) {
       throw new Error('团队不存在')
     }
+    let teams = []
+    if(team.id !== team.company_id){
+        const company =  await ctx.model.XTeam.findAll({where:{company_id:team.company_id}})
+        teams.push(team.id)
+        //获取所有子团队
+        await this.service.team.linealTeam(company,team,teams,'child')
+    }
+
+    console.log(teams)
+
     const cfg = this.config.sequelize
     cfg.logging = false
     const logger = ctx.logger
     const sequelize = new Sequelize(cfg)
-    return await sequelize.transaction(function(t) {
+
+    let resp={}
+    await sequelize.transaction(function(t) {
       if (team.id === team.company_id && team.level === 0) {
         // 解散公司
         // 判断是否为公司创始人，否则无权限解散
@@ -90,47 +102,56 @@ class TeamPcService extends Service {
         }, { transaction: t }).then(() => {
           // 清空x_team_user数据
           return ctx.model.XTeamUser.destroy({ where: {
-              team_id: teamId
+              team_company_id: teamId
             }
           }, { transaction: t })
         }).then(() => {
           // 清空x_team
           return ctx.model.XTeam.destroy({ where: {
-              id: teamId
+              company_id: teamId
             }
           }, { transaction: t })
         }).then(() => {
           // 清空x_plans 数据
           return ctx.model.XPlans.destroy({ where: {
-              team_id: teamId
+              company_id: teamId
             }
           }, { transaction: t })
         })
+
       } else {
         // 清空人员信息
         return ctx.model.XTeamUser.destroy({ where: {
-            team_id: teamId
+            team_id: teams
           }
         }, { transaction: t }).then(() => {
           // 清空x_team
           return ctx.model.XTeam.destroy({ where: {
-              id: teamId
+              id: teams
             }
           }, { transaction: t })
         }).then(() => {
           // 清空x_plans 数据
           return ctx.model.XPlans.destroy({ where: {
-              team_id: teamId
+              team_id: teams
             }
           }, { transaction: t })
         })
       }
     }).then(function(result) {
       logger.info('这里是事务结果===>>', result)
-      return result
+        resp = result;
     }).catch(function(err) {
       logger.error('解散团队失败===>>', err);
     })
+
+    //判断用户没有团队则清空session
+    const teamUser = await ctx.model.XTeamUser.findOne({where:{open_id:openid}});
+    if(!teamUser){
+        ctx.session.user = null
+    }
+
+    return resp;
   }
 
   // 团队管理员变更

@@ -45,19 +45,15 @@ class UserService extends Service {
         result = await this.findByOpenId(user.openid)
 
         if (!result) {
-            // 根据用户unionid获取用户信息
-            result = await this.findByUnionId(user.unionid)
-            if (!result){
-                result = await this.ctx.model.XUsers.create(createUser)
-            }
-        }
-        else {
-            if(!result.source_scene && user.source_scene){
+            // 根据用户uuionId 或者头像地址 获取用户并修改用户所有记录表
+            result = await this.findOpenIdByUnionId(createUser)
+        } else {
+            if (!result.source_scene && user.source_scene) {
                 updateUser.source_scene = user.source_scene
             }
             await this.ctx.model.XUsers.update(updateUser, {where: {openid: user.openid}});
         }
-
+        result.dataValues['new_update'] = true;
         // await this.ctx.model.XUsers.findOrCreate({
         //   where: { openid: user.openid },
         //   defaults: createUser,
@@ -74,9 +70,9 @@ class UserService extends Service {
         return result;
     }
 
-    async update(req){
+    async update(req) {
 
-        return await this.ctx.model.XUsers.update(req,{where:{openid:req.openid}})
+        return await this.ctx.model.XUsers.update(req, {where: {openid: req.openid}})
     }
 
     async findByOpenId(open_id) {
@@ -160,15 +156,15 @@ class UserService extends Service {
 
     async getAllProject(openId) {
         const user = await this.ctx.model.XUsers.findOne({
-          where: {
-              openid: openId
-          }
+            where: {
+                openid: openId
+            }
         })
         const team = await this.ctx.model.XPlans.findAll({
-          where: {
-              open_id: openId,
-              company_id: user.company_id
-          }
+            where: {
+                open_id: openId,
+                company_id: user.company_id
+            }
         });
         if (!team) {
             return false;
@@ -182,43 +178,44 @@ class UserService extends Service {
     }
 
     async getUserProjects(openId) {
+        const { ctx } = this;
 
         const Op = Sequelize.Op
 
         const user = await this.ctx.model.XUsers.findOne({
-          where: {
-              openid: openId
-          }
+            where: {
+                openid: openId
+            }
         })
 
-        console.log('当前用户 id'+openId)
-        if(!user) throw new Error('获取用户信息失败,open_id 错误或者是找不到用户！')
+        ctx.logger.info('当前用户 id' + openId)
+        if (!user) throw new Error('获取用户信息失败,open_id 错误或者是找不到用户！')
 
         let teamIds = []
 
         // 获取个人所在团队
-        if(user.company_id){
-            const teams = await  this.ctx.model.XTeamUser.findAll({where:{open_id:openId}})
-            for(let team of teams){
-                if(teamIds.indexOf(team.team_id) === -1){
+        if (user.company_id) {
+            const teams = await  this.ctx.model.XTeamUser.findAll({where: {open_id: openId}})
+            for (let team of teams) {
+                if (teamIds.indexOf(team.team_id) === -1) {
                     teamIds.push(team.team_id)
                 }
             }
         }
 
         const team = await this.ctx.model.XPlans.findAll({
-          where: {
-              [Op.or]:[
-                  {
-                   open_id: openId,
-                   team_id:teamIds,
-                  },{
-                   open_id: openId,
-                   company_id: null
-                  },
-              ]
+            where: {
+                [Op.or]: [
+                    {
+                        open_id: openId,
+                        team_id: teamIds,
+                    }, {
+                        open_id: openId,
+                        company_id: null
+                    },
+                ]
 
-          }
+            }
         });
         if (!team) {
             return false;
@@ -309,14 +306,14 @@ class UserService extends Service {
                 // 项目时间
                 'time': data[i].dataValues.scd_time,
                 // 回款金额
-                'pay_sum':data[i].dataValues.pay_sum,
+                'pay_sum': data[i].dataValues.pay_sum,
                 // 剩余金额
-                'pay_gap':data[i].dataValues.pay_gap,
+                'pay_gap': data[i].dataValues.pay_gap,
             };
             // console.log('输出本周' + time(weekStart))
             // console.log('输出本周' + weekStart)
             // console.log('当前时间' + time(day))
-            console.log('当前时间' + moment(data[i].dataValues.scd_time).format('YYYY-MM-DD HH:mm'))
+            // console.log('当前时间' + moment(data[i].dataValues.scd_time).format('YYYY-MM-DD HH:mm'))
             // 判断今日
             if (date > time(day) || date == time(day)) {
                 allProject['今日'].push(minData);
@@ -372,15 +369,15 @@ class UserService extends Service {
     }
 
     // 获取单个业务员的签到信息
-    async oneUserGetSign(info){
+    async oneUserGetSign(info) {
         let openId = info.openId;
         let time = info.time;
         let data = await this.ctx.model.XSign.findAll({where: {open_id: openId}});
         let all = []
-        if( data.length > 0 ){
-            for( var i = 0 ; i < data.length ; i ++ ){
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
                 let date = moment(data[i].create_time).format('YYYY-MM-DD')
-                if( date === time ){
+                if (date === time) {
                     let tt = moment(data[i].create_time).format('YYYY-MM-DD HH:mm')
                     data[i].create_time = moment(moment(tt).add(8, 'h')).format('HH:mm')
                     all.push(data[i])
@@ -389,32 +386,34 @@ class UserService extends Service {
         }
         return all
     }
+
     // 判断底层用户是否是管理员
-    async isRank(openId){
+    async isRank(openId) {
         let data = await this.ctx.model.XTeamUser.findAll({where: {open_id: openId.openId}});
         let more = [];
-        for( let i = 0 ; i < data.length ; i ++ ){
-            if( data[i].dataValues.user_rank === 1 ){
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].dataValues.user_rank === 1) {
                 more.push(data[i].dataValues)
             }
         }
 
         // console.log('输出底层是否是管理员的公司信息,如果有输出,证明底层是管理员,如果没有,则不是')
         // console.log(more)
-        if( more.length === 1){
+        if (more.length === 1) {
             return more[0]
         }
-        if( more.length === 0){
+        if (more.length === 0) {
             return []
         }
-        if( more.length > 1 ){
-            function compare(property){
-                return function(a,b){
+        if (more.length > 1) {
+            function compare(property) {
+                return function (a, b) {
                     var value1 = a[property];
                     var value2 = b[property];
                     return value1 - value2;
                 }
             }
+
             more.sort(compare('team_level'))
         }
         return more[0]
@@ -435,6 +434,81 @@ class UserService extends Service {
         let result = await this.ctx.model.XUsers.findOne({where: {unionid: unionid}})
         return result
     }
+
+    /**
+     * 新版小程序。openId替换
+     */
+
+    async findOpenIdByUnionId(user) {
+        const { ctx } = this;
+
+        let result;
+        let openIdOld;
+        ctx.logger.info("===>user,",user);
+        result = await  this.findByUnionId(user.unionid)
+        if (result){
+            openIdOld = result.openid
+            ctx.logger.info('==============>oldOpenId', openIdOld  + 'newOpenId',user.openid);
+            if ( user.openid !== openIdOld) {
+                await  this.updateAllUserResource(user.openid, openIdOld)
+
+            }
+        }else{
+            ctx.logger.info("user 不存在，开始新建用户",user.openid)
+            result = await this.ctx.model.XUsers.create(user)
+
+        }
+        return result
+
+    }
+
+    // 更新用户所有资源的openId
+    async updateAllUserResource(openId, openIdOld) {
+
+        const ctx = this.ctx
+
+        const cfg = this.config.sequelize;
+        cfg.logging = false;
+        const sequelize = new Sequelize(cfg);
+
+        await sequelize.transaction(function (t) {
+            return ctx.model.XUsers.update({openid: openId}, {where: {openid: openIdOld}}, {transaction: t}).then(function () {  // 修改用户
+                return ctx.model.XTeam.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function () {  //修改团队
+                    return ctx.model.XTeamUser.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function () {
+                        return ctx.model.XPlans.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function () {
+                            return ctx.model.XFiles.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+                                return ctx.model.XPlanPay.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+                                    return ctx.model.XPlanSchedule.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+                                        return ctx.model.XSign.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+                                            return ctx.model.XNote.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+                                                return ctx.model.Feedback.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+                                                    return ctx.model.TblQueryHistory.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+                                                        return ctx.model.TblQueryResult.update({open_id: openId}, {where: {open_id: openIdOld}}, {transaction: t}).then(function(){
+
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        }).then(function (result) {
+            // resp = result;
+            console.log(result)
+        }).catch(function (err) {
+            //  console.log(err);
+        });
+
+        await ctx.model.XUsers.update({company_founder: openId}, {where: {company_founder: openIdOld}})
+        await ctx.model.XUsers.update({inviter_openid: openId}, {where: {inviter_openid: openIdOld}})
+
+    }
 }
 
-module.exports = UserService;
+module.exports = UserService
+

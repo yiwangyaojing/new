@@ -18,6 +18,14 @@ class FeedbackController extends Controller {
     ctx.body = await service.feedback.create(ctx.request.body);
   }
 
+  async photovoltaicCreate(){
+      const { ctx, service } = this;
+      let body = ctx.request.body;
+      console.log('收到了',body);
+      let data = await service.feedback.photovoltaicCreate(ctx.request.body);
+      ctx.body = body;
+  }
+
 }
 
 module.exports = FeedbackController;

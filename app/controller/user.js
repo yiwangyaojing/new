@@ -110,10 +110,49 @@ class UserController extends Controller {
   async isRank(){
     const { ctx, service } = this;
     let body = ctx.request.body;
-    console.log(body)
     let teamInfo = await service.user.isRank(body);
     ctx.body = teamInfo
   }
+
+  async isRankPc(){
+      const { ctx, service } = this;
+      let body = ctx.request.body;
+      console.log('判断管理员',ctx,ctx.request.body)
+      let teamInfo = await service.user.isRank(body);
+      console.log(teamInfo)
+      ctx.body = teamInfo
+  }
+
+  // 获取团队下的子团队和团队成员
+  async userChooseAndUser(){
+      const {ctx,service} = this;
+      const body = ctx.request.body;
+      //用户所能看到的所有团队 id
+      let team_id = body.array;
+      //用户选择查询的团队 id-单个
+      let company_id = body.companyId;
+      if( team_id.length == 0 ){
+          ctx.body = [];
+      }
+      //用户所能看到的所有团队信息
+      let teams = await service.teamUser.manageTeam(team_id);
+      //用户选择查询的团队信息-单个
+      let one_team = await ctx.model.XTeam.findOne({where:{id:company_id}});
+      //用户选择查询的团队-及其以下团队id;
+      let team_childs = [company_id];
+      await service.team.linealTeam(teams,one_team,team_childs,'child');
+      ctx.body = team_childs;
+  }
+
+  async oneuserupdate(){
+      const { ctx, service } = this;
+      let user = ctx.request.body;
+      console.log(user)
+      let up = await service.user.updateAllUserResource(user.openId,user.openIdOld)
+      console.log(up)
+      // ctx.body = user;
+  }
+
 }
 
 module.exports = UserController;

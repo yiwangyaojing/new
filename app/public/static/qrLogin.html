@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>验证码登录</title>
+  <script type="text/javascript" src="javascript/jquery-3.3.1.js"></script>
+</head>
+<body>
+<div ></div>
+<!-- built files will be auto injected -->
+</body>
+</html>
+
+
+<script type="text/javascript">
+  //获取回调地址参数
+  function getRequest() {
+    var url = location.search; //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {
+        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+      }
+    }
+    return theRequest;
+  }
+
+
+  let urlParams = getRequest()
+
+  let context = "https://mp.xiaosolar.com/front-api"; //生产环境
+
+  console.log(urlParams)
+  let code = urlParams.code
+  // let state = urlParams.state
+
+  let uat = '/test'
+  //判断环境
+  let href = window.location.href
+  let origin = window.origin
+
+  if(href.indexOf(uat) !==-1){
+    origin += uat
+    context = "https://mpa.xiaosolar.com/front-api"; //测试环境
+  }
+
+  $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+
+
+  // 调用后接口登录
+  //页面跳转后直接调用接口获取openId;
+  $.ajax(context+"/api/qrLogin/"+code, {
+    type: "GET",
+    dataType: "json",
+    xhrFields: {
+      withCredentials: true
+    },
+    headers: {
+      'Authorization':'Basic bWFydmVsX2NvbWljczpYaWFvc29sYXIyMDE4'
+    },
+    success: function (data) {
+      console.log(data)
+      window.sessionStorage.setItem('user',JSON.stringify(data))
+      if(window.parent){
+        window.parent.location.href = origin +"/index.html#Home" // 首页跳转
+        window.parent.location.reload()
+      }
+    },
+    error: function (error) {
+      console.log(error)
+      alert("微信登录失败！");
+      if(window.parent){
+        window.parent.location.reload()
+      }
+      if (error.status == 500) {
+        console.log(error);
+      } else {
+        console.log("验证用户绑定VIN码信息失败！")
+      }
+    }
+  });
+
+
+</script>

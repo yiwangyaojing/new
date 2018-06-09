@@ -167,7 +167,9 @@ class DetailSettingPCService extends Service {
 
     //PC端进度详情概况
     async findPlanById(rowId){
-        const result = await this.ctx.model.XPlans.findOne({where: {id: rowId}});
+        let  result = await this.ctx.model.XPlans.findOne({where: {id: rowId}});
+
+        // 获取用户信息
         return result;
     }
 

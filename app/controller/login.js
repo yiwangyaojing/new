@@ -55,6 +55,31 @@ class LoginController extends Controller {
         }
     }
 
+    /**
+     * 校验手机号唯一
+     */
+    async validatePhone(){
+        const {ctx, service} = this;
+        const req = ctx.params;
+
+        const rule = {
+            phone: {type: 'string', required: true}, // 注册手机号
+        };
+
+        let body ={
+            type:true
+        }
+        ctx.validate(rule, req)
+
+        const userInfo = await service.user.findByPhone(req.phone);
+
+        if(userInfo) {
+            body.type = false
+        }
+
+        ctx.body = body
+    }
+
     async logout(){
         // 销毁登录
         this.ctx.session.user = null;

@@ -22,7 +22,7 @@ class Wechat extends Controller {
             dataType: 'json',
             timeout: 30000 // 30 秒超时
         });
-
+        console.log(result)
         ctx.body = result.data
 
     }

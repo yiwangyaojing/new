@@ -42,8 +42,11 @@ class TeamUserService extends Service {
             teams.push(req.company_id)
         }
 
+        //查找当前选择团队下的所有项目
         const plans = await this.ctx.model.XPlans.findAll({where:{team_id:teams}})
+        //需要在此处添加- 通过所有项目 id 查询项目的历史状态-然后排序,
 
+        //然后在此处进行单个的项目 id 进行排序
         let allInfo = await this.service.user.getProjectInfo('', plans);
 
         return allInfo
@@ -196,6 +199,7 @@ class TeamUserService extends Service {
         const ctx = this.ctx
         await ctx.model.XTeamUser.destroy({where: {open_id: openid}})
         return await ctx.model.XUsers.update({
+            phone:null,
             company_id: null,
             company_name: null,
             company_founder:null,
@@ -590,9 +594,13 @@ class TeamUserService extends Service {
 
         let data_sign = await this.findManagerTeams(info.teamId,info.openId)
         console.log('输出签到的公司')
+        if( data_sign.managerTeamIds.length > 0 ){
+            data_sign.managerTeamIds = [...new Set(data_sign.managerTeamIds)]
+        }
         console.log(data_sign)
         // 这是所有已经签到的人的信息;
         let data = []
+        let user_id = []
         // 未签到的
         let n_data = []
         //获取当前公司下的所有用户
@@ -600,13 +608,16 @@ class TeamUserService extends Service {
             let min_n_data =  await this.ctx.model.XTeamUser.findAll({where:{team_id:data_sign.managerTeamIds[ji]}})
             if( min_n_data.length > 0 ) {
                 for( let yy = 0 ; yy < min_n_data.length ; yy++ ){
+                    user_id.push(min_n_data[yy].dataValues.open_id)
                     n_data.push(min_n_data[yy])
                 }
             }
         }
-        if( n_data.length > 0 ){
-            for( let u = 0 ; u < n_data.length ; u++ ){
-                let min_open_id = n_data[u].dataValues.open_id
+        console.log('输出人员')
+        if( user_id.length > 0 ){
+            user_id = [...new Set(user_id)]
+            for( let u = 0 ; u < user_id.length ; u++ ){
+                let min_open_id = user_id[u]
                 console.log('输出当前的所有用户')
                 let min_data =  await this.ctx.model.XSign.findAll({where:{open_id:min_open_id,min_date:time}})
                 if( min_data.length > 0 ){
@@ -626,6 +637,7 @@ class TeamUserService extends Service {
         let true_sign_open_id = [];
         // 所有签到人的信息
         let t_user_all = [];
+        console.log(data.length,'签到条数')
         if( data.length > 0 ){
             for( let i = 0 ; i < data.length ; i ++ ){
                 // 添加签到的人数和每人的个数
@@ -774,6 +786,8 @@ class TeamUserService extends Service {
     // 根据用户id获取所有管理的团队信息
     async findManagerTeams(company_id,open_id){
 
+        console.log(company_id)
+        console.log(open_id)
         const ctx = this.ctx
 
         let result = {}
@@ -852,7 +866,39 @@ class TeamUserService extends Service {
         return data
     }
 
-
+    // 通过团队 id 获取团队下所有的成员
+    async getTeamUser(data){
+        let openidAll = [];
+        let user = [];
+        const Op = Sequelize.Op
+        let Queryparams = {[Op.or]: [{team_id:data.teamId}]}
+        let info = await this.ctx.model.XTeamUser.findAll({
+            where: Queryparams,
+            attributes:['open_id']
+        });
+        if( !info || info.length === 0 ){
+            return []
+        }
+        for( let i in info ){
+            if( !info[i].dataValues || !info[i].dataValues.open_id ){
+                continue
+            }
+            let open_id = info[i].dataValues.open_id
+            if( openidAll.indexOf(open_id) > -1 ){
+                continue
+            }else{
+                openidAll.push(open_id);
+                let one = await this.ctx.model.XUsers.findOne({where: {openid:open_id},attributes:['nickName']});
+                let min = {
+                    openid:open_id,
+                    name:one.nickName
+                }
+                user.push(min)
+            }
+        }
+        console.log(openidAll)
+        return user
+    }
 
 }
 

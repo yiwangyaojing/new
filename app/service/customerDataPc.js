@@ -132,6 +132,17 @@ class CustomerDataPcService extends Service {
             }
         }
 
+        // 获取用户信息
+        const userInfo  = this.ctx.session.user
+
+        // 判断是否可以删除
+        const teamUser = await this.ctx.model.XTeamUser.findOne({where:{team_id:userInfo.company_id,open_id:userInfo.openid,user_rank:FileType.UserRank.admin}})
+        if(teamUser){
+            result.canDelete = true
+        }else{
+            result.canDelete = false
+        }
+
         return result;
     }
 
@@ -147,6 +158,7 @@ class CustomerDataPcService extends Service {
                     include: [
                         [Sequelize.fn('date_format',Sequelize.fn('DATE_ADD',Sequelize.col('updated_at'),Sequelize.literal('INTERVAL 8 hour')),'%Y-%m-%d %H:%m:%s'),'updateTime' ],
                         [Sequelize.fn('date_format',Sequelize.fn('DATE_ADD',Sequelize.col('created_at'),Sequelize.literal('INTERVAL 8 hour')),'%Y-%m-%d %H:%m:%s'),'createTime' ],
+                        [Sequelize.fn('date_format',Sequelize.fn('DATE_ADD',Sequelize.col('scd_time'),Sequelize.literal('INTERVAL 8 hour')),'%Y-%m-%d'),'scdTime' ],
                     ] },
                 where: {plan_id: rowId},
                 order: [['updated_at', 'desc']]
@@ -163,13 +175,13 @@ class CustomerDataPcService extends Service {
         cfg.logging = false;
         const sequelize = new Sequelize(cfg);
 
-        // 获取公司
+
         const payUser = await sequelize.query(
             "select p.* , xu.name from x_plan_pay p , x_users xu " +
             "where p.plan_id = :plan_id " +
-            "and  xu.openid = p.open_id " +
+            "and p.open_id = xu.openid " +
             "order by p.updated_at desc",
-            {replacements: {open_id: params.openId,plan_id: params.id}, type: Sequelize.QueryTypes.SELECT})
+            {replacements: {plan_id: params.id}, type: Sequelize.QueryTypes.SELECT})
         return payUser
     }
 

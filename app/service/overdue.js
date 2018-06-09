@@ -12,7 +12,47 @@ class OverDueService extends Service {
     }
 
     async update(req) {
-        return await this.ctx.model.XOverdue.update(req, {where: {id: req.id, company_id: req.company_id}})
+
+        const ctx = this.ctx
+
+
+        // 重新计算逾期时间
+        if('yes' === req.cover){
+            const cfg = this.config.sequelize;
+            cfg.logging = false;
+            const sequelize = new Sequelize(cfg);
+
+            const overDue =  await ctx.model.XOverdue.findOne({where: {company_id: req.company_id}})
+
+            let resp ={}
+            await sequelize.transaction(function (t) {
+                return  ctx.model.XOverdue.update(req, {where: {id: req.id, company_id: req.company_id}},{transaction: t}).then(function(result){
+                    if(overDue.htqd !== req.htqd){
+                         return ctx.model.XPlans.update(
+                            {overdue_date: Sequelize.fn('DATE_ADD',Sequelize.col('scd_time'),Sequelize.literal('INTERVAL '+ (req.htqd+1) +' day'))},
+                            {where:{company_id: req.company_id, scd_status: FileType.schedule.htqd}})
+                    }
+                    if(overDue.sgwc !== req.sgwc){
+                       return ctx.model.XPlans.update(
+                            {overdue_date: Sequelize.fn('DATE_ADD',Sequelize.col('scd_time'),Sequelize.literal('INTERVAL '+ (req.sgwc+1) +' day'))},
+                            {where:{company_id: req.company_id, scd_status: FileType.schedule.sgwc}})
+                    }
+                    if(overDue.bwwc !== req.bwwc){
+                        return ctx.model.XPlans.update(
+                            {overdue_date: Sequelize.fn('DATE_ADD',Sequelize.col('scd_time'),Sequelize.literal('INTERVAL '+ (req.bwwc+1) +' day'))},
+                            {where:{company_id: req.company_id, scd_status: FileType.schedule.bwwc}})
+                    }
+                    resp = result
+                })
+            }).then(function (res) {
+                // console.log(res)
+            }).catch(function (err) {
+                //  console.log(err);
+            });
+            return resp
+        }else{
+            return await this.ctx.model.XOverdue.update(req, {where: {id: req.id, company_id: req.company_id}})
+        }
     }
 
     async query(req) {

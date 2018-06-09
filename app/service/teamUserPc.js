@@ -93,7 +93,6 @@ class TeamUserPcService extends Service {
 
     // 根据用户id获取所有管理的团队信息,以及team_id下级所有管理
     async findManagerTeams(company_id,open_id,team_id,team_level){
-
         const ctx = this.ctx
 
         let result = {}

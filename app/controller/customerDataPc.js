@@ -55,11 +55,10 @@ class CustomerDataPc extends Controller {
      */
     async findPayStatusById(){
         const {ctx, service} = this
-        const openId = ctx.session.user.openid;
         const id = ctx.params.id
-        Object.assign(ctx.request.body, {openId, id});
+        Object.assign(ctx.request.body, {id});
         const rule = {
-            openId: {type: 'string', required: true}, // 操作人id
+            id: {type: 'string', required: true}, // 操作人id
         }
         ctx.validate(rule, ctx.request.body);
         console.log(ctx.request.body);
@@ -141,63 +140,8 @@ class CustomerDataPc extends Controller {
       const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj);
     }
 
-
-
-    // if(excelData){
-    //   for(let i = 0;i<excelData.length;i++){
-    //     // 遍历上传数据，判断是否新建用户
-    //     if(agents.length === 0 ){
-
-
-
-
-    //       let userObj = {};
-    //       let timeStamp = process.hrtime();
-    //       userObj.openid = timeStamp[0].toString()+timeStamp[1].toString();
-    //       userObj.name = excelData[i][1];
-    //       userObj.company_id = userInfo.company_id;
-    //       userObj.company_name = userInfo.company_name;
-    //       userObj.maxTeamId = this.ctx.params.id;
-    //       userObj.maxTeamRank = 2;
-    //       userObj.maxTeamLevel = teamInfo[0].level;
-    //       const userResult = await this.ctx.model.XUsers.create(userObj);
-    //       // 新建用户团队
-    //       let teamUserObj = {};
-    //       teamUserObj.open_id = userObj.openid;
-    //       teamUserObj.user_rank = 2;// 默认业务员
-    //       teamUserObj.team_id = this.ctx.params.id;
-    //       teamUserObj.team_company_id = userInfo.company_id;
-    //       const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj);
-    //     }else{
-    //       for(let j=0;j<agents.length;j++){
-    //         if(agents[j].name !== excelData[i][1]){
-    //           // 新建用户
-    //           let userObj = {};
-    //           let timeStamp = process.hrtime();
-    //           userObj.openid = timeStamp[0].toString()+timeStamp[1].toString();
-    //           userObj.name = excelData[i][1];
-    //           userObj.company_id = userInfo.company_id;
-    //           userObj.company_name = userInfo.company_name;
-    //           userObj.maxTeamId = this.ctx.params.id;
-    //           userObj.maxTeamRank = 2;
-    //           userObj.maxTeamLevel = teamInfo[0].level;
-    //           const userResult = await this.ctx.model.XUsers.create(userObj);
-    //           // 新建用户团队
-    //           let teamUserObj = {};
-    //           teamUserObj.open_id = userObj.openid;
-    //           teamUserObj.user_rank = 2;// 默认业务员
-    //           teamUserObj.team_id = this.ctx.params.id;
-    //           teamUserObj.team_company_id = userInfo.company_id;
-    //           const teamUserResult = await this.ctx.model.XTeamUser.create(teamUserObj);
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-
     // 重新获得一遍用户
     agents = await service.teamUserPc.getAgents(this.ctx.params.id, userInfo.company_id);
-
 
     if (excelData) {
       for(let i=0;i<excelData.length;i++){
@@ -266,54 +210,65 @@ class CustomerDataPc extends Controller {
                 planScheduleObj.scd_name = "新增项目";
                 planScheduleObj.scd_time = (excelData[i][10]==="")?currentDate:excelData[i][10];
                 planScheduleResult = await this.ctx.model.XPlanSchedule.create(planScheduleObj);
+                // 记录客户的所有状态
+                const scdStatusAllArray = []
+                scdStatusAllArray.push(0) // 初始是新增项目
 
                 if (excelData[i][11] !== ""){
                   // 有签订合同时间
                   planScheduleObj.scd_status = 2;
                   planScheduleObj.scd_name = "合同签订";
                   planScheduleObj.scd_time = excelData[i][11];
-                  if(excelData[i][10] !== ""){
-                    planScheduleObj.from_status = 0;
-                    planScheduleObj.from_name = "新增项目";
-                  }
+                  // if(excelData[i][10] !== ""){
+                  //   planScheduleObj.from_status = 0;
+                  //   planScheduleObj.from_name = "新增项目";
+                  // }
                   planScheduleResult = await this.ctx.model.XPlanSchedule.create(planScheduleObj);
+                  scdStatusAllArray.push(2)
                 }
                 if(excelData[i][12] !== ""){
                   // 有施工完成时间
                   planScheduleObj.scd_status = 3;
                   planScheduleObj.scd_name = "施工完成";
                   planScheduleObj.scd_time = excelData[i][12];
-                  if(excelData[i][11] !== ""){
-                    planScheduleObj.from_status = 2;
-                    planScheduleObj.from_name = "合同签订";
-                  }else if(excelData[i][10] !== ""){
-                    planScheduleObj.from_status = 0;
-                    planScheduleObj.from_name = "新增项目";
-                  }
+                  // if(excelData[i][11] !== ""){
+                  //   planScheduleObj.from_status = 2;
+                  //   planScheduleObj.from_name = "合同签订";
+                  // }else if(excelData[i][10] !== ""){
+                  //   planScheduleObj.from_status = 0;
+                  //   planScheduleObj.from_name = "新增项目";
+                  // }
                   planScheduleResult = await this.ctx.model.XPlanSchedule.create(planScheduleObj);
+                  scdStatusAllArray.push(3)
                 }
                 if(excelData[i][13] !== ""){
                   // 有施工完成时间
                   planScheduleObj.scd_status = 4;
                   planScheduleObj.scd_name = "并网完成";
                   planScheduleObj.scd_time = excelData[i][13];
-                  if(excelData[i][12] !== ""){
-                    planScheduleObj.from_status = 3;
-                    planScheduleObj.from_name = "施工完成";
-                  }else if(excelData[i][11] !== ""){
-                    planScheduleObj.from_status = 2;
-                    planScheduleObj.from_name = "合同签订";
-                  }else if(excelData[i][10] !== ""){
-                    planScheduleObj.from_status = 0;
-                    planScheduleObj.from_name = "新增项目";
-                  }
+                  // if(excelData[i][12] !== ""){
+                  //   planScheduleObj.from_status = 3;
+                  //   planScheduleObj.from_name = "施工完成";
+                  // }else if(excelData[i][11] !== ""){
+                  //   planScheduleObj.from_status = 2;
+                  //   planScheduleObj.from_name = "合同签订";
+                  // }else if(excelData[i][10] !== ""){
+                  //   planScheduleObj.from_status = 0;
+                  //   planScheduleObj.from_name = "新增项目";
+                  // }
                   planScheduleResult = await this.ctx.model.XPlanSchedule.create(planScheduleObj);
+                  scdStatusAllArray.push(4)
                 }
+
+                // // 暂时欠缺意向沟通
+                // if(scdStatusAllArray.length > 1){
+                //   scdStatusAllArray.push(1)
+                // }
 
                 // 修改原客户信息里的项目进度
                 await this.ctx.model.XPlans.update(
                   {scd_id:planScheduleResult.id,scd_status:planScheduleResult.scd_status,
-                  scd_time:planScheduleResult.scd_time,scd_name:planScheduleResult.scd_name
+                  scd_time:planScheduleResult.scd_time,scd_name:planScheduleResult.scd_name,scd_status_all:scdStatusAllArray.toString()
                   },{where:{id:planResult.id}}
                 )
 

@@ -5,6 +5,12 @@
  */
 module.exports = app => {
     const {router, controller} = app;
+
+    //单独接口,对用户进行操作(可删除)
+    router.post('/api/update/user',controller.user.oneuserupdate);
+
+    //6.1事件的信息登记
+    router.post('/api/infoLogin/feedback',controller.feedback.photovoltaicCreate)
     router.get('/', controller.home.index);
     // 用户相关rest服务
     router.post('/api/user', controller.user.create);           //已写入测试-运行正常        将获取到的微信用户信息保存到数据库
@@ -15,6 +21,13 @@ module.exports = app => {
     router.post('/api/user/getSalesmanProject', controller.user.getSalesmanProject); // 已写入测试-正常运行   获取业务员的项目信息
     router.post('/api/user/getSign',controller.user.getSign); // 已写入测试-正常运行      获取业务员的签到信息
     router.post('/api/user/isRank',controller.user.isRank);// 已写入测试-正常运行    判断底层是否是管理员
+
+    //  项目历史(概览页)
+    router.post('/api/plans/getTeamProject/:openId',controller.plans.getTeamProject);   //获取团队的历史业务数据
+    // 项目历史(概览页)
+    router.post('/api/plans/getSalesmanProject',controller.plans.getSalesmanProject);   //获取单个业务员的历史业务数据
+    // 项目逾期(概览页)
+    router.post('/api/plans/overdue',controller.plans.getoverdue);  //获取逾期数据
 
     // 文件上传rest服务
     router.get('/api/file', controller.file.index);
@@ -42,6 +55,10 @@ module.exports = app => {
     // 方案进度 --  逾期
     router.post('/api/planSchedule', controller.planSchedule.create);       //已写入测试-运行正常    新增方案
     router.get('/api/planSchedule/:open_id/:plan_id', controller.planSchedule.index); //已写入测试-运行正常 通过 openid 和方案 id 获取方案信息
+    router.post('/api/planSchedule/writeNote', controller.planSchedule.writeNote); // 客户详情页的写跟进
+    router.post('/api/planSchedule/updateSchedule', controller.planSchedule.updateSchedule); // 更新项目状态
+    router.post('/api/planSchedule/stop', controller.planSchedule.stop);
+    router.post('/api/planSchedule/resume', controller.planSchedule.resume);
     // 方案回款 --  回款
     router.post('/api/planPay', controller.planPay.create);  //已写入测试-运行正常   新建回款信息,或者是修改信息
     router.get('/api/planPay/:open_id/:plan_id', controller.planPay.index); //已写入测试-运行正常   通过 openid和方案 id获取该方案信息
@@ -83,6 +100,7 @@ module.exports = app => {
     router.post('/api/teamUser/manager', controller.teamUser.teamManagerInit);
     router.post('/api/teamUser/join', controller.teamUser.join);
     router.post('/api/teamUser/teamUsers', controller.teamUser.findTeamUsers);   //通过 openid 和团队等级获取所有的用户 id;
+    router.post('/api/teamUser/getTeamUser',controller.teamUser.getTeamUser);    // 获取团队下所有的成员
 
     router.get('/api/teamUser/user/:open_id', controller.teamUser.userInfo);
     router.put('/api/teamUser/user', controller.teamUser.updateUser);
@@ -91,6 +109,8 @@ module.exports = app => {
     router.get('/api/teamUser/friend/:company_id', controller.teamUser.friendList);
     router.get('/api/teamUser/company/:company_id', controller.teamUser.companyUsers);
     router.post('/api/teamUser/getSign',controller.teamUser.teamGetSign); // 获取团队内的所有人的签到信息
+    router.post('/api/teamUser/excleExport',controller.excleSign.excleExport); // 签到导出
+    router.post('/api/customerDataPc/excleExport',controller.excleSign.query); // 客户资料导出
     router.post('/api/teamUser/manageTeam',controller.teamUser.manageTeam);  // 获取当前用户能够管理的所有团队
     router.post('/api/teamUser/userChoose',controller.teamUser.userChoose);  // 用户选择某个团队,获取该团队及其以下所有的团队
     // 概况
@@ -114,6 +134,7 @@ module.exports = app => {
 
     // PC端登录
     router.post('/api/login/sms', controller.login.sms);
+    router.get('/api/login/validate/:phone', controller.login.validatePhone);
     router.post('/api/login', controller.login.userLogin);
     router.post('/api/logout', controller.login.logout);
     router.get('/api/qrLogin/:code', controller.login.qrLogin);
@@ -123,13 +144,34 @@ module.exports = app => {
     router.get('/api/pc/overduePc',controller.overduePc.index); //首页统计列表
     router.post('/api/pc/overduePc',controller.overduePc.update); //首页统计列表
 
+    router.post('/api/pc/user/isRank',controller.user.isRankPc); //判断底层是否是管理员
+    router.post('/api/pc/teamUser/userChooseAndUser',controller.user.userChooseAndUser); //获取团队下的子团队及其团队内成员
+    router.post('/api/pc/teamUser/getTeamUser',controller.teamUser.getTeamUser);    // 获取团队下所有的成员
+    router.post('/api/pc/plans/getAllPlans',controller.plans.getAllPlans);        //获取所有的项目历史信息
+    router.post('/api/pc/plans/pcOverdue',controller.plans.pcOverdue);           //获取逾期详情
+    router.post('/api/pc/plans/getUserPlans',controller.plans.getUserPlans)
 
     // 时间团队筛选器
     router.get('/api/pc/select/date/:type', controller.select.dateSelectConvert); //根据枚举值获取时间范围
     router.get('/api/pc/select/team', controller.select.teamSelect); //获取团队范围
 
     // PC端进度详情
-    router.post('/api/pc/planSchedulePc', controller.planSchedulePc.query);
+    router.post('/api/pc/planSchedulePc', controller.planSchedulePc.query);     //获取团队
+    router.put('/api/pc/planSchedulePc', controller.planSchedulePc.updateSchedule);
+    router.post('/api/pc/planSchedulePc/stop', controller.planSchedulePc.stop);
+    router.post('/api/pc/planSchedulePc/resume', controller.planSchedule.resume);
+
+
+
+
+    // pc团队
+    router.post('/api/pc/planPc', controller.plansPc.create);
+    router.put('/api/pc/planPc', controller.plansPc.update);
+    router.post('/api/pc/planPc/changePlanOwner', controller.plans.changePlanOwner); // 客户在用户间转移
+
+
+    router.post('/api/pc/planPayPc', controller.planPayPc.create);
+
 
     // PC签到统计
     router.post('/api/pc/signPc', controller.signPc.index);
@@ -170,4 +212,10 @@ module.exports = app => {
   // 页面传值到后台，保存到数据库
   router.post('/api/pc/customerDataPc/importExcelData/:id', controller.customerDataPc.importExcelData);
   router.post('/api/pc/customerDataPc/getUserManageTeam', controller.customerDataPc.getUserManageTeam);
+
+  /**
+   * 航拍照片上传相关
+   */
+  router.post('/api/pc/aerial/save', controller.aerialPc.save);
+  router.post('/api/aerial/save', controller.aerialPc.save); // 未登陆客户的上传
 };

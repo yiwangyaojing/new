@@ -18,21 +18,23 @@ class HomePcService extends Service {
 
         let result = {}
 
-
         const  openId  = req.open_id // 登录用户
         const  companyId = req.company_id //登录用户所属公司
         const  teamLevel = req.teamLevel // 团队等级
         const  teamId = req.teamId // 团队Id
-        const  planOwner = req.planOwner // 客户所有者
+        const  planOwner = req.planOwner // 客户所有者-查询单独个人
 
         const  teamInfo = await service.teamUserPc.getTeams(openId,companyId,teamId,teamLevel)
-        console.log(teamInfo)
         const  userRank = teamInfo.userRank // 用户权限
         let   managerTeams = teamInfo.managerTeams // 根据团队id筛选包含当前team的所有子团队
         let   agentTeams = teamInfo.agentTeams // 业务员角色所在的团队
 
-        if(!managerTeams||managerTeams.length === 0) managerTeams = null
-        if(!agentTeams || agentTeams.length ===0) agentTeams = null
+        let  managerTeamsSql = managerTeams;
+        let  agentTeamsSql = agentTeams;
+
+
+        if(!managerTeams||managerTeams.length === 0) managerTeamsSql = null
+        if(!agentTeams || agentTeams.length ===0) agentTeamsSql = null
 
         let params = []
 
@@ -41,18 +43,19 @@ class HomePcService extends Service {
 
         if(teamLevel === 'all'){
             sql = "and (  p.team_id in (:managerTeams) or (p.open_id=:open_id and p.team_id in (:agentTeams)) or (p.open_id=:open_id and p.company_id is null) )  "
-            sqlParams.managerTeams = managerTeams
-            sqlParams.agentTeams = agentTeams
+            sqlParams.managerTeams = managerTeamsSql
+            sqlParams.agentTeams = agentTeamsSql
             sqlParams.open_id = openId
 
             params.push(
-                { team_id:managerTeams},
+                { team_id: managerTeams},
                 { open_id: openId,team_id:agentTeams},
                 { open_id: openId,company_id:null},
             )
         }else if(teamLevel === 'one'){
+            //  查询个人的时候
             sql = "and (  (p.open_id=:open_id and p.team_id in (:agentTeams) ) or (p.open_id=:open_id and p.company_id is null) )  "
-            sqlParams.agentTeams = agentTeams
+            sqlParams.agentTeams = agentTeamsSql
             sqlParams.open_id = openId
             params.push(
                 { open_id: openId,team_id:agentTeams},
@@ -62,7 +65,7 @@ class HomePcService extends Service {
         }else {
              if(teamId === 'all' ){
                  sql = "and p.team_id in (:managerTeams) and company_id = :company_id "
-                 sqlParams.managerTeams = managerTeams
+                 sqlParams.managerTeams = managerTeamsSql
                  sqlParams.company_id = companyId
                  params.push(
                      {[Op.and]:[
@@ -71,10 +74,10 @@ class HomePcService extends Service {
                      ]}
                  )
              }else{
-                 if(planOwner  ==='all'){
+                 if(planOwner  ==='all' ){
                      sql = "and p.team_id in (:managerTeams)  and company_id =:company_id "
                      sqlParams.company_id = companyId
-                     sqlParams.managerTeams = managerTeams
+                     sqlParams.managerTeams = managerTeamsSql
                      params.push(
                          {[Op.and]:[
                                  { team_id:managerTeams},
@@ -86,7 +89,8 @@ class HomePcService extends Service {
                      sqlParams.teamId = teamId
                      sqlParams.open_id = planOwner
                      params.push(
-                         { team_id:teamId ,open_id:planOwner},
+                         // { team_id:teamId ,open_id:planOwner},
+                         { team_id:managerTeams ,open_id:planOwner},// 改为查询当前团队下所有的团队内  业务员的客户数量
                      )
                  }
              }
@@ -119,6 +123,10 @@ class HomePcService extends Service {
         result.sql = sql
         result.sqlParams =sqlParams
 
+        // console.log('mysql 查询')
+        // for( let i in sqlParams){
+        //     console.log(i,sqlParams[i])
+        // }
         return result
 
     }
@@ -145,6 +153,7 @@ class HomePcService extends Service {
         sqlParams.beginDate = req.beginDate
         sqlParams.endDate = req.endDate
 
+        console.log(sql)
         let schedule = await sequelize.query(
             "SELECT " +
             "  p.scd_status, " +
@@ -185,6 +194,7 @@ class HomePcService extends Service {
         if(payFinish.length > 0){
             schedule.push(payFinish[0])
         }
+        console.log(schedule)
 
         // 统计逾期
         let overDueParams = Object.assign({},sqlParams)

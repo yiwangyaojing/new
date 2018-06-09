@@ -11,27 +11,38 @@ class SignPcService extends Service {
 
         const teamInfo  = await this.service.teamUserPc.getTeams(req.open_id,req.company_id,req.teamId,req.teamLevel)
 
-        const managerTeams =  teamInfo.managerTeams
+        let  managerTeams =  teamInfo.managerTeams
+        let  userRank  = teamInfo.userRank
+        // if(!managerTeams||managerTeams.length === 0) managerTeams = null
 
         let sql = ""
         let sqlParams = {}
 
-        if(req.teamLevel === 'all' || req.teamId ==='all'){
-            sql = "and tu.team_id in (:agentTeams) "
-            sqlParams.agentTeams = managerTeams
-        }else if(req.owner ==='all'){
-            sql = "and tu.team_id =:teamId "
-            sqlParams.teamId = req.teamId
-        }else {
+        // 业务员
+        if(userRank === 2){
             sql = "and tu.open_id =:owner "
-            sqlParams.owner = req.owner
+            sqlParams.owner = req.open_id
+        }else{
+            if(req.teamLevel === 'all' || req.teamId ==='all'){
+                sql = "and tu.team_id in (:agentTeams) "
+                sqlParams.agentTeams = managerTeams
+            }else if(req.owner ==='all'){
+                sql = "and tu.team_id =:teamId "
+                sqlParams.teamId = req.teamId
+            }else {
+                sql = "and tu.open_id =:owner "
+                sqlParams.owner = req.owner
+            }
         }
+
 
 
         const cfg = this.config.sequelize;
         cfg.logging = false;
         const sequelize = new Sequelize(cfg);
 
+        console.log(sql)
+        console.log(sqlParams)
         // 获取总数
         let totalCount = await sequelize.query(
             "select count(distinct tu.open_id) as total  from x_team_user tu  where 1=1  " +
@@ -42,6 +53,8 @@ class SignPcService extends Service {
         // 统计签到
         sqlParams.beginDate = req.beginDate
         sqlParams.endDate = req.endDate
+        sqlParams.pageIndex = req.pageIndex
+        sqlParams.pageSize = req.pageSize
         let sign = await sequelize.query(
             "select  " +
             "distinct u.openid, u.name, " +
@@ -51,7 +64,7 @@ class SignPcService extends Service {
             "where tu.open_id = u.openid  " +
             "and tu.team_id = t.id " +
             " "+sql+" " +
-            "group by u.openid ",
+            "group by u.openid limit :pageIndex, :pageSize",
             {replacements: sqlParams, type: Sequelize.QueryTypes.SELECT})
 
         // 手动分页
@@ -93,7 +106,9 @@ class SignPcService extends Service {
                     {open_id:req.owner},
                     Sequelize.where(Sequelize.fn('date_format', Sequelize.col('create_time'), '%Y-%m-%d'),'>=' ,req.beginDate),
                     Sequelize.where(Sequelize.fn('date_format', Sequelize.col('create_time'), '%Y-%m-%d'),'<=' ,req.endDate)
-                ]}
+                ]},
+            offset: page.pageIndex,
+            limit: page.pageSize
         }).then(result => {
             page.totalCount = result.count
             page.content = result.rows

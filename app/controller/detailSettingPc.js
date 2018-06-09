@@ -23,7 +23,7 @@ class DetailSettingPC extends Controller {
     async findPlanById(){
         const {ctx, service} = this;
         const rule = {
-            id: {type: 'String', required: true},
+            id: {type: 'string', required: true},
         };
         ctx.validate(rule, ctx.params.id);
         console.log(ctx.params.id)
@@ -36,7 +36,7 @@ class DetailSettingPC extends Controller {
     async findContractStatusById(){
         const {ctx, service} = this;
         const rule = {
-            id: {type: 'String', required: true},
+            id: {type: 'string', required: true},
         };
         ctx.validate(rule, ctx.params.id);
         console.log(ctx.params.id)
@@ -49,7 +49,7 @@ class DetailSettingPC extends Controller {
     async findPayStatusById(){
         const {ctx, service} = this;
         const rule = {
-            id: {type: 'String', required: true},
+            id: {type: 'string', required: true},
         };
         ctx.validate(rule, ctx.params.id);
         console.log(ctx.params.id)

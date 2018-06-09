@@ -376,6 +376,18 @@ class TeamUserController extends Controller {
         await service.team.linealTeam(teams,one_team,team_childs,'child');
         ctx.body = team_childs;
     }
+
+    // 通过团队 id 获取团队下的所有成员
+    async getTeamUser(){
+        const {ctx,service} = this;
+        const body = ctx.request.body;
+        if( !body || body.length < 1 ){
+            ctx.body = []
+            return
+        }
+        let data = await service.teamUser.getTeamUser(body);
+        ctx.body = data
+    }
 }
 
 module.exports = TeamUserController

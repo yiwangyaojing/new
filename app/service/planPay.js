@@ -49,10 +49,10 @@ class planPayService extends Service {
           pay_id : result.id,
           pay_sum: result.pay_sum,
           pay_gap: result.pay_gap,
-          pay_time:result.pay_time
+          pay_time:result.pay_time,
         }
         if(result.pay_gap === 0){
-          params.overdue_date = '',
+          params.overdue_date = null,
           params.scd_status = FileType.schedule.hkwc
         }
         return ctx.model.XPlans.update(params,{where: {id:req.plan_id}}, {transaction: t})

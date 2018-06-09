@@ -16,13 +16,15 @@ class Plans extends Controller {
         };
         const ruleReq = {
             company_id: { type: 'int', required: false },
-            team_id: {type: 'array', required: false}
+            team_id: {type: 'array', required: false},
+            user_openid: {type: 'string', required: false}
         };
         this.ctx.validate(rule, params);
         this.ctx.validate(ruleReq, req);
 
         params.company_id = req.company_id
         params.team_id = req.team_id
+        params.user_openid = req.user_openid || null
 
         this.ctx.body = await service.plans.findByPage(params);
     }
@@ -40,13 +42,15 @@ class Plans extends Controller {
 
         const ruleReq = {
             company_id: { type: 'int', required: false },
-            team_id: {type: 'array', required: false}
+            team_id: {type: 'array', required: false},
+            user_openid: {type: 'string', required: false}
         };
 
         this.ctx.validate(rule, params);
         this.ctx.validate(ruleReq, req);
         params.company_id = req.company_id
         params.team_id = req.team_id
+        params.user_openid = req.user_openid || null
 
         this.ctx.body = await service.plans.findByPage(params);
     }
@@ -60,6 +64,8 @@ class Plans extends Controller {
             // cst_phone: { type: 'string', required: true },
             // cst_remark: { type: 'string', required: false },
         };
+
+        console.log('开始创建项目方案')
         this.ctx.validate(rule, this.ctx.request.body);// 参数校验
         this.ctx.body = await this.ctx.service.plans.basicCreate(this.ctx.request.body);
     }
@@ -120,6 +126,21 @@ class Plans extends Controller {
 
     }
 
+//    获取团队的项目历史 信息
+    async getTeamProject(){
+        const {ctx, service} = this;
+        const rule = {
+            openId: {type: 'string', required: true},
+        };
+        const rule_body = {
+            companyId: {type: 'int', required: true},
+            arr: {type: 'array', required: false}
+        };
+        ctx.validate(rule, ctx.params);
+        ctx.validate(rule_body, ctx.request.body);
+        let data = await service.plans.getTeamProject(ctx.request.body,ctx.params.openId);
+        ctx.body = data
+    }
     // 客户在用户间转移
     async changePlanOwner() {
         const { ctx } = this;
@@ -135,6 +156,62 @@ class Plans extends Controller {
         ctx.body = await this.service.plans.changePlanOwner(ctx.request.body);
     }
 
+//    获取个人的项目历史信息
+    async getSalesmanProject(){
+        const {ctx, service} = this;
+        const rule_body = {
+            openId: {type: 'string', required: true},
+        };
+
+        ctx.validate(rule_body, ctx.request.body);
+        let data = await service.plans.getSalesmanProject(ctx.request.body);
+        ctx.body = data
+    }
+
+//    获取逾期
+    async getoverdue(){
+        const {ctx, service} = this;
+        const rule = {
+            open_id: {type: 'string', required: false},
+            arr: {type: 'array', required: false}
+        };
+        ctx.validate(rule, ctx.request.body);
+        let data = await service.plans.getoverdue(ctx.request.body);
+
+        ctx.body = data
+    }
+
+    // 获取团队下所有的历史项目数据,不分时间
+    async getAllPlans(){
+        const {ctx, service} = this;
+        let body = ctx.request.body;
+        if (!body || !body.teamId || body.teamId.length == 0) {
+            ctx.body = []
+            return
+        }
+        let data = await service.plans.getAllPlans(body.teamId);
+        ctx.body = data
+    }
+
+    // 获取团队下的逾期数据--pc
+    async pcOverdue() {
+        const {ctx, service} = this;
+        const rule = {
+            open_id: {type: 'string', required: false},
+            arr: {type: 'array', required: false}
+        };
+        ctx.validate(rule, ctx.request.body);
+        let data = await service.plans.getoverduePc(ctx.request.body);
+        ctx.body = data
+    }
+
+    // 获取单个业务员的项目历史信息-- pc
+    async getUserPlans() {
+        const {ctx, service} = this;
+        let body = ctx.request.body;
+        let data = await service.plans.getUserPlans(body.open_id);
+        ctx.body = data
+    }
 }
 
 module.exports = Plans;

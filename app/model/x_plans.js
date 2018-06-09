@@ -193,6 +193,10 @@ module.exports = app => {
     deleted_at: {
       type: DataTypes.TIME,
       allowNull: true
+    },
+    scd_status_all:{
+      type: DataTypes.STRING(20),
+      allowNull: true
     }
   }, {
     tableName: 'x_plans'

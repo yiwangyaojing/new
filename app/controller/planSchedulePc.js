@@ -38,8 +38,44 @@ class planSchedulePcController extends Controller {
         req.pageIndex = (req.pageNumber -1) * req.pageSize
 
         const result = await service.planSchedulePc.query(req)
-
         ctx.body = result
+    }
+
+    async updateSchedule() {
+        const { ctx, service } = this;
+        let req = ctx.request.body
+        // 获取用户登录信息
+        const userInfo  = ctx.session.user
+        req.open_id = userInfo.openid
+        req.scd_remark =userInfo.name
+
+        const rule = {
+            createArray: { type: 'array', required: false },
+            updateArray: { type: 'array', required: false },
+            plan_id: { type: 'int', required: true },
+            open_id: { type: 'string', required: true },
+            scd_remark: { type: 'string', required: true },
+        };
+        ctx.validate(rule, ctx.request.body);
+        ctx.body = await service.planSchedule.updateSchedule(ctx.request.body);
+    }
+
+    async stop() {
+        const { ctx, service } = this;
+        let req = ctx.request.body
+
+        // 获取用户登录信息
+        const userInfo  = ctx.session.user
+        req.open_id = userInfo.openid
+        req.scd_remark =userInfo.name
+
+        const rule = {
+            plan_id: { type: 'int', required: true },
+            open_id: { type: 'string', required: true },
+            scd_remark: { type: 'string', required: true },
+        };
+        ctx.validate(rule, req);
+        ctx.body = await service.planSchedule.stop(req);
     }
 
 }

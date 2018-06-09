@@ -10,7 +10,7 @@ class planSchedulePcService extends Service {
      * 获取方案状态信息
      */
     async query(req) {
-
+        console.log('查询条件',req)
         const Op = Sequelize.Op;
 
         let page = {
@@ -25,7 +25,7 @@ class planSchedulePcService extends Service {
         // 获取权限查询条件
         const query = await this.service.homePc.getTeamQueryParams(req)
         const params = query.params
-        let status  = [0,2,3,4]
+        let status  = [0,1,2,3,4,5,6,7,8,9]
         let search = req.search
         if(!search){
             search= ''
@@ -38,9 +38,9 @@ class planSchedulePcService extends Service {
             queryTime = 'created_at'
             status = [0,1,2,3,4,5,6]
         }
-
         let  andParams = {}
         // 遍历条件查询条件
+        console.log('当前的查询状态',req.scdStatus)
         if(req.scdStatus ==='all'){
             andParams = {
                 [Op.or]: [
@@ -121,7 +121,6 @@ class planSchedulePcService extends Service {
         }).then(result => {
             page.totalCount = result.count
             page.content = result.rows
-            // console.log(page.content)
         })
 
         return page

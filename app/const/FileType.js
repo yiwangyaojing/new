@@ -11,8 +11,8 @@ module.exports = {
     IndexAd: 1,
     // 拍房子 -  拍房子图片类型 房屋图片、电表箱图片、其他
     HouseImg: 2, HouseImg_h: 0, HouseImg_db: 1, HouseImg_other: 2,
-    // 收资料 -- 收资料图片类型 身份证、产权证明、电费单、银行卡、并网申请、合同
-    DataImg: 3, DataImg_cd: 0, DataImg_cq: 1, DataImg_df: 2, DataImg_yh: 3, DataImg_bw: 4, DataImg_ht: 5,
+    // 收资料 -- 收资料图片类型 身份证、产权证明、电费单、银行卡、并网申请、合同、航空勘测图片
+    DataImg: 3, DataImg_cd: 0, DataImg_cq: 1, DataImg_df: 2, DataImg_yh: 3, DataImg_bw: 4, DataImg_ht: 5, DataImg_hk: 7,
 
     // 特殊房屋
     specialHouseImg: 4,
@@ -51,8 +51,10 @@ module.exports = {
         ywzz: 5, //  意外终止
         hkwc: 6, //  回款完成
         xmzy: 7, //  项目转移
+        xgj: 8, //  写跟进
+        xmzz: 9, // 项目终止
     },
-    scheduleName: [ '新增项目', '意向沟通', '合同签订', '施工完成', '并网完成', '意外终止', '回款完成', '项目转移' ],
+    scheduleName: [ '新增项目', '意向沟通', '合同签订', '施工完成', '并网完成', '意外终止', '回款完成', '项目转移', '写跟进', '项目终止' ],
     // 项目查询时间
     ProjectDate: {
         '昨日': '昨日',

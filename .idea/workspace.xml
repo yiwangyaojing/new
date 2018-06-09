@@ -491,11 +491,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526615688052</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fix 样式">
+      <created>1528528172385</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1528528172385</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82940000" />
+    <option name="totallyTimeSpent" value="82960000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1011" extended-state="6" />
@@ -618,11 +625,11 @@
     <MESSAGE value="拍房子/排板子/收资料 改为 项目勘测/方案设计/资料收集" />
     <MESSAGE value="面包屑客户资料" />
     <MESSAGE value="下载" />
-    <MESSAGE value="fix 样式" />
     <MESSAGE value="下载 跳转到新窗口" />
     <MESSAGE value="时间格式化 团队用户详情" />
     <MESSAGE value="时间格式化" />
-    <option name="LAST_COMMIT_MESSAGE" value="时间格式化" />
+    <MESSAGE value="fix 样式" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix 样式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

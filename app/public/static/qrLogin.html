@@ -32,7 +32,7 @@
 
   let urlParams = getRequest()
 
-  let context = "https://mp.xiaosolar.com/front-api"; //生产环境
+  let context = "https://mp.xiaosolar.com/crm-api"; //生产环境
 
   console.log(urlParams)
   let code = urlParams.code
@@ -45,7 +45,7 @@
 
   if(href.indexOf(uat) !==-1){
     origin += uat
-    context = "https://mpa.xiaosolar.com/front-api"; //测试环境
+    context = "https://mpa.xiaosolar.com/crm-api"; //测试环境
   }
 
   $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});

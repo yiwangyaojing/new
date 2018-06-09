@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="fix 样式">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="fix 样式" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/coverage/" />
     <ignored path="$PROJECT_DIR$/logs/" />
@@ -167,159 +165,18 @@
         <subPane>
           <expand>
             <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="accountsetting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="customerdetails" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="download" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="personnelmanagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="role" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="setting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="settingdetails" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="signin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="teaminformation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm-api" type="462c0819:PsiDirectoryNode" />
-              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="xcustomer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -643,7 +500,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82960000" />
+    <option name="totallyTimeSpent" value="83113000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1011" extended-state="6" />

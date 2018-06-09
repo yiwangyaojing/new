@@ -1,7 +1,7 @@
 {
-  "name": "front-pc-view",
+  "name": "crm-pc-view",
   "version": "1.0.0",
-  "description": "好销售用户端页面",
+  "description": "CRM用户端页面",
   "author": "kui.yang@xiqiao.io",
   "private": true,
   "scripts": {

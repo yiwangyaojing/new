@@ -5,15 +5,15 @@ networks:
     external: true
 
 services:
-  front-api:
-    image: docker.xiaosolar.com/xq/front-api/develop:latest
+  crm-api:
+    image: docker.xiaosolar.com/xq/crm-api/develop:latest
     restart: always
     ports:
       - "7001:7001"
     networks:
       - lb_traefiknet
     volumes:
-      - /srv/docker/front-api/logs:/home/node/logs
+      - /srv/docker/crm-api/logs:/home/node/logs
     environment:
       - NODE_ENV=development
       - EGG_SERVER_ENV=test
@@ -21,5 +21,5 @@ services:
     labels:
       - "traefik.port=7001"
       - "traefik.network=traefiknet"
-      - "traefik.frontend.rule=Host:mpa.xiaosolar.com;PathPrefixStrip:/front-api"
-      - "traefik.backend=front-api"
+      - "traefik.frontend.rule=Host:mpa.xiaosolar.com;PathPrefixStrip:/crm-api"
+      - "traefik.backend=crm-api"

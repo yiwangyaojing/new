@@ -1,7 +1,7 @@
 {
-  "name": "front-api",
+  "name": "crm-api",
   "version": "1.0.0",
-  "description": "小程序API服务",
+  "description": "CRM小程序API服务",
   "private": true,
   "dependencies": {
     "@alicloud/sms-sdk": "^1.0.9",
@@ -39,9 +39,9 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-front-api",
-    "non-daemon-start": "egg-scripts start  --title=egg-server-front-api",
-    "stop": "egg-scripts stop --title=egg-server-front-api",
+    "start": "egg-scripts start --daemon --title=egg-server-crm-api",
+    "non-daemon-start": "egg-scripts start  --title=egg-server-crm-api",
+    "stop": "egg-scripts stop --title=egg-server-crm-api",
     "dev": "egg-bin dev",
     "yk": "EGG_SERVER_ENV=yk npm run lint -- --fix && egg-bin dev",
     "debug": "egg-bin debug",

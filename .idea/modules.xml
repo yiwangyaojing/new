@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../backend-api/backend-api.iml" filepath="$PROJECT_DIR$/../backend-api/backend-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/font-api.iml" filepath="$PROJECT_DIR$/.idea/font-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/front-api.iml" filepath="$PROJECT_DIR$/.idea/front-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/crm-api.iml" filepath="$PROJECT_DIR$/.idea/crm-api.iml" />
     </modules>
   </component>
 </project>

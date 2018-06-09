@@ -58,8 +58,8 @@ module.exports = appInfo => {
         secret: '5669934ac33e5e5a4862e814deb87547efaba5f6',
     };
     config.wechat = {
-        appId: 'wx6441dd4482409ffb',
-        secret: 'cf5450752f7639a753f57acaa796da7d',
+        appId: 'wx44ea762d7e9f38c4',
+        secret: '4e26d3b73e6b465a62d277de345644aa',
         openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
     };
     return config;

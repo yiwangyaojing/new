@@ -6,7 +6,7 @@ networks:
 
 services:
   crm-api:
-    image: docker.xiaosolar.com/xq/crm-api/develop:latest
+    image: docker.xiaosolar.com/backend/crm-api/develop:latest
     restart: always
     ports:
       - "7001:7001"

@@ -2,39 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="fix 样式">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/crm_api.iml" afterPath="$PROJECT_DIR$/.idea/crm_api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/const/FileType.js" afterPath="$PROJECT_DIR$/app/const/FileType.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/customerDataPc.js" afterPath="$PROJECT_DIR$/app/controller/customerDataPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/detailSettingPc.js" afterPath="$PROJECT_DIR$/app/controller/detailSettingPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/feedback.js" afterPath="$PROJECT_DIR$/app/controller/feedback.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/login.js" afterPath="$PROJECT_DIR$/app/controller/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/planSchedule.js" afterPath="$PROJECT_DIR$/app/controller/planSchedule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/planSchedulePc.js" afterPath="$PROJECT_DIR$/app/controller/planSchedulePc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/plans.js" afterPath="$PROJECT_DIR$/app/controller/plans.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/plansPc.js" afterPath="$PROJECT_DIR$/app/controller/plansPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/teamUser.js" afterPath="$PROJECT_DIR$/app/controller/teamUser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/user.js" afterPath="$PROJECT_DIR$/app/controller/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/wechat.js" afterPath="$PROJECT_DIR$/app/controller/wechat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/x_plans.js" afterPath="$PROJECT_DIR$/app/model/x_plans.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router.js" afterPath="$PROJECT_DIR$/app/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/customerDataPc.js" afterPath="$PROJECT_DIR$/app/service/customerDataPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/detailSettingPc.js" afterPath="$PROJECT_DIR$/app/service/detailSettingPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/feedback.js" afterPath="$PROJECT_DIR$/app/service/feedback.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/homePc.js" afterPath="$PROJECT_DIR$/app/service/homePc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/overdue.js" afterPath="$PROJECT_DIR$/app/service/overdue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/planPay.js" afterPath="$PROJECT_DIR$/app/service/planPay.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/planSchedule.js" afterPath="$PROJECT_DIR$/app/service/planSchedule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/planSchedulePc.js" afterPath="$PROJECT_DIR$/app/service/planSchedulePc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/plans.js" afterPath="$PROJECT_DIR$/app/service/plans.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/signPc.js" afterPath="$PROJECT_DIR$/app/service/signPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/teamPc.js" afterPath="$PROJECT_DIR$/app/service/teamPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/teamUser.js" afterPath="$PROJECT_DIR$/app/service/teamUser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/teamUserPc.js" afterPath="$PROJECT_DIR$/app/service/teamUserPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/user.js" afterPath="$PROJECT_DIR$/app/service/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.default.js" afterPath="$PROJECT_DIR$/config/config.default.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/coverage/" />
@@ -527,7 +495,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82669000" />
+    <option name="totallyTimeSpent" value="82940000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1011" extended-state="6" />

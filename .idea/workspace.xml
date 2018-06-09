@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="fix 样式">
+    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -501,11 +501,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528528172385</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fix 样式">
+      <created>1528529640824</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1528529640824</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84398000" />
+    <option name="totallyTimeSpent" value="84403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1011" extended-state="6" />

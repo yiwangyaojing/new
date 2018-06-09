@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="4">
+<<<<<<< HEAD
     <component name="ProjectModuleManager">
         <modules>
             <module fileurl="file://$PROJECT_DIR$/../backend-api/backend-api.iml" filepath="$PROJECT_DIR$/../backend-api/backend-api.iml"/>
@@ -8,4 +9,13 @@
             <module filepath="$PROJECT_DIR$/.idea/crm_api.iml" fileurl="file://$PROJECT_DIR$/.idea/crm_api.iml"/>
         </modules>
     </component>
+=======
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../backend-api/backend-api.iml" filepath="$PROJECT_DIR$/../backend-api/backend-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/font-api.iml" filepath="$PROJECT_DIR$/.idea/font-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/crm-api.iml" filepath="$PROJECT_DIR$/.idea/crm-api.iml" />
+    </modules>
+  </component>
+>>>>>>> f5e0fdb283abc5f5e9ade74572551775ca90e7e0
 </project>

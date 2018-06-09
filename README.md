@@ -1,4 +1,4 @@
-# front-api
+# crm-api
 
 小程序API服务
 
@@ -39,7 +39,7 @@ $ npm stop
     ```sh
     sudo gitlab-runner register -n \
       --url https://lab.xiaosolar.com/ \
-      --tag-list "front-api" \
+      --tag-list "crm-api" \
       --registration-token 2g8Yq3Pt-FS7yu1uZiJQ \
       --executor docker \
       --description "Louis xiaosolar runner" \

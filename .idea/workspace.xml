@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="9e93cbb7-4208-4665-96d9-9ff6aca58cd3" name="Default" comment="s" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
+=======
+    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="fix 样式">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/download/Download.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/download/Download.vue" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/coverage/" />
+    <ignored path="$PROJECT_DIR$/logs/" />
+    <ignored path="$PROJECT_DIR$/node_modules/" />
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,6 +23,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -23,11 +35,354 @@
     <annotation-enable>false</annotation-enable>
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
+=======
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Download.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/download/Download.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-158">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-38">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.zh-CN.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.zh-CN.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding>
+                  <marker date="1525920809896" expanded="true" signature="1513:1575" ph="..." />
+                  <marker date="1525920809896" expanded="true" signature="1521:1575" ph="..." />
+                  <marker date="1525920809896" expanded="true" signature="1533:1575" ph="..." />
+                  <marker date="1525920809896" expanded="true" signature="1546:1575" ph="..." />
+                  <marker date="1525920809896" expanded="true" signature="1553:1575" ph="..." />
+                  <marker date="1525920809896" expanded="true" signature="1566:1575" ph="..." />
+                </folding>
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customerDetails.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="13720">
+              <caret line="490" column="61" lean-forward="false" selection-start-line="490" selection-start-column="6" selection-end-line="490" selection-end-column="61" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#2;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-button#0;n#el-dialog#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#el-button#0;n#el-dialog#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#18696#18721#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.default.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.default.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="952">
+              <caret line="34" column="40" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teamuserdetail.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teamuserdetail.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+              <folding>
+                <element signature="e#2328#2353#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teamUser.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/service/teamUser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4032">
+              <caret line="144" column="30" lean-forward="false" selection-start-line="144" selection-start-column="30" selection-end-line="144" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teaminformation.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/teaminformation/teaminformation.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customerData.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3416">
+              <caret line="122" column="24" lean-forward="false" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
+              <folding>
+                <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#1;n#el-col#1;n#el-col#0;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#1;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-select#0;n#el-col#1;n#el-col#1;n#el-col#1;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#2;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-select#0;n#el-col#1;n#el-col#1;n#el-col#2;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-col#3;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-input#0;n#el-col#0;n#el-col#1;n#el-col#0;n#el-col#3;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-table#0;n#el-col#0;n#el-row#1;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-pagination#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>index</find>
+      <find>destroy</find>
+      <find>create</find>
+      <find>downloadDialog</find>
+      <find>imgUrl</find>
+      <find>Download</find>
+      <find>api/</find>
+      <find>load</find>
+      <find>loading</find>
+      <find>微信</find>
+      <find>downLoadData</find>
+      <find>submitClick</find>
+      <find>pay_time</find>
+      <find>showWarningTips</find>
+      <find>暂无</find>
+      <find>回款</find>
+      <find>paifangzishow</find>
+      <find>shouziliaoshow</find>
+      <find>&quot;false&quot;</find>
+      <find>拍</find>
+      <find>disabled</find>
+      <find>initData</find>
+      <find>下载</find>
+      <find>finishFormat</find>
+      <find>tableData</find>
+      <find>disabledshow</find>
+      <find>loadData</find>
+      <find>formatDate</find>
+      <find>date</find>
+      <find>join_date</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test/app.test.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/xcustomer.test.js" />
+        <option value="$PROJECT_DIR$/test/app/service/xcustomer.test.js" />
+        <option value="$PROJECT_DIR$/app/controller/user.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/user.test.js" />
+        <option value="$PROJECT_DIR$/app/service/user.js" />
+        <option value="$PROJECT_DIR$/app/service/planSchedule.js" />
+        <option value="$PROJECT_DIR$/app/controller/planSchedule.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/plans.test.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/planPay.js" />
+        <option value="$PROJECT_DIR$/test/testConfig.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/planSchedule.test.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/planPay.test.js" />
+        <option value="$PROJECT_DIR$/app/controller/team.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/team.test.js" />
+        <option value="$PROJECT_DIR$/app/controller/teamUser.js" />
+        <option value="$PROJECT_DIR$/app/router.js" />
+        <option value="$PROJECT_DIR$/test/app/controller/teamUser.test.js" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/signin/signin.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teammanagement.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/home/home.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/Main.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/router/index.js" />
+        <option value="$PROJECT_DIR$/pc-view/src/App.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/Login.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/settingdetails.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/home/overdue.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/signin/signindetails.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/download/Download.vue" />
+        <option value="$PROJECT_DIR$/config/config.default.js" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teamuserdetail.vue" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
   </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1920" />
@@ -69,6 +424,17 @@
         </selected-state>
       </profile-state>
     </entry>
+=======
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="33" />
+    <option name="width" value="1920" />
+    <option name="height" value="1001" />
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -85,18 +451,180 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
+<<<<<<< HEAD
               <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="accountsetting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="customerdetails" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="download" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="personnelmanagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="role" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="setting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="settingdetails" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="signin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="teaminformation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="xcustomer" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+<<<<<<< HEAD
       <pane id="Scratches" />
     </panes>
   </component>
@@ -104,6 +632,22 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.prettier" value="true" />
+    <property name="node.js.path.for.package.prettier" value="project" />
+    <property name="node.js.selected.package.prettier" value="" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/zhoushunfa/Desktop/font-api/app/router.js" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="aspect.path.notification.shown" value="true" />
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -117,10 +661,97 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
+<<<<<<< HEAD
     <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
@@ -165,14 +796,304 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+=======
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="" />
+      <created>1524912167374</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1524912167374</updated>
+      <workItem from="1524912168991" duration="634000" />
+      <workItem from="1525223811410" duration="226000" />
+      <workItem from="1525241072217" duration="1940000" />
+      <workItem from="1526522289188" duration="47912000" />
+      <workItem from="1526617325345" duration="811000" />
+    </task>
+    <task id="LOCAL-00001" summary="打包下载接口对接，以及进度详情  客户资料列表信息添加 提取码字段 -----TQG">
+      <created>1526527426079</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1526527426079</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix 1.客户资料参数添加个 2. 添加默认提取码自动填充 type -----TQG">
+      <created>1526528477139</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1526528477139</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix 添加默认提取码自动填充 bug-----TQG">
+      <created>1526529119323</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1526529119323</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix loading 效果样式修改 -----TQG">
+      <created>1526531340402</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1526531340402</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix loading 样式效果修改 -----TQG">
+      <created>1526531472463</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1526531472463</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix loading样式 ----TQG">
+      <created>1526531634560</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1526531634560</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix loading 效果样式">
+      <created>1526531731309</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1526531731309</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix 样式">
+      <created>1526547889885</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1526547889885</updated>
+    </task>
+    <task id="LOCAL-00009" summary="客户详情 下载功能添加  TQG">
+      <created>1526551805508</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1526551805508</updated>
+    </task>
+    <task id="LOCAL-00010" summary="格式化">
+      <created>1526551899817</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1526551899817</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix 样式">
+      <created>1526552387287</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1526552387287</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix 样式">
+      <created>1526552490384</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1526552490384</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix 点击返回不现实修改成功消息">
+      <created>1526555575151</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1526555575151</updated>
+    </task>
+    <task id="LOCAL-00014" summary="更新时间格式化到时分秒">
+      <created>1526558471784</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1526558471784</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix 签到时间格式话">
+      <created>1526559337327</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1526559337327</updated>
+    </task>
+    <task id="LOCAL-00016" summary="拍房子/排板子/收资料 改为 项目勘测/方案设计/资料收集">
+      <created>1526559611956</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1526559611956</updated>
+    </task>
+    <task id="LOCAL-00017" summary="面包屑客户资料">
+      <created>1526559722480</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1526559722480</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix 样式">
+      <created>1526562518960</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1526562518960</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix 样式">
+      <created>1526562710892</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1526562710892</updated>
+    </task>
+    <task id="LOCAL-00020" summary="时间格式化">
+      <created>1526565494112</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1526565494112</updated>
+    </task>
+    <task id="LOCAL-00021" summary="下载">
+      <created>1526567702489</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1526567702489</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix 样式">
+      <created>1526567753825</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1526567753825</updated>
+    </task>
+    <task id="LOCAL-00023" summary="下载 跳转到新窗口">
+      <created>1526609328715</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1526609328715</updated>
+    </task>
+    <task id="LOCAL-00024" summary="时间格式化 团队用户详情">
+      <created>1526614549035</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1526614549035</updated>
+    </task>
+    <task id="LOCAL-00025" summary="时间格式化">
+      <created>1526615688052</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1526615688052</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="81819000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49879518" sideWeight="0.5151188" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49879518" sideWeight="0.48488122" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23493975" sideWeight="0.49460045" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21436284" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49879518" sideWeight="0.51295894" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49879518" sideWeight="0.48704103" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29759037" sideWeight="0.49460045" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21058315" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <MESSAGE value="s" />
     <option name="LAST_COMMIT_MESSAGE" value="s" />
   </component>
@@ -194,5 +1115,837 @@
         </settings>
       </state>
     </states>
+=======
+    <MESSAGE value="打包下载接口对接，以及进度详情  客户资料列表信息添加 提取码字段 -----TQG" />
+    <MESSAGE value="fix 1.客户资料参数添加个 2. 添加默认提取码自动填充 type -----TQG" />
+    <MESSAGE value="fix 添加默认提取码自动填充 bug-----TQG" />
+    <MESSAGE value="fix loading 效果样式修改 -----TQG" />
+    <MESSAGE value="fix loading 样式效果修改 -----TQG" />
+    <MESSAGE value="fix loading样式 ----TQG" />
+    <MESSAGE value="fix loading 效果样式" />
+    <MESSAGE value="客户详情 下载功能添加  TQG" />
+    <MESSAGE value="格式化" />
+    <MESSAGE value="fix 点击返回不现实修改成功消息" />
+    <MESSAGE value="更新时间格式化到时分秒" />
+    <MESSAGE value="fix 签到时间格式话" />
+    <MESSAGE value="拍房子/排板子/收资料 改为 项目勘测/方案设计/资料收集" />
+    <MESSAGE value="面包屑客户资料" />
+    <MESSAGE value="下载" />
+    <MESSAGE value="fix 样式" />
+    <MESSAGE value="下载 跳转到新窗口" />
+    <MESSAGE value="时间格式化 团队用户详情" />
+    <MESSAGE value="时间格式化" />
+    <option name="LAST_COMMIT_MESSAGE" value="时间格式化" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="13" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/config/config.prod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/planPay.js" />
+    <entry file="file://$PROJECT_DIR$/app/controller/planPay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="30" lean-forward="true" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/planPay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/sms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="710">
+          <caret line="51" column="15" lean-forward="true" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/planPay.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/plans.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="30" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/xcustomer.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/planSchedule.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2044">
+          <caret line="73" column="22" lean-forward="false" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/team.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="176" column="10" lean-forward="false" selection-start-line="176" selection-start-column="10" selection-end-line="176" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/team.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="165" column="9" lean-forward="true" selection-start-line="165" selection-start-column="9" selection-end-line="165" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/sign.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/team.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-788">
+          <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/user.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2044">
+          <caret line="73" column="33" lean-forward="false" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/teamUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3192">
+          <caret line="114" column="49" lean-forward="false" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/app/controller/teamUser.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1652">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/xcustomer/XcustomerDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5880">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/xcustomer/XcustomerList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1120">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../backend-api/config/config.default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-840">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/signin/signin.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="294" column="36" lean-forward="false" selection-start-line="294" selection-start-column="36" selection-end-line="294" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/role/Organizations.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/role/Resources.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/role/Roles.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="288" column="26" lean-forward="false" selection-start-line="288" selection-start-column="19" selection-end-line="288" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/accountsetting/accountsetting.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="8" column="55" lean-forward="true" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/core/Parameters.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="210" column="20" lean-forward="false" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1484">
+          <caret line="53" column="53" lean-forward="false" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+          <folding>
+            <marker date="1526563940382" expanded="true" signature="8769:8796" ph="/** 客户信息导入导出功能相关 ...*/" />
+            <marker date="1526563940382" expanded="true" signature="8799:8899" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#33#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-812">
+          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#el-header#0;n#el-container#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
+            <marker date="1526563006817" expanded="true" signature="816:1800" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="933:1800" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="977:1013" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="1061:1214" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="1265:1800" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="1303:1800" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="1343:1614" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="1385:1584" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="1499:1552" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="1764:1800" ph="..." />
+            <marker date="1526563006817" expanded="true" signature="6650:6658" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2503">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/Main.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-366">
+          <caret line="369" column="0" lean-forward="false" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
+          <folding>
+            <marker date="1526615627087" expanded="true" signature="11957:11962" ph="{...}" />
+            <marker date="1526615627087" expanded="true" signature="11957:11970" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/settingdetails.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-713">
+          <caret line="46" column="105" lean-forward="false" selection-start-line="46" selection-start-column="105" selection-end-line="46" selection-end-column="105" />
+          <folding>
+            <marker date="1526562491339" expanded="true" signature="4324:6149" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="4352:6133" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="4411:6115" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="4596:4651" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="5556:5810" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="5602:5777" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="5882:6093" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="5928:6060" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="6179:6196" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="6197:6493" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="6529:20003" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="6538:6596" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="6612:19994" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="6624:8880" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="6637:8876" ph="{&quot;teamLevel&quot;: 'all'...}" />
+            <marker date="1526562491339" expanded="true" signature="7050:7565" ph="[...]" />
+            <marker date="1526562491339" expanded="true" signature="7051:7104" ph="{&quot;value&quot;: 'today'...}" />
+            <marker date="1526562491339" expanded="true" signature="7106:7163" ph="{&quot;value&quot;: 'yesterday'...}" />
+            <marker date="1526562491339" expanded="true" signature="7165:7221" ph="{&quot;value&quot;: 'thisWeek'...}" />
+            <marker date="1526562491339" expanded="true" signature="7223:7279" ph="{&quot;value&quot;: 'lastWeek'...}" />
+            <marker date="1526562491339" expanded="true" signature="7281:7338" ph="{&quot;value&quot;: 'thisMonth'...}" />
+            <marker date="1526562491339" expanded="true" signature="7340:7397" ph="{&quot;value&quot;: 'lastMonth'...}" />
+            <marker date="1526562491339" expanded="true" signature="7399:7455" ph="{&quot;value&quot;: 'thisYear'...}" />
+            <marker date="1526562491339" expanded="true" signature="7457:7510" ph="{&quot;value&quot;: 'total'...}" />
+            <marker date="1526562491339" expanded="true" signature="7512:7564" ph="{&quot;value&quot;: '自定义'...}" />
+            <marker date="1526562491339" expanded="true" signature="7586:7929" ph="[...]" />
+            <marker date="1526562491339" expanded="true" signature="7596:7659" ph="{&quot;value&quot;: 'all'...}" />
+            <marker date="1526562491339" expanded="true" signature="7669:7724" ph="{&quot;label&quot;: '一级团队'...}" />
+            <marker date="1526562491339" expanded="true" signature="7734:7789" ph="{&quot;label&quot;: '二级团队'...}" />
+            <marker date="1526562491339" expanded="true" signature="7799:7854" ph="{&quot;label&quot;: '三级团队'...}" />
+            <marker date="1526562491339" expanded="true" signature="7864:7921" ph="{&quot;value&quot;: 'one'...}" />
+            <marker date="1526562491339" expanded="true" signature="7996:8412" ph="[...]" />
+            <marker date="1526562491339" expanded="true" signature="8006:8069" ph="{&quot;value&quot;: 'all'...}" />
+            <marker date="1526562491339" expanded="true" signature="8079:8136" ph="{&quot;value&quot;: '0'...}" />
+            <marker date="1526562491339" expanded="true" signature="8146:8203" ph="{&quot;value&quot;: '2'...}" />
+            <marker date="1526562491339" expanded="true" signature="8213:8270" ph="{&quot;value&quot;: '3'...}" />
+            <marker date="1526562491339" expanded="true" signature="8280:8337" ph="{&quot;value&quot;: '4'...}" />
+            <marker date="1526562491339" expanded="true" signature="8347:8404" ph="{&quot;value&quot;: '6'...}" />
+            <marker date="1526562491339" expanded="true" signature="8436:8647" ph="[...]" />
+            <marker date="1526562491339" expanded="true" signature="8446:8509" ph="{&quot;value&quot;: 'all'...}" />
+            <marker date="1526562491339" expanded="true" signature="8519:8574" ph="{&quot;value&quot;: '1'...}" />
+            <marker date="1526562491339" expanded="true" signature="8584:8639" ph="{&quot;value&quot;: '0'...}" />
+            <marker date="1526562491339" expanded="true" signature="8893:16819" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="8922:9017" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9049:9140" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9161:9540" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9318:9508" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9378:9499" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9436:9489" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9567:9756" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9777:11462" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="9969:10025" ph="[...]" />
+            <marker date="1526562491339" expanded="true" signature="9979:10017" ph="{&quot;name&quot;: '全部(可见范围)'...}" />
+            <marker date="1526562491339" expanded="true" signature="10085:10711" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="10112:10322" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="10379:10654" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="10735:11430" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="10837:10918" ph="[...]" />
+            <marker date="1526562491339" expanded="true" signature="10849:10908" ph="{&quot;name&quot;: '个人'...}" />
+            <marker date="1526562491339" expanded="true" signature="11065:11311" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="11138:11301" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="11487:12207" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="11663:11719" ph="[...]" />
+            <marker date="1526562491339" expanded="true" signature="11673:11711" ph="{&quot;name&quot;: '全部(可见范围)'...}" />
+            <marker date="1526562491339" expanded="true" signature="11734:11803" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="11949:12175" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12012:12167" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12228:14159" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12292:12456" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12335:12404" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12509:14152" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12578:12668" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12705:12801" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12931:13826" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="12973:13195" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="13275:13573" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="13655:13816" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="13959:14021" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="14183:14423" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="14351:14391" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="14448:14563" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="14587:14672" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="14694:16601" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="14719:16589" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="14796:15197" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="15299:16464" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="15475:16403" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="15608:15675" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="15728:15795" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="15848:15915" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="15968:16035" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16088:16155" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16206:16268" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16274:16336" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16472:16519" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16533:16580" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16623:16656" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16679:16815" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="16834:19992" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="17051:18375" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="17178:18369" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="17642:17699" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="17748:17805" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="17854:17911" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="17962:18017" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18064:18110" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18179:18226" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18291:18360" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18381:19941" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18471:19935" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18514:18564" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18606:18656" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18698:18748" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18792:18840" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18890:18939" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="18989:19038" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="19088:19137" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="19187:19236" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="19286:19335" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="19765:19811" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="19880:19927" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20011:21065" ph="..." />
+            <marker date="1526562491339" expanded="true" signature="20018:20040" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20046:20069" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20088:20186" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20199:20217" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20229:20346" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20359:20534" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20546:20655" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20694:20715" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20733:20768" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20784:20837" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20861:20914" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="20929:21010" ph="{...}" />
+            <marker date="1526562491339" expanded="true" signature="21027:21057" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/home/home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="289" column="43" lean-forward="false" selection-start-line="289" selection-start-column="43" selection-end-line="289" selection-end-column="43" />
+          <folding>
+            <marker date="1526562491328" expanded="true" signature="2778:11734" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="2929:2946" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="2947:3273" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="2973:2989" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="3029:3046" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="3047:3273" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="3097:3273" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="3159:3220" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="3221:3273" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11099:11656" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11099:11680" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11099:11702" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11100:11630" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="11134:11183" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="11228:11244" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11245:11605" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="11305:11336" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="11404:11432" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11434:11440" ph="&amp;nbsp;" />
+            <marker date="1526562491328" expanded="false" signature="11489:11517" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11795:21237" ph="..." />
+            <marker date="1526562491328" expanded="false" signature="11804:11862" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="11878:21228" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="11890:13608" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="11903:13604" ph="{&quot;teamname&quot;: '全部(可见范围)'...}" />
+            <marker date="1526562491328" expanded="true" signature="11947:12462" ph="[...]" />
+            <marker date="1526562491328" expanded="true" signature="11948:12001" ph="{&quot;value&quot;: 'today'...}" />
+            <marker date="1526562491328" expanded="true" signature="12003:12060" ph="{&quot;value&quot;: 'yesterday'...}" />
+            <marker date="1526562491328" expanded="true" signature="12062:12118" ph="{&quot;value&quot;: 'thisWeek'...}" />
+            <marker date="1526562491328" expanded="true" signature="12120:12176" ph="{&quot;value&quot;: 'lastWeek'...}" />
+            <marker date="1526562491328" expanded="true" signature="12178:12235" ph="{&quot;value&quot;: 'thisMonth'...}" />
+            <marker date="1526562491328" expanded="true" signature="12237:12294" ph="{&quot;value&quot;: 'lastMonth'...}" />
+            <marker date="1526562491328" expanded="true" signature="12296:12352" ph="{&quot;value&quot;: 'thisYear'...}" />
+            <marker date="1526562491328" expanded="true" signature="12354:12407" ph="{&quot;value&quot;: 'total'...}" />
+            <marker date="1526562491328" expanded="true" signature="12409:12461" ph="{&quot;value&quot;: '自定义'...}" />
+            <marker date="1526562491328" expanded="true" signature="12483:12826" ph="[...]" />
+            <marker date="1526562491328" expanded="true" signature="12493:12556" ph="{&quot;value&quot;: 'all'...}" />
+            <marker date="1526562491328" expanded="true" signature="12566:12621" ph="{&quot;label&quot;: '一级团队'...}" />
+            <marker date="1526562491328" expanded="true" signature="12631:12686" ph="{&quot;label&quot;: '二级团队'...}" />
+            <marker date="1526562491328" expanded="true" signature="12696:12751" ph="{&quot;label&quot;: '三级团队'...}" />
+            <marker date="1526562491328" expanded="true" signature="12761:12818" ph="{&quot;value&quot;: 'one'...}" />
+            <marker date="1526562491328" expanded="true" signature="12927:12937" ph="[...]" />
+            <marker date="1526562491328" expanded="true" signature="13008:13018" ph="[...]" />
+            <marker date="1526562491328" expanded="true" signature="13040:13085" ph="{&quot;differ&quot;: ''...}" />
+            <marker date="1526562491328" expanded="true" signature="13107:13152" ph="{&quot;differ&quot;: ''...}" />
+            <marker date="1526562491328" expanded="true" signature="13174:13219" ph="{&quot;differ&quot;: ''...}" />
+            <marker date="1526562491328" expanded="true" signature="13621:21034" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="13642:13935" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="13706:13929" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="13766:13920" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="13824:13877" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="13962:14094" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="14115:14743" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="14179:14288" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="14341:14736" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="14410:14500" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="14537:14633" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="14764:16359" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="14863:14919" ph="[...]" />
+            <marker date="1526562491328" expanded="true" signature="14873:14911" ph="{&quot;name&quot;: '全部(可见范围)'...}" />
+            <marker date="1526562491328" expanded="true" signature="14979:15605" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="15006:15216" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="15273:15548" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="15629:16324" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="15731:15812" ph="[...]" />
+            <marker date="1526562491328" expanded="true" signature="15743:15802" ph="{&quot;name&quot;: '个人'...}" />
+            <marker date="1526562491328" expanded="true" signature="15959:16205" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="16032:16195" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="16384:16987" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="16467:16523" ph="[...]" />
+            <marker date="1526562491328" expanded="true" signature="16477:16515" ph="{&quot;name&quot;: '全部(可见范围)'...}" />
+            <marker date="1526562491328" expanded="true" signature="16538:16663" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="16726:16952" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="16789:16944" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="17011:17194" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="17119:17159" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="17219:19718" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="17494:17539" ph="{&quot;differ&quot;: ''...}" />
+            <marker date="1526562491328" expanded="true" signature="17566:17611" ph="{&quot;differ&quot;: ''...}" />
+            <marker date="1526562491328" expanded="true" signature="17638:17683" ph="{&quot;differ&quot;: ''...}" />
+            <marker date="1526562491328" expanded="true" signature="17707:19706" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="17731:17940" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="18030:19581" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="18170:18921" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="18221:18417" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="18467:18663" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="18713:18909" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="18978:19571" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19030:19095" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19146:19211" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19262:19327" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19378:19443" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19494:19559" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19589:19636" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19650:19697" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19750:20220" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="19774:20145" ph="{&quot;scdStatus&quot;: scdStatus...}" />
+            <marker date="1526562491328" expanded="true" signature="20254:20324" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="20352:20395" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="20431:20474" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="20510:20553" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="20589:20632" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="20656:21030" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="20687:20948" ph="{&quot;overDueStatus&quot;: '0'...}" />
+            <marker date="1526562491328" expanded="true" signature="21049:21226" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21245:21957" ph="..." />
+            <marker date="1526562491328" expanded="true" signature="21252:21274" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21280:21303" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21322:21420" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21433:21451" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21463:21580" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21593:21768" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21780:21889" ph="{...}" />
+            <marker date="1526562491328" expanded="true" signature="21928:21949" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/home/overdue.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1652">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/node_modules/dateformat/lib/dateformat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/signin/signindetails.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1456">
+          <caret line="38" column="59" lean-forward="false" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+          <folding>
+            <element signature="e#3297#3322#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teammanagement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-784">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding>
+            <marker date="1526554421194" expanded="true" signature="15824:15828" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/teamUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4032">
+          <caret line="144" column="30" lean-forward="false" selection-start-line="144" selection-start-column="30" selection-end-line="144" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3416">
+          <caret line="122" column="24" lean-forward="false" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#1;n#el-col#1;n#el-col#0;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#1;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-select#0;n#el-col#1;n#el-col#1;n#el-col#1;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#2;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-select#0;n#el-col#1;n#el-col#1;n#el-col#2;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#3;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#el-col#0;n#el-col#1;n#el-col#0;n#el-col#3;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-table#0;n#el-col#0;n#el-row#1;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-pagination#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13720">
+          <caret line="490" column="61" lean-forward="false" selection-start-line="490" selection-start-column="6" selection-end-line="490" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#2;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#0;n#el-dialog#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#el-button#0;n#el-dialog#0;n#el-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#18696#18721#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/teaminformation/teaminformation.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="34" column="40" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teamuserdetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="e#2328#2353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.zh-CN.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding>
+              <marker date="1525920809896" expanded="true" signature="1513:1575" ph="..." />
+              <marker date="1525920809896" expanded="true" signature="1521:1575" ph="..." />
+              <marker date="1525920809896" expanded="true" signature="1533:1575" ph="..." />
+              <marker date="1525920809896" expanded="true" signature="1546:1575" ph="..." />
+              <marker date="1525920809896" expanded="true" signature="1553:1575" ph="..." />
+              <marker date="1525920809896" expanded="true" signature="1566:1575" ph="..." />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-38">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/download/Download.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-158">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> c5a3d013805374fd37641dc4196f0b5f5455cf03
   </component>
 </project>

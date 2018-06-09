@@ -1,0 +1,224 @@
+/**
+ * 认证激励 css
+ * Created by Neel on 2017/09/01.
+ */
+
+
+html, body {
+  /*font-family: '宋体', Arial, sans-serif;*/
+  /*font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;*/
+  font-size: 13px;
+  line-height: 1.4;
+  height: 100%;
+  text-align: left;
+  overflow: hidden;
+  /*background: #e4e4e4;*/
+  color: #91a5af;
+}
+p {
+  /*line-height: 20px;*/
+}
+h1 {
+  color: #384850;
+}
+h1, h2 {
+  font-weight: normal;
+}
+body{
+  width:100% ;
+  margin: 0 auto;
+}
+.bold {
+  font-weight: bold;
+}
+
+.middle {
+  vertical-align: middle;
+}
+.strong {
+  font-weight: bold;
+}
+.divider-h {
+  height: 1px;
+  background: #d0d9dd;
+  width: 100%;
+}
+.divider-h-light {
+  height: 1px;
+  width: 100%;
+  background: #e7e7e7;
+}
+
+.width-whole{
+  width: 100%;
+}
+.full {
+  width: 100%;
+  height: 100%;
+}
+.full-h{
+  height: 100%;
+}
+.full-w{
+  width: 100%;
+}
+.width-90{
+  width: 90%;
+}
+.width-80{
+  width: 80%;
+}
+.width-70{
+  width: 70%;
+}
+.width-65{
+  width: 65%;
+}
+.width-60{
+  width: 60%;
+}
+.width-55{
+  width: 55%;
+}
+.width-50{
+  width: 50%;
+}
+.width-41{
+  width: 41%;
+}
+.width-40{
+  width: 40%;
+}
+.width-30{
+  width: 30%;
+}
+.font-xl{
+  font-size: 16px;
+}
+.padder-v{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.padder-v-xl{
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+.padder-v-xxl{
+  padding-top: 1.0rem;
+  padding-bottom: 1.0rem;
+}
+.padder-v-xxxl{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.padder-h {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.padder-h-xl {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+.padder-h-xxl {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.no-padder {
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+.padder{
+  padding: 1rem;
+}
+.padder-b{
+  padding-bottom: 1rem;
+}
+.padder-b-xl{
+  padding-bottom: 3rem;
+}
+.padder-t{
+  padding-top: 1rem;
+}
+.f-s{
+  font-size: 12px;
+}
+.f-m{
+  font-size: 14px;
+}
+h2{
+  font-size: 16px;
+}
+h4{
+  font-size: 14px;
+}
+.show{
+  display: block !important;
+}
+.hidden{
+  display: none !important;
+}
+.padder-l{
+  padding-left: 0.5rem;
+}
+.padder-l{
+  padding-left: 0.5rem;
+}
+.padder-l-xxl{
+  padding-left: 5rem;
+}
+.display-table{
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.display-table-cell{
+  display: table-cell;
+  vertical-align: middle;
+}
+.shade{
+  /*display: none;*/
+  background: rgba(0,0,0,0.3);
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+.font-right {
+  text-align: right;
+}
+
+.text-small {
+  font-size: 12px;
+}
+
+.test-bg {
+  background: red;
+}
+
+.white {
+  background-color: white;
+}
+
+.scroll-v {
+  overflow: hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.scroll-y{
+  overflow-y:scroll;
+  -webkit-overflow-scrolling:touch;
+}
+
+
+.fade-enter-active {/*, .fade-leave-active*/
+  /*transition: all .2s ease;*/
+  transition: all .4s cubic-bezier(0.4, 0, 0, 1.5);
+
+}
+
+.fade-enter {/*, .fade-leave-active*/
+  opacity: 0;
+  transform: translate3d(0, 10%, 0);
+}

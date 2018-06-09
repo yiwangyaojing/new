@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/crm_api.iml" filepath="$PROJECT_DIR$/.idea/crm_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../backend-api/backend-api.iml" filepath="$PROJECT_DIR$/../backend-api/backend-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/font-api.iml" filepath="$PROJECT_DIR$/.idea/font-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/front-api.iml" filepath="$PROJECT_DIR$/.idea/front-api.iml" />
     </modules>
   </component>
 </project>

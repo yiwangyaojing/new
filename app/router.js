@@ -91,6 +91,7 @@ module.exports = app => {
     router.put('/api/team', controller.team.update);    //已写入测试-运行正常  修改团队
     router.del('/api/team/:id/:open_id', controller.team.destroy);  //已写入测试-运行正常 通过团队 id 和操作人 id解散团队
     router.post('/api/team/changeCompanyOwner', controller.team.changeCompanyOwner); // 修改团队负责人
+    router.post('/api/rank/isOneRank',controller.team.isOneRank);//判断是否是一级团队的管理员或者是创建者
     // 团队成员
     router.get('/api/teamUser/:teamId', controller.teamUser.index); //已写入测试-运行正常  查询当前团队所有用户
     router.put('/api/teamUser', controller.teamUser.updateRule);    //已写入测试-运行正常  修改用户权限
@@ -119,6 +120,10 @@ module.exports = app => {
     router.get('/api/overdue/:company_id', controller.overdue.index);
     router.put('/api/overdue', controller.overdue.update);
     router.post('/api/overdue', controller.overdue.query);
+
+    // 项目文字修改(项目勘测)
+    router.post('/api/planTextEdit', controller.planTextEdit.index);
+    router.post('/api/planTextEdit/get', controller.planTextEdit.getPlanText);   //获取项目勘测的文字信息
 
     // 计算排板子规则计算
     router.post('/api/roof', controller.roof.index);

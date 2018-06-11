@@ -457,6 +457,24 @@ class TeamService extends Service {
         return 'success'
     }
 
+    async isOneRank(id){
+        if (!id){
+            return false
+        }
+
+        let user = await this.ctx.model.XUsers.findOne({ where: {openid: id}})
+
+        if (!user || !user.dataValues){
+            return false
+        }
+
+        if ( user.dataValues.maxTeamLevel == 0 && user.dataValues.maxTeamRank == 1 ){
+            return true
+        }else {
+            return false
+        }
+    }
+
 }
 
 module.exports = TeamService;

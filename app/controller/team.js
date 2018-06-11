@@ -205,6 +205,15 @@ class TeamController extends Controller {
         ctx.validate(rule, req);
         ctx.body = await service.team.changeCompanyOwner(req)
     }
+
+    //判断一级团队的管理员
+    async isOneRank () {
+
+        const { ctx, service } = this;
+        const req = ctx.request.body;
+        console.log(req)
+        ctx.body = await service.team.isOneRank(req.openid)
+    }
 }
 
 module.exports = TeamController;

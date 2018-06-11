@@ -47,6 +47,10 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+      plan_survey: {
+      type: DataTypes.STRING(11),
+        allowNull: true
+    },
     created_at: {
       type: DataTypes.TIME,
       allowNull: true

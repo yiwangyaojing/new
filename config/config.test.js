@@ -16,14 +16,13 @@ module.exports = appInfo => {
       db: 0,
     },
   };
-
   config.sequelize = {
-    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-    database: 'xiaosolar_test',
-    host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
-    port: '3306',
-    username: 'xiaosolar_test_user',
-    password: 'ooMoo8wun0etaaso',
+      dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+      database: 'crm_test',
+      host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+      port: '3306',
+      username: 'crm_test_user',
+      password: '1q2w3e4r',
   };
   config.security = {
     csrf: {
@@ -59,8 +58,8 @@ module.exports = appInfo => {
     secret: 'f3c6470786273314ae9b0464278de4ab84f8d303',
   };
    config.wechat = {
-       appId: 'wx44ea762d7e9f38c4',
-       secret: '4e26d3b73e6b465a62d277de345644aa',
+       appId: 'wx352e48c1b3170cfe',
+       secret: '9882b566eb6fb40a5d27a44256c00384',
     openIdUrl: 'https://api.weixin.qq.com/sns/jscode2session',
   };
   return config;

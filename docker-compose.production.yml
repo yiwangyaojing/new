@@ -10,8 +10,6 @@ services:
   crm-api:
     image: docker.xiaosolar.com/backend/crm-api/production:latest
     restart: always
-    ports:
-      - "7001:7001"
     external_links:
       - redis_redis_1:redis
     networks:

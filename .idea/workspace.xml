@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="">
+    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="2018年06月11日11:55 项目勘测编辑修改完成2">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controller/planInfoEdit.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/x_planinfo_edit.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/service/planInfoEdit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/roof.js" afterPath="$PROJECT_DIR$/app/controller/roof.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/x_team.js" afterPath="$PROJECT_DIR$/app/model/x_team.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router.js" afterPath="$PROJECT_DIR$/app/router.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/coverage/" />
@@ -22,78 +28,38 @@
       <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="92" column="70" lean-forward="false" selection-start-line="92" selection-start-column="70" selection-end-line="92" selection-end-column="70" />
+            <state relative-caret-position="573">
+              <caret line="135" column="9" lean-forward="false" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="team.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/team.js">
+      <file leaf-file-name="roof.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controller/roof.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="205" column="61" lean-forward="false" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
+            <state relative-caret-position="526">
+              <caret line="566" column="32" lean-forward="false" selection-start-line="566" selection-start-column="32" selection-end-line="566" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="team.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/team.js">
+      <file leaf-file-name="planInfoEdit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controller/planInfoEdit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="470" column="85" lean-forward="false" selection-start-line="470" selection-start-column="85" selection-end-line="470" selection-end-column="85" />
+            <state relative-caret-position="357">
+              <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.default.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.default.js">
+      <file leaf-file-name="planInfoEdit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/service/planInfoEdit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="93" column="54" lean-forward="true" selection-start-line="93" selection-start-column="54" selection-end-line="95" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.prod.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.prod.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="61" column="51" lean-forward="false" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.test.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/config.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="planTextEdit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/planTextEdit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sms.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/sms.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="32" lean-forward="false" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+            <state relative-caret-position="404">
+              <caret line="24" column="61" lean-forward="false" selection-start-line="24" selection-start-column="61" selection-end-line="24" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -102,20 +68,18 @@
       <file leaf-file-name="x_team.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/model/x_team.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="952">
+              <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="planTextEdit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/planTextEdit.js">
+        <entry file="file://$PROJECT_DIR$/app/service/planTextEdit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="57" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="57" />
+            <state relative-caret-position="789">
+              <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -132,9 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Download</find>
-      <find>api/</find>
-      <find>load</find>
       <find>loading</find>
       <find>微信</find>
       <find>downLoadData</find>
@@ -162,6 +123,9 @@
       <find>upda</find>
       <find>data</find>
       <find>XUser</find>
+      <find>plan_survey</find>
+      <find>planTextEdit</find>
+      <find>xplanTextEdit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -210,16 +174,20 @@
         <option value="$PROJECT_DIR$/pc-view/src/views/download/Download.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teamuserdetail.vue" />
         <option value="$PROJECT_DIR$/app/model/x_plantext_edit.js" />
-        <option value="$PROJECT_DIR$/app/model/x_team.js" />
         <option value="$PROJECT_DIR$/app/controller/planTextEdit.js" />
         <option value="$PROJECT_DIR$/app/service/sms.js" />
         <option value="$PROJECT_DIR$/app/service/planTextEdit.js" />
-        <option value="$PROJECT_DIR$/app/router.js" />
         <option value="$PROJECT_DIR$/app/controller/team.js" />
         <option value="$PROJECT_DIR$/app/service/team.js" />
         <option value="$PROJECT_DIR$/config/config.default.js" />
         <option value="$PROJECT_DIR$/config/config.prod.js" />
         <option value="$PROJECT_DIR$/config/config.test.js" />
+        <option value="$PROJECT_DIR$/app/model/x_planinfo_edit.js" />
+        <option value="$PROJECT_DIR$/app/controller/planInfoEdit.js" />
+        <option value="$PROJECT_DIR$/app/service/planInfoEdit.js" />
+        <option value="$PROJECT_DIR$/app/model/x_team.js" />
+        <option value="$PROJECT_DIR$/app/router.js" />
+        <option value="$PROJECT_DIR$/app/controller/roof.js" />
       </list>
     </option>
   </component>
@@ -658,11 +626,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528689361587</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="2018年06月11日11:55 项目勘测编辑修改完成2">
+      <created>1528689366762</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1528689366762</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95494000" />
+    <option name="totallyTimeSpent" value="98932000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -800,7 +775,8 @@
     <MESSAGE value="2018年06月09日15:34" />
     <MESSAGE value="2018年06月09日15:53 修改 appid" />
     <MESSAGE value="2018年06月11日11:55 项目勘测编辑修改完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年06月11日11:55 项目勘测编辑修改完成" />
+    <MESSAGE value="2018年06月11日11:55 项目勘测编辑修改完成2" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年06月11日11:55 项目勘测编辑修改完成2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -813,34 +789,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controller/teamUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3192">
-          <caret line="114" column="49" lean-forward="false" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/app/controller/teamUser.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1652">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/xcustomer/XcustomerDetail.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5880">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/xcustomer/XcustomerList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1120">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../backend-api/config/config.default.js" />
     <entry file="file://$PROJECT_DIR$/pc-view/src/views/signin/signin.vue">
       <provider selected="true" editor-type-id="text-editor">
@@ -1207,78 +1155,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/x_plantext_edit.js">
+    <entry file="file://$PROJECT_DIR$/config/config.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="8" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/sms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="32" lean-forward="false" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/planTextEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="57" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/x_team.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="92" column="70" lean-forward="false" selection-start-line="92" selection-start-column="70" selection-end-line="92" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/team.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="205" column="61" lean-forward="false" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/planTextEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/team.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="470" column="85" lean-forward="false" selection-start-line="470" selection-start-column="85" selection-end-line="470" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.default.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="93" column="54" lean-forward="true" selection-start-line="93" selection-start-column="54" selection-end-line="95" selection-end-column="51" />
+        <state relative-caret-position="149">
+          <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1291,10 +1171,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.test.js">
+    <entry file="file://$PROJECT_DIR$/config/config.default.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+        <state relative-caret-position="350">
+          <caret line="93" column="54" lean-forward="false" selection-start-line="93" selection-start-column="54" selection-end-line="95" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/team.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="470" column="85" lean-forward="false" selection-start-line="470" selection-start-column="85" selection-end-line="470" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/team.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="205" column="61" lean-forward="false" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/sms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="32" lean-forward="false" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/x_plantext_edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="27" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/planTextEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/x_planinfo_edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="51" lean-forward="false" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/planInfoEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/planTextEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/planInfoEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="24" column="61" lean-forward="false" selection-start-line="24" selection-start-column="61" selection-end-line="24" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/x_team.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="135" column="9" lean-forward="false" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/roof.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="566" column="32" lean-forward="false" selection-start-line="566" selection-start-column="32" selection-end-line="566" selection-end-column="32" />
           <folding />
         </state>
       </provider>

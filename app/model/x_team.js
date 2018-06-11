@@ -51,6 +51,10 @@ module.exports = app => {
       type: DataTypes.STRING(11),
         allowNull: true
     },
+      plan_data: {
+          type: DataTypes.STRING(11),
+          allowNull: true
+      },
     created_at: {
       type: DataTypes.TIME,
       allowNull: true

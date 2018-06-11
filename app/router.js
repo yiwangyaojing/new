@@ -125,9 +125,16 @@ module.exports = app => {
     router.post('/api/planTextEdit', controller.planTextEdit.index);
     router.post('/api/planTextEdit/get', controller.planTextEdit.getPlanText);   //获取项目勘测的文字信息
 
+    // 项目资料修改
+    router.post('/api/planInfoEdit', controller.planInfoEdit.index);
+    router.post('/api/planInfoEdit/get', controller.planInfoEdit.getPlanText);   //获取项目资料的文字信息
+
+
     // 计算排板子规则计算
     router.post('/api/roof', controller.roof.index);
 
+    //计算机
+    router.post('/api/calculator/eval', controller.roof.evals);
 
 
     // 签到

@@ -563,6 +563,21 @@ class RoofController extends Controller {
     return Math.abs((t1x * t2y + t2x * t3y + t3x * t1y - t2x * t1y - t3x * t2y - t1x * t3y) / 2);
   }
 
+  async evals() {
+      const ctx = await this.ctx
+      let req = ctx.request.body
+      console.log('当前计算的文字',req)
+      if (!req || !req.str){
+        return ''
+      }
+      let str = req.str
+      if (str.length > 0){
+        let data = eval(str)
+          console.log(data)
+          ctx.body = data
+      }
+  }
+
 }
 
 module.exports = RoofController

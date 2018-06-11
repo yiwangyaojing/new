@@ -38,7 +38,7 @@ $ npm stop
 
     ```sh
     sudo gitlab-runner register -n \
-      --url https://lab.xiaosolar.com/ \
+      --url https://lab.xiaosolar.cn/ \
       --tag-list "crm-api" \
       --registration-token 2g8Yq3Pt-FS7yu1uZiJQ \
       --executor docker \

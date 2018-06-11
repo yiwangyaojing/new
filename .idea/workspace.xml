@@ -651,11 +651,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528689356583</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="2018年06月11日11:55 项目勘测编辑修改完成">
+      <created>1528689361587</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1528689361587</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95489000" />
+    <option name="totallyTimeSpent" value="95494000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

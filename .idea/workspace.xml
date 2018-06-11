@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controller/planTextEdit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/x_plantext_edit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/service/planTextEdit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/team.js" afterPath="$PROJECT_DIR$/app/controller/team.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/x_team.js" afterPath="$PROJECT_DIR$/app/model/x_team.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router.js" afterPath="$PROJECT_DIR$/app/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/team.js" afterPath="$PROJECT_DIR$/app/service/team.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.default.js" afterPath="$PROJECT_DIR$/config/config.default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.prod.js" afterPath="$PROJECT_DIR$/config/config.prod.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.test.js" afterPath="$PROJECT_DIR$/config/config.test.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/coverage/" />
@@ -655,11 +644,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528530846148</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="2018年06月11日11:55 项目勘测编辑修改完成">
+      <created>1528689356583</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1528689356583</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95470000" />
+    <option name="totallyTimeSpent" value="95489000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -796,7 +792,8 @@
     <MESSAGE value="fix 样式" />
     <MESSAGE value="2018年06月09日15:34" />
     <MESSAGE value="2018年06月09日15:53 修改 appid" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年06月09日15:53 修改 appid" />
+    <MESSAGE value="2018年06月11日11:55 项目勘测编辑修改完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年06月11日11:55 项目勘测编辑修改完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

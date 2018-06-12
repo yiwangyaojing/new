@@ -24,7 +24,7 @@
             <!--<div class="x-Center" style="padding: 10px 0" id="login_container">-->
             <!--&lt;!&ndash;<img style="width: 160px;height: 160px" src="/static/img/erweima.png" alt="">&ndash;&gt;-->
             <!--</div>-->
-            <!--&lt;!&ndash;<div style="text-align: center;padding: 20px 0;">打开<span style="color: #55a532">光伏好销售</span>扫一扫登录</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div style="text-align: center;padding: 20px 0;">打开<span style="color: #55a532">好销售CRM</span>扫一扫登录</div>&ndash;&gt;-->
             <!--</el-tab-pane>-->
             <div style="padding: 20px 40px 0">手机号登录</div>
             <el-form :model="loginForm" status-icon size="small" :rules="rules" ref="loginForm" label-width="0px"

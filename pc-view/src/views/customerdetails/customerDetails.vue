@@ -568,8 +568,8 @@ export default {
       loading1: false,
       loading2: false,
       from: true,
-      planTextEdit: ['类别1','类别2','类别3'],
-      planInfoEdit: ['类别1','类别2','类别3'],
+      planTextEdit: ['类别1', '类别2', '类别3'],
+      planInfoEdit: ['类别1', '类别2', '类别3'],
       open_id: '',
       company_id: '',
       teamid: '',
@@ -721,7 +721,7 @@ export default {
       axios.post('api/planInfoEdit/get', {companyId: companyId}).then((data) => {
         console.log('获取成功', data)
         if (data && data.length > 1) {
-          this.planInfoEdit = [data[0],data[1],data[2]]
+          this.planInfoEdit = [data[0], data[1], data[2]]
         }
       }).catch((err) => {
         console.log('获取失败', err)
@@ -736,7 +736,7 @@ export default {
       axios.post('api/planTextEdit/get', {companyId: companyId}).then((data) => {
         console.log('获取成功', data)
         if (data && data.length > 1) {
-          this.planTextEdit = [data[0],data[1],data[2]]
+          this.planTextEdit = [data[0], data[1], data[2]]
         }
       }).catch((err) => {
         console.log('获取失败', err)

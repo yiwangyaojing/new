@@ -51,7 +51,7 @@
       </el-menu>
       <div style="position: absolute;bottom: 30px;padding: 5px 0px;width: 100%;">
         <!--<a href="http://www.xiqiao.io" style="color: #999;font-size: 10px;width: 100%;text-align: center;display: inline-block;" target="_blank">开发商:上海西樵软件</a>-->
-        <a style="color: #999;font-size: 12px;width: 100%;text-align: center;display: inline-block;" target="_blank">光伏好销售免费版</a>
+        <a style="color: #999;font-size: 12px;width: 100%;text-align: center;display: inline-block;" target="_blank">好销售CRM免费版</a>
       </div>
     </el-aside>
     <el-container>

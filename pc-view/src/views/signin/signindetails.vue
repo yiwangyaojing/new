@@ -121,7 +121,7 @@ export default {
   methods: {
     finishFormat (row, column, cellValue, index) {
       console.log('44444444', cellValue)
-      return dateFormat(cellValue, 'yyyy-MM-dd HH:mm:ss')
+      return dateFormat(cellValue, 'yyyy-mm-dd HH:MM:ss')
     },
     tjzqChange (e) {
       console.log('=====>>', e)

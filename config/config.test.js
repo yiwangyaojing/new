@@ -47,7 +47,7 @@ module.exports = appInfo => {
         client: {
             accessKeyId: 'LTAIJq3IvPywFWPH',
             accessKeySecret: 'KT0AIH0RL4sYNd5efvcBklnjrR27n7',
-            signName: '光伏好销售',
+            signName: '好销售CRM',
             templateCode: 'SMS_132095605',
             param: 'code',
         },

@@ -16,7 +16,7 @@ class LoginController extends Controller {
         };
         const req = ctx.request.body
         ctx.validate(rule, req);
-        ctx.body = await service.sms.sendValidateCode(req.phone,req.phone, "SMS_134240358");
+        ctx.body = await service.sms.sendValidateCode(req.phone,req.phone, "SMS_137420335");
     }
 
     /**
@@ -44,6 +44,7 @@ class LoginController extends Controller {
             throw e;
           }
         }
+        console.log(phone)
         const userInfo = await service.user.findByPhone(phone);
 
         if (!userInfo) {

@@ -10,6 +10,7 @@ import SettingDetails from '../views/settingdetails/settingdetails'
 import CustomerData from '../views/settingdetails/customerdata'
 import ImportCustomer from '../views/settingdetails/importCustomer'
 import CustomerDetails from '../views/customerdetails/customerDetails'
+import Aerialphotoupload from '../views/aerialphotoupload/aerialphotoupload'
 import Signin from '../views/signin/signin'
 import SigninDetails from '../views/signin/signindetails'
 import PersonnelManagement from '../views/personnelmanagement/teammanagement'
@@ -34,6 +35,7 @@ export default new Router({
         {path: '/SettingDetails', name: 'SettingDetails', component: SettingDetails},
         {path: '/CustomerData', name: 'CustomerData', component: CustomerData},
         {path: '/ImportCustomer', name: 'ImportCustomer', component: ImportCustomer},
+        {path: '/Aerialphotoupload', name: 'Aerialphotoupload', component: Aerialphotoupload},
         {path: '/CustomerDetails', name: 'CustomerDetails', component: CustomerDetails},
         {path: '/Signin', name: 'Signin', component: Signin},
         {path: '/SigninDetails', name: 'SigninDetails', component: SigninDetails},

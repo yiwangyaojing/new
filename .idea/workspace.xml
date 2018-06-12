@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="">
+    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="2018年06月11日11:55 计算及其项目资料完成">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.eot" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.eot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.ttf" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.woff" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.woff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/static/img/logo.png" afterPath="$PROJECT_DIR$/pc-view/static/img/logo.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker-compose.production.yml" afterPath="$PROJECT_DIR$/docker-compose.production.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/login.js" afterPath="$PROJECT_DIR$/app/controller/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.default.js" afterPath="$PROJECT_DIR$/config/config.default.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.prod.js" afterPath="$PROJECT_DIR$/config/config.prod.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.test.js" afterPath="$PROJECT_DIR$/config/config.test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/.eslintignore" afterPath="$PROJECT_DIR$/pc-view/.eslintignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/config/index.js" afterPath="$PROJECT_DIR$/pc-view/config/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/config/prod.env.js" afterPath="$PROJECT_DIR$/pc-view/config/prod.env.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/package.json" afterPath="$PROJECT_DIR$/pc-view/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/App.vue" afterPath="$PROJECT_DIR$/pc-view/src/App.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/demo_fontclass.html" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/demo_fontclass.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/demo_symbol.html" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/demo_symbol.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/demo_unicode.html" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/demo_unicode.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.css" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.js" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.svg" afterPath="$PROJECT_DIR$/pc-view/src/asserts/fonts/iconfont.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/main.js" afterPath="$PROJECT_DIR$/pc-view/src/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/router/index.js" afterPath="$PROJECT_DIR$/pc-view/src/router/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/Login.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/Login.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/Main.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/Main.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/home/home.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/home/home.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/home/overdue.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/home/overdue.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teammanagement.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teammanagement.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/settingdetails/settingdetails.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/settingdetails/settingdetails.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/signin/signin.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/signin/signin.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/signin/signindetails.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/signin/signindetails.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/static/qrLogin.html" afterPath="$PROJECT_DIR$/pc-view/static/qrLogin.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/coverage/" />
@@ -20,101 +52,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="customerDetails.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="69" column="61" lean-forward="true" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="61" />
+              <folding>
+                <marker date="1528773721829" expanded="false" signature="20676:20688" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="importCustomer.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="622">
+              <caret line="629" column="9" lean-forward="true" selection-start-line="629" selection-start-column="9" selection-end-line="629" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="38" column="75" lean-forward="false" selection-start-line="38" selection-start-column="75" selection-end-line="38" selection-end-column="75" />
+            <state relative-caret-position="345">
+              <caret line="84" column="50" lean-forward="true" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/file.js">
+      <file leaf-file-name="team.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controller/team.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="211" column="57" lean-forward="false" selection-start-line="211" selection-start-column="57" selection-end-line="211" selection-end-column="57" />
+            <state relative-caret-position="238">
+              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileType.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/const/FileType.js">
+      <file leaf-file-name="sms.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/service/sms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+            <state relative-caret-position="25">
+              <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/file.js">
+      <file leaf-file-name="config.prod.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.prod.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="106" column="47" lean-forward="true" selection-start-line="106" selection-start-column="47" selection-end-line="106" selection-end-column="47" />
+            <state relative-caret-position="477">
+              <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="config.test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="40" column="39" lean-forward="true" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+            <state relative-caret-position="477">
+              <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="docker-compose.production.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docker-compose.production.yml">
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controller/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            <state relative-caret-position="639">
+              <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="roof.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/roof.js">
+      <file leaf-file-name="config.default.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.default.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="547" column="0" lean-forward="false" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
+            <state relative-caret-position="607">
+              <caret line="55" column="35" lean-forward="true" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="planInfoEdit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/planInfoEdit.js">
+      <file leaf-file-name="customerData.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="24" column="61" lean-forward="false" selection-start-line="24" selection-start-column="61" selection-end-line="24" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="x_team.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/model/x_team.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="planTextEdit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/planTextEdit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="789">
-              <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+            <state relative-caret-position="285">
+              <caret line="184" column="89" lean-forward="false" selection-start-line="184" selection-start-column="89" selection-end-line="184" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -131,23 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>submitClick</find>
-      <find>pay_time</find>
-      <find>showWarningTips</find>
-      <find>暂无</find>
-      <find>回款</find>
-      <find>paifangzishow</find>
-      <find>shouziliaoshow</find>
-      <find>&quot;false&quot;</find>
-      <find>拍</find>
-      <find>disabled</find>
-      <find>initData</find>
-      <find>下载</find>
-      <find>finishFormat</find>
-      <find>tableData</find>
-      <find>disabledshow</find>
-      <find>loadData</find>
-      <find>formatDate</find>
       <find>date</find>
       <find>join_date</find>
       <find>wx6441dd4482409ffb</find>
@@ -159,8 +176,25 @@
       <find>planTextEdit</find>
       <find>xplanTextEdit</find>
       <find>lab.xiaosolar.com</find>
-      <find>api/file/queryIndexSliderAd</find>
       <find>lab.xiaosolar.cn</find>
+      <find>api/file</find>
+      <find>api/file/queryIndexSliderAd</find>
+      <find>oss</find>
+      <find>Aerialphotoupload</find>
+      <find>customerDetails</find>
+      <find>并网</find>
+      <find>合同状态</find>
+      <find>contractProgressList</find>
+      <find>mou</find>
+      <find>装机</find>
+      <find>提取码</find>
+      <find>组件规格</find>
+      <find>校验</find>
+      <find>nextStep</find>
+      <find>SMS_137420335</find>
+      <find>SMS_134240358</find>
+      <find>总价</find>
+      <find>templateCode</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -196,27 +230,19 @@
         <option value="$PROJECT_DIR$/test/app/controller/teamUser.test.js" />
         <option value="$PROJECT_DIR$/pc-view/src/views/signin/signin.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teammanagement.vue" />
-        <option value="$PROJECT_DIR$/pc-view/src/views/home/home.vue" />
-        <option value="$PROJECT_DIR$/pc-view/src/views/Main.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/router/index.js" />
         <option value="$PROJECT_DIR$/pc-view/src/App.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/Login.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/settingdetails.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/home/overdue.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/signin/signindetails.vue" />
-        <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue" />
-        <option value="$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/download/Download.vue" />
         <option value="$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teamuserdetail.vue" />
         <option value="$PROJECT_DIR$/app/model/x_plantext_edit.js" />
         <option value="$PROJECT_DIR$/app/controller/planTextEdit.js" />
         <option value="$PROJECT_DIR$/app/service/sms.js" />
         <option value="$PROJECT_DIR$/app/service/planTextEdit.js" />
-        <option value="$PROJECT_DIR$/app/controller/team.js" />
         <option value="$PROJECT_DIR$/app/service/team.js" />
-        <option value="$PROJECT_DIR$/config/config.default.js" />
-        <option value="$PROJECT_DIR$/config/config.prod.js" />
-        <option value="$PROJECT_DIR$/config/config.test.js" />
         <option value="$PROJECT_DIR$/app/model/x_planinfo_edit.js" />
         <option value="$PROJECT_DIR$/app/controller/planInfoEdit.js" />
         <option value="$PROJECT_DIR$/app/service/planInfoEdit.js" />
@@ -225,6 +251,18 @@
         <option value="$PROJECT_DIR$/app/controller/roof.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/docker-compose.production.yml" />
+        <option value="$PROJECT_DIR$/pc-view/config/prod.env.js" />
+        <option value="$PROJECT_DIR$/pc-view/.eslintignore" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/Main.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/home/home.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue" />
+        <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" />
+        <option value="$PROJECT_DIR$/config/config.test.js" />
+        <option value="$PROJECT_DIR$/config/config.default.js" />
+        <option value="$PROJECT_DIR$/config/config.prod.js" />
+        <option value="$PROJECT_DIR$/app/controller/login.js" />
+        <option value="$PROJECT_DIR$/app/controller/team.js" />
       </list>
     </option>
   </component>
@@ -283,18 +321,68 @@
               <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="crm_api" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="crm_api" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="customerdetails" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="settingdetails" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="pc-view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="signin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -698,11 +786,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528701253230</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="2018年06月11日11:55 计算及其项目资料完成">
+      <created>1528702262471</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1528702262471</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100686000" />
+    <option name="totallyTimeSpent" value="109582000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -856,296 +951,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/role/Organizations.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/role/Resources.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/role/Roles.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="288" column="26" lean-forward="false" selection-start-line="288" selection-start-column="19" selection-end-line="288" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/accountsetting/accountsetting.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="8" column="55" lean-forward="true" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/core/Parameters.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="210" column="20" lean-forward="false" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/Login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-812">
-          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2503">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/Main.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="369" column="0" lean-forward="false" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/settingdetails.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-713">
-          <caret line="46" column="105" lean-forward="false" selection-start-line="46" selection-start-column="105" selection-end-line="46" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/home/home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1665">
-          <caret line="289" column="43" lean-forward="false" selection-start-line="289" selection-start-column="43" selection-end-line="289" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/home/overdue.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1652">
-          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/node_modules/dateformat/lib/dateformat.js" />
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/signin/signindetails.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1456">
-          <caret line="38" column="59" lean-forward="false" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teammanagement.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-784">
-          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/teamUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4032">
-          <caret line="144" column="30" lean-forward="false" selection-start-line="144" selection-start-column="30" selection-end-line="144" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3416">
-          <caret line="122" column="24" lean-forward="false" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-date-picker#0;n#el-col#1;n#el-col#1;n#el-col#0;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#1;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-select#0;n#el-col#1;n#el-col#1;n#el-col#1;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#2;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-select#0;n#el-col#1;n#el-col#1;n#el-col#2;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#3;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-input#0;n#el-col#0;n#el-col#1;n#el-col#0;n#el-col#3;n#el-row#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-table#0;n#el-col#0;n#el-row#1;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-pagination#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13720">
-          <caret line="490" column="61" lean-forward="false" selection-start-line="490" selection-start-column="6" selection-end-line="490" selection-end-column="61" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#3;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#4;n#el-tab-pane#0;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#1;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#2;n#div#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#el-card#0;n#el-col#0;n#el-col#0;n#el-tab-pane#2;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#4;n#div#0;n#el-tab-pane#3;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#el-tab-pane#4;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#el-tab-pane#5;n#el-tabs#0;n#el-col#0;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-button#0;n#el-dialog#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#el-button#0;n#el-dialog#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/teaminformation/teaminformation.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/personnelmanagement/teamuserdetail.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <element signature="e#2328#2353#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.zh-CN.md" />
-    <entry file="file://$PROJECT_DIR$/pc-view/README.md" />
     <entry file="file://$PROJECT_DIR$/pc-view/src/views/download/Download.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-158">
@@ -1173,14 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/plans.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="293" column="94" lean-forward="false" selection-start-line="293" selection-start-column="47" selection-end-line="293" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/service/planSchedule.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -1197,50 +994,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.prod.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="61" column="51" lean-forward="false" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.default.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="93" column="54" lean-forward="false" selection-start-line="93" selection-start-column="54" selection-end-line="95" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/service/team.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
           <caret line="470" column="85" lean-forward="false" selection-start-line="470" selection-start-column="85" selection-end-line="470" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/team.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="205" column="61" lean-forward="false" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/sms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="32" lean-forward="false" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1309,10 +1066,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/router.js">
+    <entry file="file://$PROJECT_DIR$/docker-compose.production.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="38" column="75" lean-forward="false" selection-start-line="38" selection-start-column="75" selection-end-line="38" selection-end-column="75" />
+        <state relative-caret-position="187">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="40" column="39" lean-forward="false" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1327,32 +1092,278 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/file.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="211" column="57" lean-forward="false" selection-start-line="211" selection-start-column="57" selection-end-line="211" selection-end-column="57" />
+        <state relative-caret-position="523">
+          <caret line="211" column="56" lean-forward="false" selection-start-line="211" selection-start-column="56" selection-end-line="211" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/service/file.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="106" column="47" lean-forward="true" selection-start-line="106" selection-start-column="47" selection-end-line="106" selection-end-column="47" />
+        <state relative-caret-position="88">
+          <caret line="77" column="8" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/pc-view/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="40" column="39" lean-forward="true" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.production.yml">
+    <entry file="file://$PROJECT_DIR$/pc-view/src/utils/values.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/utils/tools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/utils/Provinces.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/utils/Page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/utils/InputTag.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#33#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/.editorconfig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/utils/cookie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/config/dev.env.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-604">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/config/test.env.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/config/uat.env.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/config/prod.env.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="42" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/signin/signin.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5668">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="104" column="8" lean-forward="false" selection-start-line="104" selection-start-column="8" selection-end-line="104" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/.eslintignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/Main.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="255" column="26" lean-forward="true" selection-start-line="255" selection-start-column="26" selection-end-line="255" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/plans.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6764">
+          <caret line="1015" column="10" lean-forward="false" selection-start-line="1015" selection-start-column="10" selection-end-line="1015" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/home/home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="191" column="92" lean-forward="false" selection-start-line="191" selection-start-column="92" selection-end-line="191" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="184" column="89" lean-forward="false" selection-start-line="184" selection-start-column="89" selection-end-line="184" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="69" column="61" lean-forward="true" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="61" />
+          <folding>
+            <marker date="1528773721829" expanded="false" signature="20676:20688" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="629" column="9" lean-forward="true" selection-start-line="629" selection-start-column="9" selection-end-line="629" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="84" column="50" lean-forward="true" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.prod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/sms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="55" column="35" lean-forward="true" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/team.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding />
         </state>
       </provider>

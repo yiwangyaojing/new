@@ -1,6 +1,7 @@
 <template>
   <el-card class="box-card">
     <el-breadcrumb separator="/">
+
       <el-breadcrumb-item :to="{ path: '/Signin' }">签到统计</el-breadcrumb-item>
     </el-breadcrumb>
     <el-row>
@@ -50,6 +51,10 @@
             </el-select>
           </el-col>
         </el-col>
+        <el-col :span="8" style="margin-top: 20px;margin-left: 30px;">
+          <el-button type="success" @click="submitClick" size="mini">确认筛选</el-button>
+            <el-button :offset="3"  @click="exportExcel" type="primary" size="mini">导出Excel</el-button>
+        </el-col>
       </el-row>
     </el-row>
     <el-row>
@@ -82,13 +87,45 @@
                    layout="total, sizes, prev, pager, next, jumper"
                    :total="totalNum">
     </el-pagination>
+
+    <!-- excle 导出-->
+    <el-row>
+      <el-col :span="24" style="margin-top: 30px;">
+        <el-table :data="tableExcleList" id="outexcle"
+                  v-show="false"
+                  size="mini" :border="true"
+                  element-loading-spinner="el-icon-loading"
+                  style="width: 100%">
+          <el-table-column prop="create_time" label="日期">
+          </el-table-column>
+          <el-table-column prop="tmName" label="所属团队">
+          </el-table-column>
+          <el-table-column prop="yongHu" label="成员" align="center">
+          </el-table-column>
+          <el-table-column prop="signNumber" label="签到次数" align="center">
+          </el-table-column>
+          <template v-for="index in signBigSize">
+            <el-table-column v-bind:prop="'time'+(index)" v-bind:label="'签到时间'+(index)" align="center" :key="index">
+            </el-table-column>
+            <el-table-column v-bind:prop="'site'+(index)" v-bind:label="'签到地点'+(index)" align="center" :key="index+80">
+            </el-table-column>
+            <el-table-column v-bind:prop="'cst_name'+(index)" v-bind:label="'拜访客户'+(index)" align="center" :key="index+100">
+            </el-table-column>
+          </template>
+
+        </el-table>
+      </el-col>
+    </el-row>
   </el-card>
 </template>
 <script>
 import axios from 'axios'
+import FileSaver from 'file-saver'
+import XLSX from 'xlsx'
 export default {
   data () {
     return {
+      tableExcleList: [],
       teamLevel: 'all',
       teamId: 'all',
       planOwner: 'all',
@@ -99,6 +136,7 @@ export default {
       teannameshow: true,
       tableLoading: false,
       fuzerenshow: true,
+      signBigSize: 1,
       options: [{
         value: 'today',
         label: '今天'
@@ -194,7 +232,6 @@ export default {
           for (let i in res) {
             this.datevalue.push(res[i])
           }
-          this.statisticaldata()
         })
       } else {
         axios.get('/api/pc/select/date/today').then(res => {
@@ -210,7 +247,7 @@ export default {
       this.tjzqvalue = '自定义'
       this.datevalue = e
       console.log('时间统计', this.datevalue)
-      this.statisticaldata()
+      this.tableSign()
     },
     tdfwChange (e) {
       console.log(e)
@@ -259,8 +296,10 @@ export default {
         }
         this.fuzerenvalue = this.fuzerenoptions[0].name
         this.planOwner = this.fuzerenoptions[0].openid
+      } else {
+        this.fuzerenshow = true
+        this.fuzerenvalue = '全部(可见范围)'
       }
-      this.statisticaldata()
     },
     teannameChange (e) {
       console.log('团队名称ID', e)
@@ -282,7 +321,6 @@ export default {
           console.log('进来了', this.fuzerenshow)
         }
       }
-      this.statisticaldata()
     },
     fuzerenChange (e) {
       this.fuzerenID = e
@@ -291,7 +329,6 @@ export default {
       if (!e) {
         this.planOwner = 'all'
       }
-      this.statisticaldata()
     },
     statisticaldata () {
       let req = {
@@ -320,6 +357,7 @@ export default {
       axios.get('/api/pc/select/date/' + 'today').then(res => {
         this.datevalue.push(res.beginDate, res.endDate)
         console.log('统计周期', this.datevalue)
+        this.tableSign()
         axios.get('/api/pc/select/team').then(res => {
           console.log('团队范围', res)
           res.teams.forEach(item => {
@@ -350,6 +388,74 @@ export default {
           tdfwvalue: this.tdfwvalue,
           fuzerenshow: this.fuzerenshow
         }})
+    },
+    submitClick () {
+      this.statisticaldata()
+      this.tableSign()
+    },
+    // 导出excle
+    exportExcel () {
+      if (this.tableExcleList.length < 1) {
+        this.$message({
+          message: '无签到信息，重新选择条件并确认',
+          type: 'warning'
+        })
+        return
+      }
+      console.log('导出之前==========')
+      var wb = XLSX.utils.table_to_book(document.querySelector('#outexcle'))
+      var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'array' })
+      try {
+        FileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), '签到详情.xlsx')
+      } catch (e) { if (typeof console !== 'undefined') console.log(e, wbout) }
+      return wbout
+    },
+    // 获取导出签到详情的表格数据
+    tableSign () {
+      this.show1 = true
+      let req = {
+        // 开始时间 - 结束时间
+        beginDate: this.datevalue[0],
+        endDate: this.datevalue[1],
+        teamLevel: String(this.teamLevel),
+        teamId: String(this.teamId),
+        owner: this.planOwner,
+        pageNumber: this.pageNum,
+        pageSize: this.pagesizeNum
+      }
+      console.log('开始时间======>>>>', req.beginDate, req.endDate)
+      axios.post('/api/teamUser/excleExport', req).then(resp => {
+        this.tableExcleList = []
+        console.log('导出数据', resp)
+        for (let i = 0; i < resp.length; i++) {
+          let signs = resp[i].sign
+          let signsSize = signs.length
+          let tableExcel = {}
+          tableExcel.yongHu = resp[i].yongHu // 成员
+          tableExcel.create_time = resp[i].create_time // 日期
+          tableExcel.signNumber = signsSize // 签到次数
+          tableExcel.tmName = ''
+          let tmNames = new Set()
+          if (this.signBigSize < signsSize) {
+            this.signBigSize = signsSize
+          }
+          for (let j = 0; j < signsSize; j++) {
+            tmNames.add(signs[j].tmName) // 所属团队
+            tableExcel['time' + (j + 1)] = signs[j].create_time // 签到时间
+            tableExcel['site' + (j + 1)] = signs[j].site // 签到地点
+            tableExcel['cst_name' + (j + 1)] = signs[j].cst_name // 拜访客户
+          }
+          console.log(tmNames)
+          for (let tmName of tmNames) { // 遍历Array
+            if (tmName == null) {
+              continue
+            }
+            tableExcel.tmName = tableExcel.tmName + tmName + ','
+          }
+          this.tableExcleList.push(tableExcel)
+        }
+        console.log('转换后数组======》', this.tableExcleList)
+      })
     }
   },
   mounted () {

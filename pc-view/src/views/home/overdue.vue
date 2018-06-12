@@ -51,6 +51,17 @@
           <el-button @click="submitClick" size="medium" class="x-Center" style="margin-top: 30px;background: #01cd33;color: #fff;">保存修改</el-button>
         </el-col>
       </el-col>
+    <el-dialog
+      :visible.sync="centerDialogVisible"
+      width="30%"
+      center>
+      <span>之前的历史数据是否按照新规则重新计算，是则重新计算所有历史数据</span>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="close1">否</el-button>
+    <el-button type="primary" @click="openClick">是</el-button>
+  </span>
+    </el-dialog>
+
   </el-card>
 </template>
 <script>
@@ -58,6 +69,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      centerDialogVisible: false,
       tableLoading: false,
       editshow: false,
       rule: false,
@@ -87,13 +99,18 @@ export default {
       })
     },
     submitClick () {
+      this.centerDialogVisible = true
+    },
+
+    close1 () {
       this.tableLoading = true
       let fromData = {
         htqd: Number(this.datas.htqd),
         sgwc: Number(this.datas.sgwc),
         bwwc: Number(this.datas.bwwc),
         company_id: Number(this.datas.company_id),
-        id: Number(this.datas.id)
+        id: Number(this.datas.id),
+        cover: 'no'
       }
       axios.post('/api/pc/overduePc', fromData).then(res => {
         this.$message({
@@ -101,9 +118,34 @@ export default {
           message: '修改成功'
         })
         this.tableLoading = false
+        this.centerDialogVisible = false
         console.log(res)
       }, () => {
         this.tableLoading = false
+        this.centerDialogVisible = false
+      })
+    },
+    openClick () {
+      this.tableLoading = true
+      let fromData = {
+        htqd: Number(this.datas.htqd),
+        sgwc: Number(this.datas.sgwc),
+        bwwc: Number(this.datas.bwwc),
+        company_id: Number(this.datas.company_id),
+        id: Number(this.datas.id),
+        cover: 'yes'
+      }
+      axios.post('/api/pc/overduePc', fromData).then(res => {
+        this.$message({
+          type: 'success',
+          message: '修改成功'
+        })
+        this.tableLoading = false
+        this.centerDialogVisible = false
+        console.log(res)
+      }, () => {
+        this.tableLoading = false
+        this.centerDialogVisible = false
       })
     },
     submitClick1 () {

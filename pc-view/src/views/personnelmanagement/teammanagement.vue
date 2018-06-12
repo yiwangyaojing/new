@@ -296,6 +296,7 @@ export default {
           message: '操作成功!',
           type: 'success'
         })
+        this.init()
         console.log('这里是删除结果===>>', res)
       }, (fail) => {
         console.log('fail ===>>', fail)
@@ -331,6 +332,7 @@ export default {
           message: '操作成功!',
           type: 'success'
         })
+        this.init()
         console.log('这里是删除结果===>>', res)
       }, (fail) => {
         console.log('fail ===>>', fail)

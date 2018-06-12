@@ -25,5 +25,6 @@ export default {
   html,body{
     height: 100%;
     margin: 0 !important;
+    background: #f2f3f5;
   }
 </style>

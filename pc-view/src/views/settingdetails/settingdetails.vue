@@ -25,15 +25,6 @@
           </el-col>
           <el-col :span="24" style="margin-top: 20px;" class="clearfix">
             <el-col :span="8" class="y-Center">
-              <el-col :span="6" class="font-right">团队范围：</el-col>
-              <el-col :span="18">
-                <el-select @change="tdfwChange" size="small" class="fl" v-model="tdfwvalue">
-                  <el-option v-for="item in tdfwoptions" :key="item.value" :label="item.label" :value="item.value">
-                  </el-option>
-                </el-select>
-              </el-col>
-            </el-col>
-            <el-col :span="8" class="y-Center">
               <el-col :span="6" class="font-right">团队名称：</el-col>
               <el-col :span="18">
                 <el-select @change="teannameChange" size="small" style="width: 88%" :disabled="teannameshow" class="fl" v-model="teamname">
@@ -78,6 +69,9 @@
                 </el-col>
               </el-col>
             </el-col>
+          </el-col>
+          <el-col :span="3" style="margin-top: 20px;margin-left: 30px;">
+            <el-button type="success" @click="submitClick" size="mini">确认筛选</el-button>
           </el-col>
         </el-row>
       </el-row>
@@ -217,6 +211,10 @@ export default {
         {
           value: '6',
           label: '回款完成'
+        },
+        {
+          value: '9',
+          label: '项目终止'
         }
       ],
       overdueoptions: [
@@ -242,7 +240,8 @@ export default {
       overDueStatus: 'all',
       pagesizeNum: 10,
       pageNum: 1,
-      zdydate: 'today'
+      zdydate: 'today',
+      user: ''
     }
   },
   methods: {
@@ -269,7 +268,6 @@ export default {
           }
         })
       }
-      this.formlistdata()
     },
     selectdateChange (e) {
       this.pageNum = 1
@@ -277,7 +275,6 @@ export default {
       this.tjzqvalue = '自定义'
       this.datevalue = e
       console.log('时间统计', this.datevalue)
-      this.formlistdata()
     },
     tdfwChange (e) {
       this.overduevalue = '全部(可见范围)'
@@ -329,8 +326,10 @@ export default {
         }
         this.fuzerenvalue = this.fuzerenoptions[0].name
         this.planOwner = this.fuzerenoptions[0].openid
+      } else {
+        this.fuzerenshow = true
+        this.fuzerenvalue = '全部(可见范围)'
       }
-      this.formlistdata()
     },
     teannameChange (e) {
       this.overduevalue = '全部(可见范围)'
@@ -356,7 +355,6 @@ export default {
           console.log('进来了', this.fuzerenshow)
         }
       }
-      this.formlistdata()
     },
     requestdata () {
       axios.get('/api/pc/select/date/' + this.zdydate).then(res => {
@@ -366,48 +364,48 @@ export default {
         console.log('不执行')
         console.log('统计周期', this.datevalue)
       })
-      axios.get('/api/pc/select/team').then(res => {
-        console.log('团队范围', res)
-        res.teams.forEach(item => {
-          this.teamoptionsAll.push(item)
-          this.teamoptions.push(item)
-        })
-        res.agents.forEach(item => {
-          this.fuzerenoptions.push(item)
-          this.fuzerenoptionsAll.push(item)
-        })
-        let teamoptionsarr = []
-        let fuzerenoptionsarr = []
-        for (let i = 0; i < this.teamoptionsAll.length; i++) {
-          if (this.teamLevel === 'all') {
-            this.planOwner = 'all'
-            this.fuzerenvalue = '全部(可见范围)'
-            this.teamoptions.push(this.teamoptionsAll[i])
-            this.teannameshow = true
-            this.fuzerenshow = true
-          }
-          if (Number(this.teamLevel) === Number(this.teamoptionsAll[i].level)) {
-            this.fuzerenvalue = '全部(可见范围)'
-            this.planOwner = 'all'
-            this.teannameshow = false
-            this.fuzerenshow = true
-            teamoptionsarr.push(this.teamoptionsAll[i])
-            console.log('这里是团队范围变化', this.teamoptionsAll[i], this.teamLevel)
-          }
-          if (Number(this.teamId) === Number(this.fuzerenoptionsAll[i].team_id)) {
-            fuzerenoptionsarr.push(this.fuzerenoptionsAll[i])
-            this.fuzerenshow = false
-            console.log('进来了', this.fuzerenshow)
-          }
-        }
-        this.teamoptions = teamoptionsarr
-        this.fuzerenoptions = fuzerenoptionsarr
-        if (this.teamname !== '全部(可见范围)') {
-          this.teamname = this.teamoptions[0].name
-        }
-        console.log('团队名称', this.teamoptions, this.teamLevel, this.teamId)
-        console.log('负责人', this.fuzerenoptions)
-      })
+      //      axios.get('/api/pc/select/team').then(res => {
+      //        console.log('团队范围', res)
+      //        res.teams.forEach(item => {
+      //          this.teamoptionsAll.push(item)
+      //          this.teamoptions.push(item)
+      //        })
+      //        res.agents.forEach(item => {
+      //          this.fuzerenoptions.push(item)
+      //          this.fuzerenoptionsAll.push(item)
+      //        })
+      //        let teamoptionsarr = []
+      //        let fuzerenoptionsarr = []
+      //        for (let i = 0; i < this.teamoptionsAll.length; i++) {
+      //          if (this.teamLevel === 'all') {
+      //            this.planOwner = 'all'
+      //            this.fuzerenvalue = '全部(可见范围)'
+      //            this.teamoptions.push(this.teamoptionsAll[i])
+      //            this.teannameshow = true
+      //            this.fuzerenshow = true
+      //          }
+      //          if (Number(this.teamLevel) === Number(this.teamoptionsAll[i].level)) {
+      //            this.fuzerenvalue = '全部(可见范围)'
+      //            this.planOwner = 'all'
+      //            this.teannameshow = false
+      //            this.fuzerenshow = true
+      //            teamoptionsarr.push(this.teamoptionsAll[i])
+      //            console.log('这里是团队范围变化', this.teamoptionsAll[i], this.teamLevel)
+      //          }
+      //          if (Number(this.teamId) === Number(this.fuzerenoptionsAll[i].team_id)) {
+      //            fuzerenoptionsarr.push(this.fuzerenoptionsAll[i])
+      //            this.fuzerenshow = false
+      //            console.log('进来了', this.fuzerenshow)
+      //          }
+      //        }
+      //        this.teamoptions = teamoptionsarr
+      //        this.fuzerenoptions = fuzerenoptionsarr
+      //        if (this.teamname !== '全部(可见范围)') {
+      //          this.teamname = this.teamoptions[0].name
+      //        }
+      //        console.log('团队名称', this.teamoptions, this.teamLevel, this.teamId)
+      //        console.log('负责人', this.fuzerenoptions)
+      //      })
     },
     fuzerenChange (e) {
       this.overduevalue = '全部(可见范围)'
@@ -418,18 +416,15 @@ export default {
       if (!e) {
         this.planOwner = 'all'
       }
-      this.formlistdata()
     },
     contractChange (e) {
       this.pageNum = 1
       this.scdStatus = e
       console.log(this.scdStatus)
-      this.formlistdata()
     },
     overdueChange (e) {
       this.pageNum = 1
       this.overDueStatus = e
-      this.formlistdata()
     },
     formlistdata () {
       setTimeout(() => {
@@ -471,6 +466,9 @@ export default {
             if (this.tableData[i].scd_status === 6) {
               this.tableData[i].scd_status = '回款完成'
             }
+            if (this.tableData[i].scd_status === 9) {
+              this.tableData[i].scd_status = '项目终止'
+            }
             if (this.tableData[i].overdue === -1) {
               this.tableData[i].overdue = '逾期'
             } else {
@@ -493,107 +491,179 @@ export default {
       console.log('id:')
       console.log(id)
       this.$router.push({path: '/CustomerDetails', query: {planId: id, from: 1}})
+    },
+    submitClick () {
+      this.formlistdata()
+    },
+    //  判断用户是否是管理员
+    //    is_userRank (callback) {
+    //      let openId = this.user.openid
+    //      let maxTeamRank = this.user.maxTeamRank
+    //      if (maxTeamRank && maxTeamRank === 1) {
+    //        console.log('高级管理员')
+    //        callback(1)
+    //      } else {
+    //        let obj = {
+    //          openId: openId
+    //        }
+    //        axios.post('/api/pc/user/isRank', obj).then((data) => {
+    //          console.log(data)
+    //          if (data && data.data && data.data.team_company_id && (data.data.team_level || data.data.team_level === 0)) {
+    //            console.log('底层是管理员')
+    //            callback(1)
+    //          }
+    //          if (!data || !data.data || !data.data.team_company_id) {
+    //            // 底层也是业务员
+    //            console.log('底层是业务员')
+    //            callback(2)
+    //          }
+    //        }).catch((err) => {
+    //          console.log('开始判断底层是否是管理员失败')
+    //          callback(3)
+    //          console.log(err)
+    //        })
+    //      }
+    //    },
+    //  最初加载
+    show () {
+      let that = this
+      this.requestdata()
+      if (!this.user) {
+        return
+      }
+      let companyId = this.user.company_id
+      if (!companyId) {
+        console.log('是游客!!')
+        return
+      }
+      this.is_userRank(function (is) {
+        if (is === 1) {
+          console.log('管理员')
+          that.admin()
+        }
+        if (is === 2) {
+          console.log('业务员')
+          that.staff()
+        }
+      })
     }
   },
   mounted () {
     let sessionUser = JSON.parse(sessionStorage.getItem(values.storage.user)) || {}
+    this.user = sessionUser
     console.log('user表', sessionUser)
     console.log('传来的参数', this.$route.query)
-    if (this.$route.query.overDueStatus === '0') {
-      console.log('逾期')
-      let overdueparameter = this.$route.query
-      if (Object.keys(overdueparameter).length !== 0) {
-        this.overDueStatus = overdueparameter.overDueStatus
-        this.tjzqvalue = '累计'
-        this.overduevalue = '逾期'
-        this.planOwner = overdueparameter.planOwner
-        this.teamId = overdueparameter.teamId
-        this.teamLevel = overdueparameter.teamLevel
-        this.fuzerenvalue = overdueparameter.fuzerenvalue
-        this.tdfwvalue = overdueparameter.tdfwvalue
-        this.zdydate = 'total'
-        this.scdStatus = String(overdueparameter.scdStatus)
-        if (String(overdueparameter.scdStatus) === '3') {
-          this.contractvalue = '施工完成'
-        }
-        if (String(overdueparameter.scdStatus) === '4') {
-          this.contractvalue = '并网完成'
-        }
-        if (String(overdueparameter.scdStatus) === '6') {
-          this.contractvalue = '回款完成'
-        }
+    if (this.$store.state.settingDetails.form === 'home') {
+      // 从首页跳转
+      console.log('从首页跳转过来的')
+      if (this.$route.query.overDueStatus === '0') {
+        console.log('逾期')
+        let overdueparameter = this.$route.query
+        if (Object.keys(overdueparameter).length !== 0) {
+          this.overDueStatus = overdueparameter.overDueStatus
+          this.tjzqvalue = '累计'
+          this.overduevalue = '逾期'
+          this.planOwner = overdueparameter.planOwner
+          this.teamId = overdueparameter.teamId
+          this.teamLevel = overdueparameter.teamLevel
+          this.fuzerenvalue = overdueparameter.fuzerenvalue
+          this.tdfwvalue = overdueparameter.tdfwvalue
+          this.zdydate = 'total'
+          this.scdStatus = String(overdueparameter.scdStatus)
+          if (String(overdueparameter.scdStatus) === '3') {
+            this.contractvalue = '施工完成'
+          }
+          if (String(overdueparameter.scdStatus) === '4') {
+            this.contractvalue = '并网完成'
+          }
+          if (String(overdueparameter.scdStatus) === '6') {
+            this.contractvalue = '回款完成'
+          }
 
-        if (overdueparameter.teamLevel === '1') {
-          overdueparameter.tdfwvalue = '一级团队'
+          if (overdueparameter.teamLevel === '1') {
+            overdueparameter.tdfwvalue = '一级团队'
+          }
+          if (overdueparameter.teamLevel === '2') {
+            overdueparameter.tdfwvalue = '二级团队'
+          }
+          if (overdueparameter.teamLevel === '3') {
+            overdueparameter.tdfwvalue = '三级团队'
+          }
+          if (overdueparameter.teamLevel === 'one') {
+            overdueparameter.tdfwvalue = '个人'
+          }
+          if (this.fuzerenvalue !== '全部(可见范围)') {
+            this.fuzerenshow = false
+          }
+          if (this.teamname !== '全部(可见范围)' && this.teamname !== '个人') {
+            this.teannameshow = false
+          }
+          //        axios.get('/api/pc/select/date/' + 'total').then(res => {
+          //          this.datevalue.push(res.beginDate, res.endDate)
+          //        })
         }
-        if (overdueparameter.teamLevel === '2') {
-          overdueparameter.tdfwvalue = '二级团队'
+      } else {
+        let parameter = this.$route.query
+        if (Object.keys(parameter).length !== 0) {
+          console.log('不是逾期')
+          if (parameter.teamLevel === '1') {
+            parameter.tdfwvalue = '一级团队'
+          }
+          if (parameter.teamLevel === '2') {
+            parameter.tdfwvalue = '二级团队'
+          }
+          if (parameter.teamLevel === '3') {
+            parameter.tdfwvalue = '三级团队'
+          }
+          if (parameter.teamLevel === 'one') {
+            parameter.tdfwvalue = '个人'
+          }
+          if (String(parameter.scdStatus) === '0') {
+            this.contractvalue = '新增项目'
+          }
+          if (String(parameter.scdStatus) === '2') {
+            this.contractvalue = '合同签订'
+          }
+          if (String(parameter.scdStatus) === '3') {
+            this.contractvalue = '施工完成'
+          }
+          if (String(parameter.scdStatus) === '4') {
+            this.contractvalue = '并网完成'
+          }
+          if (String(parameter.scdStatus) === '6') {
+            this.contractvalue = '回款完成'
+          }
+          this.tjzqvalue = parameter.tjzqvalue
+          this.tdfwvalue = parameter.tdfwvalue
+          this.datevalue.push(parameter.beginDate, parameter.endDate)
+          this.planOwner = parameter.planOwner
+          this.teamId = parameter.teamId
+          this.teamLevel = parameter.teamLevel
+          this.scdStatus = String(parameter.scdStatus)
+          this.teamname = parameter.teamname
+          if (this.fuzerenvalue !== '全部(可见范围)') {
+            this.fuzerenshow = false
+          }
+          if (this.teamname !== '全部(可见范围)' && this.teamname !== '个人') {
+            this.teannameshow = false
+          }
         }
-        if (overdueparameter.teamLevel === '3') {
-          overdueparameter.tdfwvalue = '三级团队'
-        }
-        if (overdueparameter.teamLevel === 'one') {
-          overdueparameter.tdfwvalue = '个人'
-        }
-        if (this.fuzerenvalue !== '全部(可见范围)') {
-          this.fuzerenshow = false
-        }
-        if (this.teamname !== '全部(可见范围)' && this.teamname !== '个人') {
-          this.teannameshow = false
-        }
-        //        axios.get('/api/pc/select/date/' + 'total').then(res => {
-        //          this.datevalue.push(res.beginDate, res.endDate)
-        //        })
       }
-    } else {
-      let parameter = this.$route.query
 
-      if (Object.keys(parameter).length !== 0) {
-        if (parameter.teamLevel === '1') {
-          parameter.tdfwvalue = '一级团队'
-        }
-        if (parameter.teamLevel === '2') {
-          parameter.tdfwvalue = '二级团队'
-        }
-        if (parameter.teamLevel === '3') {
-          parameter.tdfwvalue = '三级团队'
-        }
-        if (parameter.teamLevel === 'one') {
-          parameter.tdfwvalue = '个人'
-        }
-        if (String(parameter.scdStatus) === '0') {
-          this.contractvalue = '新增项目'
-        }
-        if (String(parameter.scdStatus) === '2') {
-          this.contractvalue = '合同签订'
-        }
-        if (String(parameter.scdStatus) === '3') {
-          this.contractvalue = '施工完成'
-        }
-        if (String(parameter.scdStatus) === '4') {
-          this.contractvalue = '并网完成'
-        }
-        if (String(parameter.scdStatus) === '6') {
-          this.contractvalue = '回款完成'
-        }
-        this.tjzqvalue = parameter.tjzqvalue
-        this.tdfwvalue = parameter.tdfwvalue
-        this.datevalue.push(parameter.beginDate, parameter.endDate)
-        this.planOwner = parameter.planOwner
-        this.teamId = parameter.teamId
-        this.teamLevel = parameter.teamLevel
-        this.scdStatus = String(parameter.scdStatus)
-        this.teamname = parameter.teamname
-        if (this.fuzerenvalue !== '全部(可见范围)') {
-          this.fuzerenshow = false
-        }
-        if (this.teamname !== '全部(可见范围)' && this.teamname !== '个人') {
-          this.teannameshow = false
-        }
+      this.$store.state.settingDetails.form = ''
+    } else {
+      console.log('没有从首页跳转')
+      //  判断是否有缓存
+      if (this.$store.state.start) {
+        console.log('有缓存')
+      } else {
+        console.log('没有缓存')
+        // 执行最初加载
+        this.show()
       }
     }
     this.requestdata()
-    this.formlistdata()
+    //    this.formlistdata()
   }
 }
 </script>

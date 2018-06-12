@@ -12,6 +12,7 @@ import router from './router'
 import Axios from './utils/Axios'
 import UTree from './component/tree/index'
 import VueAMap from 'vue-amap'
+import store from './store.js'
 
 const moment = require('moment')
 
@@ -32,6 +33,7 @@ Vue.config.devtools = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: {App}

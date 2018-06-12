@@ -15,32 +15,36 @@
             <i class="iconfont icon-shouye" ></i>
             <span slot="title">首页</span>
           </el-menu-item>
-          <el-menu-item index="1" :route="{name: 'SettingDetails'}">
-            <i class="iconfont icon-rili"></i>
-            <span slot="title">进度详情</span>
-          </el-menu-item>
-          <el-menu-item index="2" :route="{name: 'CustomerData'}">
+          <!--<el-menu-item index="1" :route="{name: 'SettingDetails'}">-->
+            <!--<i class="iconfont icon-rili"></i>-->
+            <!--<span slot="title">进度详情</span>-->
+          <!--</el-menu-item>-->
+          <el-menu-item index="1" :route="{name: 'CustomerData'}">
             <i class="iconfont icon-ziliaoguanli"></i>
             <span slot="title">客户资料</span>
           </el-menu-item>
-          <el-menu-item index="3" :route="{name: 'ImportCustomer'}">
+          <el-menu-item index="2" :route="{name: 'ImportCustomer'}">
             <i class="iconfont icon-yonghutouxiang"></i>
             <span slot="title">客户导入</span>
           </el-menu-item>
-          <el-menu-item index="4" :route="{name: 'Signin'}">
+          <!--<el-menu-item index="3" :route="{name: 'Aerialphotoupload'}">-->
+            <!--<i class="iconfont icon-yonghutouxiang"></i>-->
+            <!--<span slot="title">航拍上传</span>-->
+          <!--</el-menu-item>-->
+          <el-menu-item index="3" :route="{name: 'Signin'}">
             <i class="iconfont icon-weizhi"></i>
             <span slot="title">签到统计</span>
           </el-menu-item>
-          <el-menu-item index="5" :route="{name: 'PersonnelManagement'}">
+          <el-menu-item index="4" :route="{name: 'PersonnelManagement'}">
             <i class="iconfont icon-tuandui"></i>
             <span slot="title">团队结构</span>
           </el-menu-item>
         </el-menu-item-group>
-        <el-menu-item index="6" :route="{name: 'TeamInformation'}">
+        <el-menu-item index="5" :route="{name: 'TeamInformation'}">
           <i class="iconfont icon-ziliaoguanli"></i>
           <span slot="title">团队信息</span>
         </el-menu-item>
-        <el-menu-item index="7" :route="{name: 'AccountSetting'}">
+        <el-menu-item index="6" :route="{name: 'AccountSetting'}">
           <i class="iconfont icon-shezhi"></i>
           <span slot="title">账户设置</span>
         </el-menu-item>
@@ -243,9 +247,10 @@ export default {
   updated () {
     let menus = [
       ['Home', 'Overdue'],
-      ['SettingDetails'],
+      //      ['SettingDetails'],
       ['CustomerData', 'CustomerDetails'],
       ['ImportCustomer'],
+      //      ['Aerialphotoupload'],
       ['Signin', 'SigninDetails'],
       ['PersonnelManagement', 'TeamUserDetail'],
       ['TeamInformation'],

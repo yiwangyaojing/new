@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="2018年06月12日14:29 后台文字修改">
+    <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/customerDataPc.js" afterPath="$PROJECT_DIR$/app/controller/customerDataPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/teamPc.js" afterPath="$PROJECT_DIR$/app/controller/teamPc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/config/prod.env.js" afterPath="$PROJECT_DIR$/pc-view/config/prod.env.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/coverage/" />
@@ -63,17 +60,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerDataPc.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="customerDataPc.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controller/customerDataPc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+            <state relative-caret-position="107">
+              <caret line="88" column="70" lean-forward="false" selection-start-line="88" selection-start-column="70" selection-end-line="88" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="teamPc.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="teamPc.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controller/teamPc.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
@@ -162,8 +159,8 @@
       <find>loadTable</find>
       <find>导入</find>
       <find>tomerDataPc/importExcelData/</find>
-      <find>getTableData</find>
       <find>查询客户信息是否存</find>
+      <find>getTableData</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -230,8 +227,8 @@
         <option value="$PROJECT_DIR$/config/config.default.js" />
         <option value="$PROJECT_DIR$/pc-view/config/prod.env.js" />
         <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" />
-        <option value="$PROJECT_DIR$/app/controller/customerDataPc.js" />
         <option value="$PROJECT_DIR$/app/controller/teamPc.js" />
+        <option value="$PROJECT_DIR$/app/controller/customerDataPc.js" />
       </list>
     </option>
   </component>
@@ -421,7 +418,7 @@
       <workItem from="1525241072217" duration="1940000" />
       <workItem from="1526522289188" duration="47912000" />
       <workItem from="1526617325345" duration="811000" />
-      <workItem from="1528796402568" duration="4611000" />
+      <workItem from="1528796402568" duration="4637000" />
     </task>
     <task id="LOCAL-00001" summary="打包下载接口对接，以及进度详情  客户资料列表信息添加 提取码字段 -----TQG">
       <created>1526527426079</created>
@@ -710,11 +707,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528785012127</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="2018年06月12日14:29 后台文字导入修改">
+      <created>1528856561115</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1528856561115</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118344000" />
+    <option name="totallyTimeSpent" value="118370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -822,7 +826,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix 1.客户资料参数添加个 2. 添加默认提取码自动填充 type -----TQG" />
     <MESSAGE value="fix 添加默认提取码自动填充 bug-----TQG" />
     <MESSAGE value="fix loading 效果样式修改 -----TQG" />
     <MESSAGE value="fix loading 样式效果修改 -----TQG" />
@@ -847,7 +850,8 @@
     <MESSAGE value="2018年06月11日11:55 计算及其项目资料完成" />
     <MESSAGE value="2018年06月12日11:58 小程序后台及其短信验证" />
     <MESSAGE value="2018年06月12日14:29 后台文字修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年06月12日14:29 后台文字修改" />
+    <MESSAGE value="2018年06月12日14:29 后台文字导入修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年06月12日14:29 后台文字导入修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1209,14 +1213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="189" column="52" lean-forward="false" selection-start-line="189" selection-start-column="52" selection-end-line="189" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/config.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
@@ -1225,18 +1221,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/customerDataPc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/teamPc.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="21" column="68" lean-forward="true" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="189" column="52" lean-forward="false" selection-start-line="189" selection-start-column="52" selection-end-line="189" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/customerDataPc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="88" column="70" lean-forward="false" selection-start-line="88" selection-start-column="70" selection-end-line="88" selection-end-column="70" />
           <folding />
         </state>
       </provider>

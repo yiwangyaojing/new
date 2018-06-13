@@ -87,7 +87,6 @@ class CustomerDataPc extends Controller {
     const excelData = this.ctx.request.body;
     // 取出个人信息和管理的团队信息 this.ctx.params.id
     const userInfo = await this.ctx.service.user.findByOpenId(openId);
-      console.log('数据',excelData)
     // 取出公司所有用户团队信息
     // teamInfo.agents 公司所有用户信息
     // teamInfo.teams 公司所有团队信息

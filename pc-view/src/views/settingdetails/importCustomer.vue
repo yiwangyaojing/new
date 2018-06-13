@@ -187,7 +187,7 @@ export default {
       if (r === true) {
         let tableData = _this.$refs.hotTable.table.getData()
         let importData = []
-        let array = ['', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        let array = ['', '', '', '', '', '', '', '', '', '', '', '']
         for (let i = 0; i < tableData.length; i++) {
           if (tableData[i].toString() !== array.toString()) {
             tableData[i].unshift(_this.selectTeam)
@@ -608,18 +608,18 @@ export default {
         tableObj.setCellMeta(i, 0, 'className', className)
         // 回款金额的校验
         // let valid = true
-        if (tableObj.getDataAtCell(i, 7) !== '' && tableObj.getDataAtCell(i, 8) !== '') {
-          if (tableObj.getDataAtCell(i, 8) > tableObj.getDataAtCell(i, 7)) {
-            // valid = false
-            className = 'red'
-            _this.returnMoneyCheck = false
-          } else {
-            // valid = true
-            className = ''
-          }
-        } else if (tableObj.getDataAtCell(i, 7) === '' && tableObj.getDataAtCell(i, 8) === '') {
-          className = ''
-        }
+//        if (tableObj.getDataAtCell(i, 7) !== '' && tableObj.getDataAtCell(i, 8) !== '') {
+//          if (tableObj.getDataAtCell(i, 8) > tableObj.getDataAtCell(i, 7)) {
+//            // valid = false
+//            className = 'red'
+//            _this.returnMoneyCheck = false
+//          } else {
+//            // valid = true
+//            className = ''
+//          }
+//        } else if (tableObj.getDataAtCell(i, 7) === '' && tableObj.getDataAtCell(i, 8) === '') {
+//          className = ''
+//        }
         tableObj.setCellMeta(i, 8, 'className', className)
       }
       tableObj.render()

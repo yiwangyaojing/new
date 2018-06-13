@@ -19,7 +19,7 @@ class TeamPcController extends Controller {
         }
         return
       }
-      console.log('TeamPcController-index：查询客户信息是否存在===>>', user)
+      // console.log('TeamPcController-index：查询客户信息是否存在===>>', user)
       ctx.body = await service.teamPc.index(req.openid, companyId)
     }
 

@@ -87,6 +87,7 @@ class CustomerDataPc extends Controller {
     const excelData = this.ctx.request.body;
     // 取出个人信息和管理的团队信息 this.ctx.params.id
     const userInfo = await this.ctx.service.user.findByOpenId(openId);
+      console.log('数据',excelData)
     // 取出公司所有用户团队信息
     // teamInfo.agents 公司所有用户信息
     // teamInfo.teams 公司所有团队信息
@@ -145,6 +146,9 @@ class CustomerDataPc extends Controller {
 
     if (excelData) {
       for(let i=0;i<excelData.length;i++){
+          excelData[i].splice(5, 0, null)
+          excelData[i].splice(6, 0, null)
+          console.log(excelData[i])
         for(let j=0;j<agents.length;j++){
           if(agents[j].name === excelData[i][1]){
                 let planObj = {};

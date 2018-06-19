@@ -69,7 +69,7 @@ module.exports = appInfo => {
             sessionName: 'apicsrfToken', // Session 中的字段名，默认为 csrfToken
             headerName: 'x-csrf-token', // Session 中的字段名，默认为 csrfToken
         },
-        domainWhiteList: [ 'localhost:8003','web.xiaosolar.com' ,'web.xiaosolar.cn','mpa.xiaosolar.com','mp.xiaosolar.com','mpa.xiaosolar.cn','mp.xiaosolar.cn']
+        domainWhiteList: [ 'localhost:8003','web.xiaosolar.com' ,'web.xiaosolar.cn','mpa.xiaosolar.com','mp.xiaosolar.com','mpa.xiaosolar.cn','mp.xiaosolar.cn','web.xiaosotech.com']
     };
     config.oss = {
         client: {

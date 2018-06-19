@@ -76,8 +76,8 @@
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">客户数量</div>
                     <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #e3023b;font-size: 30px;">{{stateupdate0.total ? stateupdate0.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                     <div class="fl" style="width: 59%;font-size: 18px;">
-                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                      <div style="padding: 12px 0">{{stateupdate0.price ? stateupdate0.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                      <!--<div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate0.input_capacity ? stateupdate0.input_capacity : '&#45;&#45;'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>-->
+                      <div style="padding: 40px 0">{{stateupdate0.price ? stateupdate0.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                     </div>
                   </div>
                 </el-col>
@@ -88,8 +88,8 @@
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">合同签订</div>
                     <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc30;font-size: 30px;">{{stateupdate2.total ? stateupdate2.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                     <div class="fl" style="width: 59%;font-size: 18px;">
-                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate2.input_capacity ? stateupdate2.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                      <div style="padding: 12px 0">{{stateupdate2.price ? stateupdate2.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                      <!--<div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate2.input_capacity ? stateupdate2.input_capacity : '&#45;&#45;'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>-->
+                      <div style="padding: 40px 0">{{stateupdate2.price ? stateupdate2.price / 10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                     </div>
                   </div>
 
@@ -101,8 +101,8 @@
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">施工完成</div>
                     <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00abca;font-size: 30px;">{{stateupdate3.total ? stateupdate3.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                     <div class="fl" style="width: 59%;font-size: 18px;">
-                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate3.input_capacity ? stateupdate3.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                      <div style="padding: 12px 0">{{stateupdate3.price ? stateupdate3.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                      <!--<div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate3.input_capacity ? stateupdate3.input_capacity : '&#45;&#45;'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>-->
+                      <div style="padding: 40px 0">{{stateupdate3.price ? stateupdate3.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                     </div>
                   </div>
                 </el-col>
@@ -113,8 +113,8 @@
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">验收完成</div>
                     <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #ca9b00;font-size: 30px;">{{stateupdate4.total ? stateupdate4.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                     <div class="fl" style="width: 59%;font-size: 18px;">
-                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate4.input_capacity ? stateupdate4.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                      <div style="padding: 12px 0">{{stateupdate4.price ? stateupdate4.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                      <!--<div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate4.input_capacity ? stateupdate4.input_capacity : '&#45;&#45;'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>-->
+                      <div style="padding: 40px 0">{{stateupdate4.price ? stateupdate4.price /10000 : '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                     </div>
                   </div>
                 </el-col>
@@ -125,8 +125,8 @@
                     <div style="border-bottom: 1px solid #dcdfe6;padding: 10px 0;">回款完成</div>
                     <div class="fl xy-Center" style="border-right: 1px solid #dcdfe6;padding: 30px 0;width: 40%"><span style="color: #00cc87;font-size: 30px;">{{stateupdate6.total ? stateupdate6.total : '--'}}</span><span style="color: #999;font-size: 12px;">&nbsp; 个</span></div>
                     <div class="fl" style="width: 59%;font-size: 18px;">
-                      <div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate6.input_capacity ? stateupdate6.input_capacity : '--'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>
-                      <div style="padding: 12px 0">{{stateupdate6.price ? stateupdate6.price / 10000: '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
+                      <!--<div style="border-bottom: 1px solid #dcdfe6;padding: 13px 0">{{stateupdate6.input_capacity ? stateupdate6.input_capacity : '&#45;&#45;'}} <span style="color: #999;font-size: 12px;">千瓦</span></div>-->
+                      <div style="padding: 40px 0">{{stateupdate6.price ? stateupdate6.price / 10000: '--'}} <span style="color: #999;font-size: 12px;">万元</span></div>
                     </div>
                   </div>
                 </el-col>

@@ -12,6 +12,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://localhost:7001',
+        // target: 'https://mp.xiaosolar.com/crm-api',
         debug: true,
         changeOrigin: true,
         secure: false

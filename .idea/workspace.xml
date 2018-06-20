@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc13df13-5005-4f05-9854-b27412db80ad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.default.js" afterPath="$PROJECT_DIR$/config/config.default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/Login.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/Login.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" afterPath="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router.js" afterPath="$PROJECT_DIR$/app/router.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/coverage/" />
@@ -37,8 +33,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pc-view/config/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="62" column="7" lean-forward="true" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
+            <state relative-caret-position="1054">
+              <caret line="62" column="7" lean-forward="false" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -48,17 +44,27 @@
         <entry file="file://$PROJECT_DIR$/pc-view/config/prod.env.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+              <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerData.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="customerData.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="157" column="118" lean-forward="false" selection-start-line="157" selection-start-column="118" selection-end-line="157" selection-end-column="118" />
+            <state relative-caret-position="-184">
+              <caret line="154" column="32" lean-forward="false" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="146" column="13" lean-forward="false" selection-start-line="146" selection-start-column="13" selection-end-line="146" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -67,7 +73,7 @@
       <file leaf-file-name="importCustomer.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
+            <state relative-caret-position="663">
               <caret line="39" column="18" lean-forward="false" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#el-card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -80,7 +86,7 @@
       <file leaf-file-name="customerDetails.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
+            <state relative-caret-position="8109">
               <caret line="692" column="38" lean-forward="false" selection-start-line="692" selection-start-column="38" selection-end-line="692" selection-end-column="38" />
               <folding>
                 <element signature="n#div#0;n#el-col#1;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
@@ -199,7 +205,6 @@
         <option value="$PROJECT_DIR$/app/controller/planInfoEdit.js" />
         <option value="$PROJECT_DIR$/app/service/planInfoEdit.js" />
         <option value="$PROJECT_DIR$/app/model/x_team.js" />
-        <option value="$PROJECT_DIR$/app/router.js" />
         <option value="$PROJECT_DIR$/app/controller/roof.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/docker-compose.production.yml" />
@@ -223,6 +228,7 @@
         <option value="$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue" />
         <option value="$PROJECT_DIR$/pc-view/config/index.js" />
         <option value="$PROJECT_DIR$/pc-view/config/prod.env.js" />
+        <option value="$PROJECT_DIR$/app/router.js" />
       </list>
     </option>
   </component>
@@ -260,13 +266,17 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crm_api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="crm_api" type="b2602c69:ProjectViewProjectNode" />
@@ -318,6 +328,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
@@ -333,6 +344,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/zhoushunfa/Desktop/font-api/app/router.js" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -458,7 +470,8 @@
       <workItem from="1528941731190" duration="5902000" />
       <workItem from="1529381146439" duration="569000" />
       <workItem from="1529387761539" duration="641000" />
-      <workItem from="1529389637449" duration="6047000" />
+      <workItem from="1529389637449" duration="6662000" />
+      <workItem from="1529489530300" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="打包下载接口对接，以及进度详情  客户资料列表信息添加 提取码字段 -----TQG">
       <created>1526527426079</created>
@@ -782,11 +795,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529389565634</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="2018年06月20日11:06 正式">
+      <created>1529463993559</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1529463993560</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137074000" />
+    <option name="totallyTimeSpent" value="137698000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -894,7 +914,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix loading 效果样式" />
     <MESSAGE value="客户详情 下载功能添加  TQG" />
     <MESSAGE value="格式化" />
     <MESSAGE value="fix 点击返回不现实修改成功消息" />
@@ -919,7 +938,8 @@
     <MESSAGE value="2018年06月19日10:22" />
     <MESSAGE value="2018年06月19日10:22 设置请求头" />
     <MESSAGE value="2018年06月19日14:25 设置新域名" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年06月19日14:25 设置新域名" />
+    <MESSAGE value="2018年06月20日11:06 正式" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年06月20日11:06 正式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1023,13 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="149" column="51" lean-forward="false" selection-start-line="149" selection-start-column="51" selection-end-line="149" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.production.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1062,7 +1075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1070,7 +1082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="7" lean-forward="false" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1106,7 +1117,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="24" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1114,7 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="24" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1122,7 +1131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1137,7 +1145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1145,7 +1152,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="64" lean-forward="true" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1153,7 +1159,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="15" lean-forward="true" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1161,7 +1166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="64" lean-forward="true" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1169,7 +1173,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1177,7 +1180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="26" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1185,7 +1187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1193,7 +1194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="64" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="58" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,71 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-          <folding>
-            <marker date="1529459189736" expanded="true" signature="0:20035" ph="{...}" />
-            <marker date="1529459189736" expanded="true" signature="14:13023" ph="{&quot;name&quot;: &quot;crm-api&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="6621:6840" ph="{&quot;dialect&quot;: &quot;mysql&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="6853:7169" ph="{&quot;useAgent&quot;: false...}" />
-            <marker date="1529459189736" expanded="true" signature="6872:6906" ph="{&quot;timeout&quot;: &quot;60s&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="6949:7163" ph="{&quot;accessKeyId&quot;: &quot;LTAIKWs1kELOi15p&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="7187:7266" ph="{&quot;username&quot;: &quot;marvel_comics&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="7477:9435" ph="{&quot;name&quot;: &quot;crm-api&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="7611:8065" ph="{&quot;@alicloud/sms-sdk&quot;: &quot;^1.0.9&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="8092:8607" ph="{&quot;autod&quot;: &quot;^3.0.1&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="8626:8661" ph="{&quot;node&quot;: &quot;&gt;=8.9.0&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="8680:9249" ph="{&quot;start&quot;: &quot;egg-scripts start --daemon --title=egg-server-crm-api&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="9263:9295" ph="{&quot;version&quot;: &quot;8&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="9317:9367" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="9609:9640" ph="{&quot;ignore&quot;: &quot;&lt;Set&gt;&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="9672:9841" ph="{&quot;bodyparser&quot;: &quot;bodyParser&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="9859:9886" ph="{&quot;pageUrl&quot;: &quot;&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="9904:9954" ph="{&quot;/favicon.ico&quot;: &quot;&lt;Buffer len: 6463&gt;&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="9974:10245" ph="{&quot;enable&quot;: true...}" />
-            <marker date="1529459189736" expanded="true" signature="10123:10210" ph="{&quot;arrayLimit&quot;: 100...}" />
-            <marker date="1529459189736" expanded="true" signature="10261:10811" ph="{&quot;dir&quot;: &quot;/Users/zhoushunfa/Desktop/好销售 crm项目/crm_api/logs/crm-api&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="10703:10743" ph="{&quot;consoleLevel&quot;: &quot;WARN&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="10831:11379" ph="{&quot;enableDNSCache&quot;: false...}" />
-            <marker date="1529459189736" expanded="true" signature="10945:10978" ph="{&quot;timeout&quot;: 5000...}" />
-            <marker date="1529459189736" expanded="true" signature="10999:11175" ph="{&quot;keepAlive&quot;: true...}" />
-            <marker date="1529459189736" expanded="true" signature="11197:11373" ph="{&quot;keepAlive&quot;: true...}" />
-            <marker date="1529459189736" expanded="true" signature="11393:11445" ph="{&quot;enable&quot;: true...}" />
-            <marker date="1529459189736" expanded="true" signature="11469:11668" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="11719:11817" ph="{...}" />
-            <marker date="1529459189736" expanded="true" signature="11737:11811" ph="{&quot;path&quot;: &quot;&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="11840:11906" ph="{&quot;maxWaitTime&quot;: 60000...}" />
-            <marker date="1529459189736" expanded="true" signature="11953:11985" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="12011:12043" ph="{&quot;match&quot;: &quot;/api/pc&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="12056:12274" ph="{...}" />
-            <marker date="1529459189736" expanded="true" signature="12074:12268" ph="{&quot;accessKeyId&quot;: &quot;LTAIJq3IvPywFWPH&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="12290:12590" ph="{&quot;appId&quot;: &quot;wx352e48c1b3170cfe&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="12757:13019" ph="{&quot;autoFields&quot;: false...}" />
-            <marker date="1529459189736" expanded="true" signature="12830:12970" ph="{&quot;fieldNameSize&quot;: 100...}" />
-            <marker date="1529459189736" expanded="true" signature="13038:20033" ph="{...}" />
-            <marker date="1529459189736" expanded="true" signature="13055:13407" ph="{&quot;name&quot;: &quot;session&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="13425:13822" ph="{&quot;name&quot;: &quot;security&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="13564:13591" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="13837:14226" ph="{&quot;name&quot;: &quot;jsonp&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="13970:13998" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="14243:14635" ph="{&quot;name&quot;: &quot;onerror&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="14380:14405" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="14649:15009" ph="{&quot;name&quot;: &quot;i18n&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="15026:15395" ph="{&quot;name&quot;: &quot;watcher&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="15414:15789" ph="{&quot;name&quot;: &quot;multipart&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="15810:16239" ph="{&quot;name&quot;: &quot;development&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="15921:15948" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="15997:16022" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="16257:16629" ph="{&quot;name&quot;: &quot;schedule&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="16649:17053" ph="{&quot;name&quot;: &quot;logrotator&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="16758:16786" ph="[...]" />
-            <marker date="1529459189736" expanded="true" signature="17069:17435" ph="{&quot;name&quot;: &quot;static&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="17449:17809" ph="{&quot;name&quot;: &quot;view&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="17827:18182" ph="{&quot;name&quot;: &quot;validate&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="18196:18539" ph="{&quot;name&quot;: &quot;cors&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="18554:18900" ph="{&quot;name&quot;: &quot;redis&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="18919:19277" ph="{&quot;name&quot;: &quot;sequelize&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="19290:19654" ph="{&quot;name&quot;: &quot;oss&quot;...}" />
-            <marker date="1529459189736" expanded="true" signature="19672:20029" ph="{&quot;name&quot;: &quot;httpAuth&quot;...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1273,7 +1208,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-460">
           <caret line="46" column="35" lean-forward="false" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1281,7 +1215,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="181" lean-forward="true" selection-start-line="7" selection-start-column="181" selection-end-line="7" selection-end-column="181" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1289,7 +1222,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1297,7 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1305,7 +1236,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1313,7 +1243,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1321,7 +1250,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1329,7 +1257,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1343,7 +1270,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pc-view/src/views/customerdetails/customerDetails.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="8109">
           <caret line="692" column="38" lean-forward="false" selection-start-line="692" selection-start-column="38" selection-end-line="692" selection-end-column="38" />
           <folding>
             <element signature="n#div#0;n#el-col#1;n#el-row#0;n#el-card#0;n#template#0;n#!!top" expanded="false" />
@@ -1375,7 +1302,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/importCustomer.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
+        <state relative-caret-position="663">
           <caret line="39" column="18" lean-forward="false" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#el-card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -1386,8 +1313,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pc-view/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="62" column="7" lean-forward="true" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
+        <state relative-caret-position="1054">
+          <caret line="62" column="7" lean-forward="false" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1395,15 +1322,23 @@
     <entry file="file://$PROJECT_DIR$/pc-view/config/prod.env.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pc-view/src/views/settingdetails/customerData.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="157" column="118" lean-forward="false" selection-start-line="157" selection-start-column="118" selection-end-line="157" selection-end-column="118" />
+        <state relative-caret-position="-184">
+          <caret line="154" column="32" lean-forward="false" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="146" column="13" lean-forward="false" selection-start-line="146" selection-start-column="13" selection-end-line="146" selection-end-column="13" />
           <folding />
         </state>
       </provider>

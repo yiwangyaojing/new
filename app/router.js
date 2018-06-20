@@ -144,7 +144,7 @@ module.exports = app => {
      * PC端接口
      */
 
-    // PC端登录
+    // PC端登录.
     router.post('/api/login/sms', controller.login.sms);
     router.get('/api/login/validate/:phone', controller.login.validatePhone);
     router.post('/api/login', controller.login.userLogin);

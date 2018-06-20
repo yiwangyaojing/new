@@ -5,7 +5,7 @@
         <div class="xy-Center" style="height: 60px;">
           <img src="../../static/img/logo.png" alt="">
         </div>
-        <div style="position: relative;top: -58px;right:40px;text-align: right;color: #fff;"><a target="_blank" style="color: white" href="http://www.xiaosolar.cn/">关于我们</a></div>
+        <div style="position: relative;top: -58px;right:40px;text-align: right;color: #fff;"><a target="_blank" style="color: white" href="http://www.xiaosotech.com/">关于我们</a></div>
       </el-header>
       <div style="height: 8px;background: #ffffff"></div>
     </el-container>

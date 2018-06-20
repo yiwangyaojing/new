@@ -50,31 +50,7 @@
                       <el-input v-model="form.cst_address" type="textarea" autosize size="small" auto-complete="off"></el-input>
                     </el-col>
                   </el-form-item>
-                  <el-form-item label="组件规格" :label-width="formLabelWidth">
-                    <el-col :span="17">
-                      <el-input v-model="form.zj_input_format" @blur="countCapacity" size="small" auto-complete="off"></el-input>
-                    </el-col>
-                    <el-col :span="3" style="text-align: right;">瓦</el-col>
-                  </el-form-item>
-                  <el-form-item label="组件数量" :label-width="formLabelWidth">
-                    <el-col :span="17">
-                      <el-input v-model="form.zj_input_num" @blur="countCapacity" size="small" auto-complete="off"></el-input>
-                    </el-col>
-                    <el-col :span="3"  style="text-align: right;">块</el-col>
-                  </el-form-item>
-                  <el-form-item label="装机容量" :label-width="formLabelWidth">
-                    <el-col :span="17">
-                      <el-input v-model="form.zj_input_capacity" size="small" auto-complete="off"></el-input>
-                    </el-col>
-                    <el-col :span="3"  style="text-align: right;">千瓦</el-col>
-                  </el-form-item>
-                  <el-form-item label="系统单价" :label-width="formLabelWidth">
-                    <el-col :span="17">
-                      <el-input v-model="form.zj_unit_price" size="small" auto-complete="off"></el-input>
-                    </el-col>
-                    <el-col :span="3"  style="text-align: right;">元</el-col>
-                  </el-form-item>
-                  <el-form-item label="系统总价" :label-width="formLabelWidth">
+                  <el-form-item label="总价" :label-width="formLabelWidth">
                     <el-col :span="17">
                       <el-input v-model="form.zj_price" size="small" auto-complete="off"></el-input>
                     </el-col>
@@ -180,7 +156,6 @@
           <el-table-column prop="zj_price" label="合同金额" align="center"></el-table-column>
           <el-table-column :formatter="finishFormat" prop="h_is_finish" label="项目勘测" align="center"></el-table-column>
           <el-table-column :formatter="finishFormat" prop="d_is_finish" label="资料收集" align="center"></el-table-column>
-          <el-table-column :formatter="finishFormat" prop="rf_is_finish" label="方案设计" align="center"></el-table-column>
           <!--<el-table-column prop="short_url" label="提取码" width="70" align="center"></el-table-column>-->
           <el-table-column prop="createTime" label="添加时间" width="100" align="center"></el-table-column>
           <el-table-column fixed="right" label="操作" width="100"  align="center">

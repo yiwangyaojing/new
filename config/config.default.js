@@ -30,14 +30,14 @@ module.exports = appInfo => {
         encrypt: false
     };
     //本地开发
-    config.sequelize = {
-        dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-        database: 'crm_development',
-        host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
-        port: '3306',
-        username: 'crm_dev_user',
-        password: '1q2w3e4r',
-    };
+    // config.sequelize = {
+    //     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    //     database: 'crm_development',
+    //     host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+    //     port: '3306',
+    //     username: 'crm_dev_user',
+    //     password: '1q2w3e4r',
+    // };
     //线上生产
     // config.sequelize = {
     //   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
@@ -48,14 +48,14 @@ module.exports = appInfo => {
     //   password: '1q2w3e4r',
     // };
     //线上测试
-    // config.sequelize = {
-    //   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-    //   database: 'crm_test',
-    //   host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
-    //   port: '3306',
-    //   username: 'crm_test_user',
-    //   password: '1q2w3e4r',
-    // };
+    config.sequelize = {
+      dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+      database: 'crm_test',
+      host: 'rm-uf6g4eg5i62q13010ho.mysql.rds.aliyuncs.com',
+      port: '3306',
+      username: 'crm_test_user',
+      password: '1q2w3e4r',
+    };
     config.cors = {
         allowMethods:['GET','HEAD','PUT','POST','DELETE','OPTIONS'],
         credentials: true,

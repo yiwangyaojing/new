@@ -31,8 +31,8 @@
             <div>
                 <div ref="colorHint" style="float: left">
                   <br>
-                  <span ref="yellowHint" style="display:none;font-size: 14px">单元格黄色：项目负责人不在该团队中，但也可以继续导入<br></span>
-                  <span ref="redHint" style="display:none;font-size: 14px">单元格红色：不符合规则，无法导入</span>
+                  <span ref="yellowHint" style="display:none;font-size: 14px;background: yellow">单元格黄色：项目负责人不在该团队中，但也可以继续导入<br></span>
+                  <span ref="redHint" style="display:none;font-size: 14px;background: red">单元格红色：不符合规则，无法导入</span>
                 </div>
                 <button class="el-button el-button--default el-button--medium" ref="nextStep" @click="nextStep()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;font-size: 14px">校验</button>
                 <button class="el-button el-button--default el-button--medium" ref="saveButton" @click="getTableData()" size="medium" style="margin-top: 20px;background: #67c23a;color: #fff;float: right;font-size: 14px;display: none">导入</button>

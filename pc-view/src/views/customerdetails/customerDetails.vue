@@ -125,39 +125,7 @@
         </div>
         <div class="clearfix" style="margin-top: 5px;">
           <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
-            <div class="fl" style="width: 80px;">组件规格</div>
-            <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-              <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_format}}</div>
-              <div class="fr" style="width: 25%;text-align: center;">瓦</div>
-            </div>
-          </div>
-          <div :span="10" class="clearfix fl y-Center">
-            <div class="fl" style="width: 80px;">组件数量</div>
-            <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-              <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
-              <div class="fr" style="width: 25%;text-align: center;">块</div>
-            </div>
-          </div>
-        </div>
-        <div class="clearfix" style="margin-top: 5px;">
-          <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
-            <div class="fl" style="width: 80px;">系统容量</div>
-            <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-              <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
-              <div class="fr" style="width: 25%;text-align: center;">千瓦</div>
-            </div>
-          </div>
-          <div :span="10" class="clearfix fl y-Center">
-            <div class="fl" style="width: 80px;">系统单价</div>
-            <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-              <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_unit_price}}</div>
-              <div class="fr" style="width: 25%;text-align: center;">元</div>
-            </div>
-          </div>
-        </div>
-        <div class="clearfix" style="margin-top: 5px;">
-          <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
-            <div class="fl" style="width: 80px;">系统总价</div>
+            <div class="fl" style="width: 80px;">总价</div>
             <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
               <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_price}}</div>
               <div class="fr" style="width: 25%;text-align: center;">元</div>
@@ -469,52 +437,6 @@
               :closable= false
               show-icon>
             </el-alert>
-            </el-col>
-          </el-tab-pane>
-          <el-tab-pane label="方案设计" name="5">
-            <div v-if="paibanzishow">
-              <div class="clearfix" style="margin-top: 20px;">
-                <div :span="10" class="clearfix fl y-Center" style="width: 400px;">
-                  <div class="fl" style="width: 80px;">组件规格</div>
-                  <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                    <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_format}}</div>
-                    <div class="fr" style="width: 25%;text-align: center;">瓦</div>
-                  </div>
-                </div>
-                <div :span="10" class="clearfix fl y-Center">
-                  <div class="fl" style="width: 80px;">组件数量</div>
-                  <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                    <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_num}}</div>
-                    <div class="fr" style="width: 25%;text-align: center;">块</div>
-                  </div>
-                </div>
-              </div>
-              <div class="clearfix" style="margin-top: 20px;">
-                <div :span="10" class="clearfix y-Center" style="width: 400px;">
-                  <div class="fl" style="width: 80px;">装机容量</div>
-                  <div class="fl clearfix" style="width: 220px;border-radius: 5px;height: 30px;line-height: 30px;" >
-                    <div class="fl" style="width: 70%;padding-left: 10px">{{this.details.zj_input_capacity}}</div>
-                    <div class="fr" style="width: 25%;text-align: center;">千瓦</div>
-                  </div>
-                </div>
-              </div>
-              <div class="clearfix" style="margin-top: 20px;">
-                <div class="fl" style="width: 80px;">备注</div>
-                <div class="fl" style="width: 400px;height:60px;border-radius: 5px; ">{{this.details.rf_remark}}</div>
-              </div>
-              <div style="margin-top: 20px;font-size: 16px;">排布示意图</div>
-              <div style="margin-top: 20px;"><img width="400" :src="details.rf_image" alt=""></div>
-            </div>
-            <el-col :span="10" :offset="7">
-              <el-alert
-                v-if="!paibanzishow"
-                title="暂无设计方案"
-                :closable= false
-                type="warning"
-                width="300px"
-                center
-                show-icon>
-              </el-alert>
             </el-col>
           </el-tab-pane>
         </el-tabs>
